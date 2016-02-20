@@ -5,7 +5,8 @@ date: 2010-12-05T15:02:16+00:00
 author: tanglei
 layout: page
 guid: http://www.tanglei.name/?page_id=2
-redirect_from: "/aboutme"
+redirect_from: "/aboutme/"
+permalink: /about/
 duoshuo_thread_id:
   - 1351844048792453157
 ---

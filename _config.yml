@@ -51,6 +51,14 @@ highlighter: 'pygments'
 #    extensions: ["fenced_code_blocks", "tables", "highlight", "strikethrough", "autolink"]
 kramdown:
     input: GFM
+    extensions:
+        - autolink
+        - footnotes
+        - smart
+    enable_coderay: true
+    syntax_highlighter: rouge
+    coderay:
+        coderay_line_numbers:  nil
 
 # RSS
 rss:
@@ -73,13 +81,13 @@ author:
 ## The socials icon base font-awesome,you can learn more on http://fontawesome.io/icons/
 socials:
     - name: "weibo"
-      url: "http://www.weibo.com/usename/"
+      url: "http://www.weibo.com/tangleithu/"
       icon: "weibo"
     - name: "github"
-      url: "https://github.com/usename"
+      url: "https://github.com/tl3shi"
       icon: "github"
     - name: "facebook"
-      url: "https://www.facebook.com/usename"
+      url: "https://www.facebook.com/tanglei.name"
       icon: "facebook"
 
 
