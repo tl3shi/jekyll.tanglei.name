@@ -67,7 +67,7 @@ codecolorer之前的代码区域基本上都是通过``[cc lang="java"]java code
 </script>
 ```
 
-Demo 见[这里](/codecolorer-adapted-to-highlight/highlighttest.html)。
+Demo 见[这里](/resources/codecolorer-adapted-to-highlight/highlighttest.html)。
 
 然后就是使这些js代码应用到之前的所有文章中，直接添加到每篇含有代码的文章中的正文里容易被wordpress过滤转义掉，且加载的顺序不正确也会导致代码高亮出现问题，如果加在全站的header中有造成不必要的浪费，幸好wordpress提供了给每篇文章自定义的功能，wordpress后台发布文章时有个自定义栏目，可以给每篇文章加个标签，然后wp加载的时候根据这篇文章的标签采用不同的逻辑加载。方法可以参考[在 WordPress 指定页面加载指定 JavaScript 或 CSS 代码](http://loo2k.com/blog/wordpress-page-javascript-css-code/)[^1]
 
@@ -98,7 +98,7 @@ Demo 见[这里](/codecolorer-adapted-to-highlight/highlighttest.html)。
 mysql replace没有正则匹配，一个一个来了。
 
 ```sql
-UPDATE wp_posts SET post_content = REPLACE( post_content, '[/cc]', '\`\`\`</pre>' ) where ID in 
+UPDATE wp_posts SET post_content = REPLACE( post_content, '[/cc]', '```</pre>' ) where ID in 
 (SELECT ID FROM wp_posts WHERE post_content LIKE '%[/cc]%');
 ```
 当试图用以上sql进行查询更新时，提示 "You can't specify target table 'wp_posts' for update in FROM clause"，因为这样对同一个表操作会冲突，中间加一个临时表解决问题。[^2]
