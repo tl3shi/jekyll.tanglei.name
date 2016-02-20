@@ -45,7 +45,8 @@ paginate_path: "/page:num/"
 
 
 # Writing
-highlighter: 'pygments'
+#highlighter: 'pygments'
+highlighter: rouge 
 #markdown: redcarpet
 #redcarpet:
 #    extensions: ["fenced_code_blocks", "tables", "highlight", "strikethrough", "autolink"]
@@ -56,16 +57,11 @@ kramdown:
         - footnotes
         - smart
 
-highlight: true
 
 # RSS
 rss:
   path: "feed.xml"
   icon: "rss"
-
-# tags 最大
-tags:
-    max: 100
 
 #---------------------------------------------------------------
 # Authour infromation setting
