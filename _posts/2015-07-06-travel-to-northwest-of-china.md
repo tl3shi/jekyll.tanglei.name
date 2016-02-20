@@ -41,33 +41,33 @@ published: true
 	- 茶卡盐湖 -- 青海湖
 	- 青海湖 -- 祁连县(自驾)
 	- **住** 祁连县富丽华宾馆 50RMB/人
-	
 	最终在青海湖旁边逛逛的心愿得逞了，没下雨了，不过也没天晴啊。
 
 ![对，装的就是X](/resources/travel-to-northwest-of-China/qinghaihu-cigarette.jpg) 
 ![决战青海湖畔](/resources/travel-to-northwest-of-China/qinghaihu-jump.jpg) 
 ![翻越祁连山脉](/resources/travel-to-northwest-of-China/qilianshan-4120.jpg) 
-	
 	至祁连县图中，下雪了～很大的雪～中途得翻过大冬树山垭口，下来拍两张照片，冻成狗了。
+	
 - 6.19 祁连县 -- 西宁(自驾)
 	- 卓尔山风景区(30RMB-学生票)
 	- **住** 西宁豪杰商务酒店(人均90RMB)
-	
 	到卓尔山终于天晴了。
+	
 ![卓尔山风景区](/resources/travel-to-northwest-of-China/zhuoershan-1.jpg)
-	 
-	数了下，少了个人，当然少的人就是伟大的摄影师。
-![卓尔山风景区](/resources/travel-to-northwest-of-China/zhuoershan-mayi.jpg)	
+	 数了下，少了个人，当然少的人就是伟大的摄影师。
+	
+![卓尔山风景区](/resources/travel-to-northwest-of-China/zhuoershan-mayi.jpg)
+	
 - 6.20 西宁 —— 张掖
 	- 西宁(11:35)——张掖西(13:31) D2715  91.5RMB
 	- 张掖包车200/辆，市中心往返七彩丹霞景区 人均50RMB
 	- 丹霞风景区(40RMB含20RMB景区内车票)
-	
 	不得不说，西宁至张掖的火车图中的景色真的是美翻了，随便挑一张看看。
+	
 ![西宁-张掖美景](/resources/travel-to-northwest-of-China/to-zhangye-beauty.jpg)
 ![火车经过的雪山](/resources/travel-to-northwest-of-China/to-zhangye-snow.jpg)
-	
 	再来一张张掖七彩丹霞的风景。
+	
 ![张掖-丹霞](/resources/travel-to-northwest-of-China/zhangye-danxia.jpg)
 	
 - 6.21 张掖(00:49)——敦煌 / 张掖(02:39)——北京西(中卫补票：129+293.5=422.5RMB)
