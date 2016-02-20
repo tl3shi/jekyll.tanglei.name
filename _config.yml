@@ -60,7 +60,7 @@ kramdown:
 
 # RSS
 rss:
-  path: "feed.xml"
+  path: "/feed.xml"
   icon: "rss"
 
 #---------------------------------------------------------------
