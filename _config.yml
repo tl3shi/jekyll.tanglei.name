@@ -55,16 +55,17 @@ kramdown:
         - autolink
         - footnotes
         - smart
-    enable_coderay: true
-    syntax_highlighter: rouge
-    coderay:
-        coderay_line_numbers:  nil
+
+highlight: true
 
 # RSS
 rss:
   path: "feed.xml"
   icon: "rss"
 
+# tags 最大
+tags:
+    max: 100
 
 #---------------------------------------------------------------
 # Authour infromation setting

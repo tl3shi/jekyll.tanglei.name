@@ -10,7 +10,13 @@ layout: default
                 </h3>
                 <ul class="info">
                     <li>
-                      {{ 'post.author' | translate }} <span class="author">{{ page.author }}</span>
+                      {{ 'post.author' | translate }} <span class="author"> 
+        {% if page.author %}
+            {{page.author}}
+        {% else %}
+            {{site.author.name}} 
+        {% endif %}
+        </span>
                     </li>
                     <li>
                       {{ 'post.update_date' | translate }} {{ page.date | date: "%Y年%m月%d日" }}
