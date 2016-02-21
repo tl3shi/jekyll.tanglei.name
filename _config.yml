@@ -46,7 +46,7 @@ paginate_path: "/page:num/"
 
 # Writing
 #highlighter: 'pygments'
-highlighter: rouge 
+highlighter: 'rouge' 
 #markdown: redcarpet
 #redcarpet:
 #    extensions: ["fenced_code_blocks", "tables", "highlight", "strikethrough", "autolink"]
