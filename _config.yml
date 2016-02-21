@@ -32,7 +32,7 @@ locale: "zh_CN"
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and baseurl as '/child/'
-url: "www.tanglei.name"
+url: "http://www.tanglei.name"
 baseurl: ""
 #permalink: /:year/:month/:day/:title
 permalink: /blog/:title.html
