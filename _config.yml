@@ -8,7 +8,7 @@ version: 1.0
 #---------------------------------------------------------------
 gems: 
     - jekyll-paginate
-    - jekyll-redirect-from
+#    - jekyll-redirect-from
 
 # Config sass build output by sass_dir
 # Config sass output is compressed or not
