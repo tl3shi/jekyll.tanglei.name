@@ -51,17 +51,17 @@ published: true
 	- 若编译过了，还是乱码，记得看你tex源文件的编码，是不是UTF-8。``set fileencoding=utf-8``
 - PPT章节切换时添加目录 
 
-	```latex
-	\AtBeginSubsection[] {
-	  \frame<handout:0> {
-	  \frametitle{目录}
-	  %  \begin{multicols}{2}
-	  \tableofcontents[current,currentsubsection,sections={<1-5>}]
-	  %\end{multicols}
-	    }
-	    \addtocounter{framenumber}{-1}  %目录页不计算页码
-	  }
-	```
+```latex
+\AtBeginSubsection[] {
+  \frame<handout:0> {
+  \frametitle{目录}
+  %  \begin{multicols}{2}
+  \tableofcontents[current,currentsubsection,sections={<1-5>}]
+  %\end{multicols}
+    }
+    \addtocounter{framenumber}{-1}  %目录页不计算页码
+  }
+```
 
 答辩时用beamer有不好的方式就是:
 
