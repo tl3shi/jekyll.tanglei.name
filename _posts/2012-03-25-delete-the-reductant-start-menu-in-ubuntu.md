@@ -8,7 +8,7 @@ guid: http://www.tanglei.name/?p=1629
 duoshuo_thread_id:
   - 1351844048792453294
 categories:
-  - 'Linux&amp;Ubuntu'
+  - 'Linux'
   - 经验技巧
 tags:
   - Linux

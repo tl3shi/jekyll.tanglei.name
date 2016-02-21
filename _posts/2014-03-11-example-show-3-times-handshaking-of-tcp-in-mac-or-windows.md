@@ -8,7 +8,7 @@ guid: http://www.tanglei.name/?p=2343
 duoshuo_thread_id:
   - 1351844048792453499
 categories:
-  - 'Linux&amp;Ubuntu'
+  - 'Linux'
   - SoftwareEngineering
   - Windows
 tags:

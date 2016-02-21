@@ -8,7 +8,7 @@ guid: http://www.tanglei.name/?p=964
 duoshuo_thread_id:
   - 1351844048792453144
 categories:
-  - 'Linux&amp;Ubuntu'
+  - 'Linux'
 tags:
   - 3D
   - Linux

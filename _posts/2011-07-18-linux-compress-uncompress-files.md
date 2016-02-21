@@ -8,7 +8,7 @@ guid: http://www.tanglei.name/?p=1039
 duoshuo_thread_id:
   - 1351844048792453353
 categories:
-  - 'Linux&amp;Ubuntu'
+  - 'Linux'
 tags:
   - Linux
   - linux命令

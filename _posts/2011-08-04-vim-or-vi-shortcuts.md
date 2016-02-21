@@ -8,7 +8,7 @@ guid: http://www.tanglei.name/?p=1082
 duoshuo_thread_id:
   - 1351844048792453417
 categories:
-  - 'Linux&amp;Ubuntu'
+  - 'Linux'
 tags:
   - Linux
   - Vim快捷键

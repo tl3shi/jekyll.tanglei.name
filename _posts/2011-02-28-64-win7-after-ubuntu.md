@@ -8,7 +8,7 @@ guid: http://www.tanglei.name/?p=331
 duoshuo_thread_id:
   - 1351844048792453400
 categories:
-  - 'Linux&amp;Ubuntu'
+  - 'Linux'
   - MyLife
 tags:
   - 64位Win7
