@@ -76,7 +76,7 @@ tags:
 
 <p class="MsoNormal" style="margin: 0cm 0cm 0pt;">
   <p class="MsoNormal" style="margin: 0cm 0cm 0pt;">
-    <a href="/wp-content/blogresources/volenteer- teaching-In-GuiZhou/5-3.jpg" target="_blank"><img style="background: none transparent scroll repeat 0% 0%;" src="/wp-content/blogresources/volenteer-teaching-In-GuiZhou/5-3.jpg" alt="图片" width="478" height="311" /></a>
+    <a href="/wp-content/blogresources/volenteer-teaching-In-GuiZhou/5-3.jpg" target="_blank"><img style="background: none transparent scroll repeat 0% 0%;" src="/wp-content/blogresources/volenteer-teaching-In-GuiZhou/5-3.jpg" alt="图片" width="478" height="311" /></a>
   </p>
   
   <p class="MsoNormal" style="text-indent: 21pt; margin: 0cm 0cm 0pt;">
@@ -92,7 +92,7 @@ tags:
   </p>
   
   <p class="MsoNormal" style="text-indent: 21pt; margin: 0cm 0cm 0pt;">
-    <span style="font-family: 宋体; mso-ascii-font-family: 'Times New  Roman'; mso-hansi-font-family: 'Times New Roman';">下一个是到滴徐彩霞家，她是当滴四</span><span lang="EN-US"><span style="font-family: Times New Roman;">2</span></span><span style="font-family: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times  New Roman';">班的副班长，因为之前才城里读书，成绩还算可以，但虽然是班上第一啊，但总体水平太差，都是只有</span><span lang="EN-US"><span style="font-family: Times New Roman;">80</span></span><span style="font-family: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi- font-family: 'Times New Roman';">多点的分数。她就是有些骄傲的情绪在里面，外公是以前铜厂小学的校长，<a href="http://www.tanglei.name/wp- content/blogresources/volenteer-teaching-In-GuiZhou/5-5.jpg" target="_blank"><img style="background: none transparent scroll repeat 0% 0%;" src="/wp-content/blogresources/volenteer-teaching-In-GuiZhou/5-5.jpg" alt="图片" width="488" height="366" /></a>妈妈</span>在外面做生意，家庭条件算是最好的一起了。不过外公啊之类的都管不了了，妈妈经常在外，前面又离婚了，孩子跟着妈妈，想管啊又没时间。这种家庭来说对孩子肯定也是有很大的影响滴。真希望这个孩子能够认识到自己的缺点。正确认识到自己的第一名，要是她能够不骄傲，虚心点，肯定有一个不错的将来滴。
+    <span style="font-family: 宋体; mso-ascii-font-family: 'Times New  Roman'; mso-hansi-font-family: 'Times New Roman';">下一个是到滴徐彩霞家，她是当滴四</span><span lang="EN-US"><span style="font-family: Times New Roman;">2</span></span><span style="font-family: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times  New Roman';">班的副班长，因为之前才城里读书，成绩还算可以，但虽然是班上第一啊，但总体水平太差，都是只有</span><span lang="EN-US"><span style="font-family: Times New Roman;">80</span></span><span style="font-family: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi- font-family: 'Times New Roman';">多点的分数。她就是有些骄傲的情绪在里面，外公是以前铜厂小学的校长，<a href="/wp-content/blogresources/volenteer-teaching-In-GuiZhou/5-5.jpg" target="_blank"><img style="background: none transparent scroll repeat 0% 0%;" src="/wp-content/blogresources/volenteer-teaching-In-GuiZhou/5-5.jpg" alt="图片" width="488" height="366" /></a>妈妈</span>在外面做生意，家庭条件算是最好的一起了。不过外公啊之类的都管不了了，妈妈经常在外，前面又离婚了，孩子跟着妈妈，想管啊又没时间。这种家庭来说对孩子肯定也是有很大的影响滴。真希望这个孩子能够认识到自己的缺点。正确认识到自己的第一名，要是她能够不骄傲，虚心点，肯定有一个不错的将来滴。
   </p>
   
   <p class="MsoNormal" style="text-indent: 21pt; margin: 0cm 0cm 0pt;">
