@@ -4,7 +4,7 @@ title: 腾讯实习-周日学习
 date: 2011-07-17T23:10:37+00:00
 author: tanglei
 layout: post
-guid: http://www.tanglei.name/%e8%85%be%e8%ae%af%e5%ae%9e%e4%b9%a0-%e5%91%a8%e6%97%a5%e5%ad%a6%e4%b9%a0/
+guid: /blog/%e8%85%be%e8%ae%af%e5%ae%9e%e4%b9%a0-%e5%91%a8%e6%97%a5%e5%ad%a6%e4%b9%a0.html
 duoshuo_thread_id:
   - 1351844048792453376
 categories:

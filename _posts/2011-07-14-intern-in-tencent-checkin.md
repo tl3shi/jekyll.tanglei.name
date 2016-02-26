@@ -4,7 +4,7 @@ title: 腾讯实习报道-初来乍道
 date: 2011-07-14T00:07:36+00:00
 author: tanglei
 layout: post
-guid: http://www.tanglei.name/%e8%85%be%e8%ae%af%e5%ae%9e%e4%b9%a0%e6%8a%a5%e9%81%93-%e5%88%9d%e6%9d%a5%e4%b9%8d%e9%81%93/
+guid: /blog/%e8%85%be%e8%ae%af%e5%ae%9e%e4%b9%a0%e6%8a%a5%e9%81%93-%e5%88%9d%e6%9d%a5%e4%b9%8d%e9%81%93.html
 duoshuo_thread_id:
   - 1351844048792453360
 categories:
@@ -37,6 +37,6 @@ tags:
 
 下午认识一个西安西电的实习生，ISD的，搞IPHONE开发的。正愁不知道跟谁住一块呢，正好一起去富邦住。俩人间的标间嘛。富邦国际酒店，网上搜了下还四星呢。也不过如此。
 
-晚上待酒店搞好[WINDOWS mac共享上网](http://www.tanglei.name/a-lan-connection-is-already-configured-with-the-ip-address-that-is-required-for-automatic-ip-addressing/)后，收到短信，哥们说有70多封邮件等待查看。不一会我的也响了，妈呀。![](/wp-content/uploads/2011/07/071311_1607_9.png)182封邮件。这个让我情何以堪啊。
+晚上待酒店搞好[WINDOWS mac共享上网](/blog/a-lan-connection-is-already-configured-with-the-ip-address-that-is-required-for-automatic-ip-addressing.html)后，收到短信，哥们说有70多封邮件等待查看。不一会我的也响了，妈呀。![](/wp-content/uploads/2011/07/071311_1607_9.png)182封邮件。这个让我情何以堪啊。
 
 明天就开始上班了。得去坐8点半的车，还有些事情得做呢。办饭卡，银行卡，手机卡。然后就是看下PHP的基础语法啊啥的。不晓得明天电脑能登陆进去了不。还是把自己的笔记本带过去吧。

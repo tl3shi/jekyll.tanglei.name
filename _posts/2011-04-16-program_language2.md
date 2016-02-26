@@ -12,7 +12,7 @@ categories:
 tags:
   - 编译原理
 ---
-上接：<http://www.tanglei.name/program_language1/>
+上接：</blog/program_language1.html>
 
 以下内容就是编译原理了。
 

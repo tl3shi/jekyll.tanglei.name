@@ -17,7 +17,7 @@ tags:
   - 软件结构度量
 ---
 <address>
-  上接：<a href="http://www.tanglei.name/metrics_softwaremetrics1/">http://www.tanglei.name/metrics_softwaremetrics2/</a>
+  上接：<a href="/blog/metrics_softwaremetrics1.html">/blog/metrics_softwaremetrics2.html</a>
 </address>
 
 ## Measuring Internal Product Attributes: Structure

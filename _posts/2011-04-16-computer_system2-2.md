@@ -14,7 +14,7 @@ tags:
   - 存储器系统
   - 输入/输出系统
 ---
-上接<http://www.tanglei.name/computer_system1/>
+上接</blog/computer_system1.html>
 
 **1.3****存储器系统：**
 

@@ -16,7 +16,7 @@ tags:
   - config
   - favicon.ico
 ---
-Blog从虚拟主机换到了VPS，网站的favicon.ico图标出现了问题。用浏览器访问 <http://www.tanglei.name/favicon.ico> 总提示下载/保存（另存为……）.
+Blog从虚拟主机换到了VPS，网站的favicon.ico图标出现了问题。用浏览器访问 </blog/favicon.ico> 总提示下载.html保存（另存为……）.
 
 <div>
   <div>
@@ -29,7 +29,7 @@ Blog从虚拟主机换到了VPS，网站的favicon.ico图标出现了问题。�
     </div>
     
     <div>
-      <a href="http://www.tanglei.name/favicon.ico?123">http://www.tanglei.name/favicon.ico?123</a>
+      <a href="/blog/favicon.ico?123">http:.html/www.tanglei.name/favicon.ico?123</a>
     </div>
     
     <div>

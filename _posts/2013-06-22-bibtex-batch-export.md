@@ -26,7 +26,7 @@ tags:
 
 
 <center>
-  <img width="400px" height="600px" src="http://www.tanglei.name/tools/bibtex-batch-export.png" alt="bibtex参考文献格式批量导出" />
+  <img width="400px" height="600px" src="/blog/tools.htmlbibtex-batch-export.png" alt="bibtex参考文献格式批量导出" />
 </center>
 
 
@@ -35,7 +35,7 @@ tags:
   
 
 
-若上面展示不清楚，请移步到这里：<a href="http://www.tanglei.name/tools/batchbibtex.html" target="_blank">bibtex批量导出</a>
+若上面展示不清楚，请移步到这里：<a href="/blog/tools.htmlbatchbibtex.html" target="_blank">bibtex批量导出</a>
   
 有任何疑问或者建议，请留言~
 
@@ -49,7 +49,7 @@ At first time, I forgot to download the reference format of bibtex, when I want 
   
 someone&#8217;s paper, It&#8217;s boring for me to copy the title and search from scholar.google.com once and once again.
   
-So I wrote a python script for me to download more than one paper per time. I have checked this script in my local computer, and it works well. Since I thought someone else may need this function, I changed this local script to Web version as above. If you cannot find it in this page, you can click [HERE](http://www.tanglei.name/tools/batchbibtex.html).
+So I wrote a python script for me to download more than one paper per time. I have checked this script in my local computer, and it works well. Since I thought someone else may need this function, I changed this local script to Web version as above. If you cannot find it in this page, you can click [HERE](/blog/tools.htmlbatchbibtex.html).
   
 You just need to copy the titles to the textarea(one line per paper), and then click &#8220;Get it&#8221;, after a while, you&#8217;ll get all
   

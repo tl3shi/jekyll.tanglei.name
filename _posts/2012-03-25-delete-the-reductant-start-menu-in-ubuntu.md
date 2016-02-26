@@ -15,7 +15,7 @@ tags:
   - Ubuntu
   - 启动菜单
 ---
-上次<a href="http://www.tanglei.name/my-ubuntu10-10/" target="_blank">装了ubuntu</a>(3个系统,windows xp,64-位win7,ubuntu)后好久没用了。今天突然跟google一样抽风进去看看，才发现，原来我的ubuntu下有那么多启动项。（又查了下图中的[PAE](http://baike.baidu.com/view/493711.htm)//Physical Address Extension，效果是使32位系统用4g内存）
+上次<a href="/blog/my-ubuntu10-10.html" target="_blank">装了ubuntu</a>(3个系统,windows xp,64-位win7,ubuntu)后好久没用了。今天突然跟google一样抽风进去看看，才发现，原来我的ubuntu下有那么多启动项。（又查了下图中的[PAE](http://baike.baidu.com/view/493711.htm)//Physical Address Extension，效果是使32位系统用4g内存）
 
 <img src="/wp-content/uploads/2011/02/2011-02-28_12-52-20_953.jpg" alt="" width="240" height="179" data-pinit="registered" />
 

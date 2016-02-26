@@ -22,9 +22,9 @@ tags:
 
 <img class="alignnone" title="代码实现相关文章" src="http://i1123.photobucket.com/albums/l549/tl3shi/1-2.jpg" alt="" width="491" height="356" />
 
-访问[支教第十天-感恩的心](http://www.tanglei.name/volenteer-teaching-day10/),效果上图1，因其标签比较丰富,可以提取到相同tag的,但遇到这种情况例如:之前发过的一篇:
+访问[支教第十天-感恩的心](/blog/volenteer-teaching-day10.html),效果上图1，因其标签比较丰富,可以提取到相同tag的,但遇到这种情况例如:之前发过的一篇:
 
-[技术贴-把妹高手谈如何跟刚搭讪认识的妹子发短信](http://www.tanglei.name/tell-you-how-to-get-a-girl/)时,因为tag没有没有设置或者其他没有相关的tag于此匹配,此时就只能展示随机文章了,上图2.
+[技术贴-把妹高手谈如何跟刚搭讪认识的妹子发短信](/blog/tell-you-how-to-get-a-girl.html)时,因为tag没有没有设置或者其他没有相关的tag于此匹配,此时就只能展示随机文章了,上图2.
 
 曾想,这里的随机是有点不爽,此时展示同分类目录下的文章要比这个好吧. 于是想法取出当前文章所在同分类下的文章,开始是试图找一个sql语句把所有的文章的tag中都将本文所在的分类目录加进去,但这样似乎有点不符合逻辑.看之前用代码实现的相关文章的源代码:查看随机文章时调用如下的函数
 

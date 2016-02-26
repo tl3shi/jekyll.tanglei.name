@@ -235,5 +235,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       
       
       <p>
-        差不多了。现在我又有一种方法通过java等运行C可执行文件了。之前用<a href="http://www.tanglei.name/java-native-demo/">native也写过helloworld的例子</a>。
+        差不多了。现在我又有一种方法通过java等运行C可执行文件了。之前用<a href="/blog/java-native-demo.html">native也写过helloworld的例子</a>。
       </p>

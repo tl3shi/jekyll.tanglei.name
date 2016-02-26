@@ -87,7 +87,7 @@ Procedure apriori_gen(Lk-1:frequent(k-1)-itemsets)
 
 ![apriori算法,关联规则,数据挖掘](http://i1123.photobucket.com/albums/l549/tl3shi/apriori.jpg)
 
-以上就有了频繁项集，然后根据得到的频繁项集和给定置信度算关联规则。置信度其实是一个条件概率。关联规则产生就是根据每个生成的频繁项集，产生其所有非空子集，然后根据子集和原来的事务库中循环比较。大于给定重复次数的就是满足条件的。例如针对频繁集{I1，I2，I5}。可以产生哪些关联规则？该频繁集的非空真子集（求子集的具体方法在前面<a href="http://www.tanglei.name/a-python-problem-about-a-plusequal-b-and-a-equal-a-plus-b/" target="_blank">python中a+=b和a=a+b的问题</a>中已经阐述）有{I1，I2}，{I1，I5}，{I2，I5}，{I1 }，{I2}和{I5}，对应置信度如下：
+以上就有了频繁项集，然后根据得到的频繁项集和给定置信度算关联规则。置信度其实是一个条件概率。关联规则产生就是根据每个生成的频繁项集，产生其所有非空子集，然后根据子集和原来的事务库中循环比较。大于给定重复次数的就是满足条件的。例如针对频繁集{I1，I2，I5}。可以产生哪些关联规则？该频繁集的非空真子集（求子集的具体方法在前面<a href="/blog/a-python-problem-about-a-plusequal-b-and-a-equal-a-plus-b.html" target="_blank">python中a+=b和a=a+b的问题</a>中已经阐述）有{I1，I2}，{I1，I5}，{I2，I5}，{I1 }，{I2}和{I5}，对应置信度如下：
 
 <p align="center">
   I1&&I2->I5 confidence=2/4=50%

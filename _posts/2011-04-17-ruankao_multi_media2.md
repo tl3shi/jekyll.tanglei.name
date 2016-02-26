@@ -13,7 +13,7 @@ tags:
   - 数据压缩
   - 编码技术标准
 ---
-上接：[http://www.tanglei.name/ruankao\_multi\_media1/](http://www.tanglei.name/ruankao_multi_media1/)
+上接：[/blog/ruankao\_multi\_media1.html](/blog/ruankao_multi_media1.html)
 
 **1.5****数据压缩和编码技术标准**
 

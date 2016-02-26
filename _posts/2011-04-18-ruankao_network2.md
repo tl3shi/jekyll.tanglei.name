@@ -16,7 +16,7 @@ tags:
   - 网络安全
   - 网络管理
 ---
-上接：<http://www.tanglei.name/ruankao_network1/>
+上接：</blog/ruankao_network1.html>
 
 **1.5****广域网技术******
 

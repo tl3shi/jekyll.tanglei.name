@@ -19,7 +19,7 @@ tags:
 ---
 前几天，我的android手机升级了几个软件，这两天手机突然莫名其妙的弹广告，并且根本不知道是哪个应用程序弹出来的。一般地弹广告也是运行某个app，就算是后台弹出，也有地方标志着是这个app弹的广告。而这次这个app也太狠了，自己想赚钱也就算了，还不让用户知道是谁。就想到一定得把它揪出来。 (之前以为是appchina应用汇，就卸载了，结果还弹……然后就是怀疑之前更新的豌豆荚，水果忍者……，不能老用排除法试了) 我能想到的解决方案就是看android运行的系统log日志了。
 
-一种方法是连接电脑，用adb调试工具查看log，另一种方法是直接在android手机看log日志记录：[alogcat](http://code.google.com/p/alogcat/)，还是上次在腾讯实习时反映一个[QQ手机管家的bug](http://www.tanglei.name/qq-mobile-secure-manager-feedback/)，知道这个软件的。
+一种方法是连接电脑，用adb调试工具查看log，另一种方法是直接在android手机看log日志记录：[alogcat](http://code.google.com/p/alogcat/)，还是上次在腾讯实习时反映一个[QQ手机管家的bug](/blog/qq-mobile-secure-manager-feedback.html)，知道这个软件的。
 
 等手机再弹出广告时，打开alogcat，为了方便查找，清除下刚刚产生的log，然后去通知栏那里点点那个广告，再返回alogcat先暂停记录log，然后慢慢看。TMD，是一个叫com.halfbriakin.utils..之类的activity再放广告，然后关键字\*fruitninjaseasons\*，居然是水果忍者。
 

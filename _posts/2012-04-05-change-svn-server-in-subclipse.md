@@ -21,4 +21,4 @@ tags:
 
 [<img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="subclipse修改服务器URL" border="0" alt="subclipse修改服务器URL" src="/wp-content/uploads/2012/04/subclipseURL1_thumb.jpg" width="632" height="413" />](/wp-content/uploads/2012/04/subclipseURL1.jpg) 
 
-以上不是想强调的地方，想到IP是死的，一种方案当时是手动写死IP(配置静态IP，不自动获取)，这样就避免了SVN服务器IP变化。另外一种方案可以修改hosts，指定一个固定的域名指向SVN服务器。试用本场景就是指定一个域名比如[www.tanglei.name](http://www.tanglei.name)（当然这个如果在本机中就直接影响了该网站的访问，可以换个虚拟的[www.xxx.xx](http://www.xxx.xx)），指向SVN服务器，也就是我本机的IP地址。下次IP地址变了，直接改hosts即可。WIN xp下直接写批处理，copy 一个含有host规则覆盖真实hosts文件即可，方便快捷切换。Win 7下可以<a href="http://www.tanglei.name/switch-hosts-quickly-in-win7/" target="_blank">看这里</a>,之前写的Win7快速切换hosts。
+以上不是想强调的地方，想到IP是死的，一种方案当时是手动写死IP(配置静态IP，不自动获取)，这样就避免了SVN服务器IP变化。另外一种方案可以修改hosts，指定一个固定的域名指向SVN服务器。试用本场景就是指定一个域名比如[www.tanglei.name](http://www.tanglei.name)（当然这个如果在本机中就直接影响了该网站的访问，可以换个虚拟的[www.xxx.xx](http://www.xxx.xx)），指向SVN服务器，也就是我本机的IP地址。下次IP地址变了，直接改hosts即可。WIN xp下直接写批处理，copy 一个含有host规则覆盖真实hosts文件即可，方便快捷切换。Win 7下可以<a href="/blog/switch-hosts-quickly-in-win7.html" target="_blank">看这里</a>,之前写的Win7快速切换hosts。

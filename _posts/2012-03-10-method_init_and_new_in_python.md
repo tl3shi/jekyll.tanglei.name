@@ -17,7 +17,7 @@ tags:
   - OOP
   - python
 ---
-前面说已经开是[学习python了](http://www.tanglei.name/start-to-learn-python/)，然后随便看了下语法，就看到了OO了。结果发现这个\_\_init\_\_()和\_\_new\_\_()方法才有些神奇。引用官方API的解释
+前面说已经开是[学习python了](/blog/start-to-learn-python.html)，然后随便看了下语法，就看到了OO了。结果发现这个\_\_init\_\_()和\_\_new\_\_()方法才有些神奇。引用官方API的解释
 
 > object.**\_\_new\_\_**(_cls_[, _&#8230;_])
 > 

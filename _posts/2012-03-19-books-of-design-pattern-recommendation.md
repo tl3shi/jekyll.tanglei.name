@@ -16,7 +16,7 @@ tags:
   - 书籍推荐
   - 设计模式
 ---
-前两天跟<a href="http://www.chinasa.info/about.html" target="_blank">伟帅</a>聊了下，他说又在写新书，还是关于<a href="http://www.tanglei.name/category/software-engineering/design-pattern/" target="_blank">设计模式</a>的。看来，他跟他之前说的一样，仍然深爱着设计模式啊。上课也是，一谈到设计模式就滔滔不绝。我也是之前学他的软件体系结构的时候接触了设计模式，在考软考（<a href="http://www.tanglei.name/get-the-system-architect/" target="_blank">系统架构设计师</a>）的时候多看了下。之前他给我们上课的时候都在书在写书，给我们讲课的PPT也差不多就是来源于他写的书。去年书出版了，个人认为还不错。因之前帮他看书，看字词是否通顺，例子是否好理解，有误错别字啊啥滴，也因此我的名字第一次(真正代表我，唐磊的较还比较多)出现在了这本书上。
+前两天跟<a href="http://www.chinasa.info/about.html" target="_blank">伟帅</a>聊了下，他说又在写新书，还是关于<a href="/blog/category.htmlsoftware-engineering/design-pattern/" target="_blank">设计模式</a>的。看来，他跟他之前说的一样，仍然深爱着设计模式啊。上课也是，一谈到设计模式就滔滔不绝。我也是之前学他的软件体系结构的时候接触了设计模式，在考软考（<a href="/blog/get-the-system-architect.html" target="_blank">系统架构设计师</a>）的时候多看了下。之前他给我们上课的时候都在书在写书，给我们讲课的PPT也差不多就是来源于他写的书。去年书出版了，个人认为还不错。因之前帮他看书，看字词是否通顺，例子是否好理解，有误错别字啊啥滴，也因此我的名字第一次(真正代表我，唐磊的较还比较多)出现在了这本书上。
 
 [<img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="design-pattern-book-recommendation 1" border="0" alt="design-pattern-book-recommendation 1" src="/wp-content/uploads/2012/03/designpatternbookrecommendation1_thumb.jpg" width="644" height="364" />](/wp-content/uploads/2012/03/designpatternbookrecommendation1.jpg) 
 

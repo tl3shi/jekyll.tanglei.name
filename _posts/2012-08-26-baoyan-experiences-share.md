@@ -31,8 +31,8 @@ tags:
   
 之前的一些blog。
 
-关于保研的常见问题：<http://www.tanglei.name/experience-in-baoyan/>
+关于保研的常见问题：</blog/experience-in-baoyan.html>
 
-经验交流PPT：<http://www.tanglei.name/share-experience-of-postgraduate-interview/>
+经验交流PPT：</blog/share-experience-of-postgraduate-interview.html>
 
 祝保研的同学都能够找到合适自己的学校。

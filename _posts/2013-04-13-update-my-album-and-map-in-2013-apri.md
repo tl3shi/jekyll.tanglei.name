@@ -23,7 +23,7 @@ N久没更新我的相册和地图了.才发现原来我服务器换了一个环
 
 相册啥时候有空再打整打整.
 
-然后就是去年6月份搞的一个[地图记录自己的足迹](http://www.tanglei.name/where-i-have-been/)，也木有更新。这里也更细一下下 
+然后就是去年6月份搞的一个[地图记录自己的足迹](/blog/where-i-have-been.html)，也木有更新。这里也更细一下下 
 
 <center>
 </center>
@@ -31,4 +31,4 @@ N久没更新我的相册和地图了.才发现原来我服务器换了一个环
 about页面留了这两个地址的入口.
 
   * [去过的地方](http://www.tanglei.name/where-i-have-been.html) 
-  * [相册](http://www.tanglei.name/photos/)
+  * [相册](/blog/photos.html)

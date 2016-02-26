@@ -18,7 +18,7 @@ tags:
   - 软件度量
 ---
 <address>
-  上接：<a href="http://www.tanglei.name/metrics_softwaremetrics3/">http://www.tanglei.name/metrics_softwaremetrics3/</a>
+  上接：<a href="/blog/metrics_softwaremetrics3.html">/blog/metrics_softwaremetrics3.html</a>
 </address>
 
 ## Modularity and Information Flow Attributes

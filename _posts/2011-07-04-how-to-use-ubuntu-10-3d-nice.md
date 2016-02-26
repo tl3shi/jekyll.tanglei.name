@@ -16,7 +16,7 @@ tags:
   - ubuntu桌面效果
   - 快捷键
 ---
-今天突然XP和win7联无线网络都不稳定，一会又掉线了。然后就把ubuntu打开，联网算稳定，整理了以前的一些文档。现在发出来。maybe有用呢。在之前的文章有谈到过[我的ubuntu漂亮的3D绚丽桌面](http://www.tanglei.name/my-ubuntu10-10/)，现在就把方法贴出来。也是参考网上的。
+今天突然XP和win7联无线网络都不稳定，一会又掉线了。然后就把ubuntu打开，联网算稳定，整理了以前的一些文档。现在发出来。maybe有用呢。在之前的文章有谈到过[我的ubuntu漂亮的3D绚丽桌面](/blog/my-ubuntu10-10.html)，现在就把方法贴出来。也是参考网上的。
 
 <!-- 		@page { margin: 2cm } 		P { margin-bottom: 0.21cm } -->
 

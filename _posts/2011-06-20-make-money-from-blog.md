@@ -4,7 +4,7 @@ title: 从blog上赚取的第一桶金
 date: 2011-06-20T20:04:18+00:00
 author: tanglei
 layout: post
-guid: http://www.tanglei.name/%e4%bb%8eblog%e4%b8%8a%e8%b5%9a%e5%8f%96%e7%9a%84%e7%ac%ac%e4%b8%80%e6%a1%b6%e9%87%91/
+guid: /blog/%e4%bb%8eblog%e4%b8%8a%e8%b5%9a%e5%8f%96%e7%9a%84%e7%ac%ac%e4%b8%80%e6%a1%b6%e9%87%91.html
 duoshuo_thread_id:
   - 1351844048792453395
 categories:

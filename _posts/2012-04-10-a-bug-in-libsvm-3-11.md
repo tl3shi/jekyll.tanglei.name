@@ -15,7 +15,7 @@ tags:
   - libsvm
   - 兼容性
 ---
-在上一篇文章讲解<a href="http://www.tanglei.name/libsvm-in-python/" target="_blank">libsvm的python版入门实例</a>时，遇到一个遗留问题，就是不能用官网给的API保存训练好的模型文件。总是提示，问题定位到svmutil的svm\_save\_model方法。
+在上一篇文章讲解<a href="/blog/libsvm-in-python.html" target="_blank">libsvm的python版入门实例</a>时，遇到一个遗留问题，就是不能用官网给的API保存训练好的模型文件。总是提示，问题定位到svmutil的svm\_save\_model方法。
 
 > **libsvm.svm\_save\_model**(model\_file\_name, model)  
 > ctypes.ArgumentError: argument 1: <class ‘TypeError’>: wrong type

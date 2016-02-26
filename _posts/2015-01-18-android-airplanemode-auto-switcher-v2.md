@@ -16,7 +16,7 @@ tags:
   - 自动
   - 飞行模式
 ---
-原来时隔上次这篇\[Android 4.2 自动定时切换飞行模式\]([http://www.tanglei.name/android-airplanemode-auto-switcher/](http://www.tanglei.name/android-airplanemode-auto-switcher/ "http://www.tanglei.name/android-airplanemode-auto-switcher/"))已经1年了, 惭愧惭愧~ 根据之前的版本说的是要加入多个时间段的设置, 重新 “设计”（其实是山寨了别人的）了UI, 今天终于发布出来了。**注意,** 该程序针对Android4.2及其以上的版本，手机需要ROOT才OK，且建议添加到信任程序列表。4.2之前的版本是木有问题的。
+原来时隔上次这篇\[Android 4.2 自动定时切换飞行模式\]([/blog/android-airplanemode-auto-switcher.html](/blog/android-airplanemode-auto-switcher.html "/blog/android-airplanemode-auto-switcher.html"))已经1年了, 惭愧惭愧~ 根据之前的版本说的是要加入多个时间段的设置, 重新 “设计”（其实是山寨了别人的）了UI, 今天终于发布出来了。**注意,** 该程序针对Android4.2及其以上的版本，手机需要ROOT才OK，且建议添加到信任程序列表。4.2之前的版本是木有问题的。
 
 点击<a href="https://github.com/tl3shi/AirPlaneModeSwitcher/raw/master/mainModule/mainModule-release.apk" target="_blank">这里下载最新</a>的应用。该版本(V1.0)注意更新的内容是:
 
@@ -39,7 +39,7 @@ tags:
 
 <a href="/wp-content/uploads/2015/01/3-enable-delete-log.png" target="_blank"><img style="background-image: none; float: none; padding-top: 0px; padding-left: 0px; margin-left: auto; display: block; padding-right: 0px; margin-right: auto; border: 0px;" title="图3" src="/wp-content/uploads/2015/01/3-enable-delete-log_thumb.png" alt="Android自动切换飞行模式" width="644" height="382" border="0" /></a>
 
-  * 反馈/更新：从主页面菜单中“意见反馈”可进入“意见反馈”界面，你可以填写联系信息让我更方便与你取得联系，输入“吐槽意见”后发送，我在UMeng后台就可以看到并给予回复，最快的话其实你是可以跟上一个版本中一样直接给我发邮件，“关于”样子如下图(中)，懒得写直接用了上个版本的About, 但加了版本信息，可以直接点连接给我邮件。每次启动的时候，你在**Wifi状态**下的话，程序会自动检测是否有更新的版本，有的话会提示你更新。//其实这几个功能把整个App的大小扩大了不少，原来只有几十k的应用现在变成了1.5M. 只是试着用用[之前东家](http://www.tanglei.name/aop-in-python/)的产品。
+  * 反馈/更新：从主页面菜单中“意见反馈”可进入“意见反馈”界面，你可以填写联系信息让我更方便与你取得联系，输入“吐槽意见”后发送，我在UMeng后台就可以看到并给予回复，最快的话其实你是可以跟上一个版本中一样直接给我发邮件，“关于”样子如下图(中)，懒得写直接用了上个版本的About, 但加了版本信息，可以直接点连接给我邮件。每次启动的时候，你在**Wifi状态**下的话，程序会自动检测是否有更新的版本，有的话会提示你更新。//其实这几个功能把整个App的大小扩大了不少，原来只有几十k的应用现在变成了1.5M. 只是试着用用[之前东家](/blog/aop-in-python.html)的产品。
 
 [<img style="background-image: none; float: none; padding-top: 0px; padding-left: 0px; margin-left: auto; display: block; padding-right: 0px; margin-right: auto; border: 0px;" title="4-umeng-tools" src="/wp-content/uploads/2015/01/4-umeng-tools_thumb.png" alt="4-umeng-tools" width="644" height="378" border="0" />](/wp-content/uploads/2015/01/4-umeng-tools.png)
 
