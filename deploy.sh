@@ -9,11 +9,11 @@ do
         cd .deploy
         git add -A .
         git commit -m "$OPTARG"
-        cd ../
         ;;
     "p")
-        echo "push: $OPTARG"
-        git push -u origin master:gh-pages --force
+        echo "git push -u origin deploy:gh-pages --force"
+        git push -u origin deploy:gh-pages --force
+        cd ../
         ;;
     *)
         echo "-m \"commit msg\" -p (means push)"
