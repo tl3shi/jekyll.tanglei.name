@@ -163,11 +163,11 @@ int main()
 
 VisualStudio 2012默认debug和release结果：
 
-[<img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border: 0px;" title="Image(8)[4]" src="/wp-content/uploads/2014/05/Image84_thumb.png" alt="Image(8)[4]"  />](/wp-content/uploads/2014/05/Image84.png)[<img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border: 0px;" title="73028934dad360862f6ed22a22a35c24" src="/wp-content/uploads/2014/05/73028934dad360862f6ed22a22a35c24_thumb.png" alt="73028934dad360862f6ed22a22a35c24"  />](/wp-content/uploads/2014/05/73028934dad360862f6ed22a22a35c24.png)
+[<img title="Image(8)[4]" src="/wp-content/uploads/2014/05/Image84_thumb.png" alt="Image(8)[4]"  />](/wp-content/uploads/2014/05/Image84.png)[<img title="73028934dad360862f6ed22a22a35c24" src="/wp-content/uploads/2014/05/73028934dad360862f6ed22a22a35c24_thumb.png" alt="73028934dad360862f6ed22a22a35c24"  />](/wp-content/uploads/2014/05/73028934dad360862f6ed22a22a35c24.png)
 
 G++ 4.5.3, 默认和O2(g++ -O2 structtest.cpp)结果：
 
-[<img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border: 0px;" title="600b675239e56d6d70ac255f68e353f5" src="/wp-content/uploads/2014/05/600b675239e56d6d70ac255f68e353f5_thumb.png" alt="600b675239e56d6d70ac255f68e353f5"  />](/wp-content/uploads/2014/05/600b675239e56d6d70ac255f68e353f5.png)[<img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border: 0px;" title="44e877ad37f3a2a6f5a77577dfb4adc5" src="/wp-content/uploads/2014/05/44e877ad37f3a2a6f5a77577dfb4adc5_thumb.png" alt="44e877ad37f3a2a6f5a77577dfb4adc5"  />](/wp-content/uploads/2014/05/44e877ad37f3a2a6f5a77577dfb4adc5.png)
+[<img title="600b675239e56d6d70ac255f68e353f5" src="/wp-content/uploads/2014/05/600b675239e56d6d70ac255f68e353f5_thumb.png" alt="600b675239e56d6d70ac255f68e353f5"  />](/wp-content/uploads/2014/05/600b675239e56d6d70ac255f68e353f5.png)[<img title="44e877ad37f3a2a6f5a77577dfb4adc5" src="/wp-content/uploads/2014/05/44e877ad37f3a2a6f5a77577dfb4adc5_thumb.png" alt="44e877ad37f3a2a6f5a77577dfb4adc5"  />](/wp-content/uploads/2014/05/44e877ad37f3a2a6f5a77577dfb4adc5.png)
 
 mac下的g++(Apple LLVM version 5.1 (clang-503.0.40) (based on LLVM 3.4svn))无优化和O2结果
   

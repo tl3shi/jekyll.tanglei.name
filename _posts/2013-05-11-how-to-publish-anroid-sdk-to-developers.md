@@ -95,11 +95,11 @@ public static int getResourseIdByName(String packageName, String className,
 
 新建一个类库项目，如命名nebula_sdk.
 
-[<img style="display: inline; border: 0px;" title="clip_image002" src="/wp-content/uploads/2013/05/clip_image002_thumb.jpg" alt="clip_image002"  />](/wp-content/uploads/2013/05/clip_image002.jpg)[<img style="display: inline; border: 0px;" title="clip_image004" src="/wp-content/uploads/2013/05/clip_image004_thumb.jpg" alt="clip_image004"  />](/wp-content/uploads/2013/05/clip_image004.jpg)
+[<img title="clip_image002" src="/wp-content/uploads/2013/05/clip_image002_thumb.jpg" alt="clip_image002"  />](/wp-content/uploads/2013/05/clip_image002.jpg)[<img title="clip_image004" src="/wp-content/uploads/2013/05/clip_image004_thumb.jpg" alt="clip_image004"  />](/wp-content/uploads/2013/05/clip_image004.jpg)
 
 发布出去后，开发者需要将上面提到的nebula_sdk作为library引用进来。如下图.
 
-[<img style="display: inline; border: 0px;" title="clip_image006" src="/wp-content/uploads/2013/05/clip_image006_thumb.jpg" alt="clip_image006"  />](/wp-content/uploads/2013/05/clip_image006.jpg)
+[<img title="clip_image006" src="/wp-content/uploads/2013/05/clip_image006_thumb.jpg" alt="clip_image006"  />](/wp-content/uploads/2013/05/clip_image006.jpg)
 
 因此得到了**两种android下发布sdk方案**：
 

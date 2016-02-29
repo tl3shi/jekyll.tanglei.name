@@ -65,7 +65,7 @@ else:
 
 运行结果如下
 
-[<img style="display: inline; border: 0px;" title="image" src="/wp-content/uploads/2012/03/image_thumb.png" alt="image"  data-pinit="registered" />](/wp-content/uploads/2012/03/image.png)
+[<img title="image" src="/wp-content/uploads/2012/03/image_thumb.png" alt="image"  data-pinit="registered" />](/wp-content/uploads/2012/03/image.png)
 
 突然发现，跟codes同目录下居然有个\_\_pycache\_\_的目录，下于isPrime.cpython-32.pyc这个文件。后来网上查了查，才大致弄明白了。
 

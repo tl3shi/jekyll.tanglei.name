@@ -41,7 +41,7 @@ tags:
 
 在以root身份执行这两行命令前，最好先 uname –a 查看一下自己当前是用的哪个内核了来，免得remove错了。删除这些东东还是能腾空出好多的空间呢。
 
-[<img style="display: inline; border: 0px;" title="ubuntu" src="/wp-content/uploads/2012/03/ubuntu_thumb.jpg" alt="ubuntu"  data-pinit="registered" />](/wp-content/uploads/2012/03/ubuntu.jpg)
+[<img title="ubuntu" src="/wp-content/uploads/2012/03/ubuntu_thumb.jpg" alt="ubuntu"  data-pinit="registered" />](/wp-content/uploads/2012/03/ubuntu.jpg)
 
 这样就删除了旧的内核，释放空间了。并且启动项也减少了。我系统版本是ubuntu10.10，网上有的说还得修改启动菜单/boot/grub/menu.lst这个文件，不过我系统里的启动菜单文件好像不是这个吧，反正没找到，而在/boot/grub/grub.cfg这个文件里面。这个文件就是配置了那些启动菜单吧，用上面的命令卸载后，这个文件也就自动更新了。
 

@@ -107,7 +107,7 @@ t.cal(1)
 
 运行结果如图所示意。
 
-[<img style="display: inline; border: 0px;" title="python_init__new__method 1" src="/wp-content/uploads/2012/03/python_init__new__method1_thumb.jpg" alt="python_init__new__method 1"  data-pinit="registered" />](/wp-content/uploads/2012/03/python_init__new__method1.jpg)
+[<img title="python_init__new__method 1" src="/wp-content/uploads/2012/03/python_init__new__method1_thumb.jpg" alt="python_init__new__method 1"  data-pinit="registered" />](/wp-content/uploads/2012/03/python_init__new__method1.jpg)
 
 解释下运行结果：
 

@@ -34,15 +34,16 @@ tags:
   * 2.2 上午九点左右飞【胡志明】，152公交到post station, 2公里左右打车28k到post office与大部队汇合，寄明信片(寄回国内邮费10400)，一个教堂拍照。 来张邮局前的大合影.
 
 <p style="text-align: left;" align="center">
-  <a href="/wp-content/uploads/2015/03/8c701f1d2aa1.jpg"><img  title="邮局" src="/wp-content/uploads/2015/03/thumb.jpg" alt="邮局"  /></a>下午3点卧铺汽车到美奈140k，8点多到【美奈】，[<a href="http://www.mafengwo.cn/i/1128980.html" target="_blank">这个游记</a>](http://www.mafengwo.cn/i/1128980.html)提到的Hai Gia酒店电话20刀房间，90k打车过去，无海景房砍价了2刀，步行几步到海边。
+  <a href="/wp-content/uploads/2015/03/8c701f1d2aa1.jpg"><img  title="邮局" src="/wp-content/uploads/2015/03/thumb.jpg" alt="邮局"  /></a>
+  下午3点卧铺汽车到美奈140k，8点多到【美奈】，[<a href="http://www.mafengwo.cn/i/1128980.html" target="_blank">这个游记</a>](http://www.mafengwo.cn/i/1128980.html)提到的Hai Gia酒店电话20刀房间，90k打车过去，无海景房砍价了2刀，步行几步到海边。
 </p>
 
 <p style="text-align: center;" align="center">
-  <a href="/wp-content/uploads/2015/03/1.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border: 0px;" title="美奈酒店-1" src="/wp-content/uploads/2015/03/1_thumb.jpg" alt="美奈酒店-1"  /></a>
+  <a href="/wp-content/uploads/2015/03/1.jpg"><img title="美奈酒店-1" src="/wp-content/uploads/2015/03/1_thumb.jpg" alt="美奈酒店-1"  /></a>
 </p>
 
 <p align="center">
-  <a href="/wp-content/uploads/2015/03/2.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border: 0px;" title="美奈酒店-2" src="/wp-content/uploads/2015/03/2_thumb.jpg" alt="美奈酒店-2"  /></a>
+  <a href="/wp-content/uploads/2015/03/2.jpg"><img title="美奈酒店-2" src="/wp-content/uploads/2015/03/2_thumb.jpg" alt="美奈酒店-2"  /></a>
 </p>
 
   * <div align="left">
@@ -51,7 +52,7 @@ tags:
 
 
 <p align="center">
-   <a href="/wp-content/uploads/2015/03/fairyStream-0.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border: 0px;" title="fairyStream-0" src="/wp-content/uploads/2015/03/fairyStream-0_thumb.jpg" alt="fairyStream-0"  /></a>
+   <a href="/wp-content/uploads/2015/03/fairyStream-0.jpg"><img title="fairyStream-0" src="/wp-content/uploads/2015/03/fairyStream-0_thumb.jpg" alt="fairyStream-0"  /></a>
 </p>
 
 <p align="center">
@@ -101,7 +102,7 @@ tags:
 
 
 <p align="center">
-   <a href="/wp-content/uploads/2015/03/a19ab470a806.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border: 0px;" title="芽庄冲浪" src="/wp-content/uploads/2015/03/thumb3.jpg" alt="芽庄冲浪"  /></a>
+   <a href="/wp-content/uploads/2015/03/a19ab470a806.jpg"><img title="芽庄冲浪" src="/wp-content/uploads/2015/03/thumb3.jpg" alt="芽庄冲浪"  /></a>
 </p>
 
   * 2.7 【芽庄】四岛游 7刀/人，导游。潜水500k, 450k被放风筝。实际上是3岛游(吃饭那个地也被算上了，水族馆，潜水，风筝滑翔)，晚上8点出发去会安。
@@ -116,11 +117,11 @@ tags:
   * 2.8 上午10点多才到【会安】，历时14个小时。10刀酒店(thien trung)，古镇逛逛，河流，自行车20k，集市，庙，墓地，乡下。晚上较好看。
 
 <p align="center">
-   <a href="/wp-content/uploads/2015/03/31af343c4f6e.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border: 0px;" title="会安夜景" src="/wp-content/uploads/2015/03/thumb6.jpg" alt="会安夜景"  /></a>
+   <a href="/wp-content/uploads/2015/03/31af343c4f6e.jpg"><img title="会安夜景" src="/wp-content/uploads/2015/03/thumb6.jpg" alt="会安夜景"  /></a>
 </p>
 
 <p align="center">
-  <a href="/wp-content/uploads/2015/03/13.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border: 0px;" title="会安夜景1" src="/wp-content/uploads/2015/03/1_thumb3.jpg" alt="会安夜景1"  /></a>
+  <a href="/wp-content/uploads/2015/03/13.jpg"><img title="会安夜景1" src="/wp-content/uploads/2015/03/1_thumb3.jpg" alt="会安夜景1"  /></a>
 </p>
 
   * 2.9 【会安~岘港~河内】3刀/人 会安酒店去岘港机场，45分钟左右到。11点半飞机，飞行1个小时左右到河内。【河内】酒店大床550k(双床标间500k),环境好，浴缸，吹风，熨斗等装备，电脑(6k上网每小时)，打车去bigc, 15k/公里，较贵。430k酒店去机场16座车。

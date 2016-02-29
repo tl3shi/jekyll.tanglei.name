@@ -33,7 +33,7 @@ tags:
 
 举个例子：
 
-[<img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="AprioriAll算法" border="0" alt="AprioriAll算法" src="/wp-content/uploads/2012/03/image2.png" />](/wp-content/uploads/2012/03/image2.png) 
+[<img title="AprioriAll算法" border="0" alt="AprioriAll算法" src="/wp-content/uploads/2012/03/image2.png" />](/wp-content/uploads/2012/03/image2.png) 
 
 以上为输入序列数据文件，此文件代表5个custom的购买记录，每行代表一个basket，用空行将custom间隔开。表示成的序列seqences为：
 
