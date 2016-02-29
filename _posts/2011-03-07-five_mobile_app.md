@@ -41,7 +41,7 @@ tags:
   </p>
   
   <p style="text-align: center;">
-    <strong><a href="http://android.guao.hk/wp-content/uploads/2011/01/business-cards-01.jpg"><img class="size-full wp-image-9970 aligncenter" title="business cards 01" src="http://android.guao.hk/wp-content/uploads/2011/01/business-cards-01.jpg" alt="" width="408" height="329" /></a></strong>
+    <strong><a href="http://android.guao.hk/wp-content/uploads/2011/01/business-cards-01.jpg"><img class="size-full wp-image-9970 aligncenter" title="business cards 01" src="http://android.guao.hk/wp-content/uploads/2011/01/business-cards-01.jpg" alt=""  /></a></strong>
   </p>
   
   <p>
@@ -73,7 +73,7 @@ tags:
   </p>
   
   <p style="text-align: center;">
-    <a href="http://android.guao.hk/wp-content/uploads/2011/01/business-cards-02.jpg"><img class="size-full wp-image-9971 aligncenter" title="business cards 02" src="http://android.guao.hk/wp-content/uploads/2011/01/business-cards-02.jpg" alt="" width="450" height="222" /></a>
+    <a href="http://android.guao.hk/wp-content/uploads/2011/01/business-cards-02.jpg"><img class="size-full wp-image-9971 aligncenter" title="business cards 02" src="http://android.guao.hk/wp-content/uploads/2011/01/business-cards-02.jpg" alt=""  /></a>
   </p>
   
   <p>
@@ -97,7 +97,7 @@ tags:
   </p>
   
   <p>
-    <strong><img class="aligncenter size-full wp-image-9972" title="business cards 03" src="http://android.guao.hk/wp-content/uploads/2011/01/business-cards-03.jpg" alt="" width="208" height="190" /></strong>
+    <strong><img class="aligncenter size-full wp-image-9972" title="business cards 03" src="http://android.guao.hk/wp-content/uploads/2011/01/business-cards-03.jpg" alt=""  /></strong>
   </p>
   
   <p>
@@ -133,7 +133,7 @@ tags:
   </p>
   
   <p>
-    <strong><img class="aligncenter size-full wp-image-9973" title="business cards 04" src="http://android.guao.hk/wp-content/uploads/2011/01/business-cards-04.jpg" alt="" width="250" height="204" /></strong>
+    <strong><img class="aligncenter size-full wp-image-9973" title="business cards 04" src="http://android.guao.hk/wp-content/uploads/2011/01/business-cards-04.jpg" alt=""  /></strong>
   </p>
   
   <p>
@@ -165,7 +165,7 @@ tags:
   </p>
   
   <p>
-    <strong><img class="aligncenter size-full wp-image-9974" title="business cards 05" src="http://android.guao.hk/wp-content/uploads/2011/01/business-cards-05.jpg" alt="" width="489" height="310" /></strong>
+    <strong><img class="aligncenter size-full wp-image-9974" title="business cards 05" src="http://android.guao.hk/wp-content/uploads/2011/01/business-cards-05.jpg" alt=""  /></strong>
   </p>
   
   <p>

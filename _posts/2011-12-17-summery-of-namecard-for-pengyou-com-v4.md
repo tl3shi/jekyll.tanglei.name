@@ -60,7 +60,7 @@ The two images will be merged according to pct which can range from 0 to 100. Wh
 </p>
 
 <p align="left">
-  <img class="alignnone" src="http://i1123.photobucket.com/albums/l549/tl3shi/namecard.jpg" alt="" width="618" height="908" />
+  <img class="alignnone" src="http://i1123.photobucket.com/albums/l549/tl3shi/namecard.jpg" alt=""  />
 </p>
 
 <p align="left">

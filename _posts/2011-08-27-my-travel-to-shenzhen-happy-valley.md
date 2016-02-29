@@ -18,7 +18,7 @@ tags:
 <div class="mceTemp" style="text-align: justify;">
   <dl id="" class="wp-caption alignnone" style="width: 810px;">
     <dt class="wp-caption-dt">
-      <a href="/blog/photos.html/content/shenzhen/"><img title="欢乐谷-左边那个有点痛快了" src="/blog/photos.html/content/shenzhen/SAM_2003.jpg" alt="欢乐谷-左边那个有点痛快了" width="800" height="600" /></a>
+      <a href="/blog/photos.html/content/shenzhen/"><img title="欢乐谷-左边那个有点痛快了" src="/blog/photos.html/content/shenzhen/SAM_2003.jpg" alt="欢乐谷-左边那个有点痛快了"  /></a>
     </dt>
     
     <dd class="wp-caption-dd">
@@ -28,7 +28,7 @@ tags:
 </div>
 
 <div style="width: 810px" class="wp-caption aligncenter">
-  <a href="/blog/photos.html#/content/shenzhen"><img title="太空梭" src="/blog/photos.html/content/shenzhen/SAM_2009.jpg" alt="太空梭" width="800" height="600" /></a>
+  <a href="/blog/photos.html#/content/shenzhen"><img title="太空梭" src="/blog/photos.html/content/shenzhen/SAM_2009.jpg" alt="太空梭"  /></a>
   
   <p class="wp-caption-text">
     上去时还好，刚下来的时候，那个加速度有点……
@@ -38,7 +38,7 @@ tags:
 &nbsp;
 
 <div style="width: 810px" class="wp-caption aligncenter">
-  <a href="/blog/photos.html#/content/shenzhen"><img title="欢乐谷-这个过山车就很厉害了" src="/blog/photos.html/content/shenzhen/SAM_1968.jpg" alt="欢乐谷-这个过山车就很厉害了" width="800" height="600" /></a>
+  <a href="/blog/photos.html#/content/shenzhen"><img title="欢乐谷-这个过山车就很厉害了" src="/blog/photos.html/content/shenzhen/SAM_1968.jpg" alt="欢乐谷-这个过山车就很厉害了"  /></a>
   
   <p class="wp-caption-text">
     可惜，当天去的时候检修
@@ -46,7 +46,7 @@ tags:
 </div>
 
 <div style="width: 810px" class="wp-caption alignnone">
-  <a href="/blog/photos.html#/content/shenzhen"><img title="欢乐谷-湿身了" src="/blog/photos.html/content/shenzhen/SAM_1997.jpg" alt="欢乐谷-湿身了" width="800" height="600" /></a>
+  <a href="/blog/photos.html#/content/shenzhen"><img title="欢乐谷-湿身了" src="/blog/photos.html/content/shenzhen/SAM_1997.jpg" alt="欢乐谷-湿身了"  /></a>
   
   <p class="wp-caption-text">
     其实就是以g*sin80度吧，加速下滑，然后给你身上泼一桶水

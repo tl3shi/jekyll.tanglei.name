@@ -25,7 +25,7 @@ tags:
 首先去的是黄大仙，人暴多，各种烧香拜佛哦。不过我没兴趣。这个团带了2个购物的地方，一个什么DIL购珠宝的，还有一个什么数码产品各种药油之类的(这个地方不正宗，一些数码品牌都木有)。后来听团友中的一个说，导游带他们去，是按人头出钱的，20RMB/人，不管有没有购物，另有购物另算提成。想想也可以理解，这么便宜的团费，过去还吃了两顿(虽然吃得不咋样)，一天旅游包车到处跑，仅仅靠拿点团费怎么可能呀。
 
 <p style="text-align: center;">
-  <img class="aligncenter" src="http://i1123.photobucket.com/albums/l549/tl3shi/tour-in-hk/P1000158.jpg" alt="" width="614" height="461" />
+  <img class="aligncenter" src="http://i1123.photobucket.com/albums/l549/tl3shi/tour-in-hk/P1000158.jpg" alt=""  />
 </p>
 
  一行的认识了另外两个朋友，一个新疆MM，和另一个从东莞赶过来的。跟他们一起玩得挺happy的。
@@ -33,17 +33,17 @@ tags:
 再后来去了会展中心，金紫荆广场。说是广场，比较小。
 
 <p style="text-align: center;">
-  <img class="aligncenter" src="http://i1123.photobucket.com/albums/l549/tl3shi/tour-in-hk/P1000207.jpg" alt="" width="614" height="461" />
+  <img class="aligncenter" src="http://i1123.photobucket.com/albums/l549/tl3shi/tour-in-hk/P1000207.jpg" alt=""  />
 </p>
 
 <p style="text-align: center;">
-  <img class="aligncenter" src="http://i1123.photobucket.com/albums/l549/tl3shi/tour-in-hk/P1000206.jpg" alt="" width="538" height="717" />
+  <img class="aligncenter" src="http://i1123.photobucket.com/albums/l549/tl3shi/tour-in-hk/P1000206.jpg" alt=""  />
 </p>
 
 然后就是去太平山，去看杜莎夫人蜡像馆。这个是团费里面所不包含的。如果以后再有类似的旅行的花，可以长长经验，看行程中有团费不包含的，然后导游又会带着去的，可以自己提前购好(不过是优惠卷也好，团购也好)门票,到时候再过去。这样的花，就可以让导游那边少赚点，自己省点了。(导游那边估计也会有回扣)。
 
 <p style="text-align: center;">
-  <img class="aligncenter" src="http://i1123.photobucket.com/albums/l549/tl3shi/tour-in-hk/hk.jpg" alt="" width="614" height="461" />
+  <img class="aligncenter" src="http://i1123.photobucket.com/albums/l549/tl3shi/tour-in-hk/hk.jpg" alt=""  />
 </p>
 
  再然后时间太晚了，就路过浅水湾时就没停了。直接去“星光大道”(没啥，水泥路而已),再然后坐船游览维多利亚港。差不多快晚上9点了，送回落马洲，自行散团走人了。回来时直接到过福田口岸更快。

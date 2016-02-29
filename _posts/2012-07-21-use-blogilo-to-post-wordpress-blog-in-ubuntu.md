@@ -23,5 +23,5 @@ windows下有<a href="/blog/publish-a-blog-easily-and-quickly-with-good-style.ht
 发个截图，纪念下。
 
 <p style="text-align: center;">
-  <a href="/wp-content/uploads/2012/07/name_003.jpeg" target="_blank"><img class="aligncenter" title="blogilo-ubuntu-wordpress工具" src="/wp-content/uploads/2012/07/name_003.jpeg" alt="blogilo-ubuntu-wordpress工具" width="683" height="474" /></a>
+  <a href="/wp-content/uploads/2012/07/name_003.jpeg" target="_blank"><img class="aligncenter" title="blogilo-ubuntu-wordpress工具" src="/wp-content/uploads/2012/07/name_003.jpeg" alt="blogilo-ubuntu-wordpress工具"  /></a>
 </p>

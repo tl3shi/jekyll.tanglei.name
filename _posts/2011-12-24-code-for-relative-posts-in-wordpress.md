@@ -20,7 +20,7 @@ tags:
   
 用户体验不好，放在侧边栏去了。于是网上找代码实现相关文章的。本文也是参照[这篇文章](http://www.92app.com/related-posts-wordpress.html)的，
 
-<img class="alignnone" title="代码实现相关文章" src="http://i1123.photobucket.com/albums/l549/tl3shi/1-2.jpg" alt="" width="491" height="356" />
+<img class="alignnone" title="代码实现相关文章" src="http://i1123.photobucket.com/albums/l549/tl3shi/1-2.jpg" alt=""  />
 
 访问[支教第十天-感恩的心](/blog/volenteer-teaching-day10.html),效果上图1，因其标签比较丰富,可以提取到相同tag的,但遇到这种情况例如:之前发过的一篇:
 

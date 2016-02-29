@@ -15,7 +15,7 @@ tags:
 ---
 高中的时候听过，今天突然又听了下，的确很……
 
-<embed src="http://player.youku.com/player.php/sid/XMTU4NTk5MTMy/v.swf" quality="high" width="480" height="400" align="middle" allowScriptAccess="sameDomain" type="application/x-shockwave-flash">
+<embed src="http://player.youku.com/player.php/sid/XMTU4NTk5MTMy/v.swf" quality="high"  align="middle" allowScriptAccess="sameDomain" type="application/x-shockwave-flash">
 </embed>
 
 歌词

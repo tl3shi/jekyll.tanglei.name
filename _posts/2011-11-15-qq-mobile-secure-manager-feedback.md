@@ -22,4 +22,4 @@ tags:
 
 最后有个产品经理，还了个RTX群，我，开发，和她。说是我提出了这个bug，给我奖励30个Q币。呵呵。这个就属于意外了。我也是报着作为公司的一员，尽量把一些问题及时反馈一下。
 
-<img class="alignnone" title="QQ手机管家bug反馈" src="http://i1123.photobucket.com/albums/l549/tl3shi/111.jpg" alt="QQ手机管家bug反馈" width="800" height="574" />
+<img class="alignnone" title="QQ手机管家bug反馈" src="http://i1123.photobucket.com/albums/l549/tl3shi/111.jpg" alt="QQ手机管家bug反馈"  />

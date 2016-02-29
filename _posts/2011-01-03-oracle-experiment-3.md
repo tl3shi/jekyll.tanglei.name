@@ -103,7 +103,7 @@ end;
 
 实现效果如下图所示：
   
-[<img src="/wp-content/uploads/2011/01/fetchper5fromemp-285x300.jpg" alt="" title="fetchper5fromemp" width="285" height="300" class="alignleft size-medium wp-image-287" />](/wp-content/uploads/2011/01/fetchper5fromemp.jpg)
+[<img src="/wp-content/uploads/2011/01/fetchper5fromemp-285x300.jpg" alt="" title="fetchper5fromemp"  class="alignleft size-medium wp-image-287" />](/wp-content/uploads/2011/01/fetchper5fromemp.jpg)
   
 注意limit的使用。
         

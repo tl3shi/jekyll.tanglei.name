@@ -38,7 +38,7 @@ tags:
 </p>
 
 <p align="left">
-  <img class="alignnone" title="windows下运行linux命令" src="http://i1123.photobucket.com/albums/l549/tl3shi/gow.jpg" alt="" width="646" height="176" />
+  <img class="alignnone" title="windows下运行linux命令" src="http://i1123.photobucket.com/albums/l549/tl3shi/gow.jpg" alt=""  />
 </p>
 
 <p align="left">

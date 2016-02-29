@@ -58,7 +58,7 @@ insert into global values(null, 'airplane_mode_on', 1); //相应的插入0值，
 
 下面是我写的小程序的界面：
 
-[<img class="size-large wp-image-2294" title="Android 自动定时切换飞行模式-android-airplanemode-auto-switcher" src="/wp-content/uploads/2014/01/android-airplanemode-auto-switcher-1024x456.png" alt="android自动切换飞行模式" width="1024" height="456" />](/wp-content/uploads/2014/01/android-airplanemode-auto-switcher.png)
+[<img class="size-large wp-image-2294" title="Android 自动定时切换飞行模式-android-airplanemode-auto-switcher" src="/wp-content/uploads/2014/01/android-airplanemode-auto-switcher-1024x456.png" alt="android自动切换飞行模式"  />](/wp-content/uploads/2014/01/android-airplanemode-auto-switcher.png)
 
 使用方法如下：
 

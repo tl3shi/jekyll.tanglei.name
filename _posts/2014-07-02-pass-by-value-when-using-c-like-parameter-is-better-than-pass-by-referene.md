@@ -105,7 +105,7 @@ int main()
 ......
 ```
 
-[<img class="size-full wp-image-2472 aligncenter" src="/wp-content/uploads/2014/07/1.png" alt="传引用 传指针" width="321" height="151" />](/wp-content/uploads/2014/07/1.png)
+[<img class="size-full wp-image-2472 aligncenter" src="/wp-content/uploads/2014/07/1.png" alt="传引用 传指针"  />](/wp-content/uploads/2014/07/1.png)
 
 ```
     16: int h(int * p)
@@ -140,7 +140,7 @@ int main()
 ......
 ```
 
-[<img class="aligncenter size-full wp-image-2471" title=" " src="/wp-content/uploads/2014/07/2.png" alt="pass by value" width="386" height="106" />](/wp-content/uploads/2014/07/2.png)
+[<img class="aligncenter size-full wp-image-2471" title=" " src="/wp-content/uploads/2014/07/2.png" alt="pass by value"  />](/wp-content/uploads/2014/07/2.png)
   
 从汇编代码可以看出，为啥内置类型作为函数参数传递时更高效。 
 

@@ -86,7 +86,7 @@ function test3(){
 
 Test2                                                            Test3
 
-<img class="alignleft" title="php中文水印乱码" src="/wp-content/uploads/2011/11/111711_1141_Php2.png" alt="php中文水印乱码" width="172" height="245" />
+<img class="alignleft" title="php中文水印乱码" src="/wp-content/uploads/2011/11/111711_1141_Php2.png" alt="php中文水印乱码"  />
 
 ![](/wp-content/uploads/2011/11/111711_1141_Php3.png)
 

@@ -68,7 +68,7 @@ tags:
 >   </p>
 >   
 >   <p>
->     <img class="alignnone" src="http://i1123.photobucket.com/albums/l549/tl3shi/leave_tencent1.jpg" alt="" width="677" height="219" data-pinit="registered" />
+>     <img class="alignnone" src="http://i1123.photobucket.com/albums/l549/tl3shi/leave_tencent1.jpg" alt=""  data-pinit="registered" />
 >   </p>
 >   
 >   <p>

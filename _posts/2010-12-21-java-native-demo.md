@@ -180,7 +180,7 @@ nat.sayHello();
 
 再在控制台下执行javac Test.java java Test就能看到结果了。
   
-[<img class="size-full wp-image-125 aligncenter" title="native" src="/wp-content/uploads/2010/12/native1.png" alt="" width="339" height="163" />](/wp-content/uploads/2010/12/native1.png)
+[<img class="size-full wp-image-125 aligncenter" title="native" src="/wp-content/uploads/2010/12/native1.png" alt=""  />](/wp-content/uploads/2010/12/native1.png)
   
 [](/wp-content/uploads/2010/12/native.zip)
 

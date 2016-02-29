@@ -63,4 +63,4 @@ tags:
 
 下面有个活动图描述了软件配置管理角色职责
 
-[<img class="aligncenter size-medium wp-image-797" title="SCM-flow" src="/wp-content/uploads/2011/06/SCM-flow-300x282.jpg" alt="软件配置管理角色职责" width="300" height="282" />](/wp-content/uploads/2011/06/SCM-flow.jpg)
+[<img class="aligncenter size-medium wp-image-797" title="SCM-flow" src="/wp-content/uploads/2011/06/SCM-flow-300x282.jpg" alt="软件配置管理角色职责"  />](/wp-content/uploads/2011/06/SCM-flow.jpg)

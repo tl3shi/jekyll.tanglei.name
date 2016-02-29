@@ -26,5 +26,5 @@ tags:
 </p>
 
 <p align="left">
-  <a href="http://i1123.photobucket.com/albums/l549/tl3shi/travel-with-tencent.png"><img class="aligncenter" title="广州长隆旅游" src="http://i1123.photobucket.com/albums/l549/tl3shi/travel-with-tencent.png" alt="" width="356" height="1023" /></a>
+  <a href="http://i1123.photobucket.com/albums/l549/tl3shi/travel-with-tencent.png"><img class="aligncenter" title="广州长隆旅游" src="http://i1123.photobucket.com/albums/l549/tl3shi/travel-with-tencent.png" alt=""  /></a>
 </p>

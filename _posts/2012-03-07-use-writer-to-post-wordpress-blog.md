@@ -25,31 +25,31 @@ tags:
   * 安装好后，运行。配置wordpress的话，选其他。
 
 <p style="text-align: center;">
-  <img class=" aligncenter" src="http://i1123.photobucket.com/albums/l549/tl3shi/use-writer-to-blog-on-wordpress.jpg" alt="writer快速发布博客" width="445" height="377" data-pinit="registered" />
+  <img class=" aligncenter" src="http://i1123.photobucket.com/albums/l549/tl3shi/use-writer-to-blog-on-wordpress.jpg" alt="writer快速发布博客"  data-pinit="registered" />
 </p>
 
   * 输入博客网址，后台管理的用户名和密码，点击下一步即可。
 
 <p style="text-align: center;">
-  <img class="aligncenter" src="http://i1123.photobucket.com/albums/l549/tl3shi/use-writer-to-blog-on-wordpress-1.jpg" alt="快速发布wordpress博客" width="446" height="380" data-pinit="registered" />
+  <img class="aligncenter" src="http://i1123.photobucket.com/albums/l549/tl3shi/use-writer-to-blog-on-wordpress-1.jpg" alt="快速发布wordpress博客"  data-pinit="registered" />
 </p>
 
   * 连接建立成功。
 
 <p style="text-align: center;">
-  <img class="alignnone" src="http://i1123.photobucket.com/albums/l549/tl3shi/use-writer-to-blog-on-wordpress-2.jpg" alt="快速发布wordpress博客" width="446" height="380" data-pinit="registered" />
+  <img class="alignnone" src="http://i1123.photobucket.com/albums/l549/tl3shi/use-writer-to-blog-on-wordpress-2.jpg" alt="快速发布wordpress博客"  data-pinit="registered" />
 </p>
 
   * 配置好后，就可以直接写博客了。跟word07不一样滴是，这个还把你博客的风格给拿出来了。
 
 <p style="text-align: center;">
-  <img class="aligncenter" src="http://i1123.photobucket.com/albums/l549/tl3shi/use-writer-to-blog-on-wordpress-3.jpg" alt="writer快速发布wordpress博客" width="613" height="280" data-pinit="registered" />
+  <img class="aligncenter" src="http://i1123.photobucket.com/albums/l549/tl3shi/use-writer-to-blog-on-wordpress-3.jpg" alt="writer快速发布wordpress博客"  data-pinit="registered" />
 </p>
 
   * 默认的图片是上传到跟日志存放同一Web服务器上滴。还可以单独设置存放图片的ftp位置。
 
 <p style="text-align: center;">
-  <img class="aligncenter alignnone" src="http://i1123.photobucket.com/albums/l549/tl3shi/use-writer-to-blog-on-wordpress-4.jpg" alt="writer快速发布wordpress博客" width="544" height="502" data-pinit="registered" />
+  <img class="aligncenter alignnone" src="http://i1123.photobucket.com/albums/l549/tl3shi/use-writer-to-blog-on-wordpress-4.jpg" alt="writer快速发布wordpress博客"  data-pinit="registered" />
 </p>
 
 我觉得还是用默认的或者单独上传图片到某固定地方比较好。图床的方法不稳定，可扩展性不好。万一哪天得搬家，或者图床的服务器挂了或者墙了之类的就不好说了。
