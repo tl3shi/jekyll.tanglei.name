@@ -8,6 +8,7 @@ version: 1.0
 #---------------------------------------------------------------
 gems: 
     - jekyll-paginate
+    - jekyll-sitemap
 #    - jekyll-redirect-from
 
 # Config sass build output by sass_dir
@@ -40,9 +41,8 @@ permalink: /blog/:title.html
 
 # Pagination
 ## Set per_page to 0 to disable pagination
-paginate: 15
+paginate: 10
 paginate_path: "/page/:num/"
-
 
 # Writing
 #highlighter: 'pygments'
@@ -70,7 +70,7 @@ rss:
 author:
   name: "tanglei"
   avatar: "/tx.jpg"
-  motto: "清华大学硕士在读, 80后, CSUer, THUer, MORE"
+  motto: "清华大学硕士在读, 80后, CSUer, THUer, <a href='/about/'>MORE</a>"
 
 # Socials
 ## If you want the social show,place sure the social no comment
