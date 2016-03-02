@@ -11,8 +11,9 @@ layout: default
       <div class="panel-body">
         {{content}}
       </div>
+      {% include post_nav.html%}
       {% if site.duoshuo_share.enable%}
-        {% include share.html%}
+        {% include share.html %}
       {% endif %}
   </div>
   <!--
