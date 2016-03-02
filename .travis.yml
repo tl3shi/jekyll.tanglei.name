@@ -1,6 +1,6 @@
 branches:
   only:
-  - master
+  - source
 language: ruby
 
 sudo: false
@@ -16,7 +16,8 @@ install:
 - gem install jekyll jekyll-sitemap
 
 script:
+- git checkout source
 - jekyll build
 - cd _site
 - git init && git add -A . && git commit -m "commit from travis" 
-- git push --force "https://tl3shi:$GITHUB_TOKEN@github.com/tl3shi/jekyll.tanglei.name" master:gh-pages 
+- git push --force "https://tl3shi:$GITHUB_TOKEN@github.com/tl3shi/jekyll.tanglei.name.git" source:gh-pages 
