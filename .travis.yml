@@ -1,0 +1,22 @@
+branches:
+  only:
+  - master
+language: ruby
+
+sudo: false
+
+node_js:
+    - 'stable'
+
+before_install:
+- git config --global user.name "tangleithu"
+- git config --global user.email "travis@tanglei.name"
+
+install:
+- gem install jekyll jekyll-sitemap
+
+script:
+- jekyll build
+- cd _site
+- git init && git add -A . && git commit -m "commit from travis" 
+- git push --force "https://tl3shi:$GITHUB_TOKEN@github.com/tl3shi/jekyll.tanglei.name" master:gh-pages 
