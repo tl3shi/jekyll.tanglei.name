@@ -28,5 +28,5 @@ script:
 after_success:
 - cd _site
 - git init && git add -A . && git commit -m "commit from travis" 
-- git push --force "https://tl3shi:$GITHUB_TOKEN@github.com/tl3shi/jekyll.tanglei.name.git" master:gh-pages &2> /dev/null
+- git push --force --quiet "https://tl3shi:$GITHUB_TOKEN@github.com/tl3shi/jekyll.tanglei.name.git" master:gh-pages
 - git log | head -n 6
