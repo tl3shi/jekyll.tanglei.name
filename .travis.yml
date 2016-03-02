@@ -13,10 +13,13 @@ node_js:
 before_install:
 - git config --global user.name "tangleithu"
 - git config --global user.email "travis@tanglei.name"
+- gem list
+
 
 install:
 - gem install jekyll
 - gem install i18n
+- gem install jekyll-paginate
 
 script:
 - git checkout source
@@ -25,4 +28,4 @@ script:
 after_success:
 - cd _site
 - git init && git add -A . && git commit -m "commit from travis" 
-- git push --force "https://tl3shi:$GITHUB_TOKEN@github.com/tl3shi/jekyll.tanglei.name.git" source:gh-pages 
+- git push --force "https://tl3shi:$GITHUB_TOKEN@github.com/tl3shi/jekyll.tanglei.name.git" source:gh-pages &2> /dev/null
