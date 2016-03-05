@@ -156,7 +156,7 @@ sum += i;
 
 <div>
   <p>
-    <img class="thumbnail" style="border-style: initial; border-color: initial; border-image: initial; border-width: 0px;" title="Java泛型简明教程" src="http://wkee.net/qee/wordpress/wp-content/uploads/2011/06/type-hierarchy.png" alt="Java泛型简明教程" border="0" />
+    <img class="thumbnail" style="border-style: initial; border-color: initial; border-image: initial; border-width: 0px;" title="Java泛型简明教程" src="http://wkee.net/qee/Wordpress/wp-content/uploads/2011/06/type-hierarchy.png" alt="Java泛型简明教程" border="0" />
   </p>
 </div>
 

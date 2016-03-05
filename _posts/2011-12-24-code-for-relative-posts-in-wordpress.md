@@ -1,6 +1,6 @@
 ---
 id: 1332
-title: wordpress纯代码实现相关文章
+title: Wordpress纯代码实现相关文章
 date: 2011-12-24T01:19:08+00:00
 author: tanglei
 layout: post
@@ -10,15 +10,15 @@ duoshuo_thread_id:
 enable_highlight:
   - '<link rel="stylesheet" href="../wp-content/blogresources/highlightconfig/highlight.default.min.css"><script src="../wp-content/blogresources/highlightconfig/jquery-2.1.4.min.js"></script><script src="../wp-content/blogresources/highlightconfig/enable_highlight.js"></script>'
 categories:
-  - wordpress
+  - Wordpress
 tags:
-  - wordpress
+  - Wordpress
   - 相关文章
   - 纯代码实现
 ---
-看其他人的wordpress站点等都有相关文章，所以自己也弄了个。之前装了个插件，不过感觉不怎么样，如图。<a href="http://s1123.photobucket.com/albums/l549/tl3shi/?action=view&current=1.jpg" target="_blank"><img src="http://i1123.photobucket.com/albums/l549/tl3shi/1.jpg" alt="Photobucket" border="0" /></a>
+看其他人的Wordpress站点等都有相关文章，所以自己也弄了个。之前装了个插件，不过感觉不怎么样，如图。<a href="http://s1123.photobucket.com/albums/l549/tl3shi/?action=view&current=1.jpg" target="_blank"><img src="http://i1123.photobucket.com/albums/l549/tl3shi/1.jpg" alt="Photobucket" border="0" /></a>
   
-用户体验不好，放在侧边栏去了。于是网上找代码实现相关文章的。本文也是参照[这篇文章](http://www.92app.com/related-posts-wordpress.html)的，
+用户体验不好，放在侧边栏去了。于是网上找代码实现相关文章的。本文也是参照[这篇文章](http://www.92app.com/related-posts-Wordpress.html)的，
 
 <img class="alignnone" title="代码实现相关文章" src="http://i1123.photobucket.com/albums/l549/tl3shi/1-2.jpg" alt=""  />
 
@@ -37,7 +37,7 @@ function wp_get_random_posts ($limitclause="") {
 }
 ```
 
-首先要获取当前文章所在的分类目录的ID,为了方便管理调试wordpress,我的机子上也配好了wordpress环境了.随时配置下host就能正常访问本地的博客.通过各种关键字试图搜索(wordpress下所有文件递归关键字，eg: wp\_get\_post_category啊之类)显示分类目录的ID,最后找到这个函数
+首先要获取当前文章所在的分类目录的ID,为了方便管理调试Wordpress,我的机子上也配好了Wordpress环境了.随时配置下host就能正常访问本地的博客.通过各种关键字试图搜索(Wordpress下所有文件递归关键字，eg: wp\_get\_post_category啊之类)显示分类目录的ID,最后找到这个函数
 
 ```php
 /**

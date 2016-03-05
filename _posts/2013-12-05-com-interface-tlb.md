@@ -149,7 +149,7 @@ int main1()//this also works
 
 Reference：
 
-[1]Excel 调用c# 生成的dll <https://richnewman.wordpress.com/2007/04/15/a-beginner%E2%80%99s-guide-to-calling-a-net-library-from-excel/>
+[1]Excel 调用c# 生成的dll <https://richnewman.Wordpress.com/2007/04/15/a-beginner%E2%80%99s-guide-to-calling-a-net-library-from-excel/>
   
 [2]Com 组件介绍 <http://www.cppblog.com/3522021224/archive/2007/06/22/26803.html>
   

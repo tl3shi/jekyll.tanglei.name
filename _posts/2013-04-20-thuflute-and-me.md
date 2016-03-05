@@ -21,7 +21,7 @@ tags:
 
 [<img title="清华大学笛子协会旧版网站" style="border-left-width: 0px; border-right-width: 0px; border-bottom-width: 0px; float: none; margin-left: auto; display: block; border-top-width: 0px; margin-right: auto" border="0" alt="清华大学笛子协会旧版网站" src="/wp-content/uploads/2013/04/clip_image002_thumb1.jpg"  />](/wp-content/uploads/2013/04/clip_image0021.jpg)
 
-协会官网从初期我搭建的一个wordpress博客到在qflute的帮助下有了个像模像样的官网。
+协会官网从初期我搭建的一个Wordpress博客到在qflute的帮助下有了个像模像样的官网。
 
 [<img title="清华大学笛子协会新版网站" style="border-left-width: 0px; border-right-width: 0px; border-bottom-width: 0px; float: none; margin-left: auto; display: block; border-top-width: 0px; margin-right: auto" border="0" alt="清华大学笛子协会新版网站" src="/wp-content/uploads/2013/04/clip_image004_thumb1.jpg"  />](/wp-content/uploads/2013/04/clip_image0041.jpg)
 

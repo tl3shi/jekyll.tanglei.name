@@ -69,7 +69,7 @@ Check for SSH keys.Backup and remove existing SSH keys.Git跟目录下查看是�
 
 [<img title="clip_image002[18]" src="/wp-content/uploads/2012/03/clip_image00218_thumb.jpg" alt="clip_image002[18]"  data-pinit="registered" />](/wp-content/uploads/2012/03/clip_image00218.jpg)
 
-OK,整个流程完成了,配置成功.此文完成了从安装git到配置github,最后输出hello world.接下来怎么绑定独立域名,怎么配置其他诸如wordpress的博客系统框架(如jekyll或_octopress_)就再说了.
+OK,整个流程完成了,配置成功.此文完成了从安装git到配置github,最后输出hello world.接下来怎么绑定独立域名,怎么配置其他诸如Wordpress的博客系统框架(如jekyll或_octopress_)就再说了.
 
 参考资料:
 

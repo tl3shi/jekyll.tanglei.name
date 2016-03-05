@@ -1,6 +1,6 @@
 ---
 id: 154
-title: wordpress数据库优化
+title: Wordpress数据库优化
 date: 2010-12-23T03:48:20+00:00
 author: tanglei
 layout: post
@@ -8,7 +8,7 @@ guid: http://www.tanglei.name/?p=154
 duoshuo_thread_id:
   - 1351844048792453251
 categories:
-  - wordpress
+  - Wordpress
 tags:
   - worpress
 ---
@@ -16,9 +16,9 @@ tags:
 
 看看里面的冗余数据，太吓人了。
 
-[<img class="alignleft size-full wp-image-155" title="wordpress-bak" src="/wp-content/uploads/2010/12/wordpress-bak.png" alt=""  />](/wp-content/uploads/2010/12/wordpress-bak.png)
+[<img class="alignleft size-full wp-image-155" title="Wordpress-bak" src="/wp-content/uploads/2010/12/Wordpress-bak.png" alt=""  />](/wp-content/uploads/2010/12/Wordpress-bak.png)
 
- 一篇文章，里面有N多冗余数据，我觉得这点wordpress开可以优化下，比如最开始是把一些数据自动保存在数据库里面，当有更新版本的自动保存的数据时，应该去执行一条delete数据，把以前的数据删掉。
+ 一篇文章，里面有N多冗余数据，我觉得这点Wordpress开可以优化下，比如最开始是把一些数据自动保存在数据库里面，当有更新版本的自动保存的数据时，应该去执行一条delete数据，把以前的数据删掉。
 
 观察这些冗余数据发现了，有一个共同的特点就是，字段post_type的值是&#8217;revision&#8217;，于是只需要执行一条sql语句DELETE FROM **posts** WHERE post_type = &#8216;revision&#8217;;//注意posts是表面，可能你的数据库的表面跟我 不一样。在安装的时候要求输入前缀，默认是wp,也就是说默认的from后面应该跟**wp_posts** 。执行后，就能看到效果了，总数据量record少了很多，再自习看，还有冗余，就是有的title是名字是“自动草稿”。这些数据也是冗余的，再执行一下delete from wp\_posts[你自己的表名] where post\_title=&#8217;自动草稿&#8217;。就又会删掉部分冗余数据。
 
@@ -38,6 +38,6 @@ DELETE FROM postmeta WHERE meta\_key = &#8216;\_edit_last&#8217;;
   
 时间: 0.265ms
 
- 呃， 要是有时间的话，看下php的语法，自己优化下wordpress。按照提到过的思路，就不会产生冗余啦。
+ 呃， 要是有时间的话，看下php的语法，自己优化下Wordpress。按照提到过的思路，就不会产生冗余啦。
 
 o(∩_∩)o 哈哈

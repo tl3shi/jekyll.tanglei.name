@@ -88,10 +88,10 @@
 2010-12-06-simplefactory.md:  - 设计模式
 2010-12-06-simplefactory.md:  - 简单工厂
 2010-12-06-simplefactory.md:  - 设计模式
-2010-12-06-wordpress_blog_urlexception.md:  - 1351844048792453208
-2010-12-06-wordpress_blog_urlexception.md:  - wordpress
-2010-12-06-wordpress_blog_urlexception.md:  - 经验技巧
-2010-12-06-wordpress_blog_urlexception.md:  - wordpress
+2010-12-06-Wordpress_blog_urlexception.md:  - 1351844048792453208
+2010-12-06-Wordpress_blog_urlexception.md:  - Wordpress
+2010-12-06-Wordpress_blog_urlexception.md:  - 经验技巧
+2010-12-06-Wordpress_blog_urlexception.md:  - Wordpress
 2010-12-12-2010-xitongjiagou-afternoon.md:  - 1351844048792453228
 2010-12-12-2010-xitongjiagou-afternoon.md:  - SoftwareEngineering
 2010-12-12-2010-xitongjiagou-afternoon.md:  - 软考
@@ -148,8 +148,8 @@
 2010-12-19-jdbc_4types.md:  - java
 2010-12-19-jdbc_4types.md:  - JDBC
 2010-12-19-wodpress_youhua.md:  - 1351844048792453146
-2010-12-19-wodpress_youhua.md:  - wordpress
-2010-12-19-wodpress_youhua.md:  - wordpress
+2010-12-19-wodpress_youhua.md:  - Wordpress
+2010-12-19-wodpress_youhua.md:  - Wordpress
 2010-12-21-exam_j2ee.md:  - 1351844048792453398
 2010-12-21-exam_j2ee.md:  - MyLife
 2010-12-21-exam_j2ee.md:  - exam
@@ -180,10 +180,10 @@
 2010-12-22-softarchexa.md:  - 软件体系结构
 2010-12-22-softarchexa.md:  - 考试
 2010-12-22-softarchexa.md:  - 软件体系结构
-2010-12-23-8-useful-wordpress-sql-hacks.md:  - 1351844048792453153
-2010-12-23-8-useful-wordpress-sql-hacks.md:  - wordpress
-2010-12-23-8-useful-wordpress-sql-hacks.md:  - wordpress
-2010-12-23-8-useful-wordpress-sql-hacks.md:  - 优化
+2010-12-23-8-useful-Wordpress-sql-hacks.md:  - 1351844048792453153
+2010-12-23-8-useful-Wordpress-sql-hacks.md:  - Wordpress
+2010-12-23-8-useful-Wordpress-sql-hacks.md:  - Wordpress
+2010-12-23-8-useful-Wordpress-sql-hacks.md:  - 优化
 2010-12-23-designpatterninjdk.md:  - 1351842949280825450
 2010-12-23-designpatterninjdk.md:  - JAVA
 2010-12-23-designpatterninjdk.md:  - 设计模式
@@ -193,9 +193,9 @@
 2010-12-23-goodse10.md:  - 1351844048792453465
 2010-12-23-goodse10.md:  - SoftwareEngineering
 2010-12-23-goodse10.md:  - 网络文摘
-2010-12-23-wordpress-db-op.md:  - 1351844048792453251
-2010-12-23-wordpress-db-op.md:  - wordpress
-2010-12-23-wordpress-db-op.md:  - worpress
+2010-12-23-Wordpress-db-op.md:  - 1351844048792453251
+2010-12-23-Wordpress-db-op.md:  - Wordpress
+2010-12-23-Wordpress-db-op.md:  - worpress
 2010-12-24-android-games.md:  - 1351844048792453305
 2010-12-24-android-games.md:  - android
 2010-12-24-android-games.md:  - 网络文摘
@@ -685,10 +685,10 @@
 2011-04-30-interview_qunshuo.md:  - 实习
 2011-04-30-interview_qunshuo.md:  - 群硕面试
 2011-04-30-interview_qunshuo.md:  - 面试
-2011-04-30-qqweibo_wordpress.md:  - 1351844048792453422
-2011-04-30-qqweibo_wordpress.md:  - wordpress
-2011-04-30-qqweibo_wordpress.md:  - wordpress
-2011-04-30-qqweibo_wordpress.md:  - 微博秀
+2011-04-30-qqweibo_Wordpress.md:  - 1351844048792453422
+2011-04-30-qqweibo_Wordpress.md:  - Wordpress
+2011-04-30-qqweibo_Wordpress.md:  - Wordpress
+2011-04-30-qqweibo_Wordpress.md:  - 微博秀
 2011-04-30-winrar_crack.md:  - 1351844048792453209
 2011-04-30-winrar_crack.md:  - '<link rel="stylesheet" href="../wp-content/blogresources/highlightconfig/highlight.default.min.css"><script src="../wp-content/blogresources/highlightconfig/jquery-2.1.4.min.js"></script><script src="../wp-content/blogresources/highlightconfig/enable_highlight.js"></script>'
 2011-04-30-winrar_crack.md:  - '<link rel="stylesheet" href="../wp-content/blogresources/highlightconfig/highlight.default.min.css"><script src="../wp-content/blogresources/highlightconfig/jquery-2.1.4.min.js"></script><script src="../wp-content/blogresources/highlightconfig/enable_highlight.js"></script>'
@@ -915,7 +915,7 @@
 2011-06-09-hava-a-try-google-plus-1.md:  - 1351844048792453440
 2011-06-09-hava-a-try-google-plus-1.md:  - '<link rel="stylesheet" href="../wp-content/blogresources/highlightconfig/highlight.default.min.css"><script src="../wp-content/blogresources/highlightconfig/jquery-2.1.4.min.js"></script><script src="../wp-content/blogresources/highlightconfig/enable_highlight.js"></script>'
 2011-06-09-hava-a-try-google-plus-1.md:  - '<link rel="stylesheet" href="../wp-content/blogresources/highlightconfig/highlight.default.min.css"><script src="../wp-content/blogresources/highlightconfig/jquery-2.1.4.min.js"></script><script src="../wp-content/blogresources/highlightconfig/enable_highlight.js"></script>'
-2011-06-09-hava-a-try-google-plus-1.md:  - wordpress
+2011-06-09-hava-a-try-google-plus-1.md:  - Wordpress
 2011-06-09-hava-a-try-google-plus-1.md:  - 我做站长
 2011-06-09-hava-a-try-google-plus-1.md:  - Google+1
 2011-06-09-hava-a-try-google-plus-1.md:  - Google优化SEO
@@ -969,9 +969,9 @@
 2011-06-13-scm-functions-and-uses.md:  - 基线管理
 2011-06-13-scm-functions-and-uses.md:  - 软件配置管理流程
 2011-06-14-publish-a-blog-easily-and-quickly-with-good-style.md:  - 1351844048792453129
-2011-06-14-publish-a-blog-easily-and-quickly-with-good-style.md:  - wordpress
+2011-06-14-publish-a-blog-easily-and-quickly-with-good-style.md:  - Wordpress
 2011-06-14-publish-a-blog-easily-and-quickly-with-good-style.md:  - word
-2011-06-14-publish-a-blog-easily-and-quickly-with-good-style.md:  - wordpress博客
+2011-06-14-publish-a-blog-easily-and-quickly-with-good-style.md:  - Wordpress博客
 2011-06-14-publish-a-blog-easily-and-quickly-with-good-style.md:  - 最简单发布博客方法
 2011-06-14-scm-pattern.md:  - 1351844048792453288
 2011-06-14-scm-pattern.md:  - 软件配置管理
@@ -1010,9 +1010,9 @@
 2011-06-20-android-dev-environment.md:  - Android环境变量
 2011-06-20-make-money-from-blog.md:  - 1351844048792453395
 2011-06-20-make-money-from-blog.md:  - MyLife
-2011-06-20-make-money-from-blog.md:  - wordpress
+2011-06-20-make-money-from-blog.md:  - Wordpress
 2011-06-20-make-money-from-blog.md:  - 我做站长
-2011-06-20-make-money-from-blog.md:  - wordpress赚钱
+2011-06-20-make-money-from-blog.md:  - Wordpress赚钱
 2011-06-20-make-money-from-blog.md:  - 博客赚钱
 2011-06-21-programmer-health-problems.md:  - 1351844048792453130
 2011-06-21-programmer-health-problems.md:  - 网络文摘
@@ -1214,12 +1214,12 @@
 2011-08-02-switch-hosts-quickly-in-win7.md:  - WIN7切换hosts工具
 2011-08-02-switch-hosts-quickly-in-win7.md:  - windows7
 2011-08-02-switch-hosts-quickly-in-win7.md:  - 快速切换hosts脚本
-2011-08-02-wordpress-always-404-not-found.md:  - 1351844048792453215
-2011-08-02-wordpress-always-404-not-found.md:  - wordpress
-2011-08-02-wordpress-always-404-not-found.md:  - 我做站长
-2011-08-02-wordpress-always-404-not-found.md:  - .htaccess
-2011-08-02-wordpress-always-404-not-found.md:  - 404 Not Found
-2011-08-02-wordpress-always-404-not-found.md:  - wordpress
+2011-08-02-Wordpress-always-404-not-found.md:  - 1351844048792453215
+2011-08-02-Wordpress-always-404-not-found.md:  - Wordpress
+2011-08-02-Wordpress-always-404-not-found.md:  - 我做站长
+2011-08-02-Wordpress-always-404-not-found.md:  - .htaccess
+2011-08-02-Wordpress-always-404-not-found.md:  - 404 Not Found
+2011-08-02-Wordpress-always-404-not-found.md:  - Wordpress
 2011-08-04-regular-expression-modifiers.md:  - 1351844048792453421
 2011-08-04-regular-expression-modifiers.md:  - '<link rel="stylesheet" href="../wp-content/blogresources/highlightconfig/highlight.default.min.css"><script src="../wp-content/blogresources/highlightconfig/jquery-2.1.4.min.js"></script><script src="../wp-content/blogresources/highlightconfig/enable_highlight.js"></script>'
 2011-08-04-regular-expression-modifiers.md:  - PHP
@@ -1531,12 +1531,12 @@
 2011-12-21-run-linux-command-in-windows.md:  - linux命令
 2011-12-21-run-linux-command-in-windows.md:  - Windows Linux命令
 2011-12-21-run-linux-command-in-windows.md:  - 经验技巧
-2011-12-24-code-for-relative-posts-in-wordpress.md:  - 1351844048792453177
-2011-12-24-code-for-relative-posts-in-wordpress.md:  - '<link rel="stylesheet" href="../wp-content/blogresources/highlightconfig/highlight.default.min.css"><script src="../wp-content/blogresources/highlightconfig/jquery-2.1.4.min.js"></script><script src="../wp-content/blogresources/highlightconfig/enable_highlight.js"></script>'
-2011-12-24-code-for-relative-posts-in-wordpress.md:  - wordpress
-2011-12-24-code-for-relative-posts-in-wordpress.md:  - wordpress
-2011-12-24-code-for-relative-posts-in-wordpress.md:  - 相关文章
-2011-12-24-code-for-relative-posts-in-wordpress.md:  - 纯代码实现
+2011-12-24-code-for-relative-posts-in-Wordpress.md:  - 1351844048792453177
+2011-12-24-code-for-relative-posts-in-Wordpress.md:  - '<link rel="stylesheet" href="../wp-content/blogresources/highlightconfig/highlight.default.min.css"><script src="../wp-content/blogresources/highlightconfig/jquery-2.1.4.min.js"></script><script src="../wp-content/blogresources/highlightconfig/enable_highlight.js"></script>'
+2011-12-24-code-for-relative-posts-in-Wordpress.md:  - Wordpress
+2011-12-24-code-for-relative-posts-in-Wordpress.md:  - Wordpress
+2011-12-24-code-for-relative-posts-in-Wordpress.md:  - 相关文章
+2011-12-24-code-for-relative-posts-in-Wordpress.md:  - 纯代码实现
 2011-12-28-what-i-have-done-in-the-whole-year-of-2011.md:  - 1351844048792453333
 2011-12-28-what-i-have-done-in-the-whole-year-of-2011.md:  - MyLife
 2011-12-28-what-i-have-done-in-the-whole-year-of-2011.md:  - 回忆录
@@ -1614,13 +1614,13 @@
 2012-03-05-android-system-message-sqlite-database.md:  - android
 2012-03-05-android-system-message-sqlite-database.md:  - sqlite
 2012-03-05-android-system-message-sqlite-database.md:  - 系统短信
-2012-03-07-use-writer-to-post-wordpress-blog.md:  - 1351844048792453128
-2012-03-07-use-writer-to-post-wordpress-blog.md:  - wordpress
-2012-03-07-use-writer-to-post-wordpress-blog.md:  - 经验技巧
-2012-03-07-use-writer-to-post-wordpress-blog.md:  - wordpress
-2012-03-07-use-writer-to-post-wordpress-blog.md:  - wordpress博客
-2012-03-07-use-writer-to-post-wordpress-blog.md:  - writer
-2012-03-07-use-writer-to-post-wordpress-blog.md:  - 快速发布博客
+2012-03-07-use-writer-to-post-Wordpress-blog.md:  - 1351844048792453128
+2012-03-07-use-writer-to-post-Wordpress-blog.md:  - Wordpress
+2012-03-07-use-writer-to-post-Wordpress-blog.md:  - 经验技巧
+2012-03-07-use-writer-to-post-Wordpress-blog.md:  - Wordpress
+2012-03-07-use-writer-to-post-Wordpress-blog.md:  - Wordpress博客
+2012-03-07-use-writer-to-post-Wordpress-blog.md:  - writer
+2012-03-07-use-writer-to-post-Wordpress-blog.md:  - 快速发布博客
 2012-03-08-start-to-learn-python.md:  - 1351844048792453344
 2012-03-08-start-to-learn-python.md:  - '<link rel="stylesheet" href="../wp-content/blogresources/highlightconfig/highlight.default.min.css"><script src="../wp-content/blogresources/highlightconfig/jquery-2.1.4.min.js"></script><script src="../wp-content/blogresources/highlightconfig/enable_highlight.js"></script>'
 2012-03-08-start-to-learn-python.md:  - python
@@ -1842,7 +1842,7 @@
 2012-07-10-malware-code-injection-solution.md:  - 1351844048792453152
 2012-07-10-malware-code-injection-solution.md:  - '<link rel="stylesheet" href="../wp-content/blogresources/highlightconfig/highlight.default.min.css"><script src="../wp-content/blogresources/highlightconfig/jquery-2.1.4.min.js"></script><script src="../wp-content/blogresources/highlightconfig/enable_highlight.js"></script>'
 2012-07-10-malware-code-injection-solution.md:  - PHP
-2012-07-10-malware-code-injection-solution.md:  - wordpress
+2012-07-10-malware-code-injection-solution.md:  - Wordpress
 2012-07-10-malware-code-injection-solution.md:  - 我做站长
 2012-07-10-malware-code-injection-solution.md:  - 恶意代码
 2012-07-10-malware-code-injection-solution.md:  - 网络安全
@@ -1850,13 +1850,13 @@
 2012-07-21-scan-guide-for-canon-ir2520i.md:  - 经验技巧
 2012-07-21-scan-guide-for-canon-ir2520i.md:  - 扫描仪
 2012-07-21-scan-guide-for-canon-ir2520i.md:  - 教程
-2012-07-21-use-blogilo-to-post-wordpress-blog-in-ubuntu.md:  - 1351844048792453286
-2012-07-21-use-blogilo-to-post-wordpress-blog-in-ubuntu.md:  - wordpress
-2012-07-21-use-blogilo-to-post-wordpress-blog-in-ubuntu.md:  - 经验技巧
-2012-07-21-use-blogilo-to-post-wordpress-blog-in-ubuntu.md:  - blogilo
-2012-07-21-use-blogilo-to-post-wordpress-blog-in-ubuntu.md:  - Ubuntu
-2012-07-21-use-blogilo-to-post-wordpress-blog-in-ubuntu.md:  - wordpress
-2012-07-21-use-blogilo-to-post-wordpress-blog-in-ubuntu.md:  - writer
+2012-07-21-use-blogilo-to-post-Wordpress-blog-in-ubuntu.md:  - 1351844048792453286
+2012-07-21-use-blogilo-to-post-Wordpress-blog-in-ubuntu.md:  - Wordpress
+2012-07-21-use-blogilo-to-post-Wordpress-blog-in-ubuntu.md:  - 经验技巧
+2012-07-21-use-blogilo-to-post-Wordpress-blog-in-ubuntu.md:  - blogilo
+2012-07-21-use-blogilo-to-post-Wordpress-blog-in-ubuntu.md:  - Ubuntu
+2012-07-21-use-blogilo-to-post-Wordpress-blog-in-ubuntu.md:  - Wordpress
+2012-07-21-use-blogilo-to-post-Wordpress-blog-in-ubuntu.md:  - writer
 2012-07-23-aop-in-python.md:  - 1351844048792453290
 2012-07-23-aop-in-python.md:  - '<link rel="stylesheet" href="../wp-content/blogresources/highlightconfig/highlight.default.min.css"><script src="../wp-content/blogresources/highlightconfig/jquery-2.1.4.min.js"></script><script src="../wp-content/blogresources/highlightconfig/enable_highlight.js"></script>'
 2012-07-23-aop-in-python.md:  - python
@@ -1873,7 +1873,7 @@
 2012-07-24-decorator-in-python.md:  - python
 2012-07-24-decorator-in-python.md:  - 装饰器
 2012-08-02-github-with-octopress.md:  - 1351844048792453407
-2012-08-02-github-with-octopress.md:  - wordpress
+2012-08-02-github-with-octopress.md:  - Wordpress
 2012-08-02-github-with-octopress.md:  - 我做站长
 2012-08-02-github-with-octopress.md:  - blog
 2012-08-02-github-with-octopress.md:  - git
@@ -1976,13 +1976,13 @@
 2013-03-28-convex-hull-of-points.md:  - Graham Scan
 2013-03-28-convex-hull-of-points.md:  - 凸包
 2013-03-28-convex-hull-of-points.md:  - 计算几何
-2013-03-31-change-ubuntuserver-to-support-wordpress.md:  - 1351844048792453271
-2013-03-31-change-ubuntuserver-to-support-wordpress.md:  - '<link rel="stylesheet" href="../wp-content/blogresources/highlightconfig/highlight.default.min.css"><script src="../wp-content/blogresources/highlightconfig/jquery-2.1.4.min.js"></script><script src="../wp-content/blogresources/highlightconfig/enable_highlight.js"></script>'
-2013-03-31-change-ubuntuserver-to-support-wordpress.md:  - 我做站长
-2013-03-31-change-ubuntuserver-to-support-wordpress.md:  - Ubuntu
-2013-03-31-change-ubuntuserver-to-support-wordpress.md:  - wordpress
-2013-03-31-change-ubuntuserver-to-support-wordpress.md:  - 固定链接失效
-2013-03-31-change-ubuntuserver-to-support-wordpress.md:  - 虚拟主机
+2013-03-31-change-ubuntuserver-to-support-Wordpress.md:  - 1351844048792453271
+2013-03-31-change-ubuntuserver-to-support-Wordpress.md:  - '<link rel="stylesheet" href="../wp-content/blogresources/highlightconfig/highlight.default.min.css"><script src="../wp-content/blogresources/highlightconfig/jquery-2.1.4.min.js"></script><script src="../wp-content/blogresources/highlightconfig/enable_highlight.js"></script>'
+2013-03-31-change-ubuntuserver-to-support-Wordpress.md:  - 我做站长
+2013-03-31-change-ubuntuserver-to-support-Wordpress.md:  - Ubuntu
+2013-03-31-change-ubuntuserver-to-support-Wordpress.md:  - Wordpress
+2013-03-31-change-ubuntuserver-to-support-Wordpress.md:  - 固定链接失效
+2013-03-31-change-ubuntuserver-to-support-Wordpress.md:  - 虚拟主机
 2013-04-01-attacked-by-hacker-cause-of-a-bug-in-mysql.md:  - 1351844048792453194
 2013-04-01-attacked-by-hacker-cause-of-a-bug-in-mysql.md:  - Windows
 2013-04-01-attacked-by-hacker-cause-of-a-bug-in-mysql.md:  - 经验技巧
@@ -2253,16 +2253,16 @@
 2015-06-25-share-beamer-with-tsinghua-theme.md:     - autocite的方式 
 2015-06-26-binding-domain-to-plugin-of-mobile-theme.md:    - 经验技巧 
 2015-06-26-binding-domain-to-plugin-of-mobile-theme.md:    - wptouch 
-2015-06-26-binding-domain-to-plugin-of-mobile-theme.md:    - wordpress plugin
+2015-06-26-binding-domain-to-plugin-of-mobile-theme.md:    - Wordpress plugin
 2015-06-26-binding-domain-to-plugin-of-mobile-theme.md:    - 经验技巧 
 2015-06-26-binding-domain-to-plugin-of-mobile-theme.md:    - 我做站长 
-2015-06-26-binding-domain-to-plugin-of-mobile-theme.md:    - wordpress
+2015-06-26-binding-domain-to-plugin-of-mobile-theme.md:    - Wordpress
 2015-07-01-codecolorer-adapted-to-highlight.md:    - 经验技巧 
 2015-07-01-codecolorer-adapted-to-highlight.md:    - codecolorer 
 2015-07-01-codecolorer-adapted-to-highlight.md:    - highlight 
 2015-07-01-codecolorer-adapted-to-highlight.md:    - 代码高亮 
-2015-07-01-codecolorer-adapted-to-highlight.md:    - wordpress plugin
-2015-07-01-codecolorer-adapted-to-highlight.md:    - wordpress
+2015-07-01-codecolorer-adapted-to-highlight.md:    - Wordpress plugin
+2015-07-01-codecolorer-adapted-to-highlight.md:    - Wordpress
 2015-07-01-codecolorer-adapted-to-highlight.md:    - 经验技巧 
 2015-07-01-codecolorer-adapted-to-highlight.md:    - 我做站长 
 2015-07-06-travel-to-northwest-of-china.md:    - 旅游 
