@@ -41,34 +41,34 @@ tags:
 - pictures 迁移，改变链接，去掉host
    1. 去掉绝对路径， 去掉host
 
-   ```bash
-   #去掉绝对路径
-   sed -i "" 's|http://www\.tanglei\.name\/wp-content|/wp-content|g' `ls`
-   ```
+```bash
+#去掉绝对路径
+sed -i "" 's|http://www\.tanglei\.name\/wp-content|/wp-content|g' `ls`
+```
    - 修正一些图片格式因为缩进问题(例如``![](xx.pnag)``前面有tab符)被markdow误认为是``reference/preview block ``错误
 
-    ```bash
-    sed -i "" 's|[[:space:]]!\[|![|g' `ls`
-    ```
+```bash
+sed -i "" 's|[[:space:]]!\[|![|g' `ls`
+```
 
 - 代码高亮
    1. 之前mardown2wordpress工具将代码插件变换后，export成md后，标签被转义了。
 
-    ``` html
-    <pre>&lt;cc class="cpp">
-    #include &lt;iostream>
-    int main(int argc, char** argv)
-    {
-        std::cout &lt;&lt; "Hello world." &lt;&lt; std::endl;
-        std::cout &lt;&lt; "argc: " &lt;&lt; argc &lt;&lt; std::endl;
-        for(int i = 0; i &lt; argc; i++)
-            std::cout &lt;&lt; argv[i] &lt;&lt; std::endl;
-        int t;
-        std::cin >> t;
-        return 0;
-    }
-    &lt;/cc></pre>
-    ```
+```html
+<pre>&lt;cc class="cpp">
+#include &lt;iostream>
+int main(int argc, char** argv)
+{
+    std::cout &lt;&lt; "Hello world." &lt;&lt; std::endl;
+    std::cout &lt;&lt; "argc: " &lt;&lt; argc &lt;&lt; std::endl;
+    for(int i = 0; i &lt; argc; i++)
+        std::cout &lt;&lt; argv[i] &lt;&lt; std::endl;
+    int t;
+    std::cin >> t;
+    return 0;
+}
+&lt;/cc></pre>
+```
     整体进行替换.
 
 ```bash
@@ -149,11 +149,11 @@ sed -i "" '/^permalink: /d' `ls`
    1. tag 替换 `` sed -i "" 's|http://www.tanglei.name/tag/|/tag/#|g' `ls`  ``
    - tag后面不能有 `/`
 
-       ```bash
-       #替换前 预览下
-       sed 's|/tag/#\([^/]*\)\/|/tag/#\1|g' `ls` | grep '/tag/#'
-       sed -i "" 's|/tag/#\([^/]*\)\/|/tag/#\1|g' `ls`
-       ```
+```bash
+#替换前 预览下
+sed 's|/tag/#\([^/]*\)\/|/tag/#\1|g' `ls` | grep '/tag/#'
+sed -i "" 's|/tag/#\([^/]*\)\/|/tag/#\1|g' `ls`
+```
    - 其他链接 `` sed -i "" 's|http://www.tanglei.name/\([^/]*\)\/|/blog/\1.html|g' `ls` ``
    - 少数之前含有目录的链接就不对了, 其他的遇到了再改吧.
 
