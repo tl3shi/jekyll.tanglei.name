@@ -15,7 +15,7 @@ categories:
 tags:
   - bib
   - bibtex
-  - latex
+  - Latex
   - 小工具
   - 批量导出
 ---

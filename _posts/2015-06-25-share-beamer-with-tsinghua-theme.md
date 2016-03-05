@@ -3,7 +3,7 @@ title: 分享一个清华主题的beamer模版
 date: 2015-06-25
 layout: post
 tags: 
-    - latex 
+    - Latex 
     - beamer 
     - tsinghua 
     - 学位论文答辩 

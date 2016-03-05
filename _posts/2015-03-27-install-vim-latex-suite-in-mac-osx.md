@@ -10,8 +10,8 @@ duoshuo_thread_id:
 categories:
   - 经验技巧
 tags:
-  - latex
-  - latex-suite
+  - Latex
+  - Latex-suite
   - mac osx
   - vim
   - 插件
