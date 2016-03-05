@@ -13,7 +13,7 @@ enable_highlight:
 categories:
   - 数据库应用
 tags:
-  - oracle
+  - Oracle
   - 存储过程
 ---
 第二个题目主要考查了触发器以及存储过程的使用，题目描述如下：

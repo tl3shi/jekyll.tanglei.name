@@ -8,7 +8,7 @@ guid: http://www.tanglei.name/?p=893
 duoshuo_thread_id:
   - 1351844048792453161
 categories:
-  - android
+  - Android
 tags:
   - Google
 ---

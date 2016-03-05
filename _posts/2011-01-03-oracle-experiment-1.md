@@ -13,7 +13,7 @@ enable_highlight:
 categories:
   - 数据库应用
 tags:
-  - oracle
+  - Oracle
   - 存储过程
 ---
 这两天做了oracle的实验了。第一题目描述如下：

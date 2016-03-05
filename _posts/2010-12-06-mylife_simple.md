@@ -13,7 +13,6 @@ duoshuo_thread_id:
 categories:
   - MyLife
 tags:
-  - life
 ---
 that&#8217;s my life.
   

@@ -10,11 +10,11 @@ duoshuo_thread_id:
 enable_highlight:
   - '<link rel="stylesheet" href="../wp-content/blogresources/highlightconfig/highlight.default.min.css"><script src="../wp-content/blogresources/highlightconfig/jquery-2.1.4.min.js"></script><script src="../wp-content/blogresources/highlightconfig/enable_highlight.js"></script>'
 categories:
-  - android
+  - Android
   - coding小工具
 tags:
-  - android自动切换飞行模式
-  - android自动开机
+  - Android自动切换飞行模式
+  - Android自动开机
   - 飞行模式
 ---
 界面就比较丑了，不过现在我机子里面都还在用呢。呵呵

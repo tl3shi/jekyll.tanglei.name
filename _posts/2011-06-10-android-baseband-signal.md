@@ -8,7 +8,7 @@ guid: http://www.tanglei.name/?p=791
 duoshuo_thread_id:
   - 1351844048792453299
 categories:
-  - android
+  - Android
   - 玩玩手机
 tags:
 ---

@@ -8,10 +8,10 @@ guid: http://www.tanglei.name/?p=1690
 duoshuo_thread_id:
   - 1351844048792453303
 categories:
-  - android
+  - Android
   - 玩玩手机
 tags:
-  - android
+  - Android
   - 小工具
 ---
 过去几年里有很多新开发的小工具出现，人们的生活越来越离不开智能机，当然包括android手机，它已经成为了人们的最大需求量之一，市场上出现的android手机也越来越多，人们也比较喜欢用andorid手机。因为相对而言，价格比较能够让人接受，却包含了人们期望有的功能，可以说性价比比较高。 

@@ -8,11 +8,11 @@ guid: http://www.tanglei.name/?p=180
 duoshuo_thread_id:
   - 1351844048792453216
 categories:
-  - android
+  - Android
   - 业界动态
 tags:
-  - android
-  - windows
+  - Android
+  - Windows
 ---
 本文转自:http://blog.mobilesplease.co.uk/why-android-is-the-new-windows/
 

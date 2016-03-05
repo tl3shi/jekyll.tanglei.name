@@ -8,7 +8,7 @@ guid: /blog/ms%e9%87%8c%e7%a8%8b%e7%a2%91miuiandroid2-3%e5%88%b7app2sd.html
 duoshuo_thread_id:
   - 1351844048792453433
 categories:
-  - android
+  - Android
   - 玩玩手机
 tags:
 ---

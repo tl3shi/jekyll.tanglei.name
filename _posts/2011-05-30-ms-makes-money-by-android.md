@@ -8,7 +8,7 @@ guid: http://www.tanglei.name/?p=740
 duoshuo_thread_id:
   - 1351844048792453165
 categories:
-  - android
+  - Android
   - 业界动态
 tags:
   - 微软

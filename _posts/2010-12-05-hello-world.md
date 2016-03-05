@@ -16,7 +16,7 @@ duoshuo_thread_id:
 categories:
   - MyLife
 tags:
-  - helloWorld
+  - HelloWorld
 ---
 好吧。
 

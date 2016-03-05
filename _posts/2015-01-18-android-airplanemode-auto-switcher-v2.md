@@ -8,11 +8,11 @@ guid: http://www.tanglei.name/?p=2583
 duoshuo_thread_id:
   - 1351844048792453515
 categories:
-  - android
+  - Android
   - coding小工具
   - 敲敲代码
 tags:
-  - android
+  - Android
   - 飞行模式
 ---
 原来时隔上次这篇\[Android 4.2 自动定时切换飞行模式\]([/blog/android-airplanemode-auto-switcher.html](/blog/android-airplanemode-auto-switcher.html "/blog/android-airplanemode-auto-switcher.html"))已经1年了, 惭愧惭愧~ 根据之前的版本说的是要加入多个时间段的设置, 重新 “设计”（其实是山寨了别人的）了UI, 今天终于发布出来了。**注意,** 该程序针对Android4.2及其以上的版本，手机需要ROOT才OK，且建议添加到信任程序列表。4.2之前的版本是木有问题的。

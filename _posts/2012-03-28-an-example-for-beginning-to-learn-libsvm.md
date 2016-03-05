@@ -10,7 +10,7 @@ duoshuo_thread_id:
 categories:
   - 数据挖掘
 tags:
-  - helloWorld
+  - HelloWorld
   - libsvm
   - SVM
 ---

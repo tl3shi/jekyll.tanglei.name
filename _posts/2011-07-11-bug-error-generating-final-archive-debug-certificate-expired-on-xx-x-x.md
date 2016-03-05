@@ -8,7 +8,7 @@ guid: http://www.tanglei.name/?p=970
 duoshuo_thread_id:
   - 1351844048792453432
 categories:
-  - android
+  - Android
 tags:
   - bug
 ---
