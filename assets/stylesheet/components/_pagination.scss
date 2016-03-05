@@ -14,5 +14,33 @@
     cursor: default;
     background-color: $primary-color;
     border-color: $primary-color;
+  }
 }
+
+
+.pagination-x {
+    text-align: center;
+    padding: 5px;
+    background-color: #fff;
+}
+.pagination-x a, .curr-page {
+    border: 1px solid #ddd;
+    display: inline-block;
+    margin: 0 3px 0 0;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 2px;
+    text-decoration: none;
+    width: 22px;
+}
+.pagination-x a:hover {
+    border: 1px solid #666666;
+    background-color: #ffffff;
+}
+.pagination-x span {
+    border: none;
+}
+.pagination-x .curr-page {
+    font-weight: bold;
+    width: 15px;
 }

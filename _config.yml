@@ -41,7 +41,7 @@ permalink: /blog/:title.html
 
 # Pagination
 ## Set per_page to 0 to disable pagination
-paginate: 10
+paginate: 8
 paginate_path: "/page/:num/"
 
 # Writing
