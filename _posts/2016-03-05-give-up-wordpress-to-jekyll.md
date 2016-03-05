@@ -100,7 +100,7 @@ sed -i "" 's|&#038;|\&|g' `ls`
 - 文章太多, 300+文章, 然后别人也有500+文章20+秒就build出来了。[ref](https://travis-ci.org/Xuanwo/xuanwo.github.io/builds/111696580)
 - 代码高亮问题, 我关闭代码高亮也一样
 - 分页，分类目录太多, tag太多, 我关闭分类目录和tag也一样，并且在build的过程中，并不是到最后`generate tags/xxx`才慢的, 	前面post也慢。
-- 主题的影响， 我切换主题，用默认的主题也一样慢~
+- 主题的影响， 我切换主题，用默认的主题也一样慢~ (Update: 之前测试的时候可能没有clean之类的没准，应该就是主题的原因，后面有时间再研究下)
 
 没辙了~, 我不可能每次po一篇文章，发布的时候得半小时吧~ 况且后来用travis-ci，10分钟build不出来就被kill了。难道是因为wordpress 导出的markdown含有各种html标签导致hexo解析markdown很慢? maybe~
 
