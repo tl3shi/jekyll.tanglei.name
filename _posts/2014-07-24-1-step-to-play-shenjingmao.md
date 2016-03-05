@@ -13,7 +13,7 @@ enable_highlight:
 categories:
   - 经验技巧
 tags:
-  - javascript
+  - Javascript
   - 作弊
   - 神经猫
 ---

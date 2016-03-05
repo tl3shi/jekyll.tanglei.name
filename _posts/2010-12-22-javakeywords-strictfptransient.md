@@ -10,8 +10,8 @@ duoshuo_thread_id:
 categories:
   - JAVA
 tags:
-  - java
-  - java基础
+  - Java
+  - Java基础
   - strictfp
   - transient
 ---

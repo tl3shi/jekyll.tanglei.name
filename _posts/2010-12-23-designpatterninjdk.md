@@ -11,7 +11,7 @@ categories:
   - JAVA
   - 设计模式
 tags:
-  - java
+  - Java
   - JDK
   - 设计模式
 ---

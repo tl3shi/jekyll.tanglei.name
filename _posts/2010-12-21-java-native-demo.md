@@ -12,8 +12,8 @@ enable_highlight:
 categories:
   - JAVA
 tags:
-  - java
-  - java基础
+  - Java
+  - Java基础
   - native
 ---
 研究了下java native方法的例子。网上看了下资料。

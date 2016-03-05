@@ -14,8 +14,8 @@ categories:
   - 实习那些事儿
 tags:
   - cgi
-  - java
-  - java支持CGI
+  - Java
+  - Java支持CGI
   - tomcat
   - TOMCAT配置CGI
 ---

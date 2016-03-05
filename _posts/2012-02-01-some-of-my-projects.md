@@ -10,7 +10,7 @@ duoshuo_thread_id:
 categories:
   - 敲敲代码
 tags:
-  - java
+  - Java
   - 简历
   - 项目经验
 ---
