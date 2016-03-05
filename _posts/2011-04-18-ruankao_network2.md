@@ -10,11 +10,7 @@ duoshuo_thread_id:
 categories:
   - 软考
 tags:
-  - B/S
-  - C/S
-  - 广域网
   - 网络安全
-  - 网络管理
 ---
 上接：</blog/ruankao_network1.html>
 

@@ -10,7 +10,6 @@ duoshuo_thread_id:
 categories:
   - 网络文摘
 tags:
-  - 出错解释
 ---
 以下内容转自http://www.jobbole.com/entry.php/606
 

@@ -15,7 +15,6 @@ duoshuo_thread_id:
 categories:
   - 设计模式
 tags:
-  - 简单工厂
   - 设计模式
 ---
 简单工厂

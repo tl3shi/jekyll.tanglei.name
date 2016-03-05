@@ -14,7 +14,6 @@ categories:
 tags:
   - Java
   - Java基础
-  - native
 ---
 研究了下java native方法的例子。网上看了下资料。
   

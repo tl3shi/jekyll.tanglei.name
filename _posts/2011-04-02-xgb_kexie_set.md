@@ -10,7 +10,6 @@ duoshuo_thread_id:
 categories:
   - 软件学院
 tags:
-  - 中南大学学工网
   - 大学生科协
 ---
 为了丰富博客内容，再转，转自中南大学学工网：<http://www.qgzxol.com/xuegong/xgw/NewsSystem/Files/2011-3-31/5785.shtml>

@@ -10,7 +10,6 @@ duoshuo_thread_id:
 categories:
   - 实习那些事儿
 tags:
-  - 不关机后果
   - 腾讯实习日志
   - 腾讯实习生
 ---

@@ -13,9 +13,7 @@ enable_highlight:
 categories:
   - 数据库应用
 tags:
-  - delete
   - oracle
-  - truncate
 ---
 刚才去做了一个公司的实习生招聘笔试题目，其中有Oracle delete和 truncate区别，记得以前赵明老师讲过一点，只是有点印象，具体想不出来了。网上查了下。发现下面这篇文章不错，遂转之。
 

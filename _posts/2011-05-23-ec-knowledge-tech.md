@@ -10,11 +10,7 @@ duoshuo_thread_id:
 categories:
   - SoftwareEngineering
 tags:
-  - 万维网
-  - 域名
-  - 服务器
   - 电子商务
-  - 网站空间
   - 虚拟主机
 ---
 **一、** **万维网概述**

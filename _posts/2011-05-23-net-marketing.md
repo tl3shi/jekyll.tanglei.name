@@ -10,11 +10,7 @@ duoshuo_thread_id:
 categories:
   - SoftwareEngineering
 tags:
-  - 4Cs
-  - 4Ps
   - 电子商务
-  - 网络营销方式
-  - 营销理论
 ---
 **1** **网络营销概述**
 

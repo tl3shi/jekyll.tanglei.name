@@ -11,7 +11,6 @@ categories:
   - 软件学院
 tags:
   - 成立大会
-  - 科协
   - 软件学院
 ---
 以下转自：http://software.csu.edu.cn/SoftwareSite/article.do?atcID=778

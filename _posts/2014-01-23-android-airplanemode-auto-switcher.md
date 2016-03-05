@@ -14,9 +14,6 @@ categories:
   - coding小工具
 tags:
   - android
-  - Android 4.2
-  - AutoSwitcher
-  - WRITE_SECURE_SETTINGS
   - 没有权限
   - 飞行模式
 ---

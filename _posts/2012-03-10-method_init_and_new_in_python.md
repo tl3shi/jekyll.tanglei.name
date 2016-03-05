@@ -12,8 +12,6 @@ enable_highlight:
 categories:
   - python
 tags:
-  - init
-  - new
   - OOP
   - python
 ---

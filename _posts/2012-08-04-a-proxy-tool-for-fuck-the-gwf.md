@@ -12,11 +12,7 @@ enable_highlight:
 categories:
   - 经验技巧
 tags:
-  - GFW
-  - Proxy
-  - 代理
   - 经验技巧
-  - 翻墙
 ---
 ### windows环境下：
 

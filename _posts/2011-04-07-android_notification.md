@@ -13,8 +13,6 @@ categories:
   - android
 tags:
   - android
-  - Notification
-  - 通知栏
 ---
 项目需要，当按手机home键时，出现通知栏，从通知栏图标点击快速返回上一个应用的界面。
   

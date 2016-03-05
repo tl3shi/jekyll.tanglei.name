@@ -11,8 +11,6 @@ categories:
   - SoftwareEngineering
 tags:
   - CMM
-  - CMM考点
-  - 能力成熟度模型
   - 软件过程改进
 ---
 有两个画图的题目。如下。

@@ -10,8 +10,6 @@ duoshuo_thread_id:
 categories:
   - 计算机图形学
 tags:
-  - hello world
-  - Openmesh
   - VS2012
   - 计算几何
 ---

@@ -13,11 +13,8 @@ categories:
   - JAVA
   - 实习那些事儿
 tags:
-  - cgi
   - Java
   - Java支持CGI
-  - tomcat
-  - TOMCAT配置CGI
 ---
 腾讯实习的培训布置的作用中需要用Qzhttp+FastCGI+TTC架构写demo.网上参照了下,最后成功在Tomcat下配置CGI并实现简单例子.
   

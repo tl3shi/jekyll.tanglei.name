@@ -12,8 +12,6 @@ categories:
 tags:
   - Defy
   - interesting
-  - 防水
-  - 饭卡
 ---
 其实这两张图毫无关系，恰好今天清理下手机发现了。于是贴出来。
 

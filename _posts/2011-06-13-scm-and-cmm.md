@@ -10,8 +10,6 @@ duoshuo_thread_id:
 categories:
   - 软件配置管理
 tags:
-  - SCM与CMM
-  - 三库管理
 ---
 ###### 软件配置管理与CMM/CMMI
 

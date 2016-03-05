@@ -11,7 +11,6 @@ categories:
   - MyLife
   - 旅游
 tags:
-  - 个人经历
   - 旅游
   - 足迹
 ---

@@ -11,7 +11,6 @@ categories:
   - 开开眼界
 tags:
   - interesting
-  - 好玩的验证码
 ---
 <div id="OSChina_News_17563" class="NewsContent TextContent">
   <p>

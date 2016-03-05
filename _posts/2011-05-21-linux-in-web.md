@@ -11,7 +11,6 @@ categories:
   - 开开眼界
 tags:
   - Linux
-  - web
 ---
 转自：http://coolshell.cn/articles/4722.html 只能说，太牛了……膜拜！如果你是用的chrome11或者firefox，那你就可以直接在下面敲linux命令执行了。看看我执行的效果图。[![web-linux](/wp-content/uploads/2011/05/web-linux.png "web-linux")](/wp-content/uploads/2011/05/web-linux.png)
 

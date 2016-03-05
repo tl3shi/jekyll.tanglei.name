@@ -10,17 +10,8 @@ duoshuo_thread_id:
 categories:
   - 软件度量及其应用
 tags:
-  - Feature Point
   - "Halstead's"
-  - LoC
-  - Object Point
-  - Use-case Point
-  - 功能性
-  - 对象点
-  - 控制流
   - 数据流结构
-  - 特征点
-  - 用例点
   - 软件度量
   - 软件结构度量
 ---

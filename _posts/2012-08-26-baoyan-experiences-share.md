@@ -10,8 +10,6 @@ duoshuo_thread_id:
 categories:
   - MyLife
 tags:
-  - 专家推荐信
-  - 个人陈述
   - 保研
   - 经验
 ---

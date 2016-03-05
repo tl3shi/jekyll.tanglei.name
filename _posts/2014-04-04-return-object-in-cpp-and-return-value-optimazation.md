@@ -12,12 +12,8 @@ enable_highlight:
 categories:
   - c++
 tags:
-  - cpp
   - OOP
-  - RVO
   - 性能优化
-  - 拷贝构造函数
-  - 返回值优化
 ---
 <font size="4" color="red">update</font> 这应该属于Named Return Value Optimization(NRVO)或者Return Value Optimization(RVO)返回值优化的范畴。
   

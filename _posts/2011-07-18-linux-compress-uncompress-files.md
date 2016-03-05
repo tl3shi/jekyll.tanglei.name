@@ -11,8 +11,6 @@ categories:
   - 'Linux'
 tags:
   - Linux
-  - linux命令
-  - tar
 ---
 在linux下开发，一些命令不熟悉很囧啊。这两天得在开发机上配置qzhttp和ttc等。讲本地的一些tar包上传去后不知道用啥命令解压。网上找了个，搜藏下。
 

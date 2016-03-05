@@ -4,9 +4,6 @@ date: 2015-07-01
 layout: post
 tags: 
     - 经验技巧 
-    - codecolorer 
-    - highlight 
-    - 代码高亮 
     - Wordpress plugin
 categories: 
     - Wordpress

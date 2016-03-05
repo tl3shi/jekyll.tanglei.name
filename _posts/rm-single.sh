@@ -24,6 +24,7 @@ sed -i "" "/  - C\/S/d" `ls *.md`
 sed -i "" "/  - CK/d" `ls *.md`
 sed -i "" "/  - CMMI/d" `ls *.md`
 sed -i "" "/  - CMM考试/d" `ls *.md`
+sed -i "" "/  - CMM考点/d" `ls *.md`
 sed -i "" "/  - COM接口/d" `ls *.md`
 sed -i "" "/  - CoCoMo模型/d" `ls *.md`
 sed -i "" "/  - DDL/d" `ls *.md`
@@ -110,7 +111,6 @@ sed -i "" "/  - SQL/d" `ls *.md`
 sed -i "" "/  - SRP/d" `ls *.md`
 sed -i "" "/  - SSD10/d" `ls *.md`
 sed -i "" "/  - SZ/d" `ls *.md`
-sed -i "" "/  - Scala /d" `ls *.md`
 sed -i "" "/  - SecureCRT/d" `ls *.md`
 sed -i "" "/  - Shepperd’s Metrics/d" `ls *.md`
 sed -i "" "/  - SnapDat/d" `ls *.md`
@@ -197,6 +197,7 @@ sed -i "" "/  - lawson/d" `ls *.md`
 sed -i "" "/  - layout/d" `ls *.md`
 sed -i "" "/  - leetcode/d" `ls *.md`
 sed -i "" "/  - linux后台运行/d" `ls *.md`
+sed -i "" "/  - linux命令/d" `ls *.md`
 sed -i "" "/  - log/d" `ls *.md`
 sed -i "" "/  - mac osx/d" `ls *.md`
 sed -i "" "/  - matlab/d" `ls *.md`
@@ -246,7 +247,6 @@ sed -i "" "/  - windump/d" `ls *.md`
 sed -i "" "/  - winrar破解/d" `ls *.md`
 sed -i "" "/  - word/d" `ls *.md`
 sed -i "" "/  - wordpress赚钱/d" `ls *.md`
-sed -i "" "/  - work /d" `ls *.md`
 sed -i "" "/  - worpress/d" `ls *.md`
 sed -i "" "/  - wptouch /d" `ls *.md`
 sed -i "" "/  - x64/d" `ls *.md`
@@ -315,7 +315,6 @@ sed -i "" "/  - 北戴河/d" `ls *.md`
 sed -i "" "/  - 博客赚钱/d" `ls *.md`
 sed -i "" "/  - 反射/d" `ls *.md`
 sed -i "" "/  - 反战/d" `ls *.md`
-sed -i "" "/  - 反模式/d" `ls *.md`
 sed -i "" "/  - 反编译/d" `ls *.md`
 sed -i "" "/  - 发布sdk/d" `ls *.md`
 sed -i "" "/  - 发言/d" `ls *.md`
@@ -369,15 +368,12 @@ sed -i "" "/  - 导师/d" `ls *.md`
 sed -i "" "/  - 封锁协议/d" `ls *.md`
 sed -i "" "/  - 就业/d" `ls *.md`
 sed -i "" "/  - 局域网/d" `ls *.md`
-sed -i "" "/  - 工作总结/d" `ls *.md`
-sed -i "" "/  - 工作那些事儿/d" `ls *.md`
 sed -i "" "/  - 工学硕士/d" `ls *.md`
 sed -i "" "/  - 广域网/d" `ls *.md`
 sed -i "" "/  - 序列模式/d" `ls *.md`
 sed -i "" "/  - 影响力/d" `ls *.md`
 sed -i "" "/  - 微博秀/d" `ls *.md`
 sed -i "" "/  - 微电影/d" `ls *.md`
-sed -i "" "/  - 微软/d" `ls *.md`
 sed -i "" "/  - 微软秋令营/d" `ls *.md`
 sed -i "" "/  - 快递/d" `ls *.md`
 sed -i "" "/  - 快速切换hosts脚本/d" `ls *.md`
@@ -417,14 +413,11 @@ sed -i "" "/  - 数学基础知识/d" `ls *.md`
 sed -i "" "/  - 数据仓库/d" `ls *.md`
 sed -i "" "/  - 数据压缩/d" `ls *.md`
 sed -i "" "/  - 数据库保护/d" `ls *.md`
-sed -i "" "/  - 数据库/d" `ls *.md`
 sed -i "" "/  - 数据库故障/d" `ls *.md`
 sed -i "" "/  - 数据库系统结构/d" `ls *.md`
-sed -i "" "/  - 数据库/d" `ls *.md`
 sed -i "" "/  - 数据模型/d" `ls *.md`
 sed -i "" "/  - 数据类型/d" `ls *.md`
 sed -i "" "/  - 数组/d" `ls *.md`
-sed -i "" "/  - 敲敲代码 /d" `ls *.md`
 sed -i "" "/  - 文件/d" `ls *.md`
 sed -i "" "/  - 文件和文件系统/d" `ls *.md`
 sed -i "" "/  - 旁注/d" `ls *.md`
@@ -464,9 +457,7 @@ sed -i "" "/  - 消息摘要/d" `ls *.md`
 sed -i "" "/  - 深圳欢乐谷/d" `ls *.md`
 sed -i "" "/  - 深圳腾讯实习/d" `ls *.md`
 sed -i "" "/  - 深圳腾讯实习报道/d" `ls *.md`
-sed -i "" "/  - 清华大学 /d" `ls *.md`
 sed -i "" "/  - 清华大学保研复试/d" `ls *.md`
-sed -i "" "/  - 清华笛协/d" `ls *.md`
 sed -i "" "/  - 游记/d" `ls *.md`
 sed -i "" "/  - 湖南大学生/d" `ls *.md`
 sed -i "" "/  - 湖南省/d" `ls *.md`
@@ -476,8 +467,6 @@ sed -i "" "/  - 物流/d" `ls *.md`
 sed -i "" "/  - 特征点/d" `ls *.md`
 sed -i "" "/  - 特效/d" `ls *.md`
 sed -i "" "/  - 王婆婆/d" `ls *.md`
-sed -i "" "/  - 玩遍世界/d" `ls *.md`
-sed -i "" "/  - 玩遍中国 /d" `ls *.md`
 sed -i "" "/  - 班长/d" `ls *.md`
 sed -i "" "/  - 用例点/d" `ls *.md`
 sed -i "" "/  - 用户体验/d" `ls *.md`
@@ -510,7 +499,6 @@ sed -i "" "/  - 空指针异常/d" `ls *.md`
 sed -i "" "/  - 笛协/d" `ls *.md`
 sed -i "" "/  - 简单工厂/d" `ls *.md`
 sed -i "" "/  - 简历/d" `ls *.md`
-sed -i "" "/  - 软考/d" `ls *.md`
 sed -i "" "/  - 系统短信/d" `ls *.md`
 sed -i "" "/  - 系统程序/d" `ls *.md`
 sed -i "" "/  - 纯代码实现/d" `ls *.md`
@@ -549,7 +537,6 @@ sed -i "" "/  - 腾讯实习生留用考核/d" `ls *.md`
 sed -i "" "/  - 腾讯技术一面/d" `ls *.md`
 sed -i "" "/  - 腾讯技术二面/d" `ls *.md`
 sed -i "" "/  - 腾讯笔试/d" `ls *.md`
-sed -i "" "/  - 腾讯/d" `ls *.md`
 sed -i "" "/  - 腾讯部门旅游/d" `ls *.md`
 sed -i "" "/  - 自动/d" `ls *.md`
 sed -i "" "/  - 自我调节/d" `ls *.md`
@@ -591,7 +578,6 @@ sed -i "" "/  - 跨域访问/d" `ls *.md`
 sed -i "" "/  - 跨平台/d" `ls *.md`
 sed -i "" "/  - 转租/d" `ls *.md`
 sed -i "" "/  - 软件工程保研/d" `ls *.md`
-sed -i "" "/  - 软考/d" `ls *.md`
 sed -i "" "/  - 软件配置管理文档/d" `ls *.md`
 sed -i "" "/  - 软件配置管理流程/d" `ls *.md`
 sed -i "" "/  - 返回值优化/d" `ls *.md`

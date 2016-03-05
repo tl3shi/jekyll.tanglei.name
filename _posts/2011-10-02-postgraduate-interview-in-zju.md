@@ -11,7 +11,6 @@ categories:
   - MyLife
 tags:
   - 保研
-  - 浙大研究生面试
   - 计算机保研
   - 计算机复试
   - 面试

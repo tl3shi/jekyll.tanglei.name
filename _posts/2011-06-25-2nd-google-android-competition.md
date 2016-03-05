@@ -10,7 +10,6 @@ duoshuo_thread_id:
 categories:
   - android
 tags:
-  - Android挑战赛
   - Google
 ---
 第一届，宏杰石文海他们都传应用了，还有得包用。呵呵，这次也去提交下。

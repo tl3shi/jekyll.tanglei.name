@@ -10,8 +10,6 @@ duoshuo_thread_id:
 categories:
   - MyLife
 tags:
-  - 书单
-  - 借书
   - 本科生
 ---
 看到<a href="http://www.lihui.info/undergraduate-library-reading-history/" target="_blank">李辉同学</a>晒出了本科的借书单，我也好奇的来看看我本科期间到底借了些啥书。

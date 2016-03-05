@@ -11,10 +11,6 @@ categories:
   - 业界动态
   - 开开眼界
 tags:
-  - facebook
-  - twitter
-  - 影响力
-  - 技术
 ---
 文 / 余晟  霍炬
 

@@ -12,8 +12,6 @@ categories:
 tags:
   - Java
   - Java基础
-  - strictfp
-  - transient
 ---
 前面已经整理了java中的不常见关键字native,volatile,就一气呵成，把另外两个也整一下。
 

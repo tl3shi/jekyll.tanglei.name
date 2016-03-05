@@ -12,8 +12,6 @@ categories:
   - 经验技巧
 tags:
   - Foxmail
-  - foxmail7导入邮箱
-  - foxmail导入帐号
 ---
 看到foxmail 7 发布了。之前在笔记本上都是用的foxmail，现在换公司电脑了，用outlook，然后那么多帐号又懒得一个一个设置。然后foxmail 7 说是已经支持exchange，然后我就下了安装在公司电脑上，还好安装之后就自动导入了outlook的设置，过滤设置也OK。然后就是希望能够把以前的哪些帐号导入。
 

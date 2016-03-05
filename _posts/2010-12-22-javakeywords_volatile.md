@@ -12,7 +12,6 @@ categories:
 tags:
   - Java
   - Java基础
-  - volatile
 ---
 前面讲过了native了。继续看看volatile关键字吧。参考了下<http://www.javamex.com/tutorials/synchronization_volatile.shtml>上面的文章。
 

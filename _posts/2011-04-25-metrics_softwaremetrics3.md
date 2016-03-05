@@ -10,8 +10,6 @@ duoshuo_thread_id:
 categories:
   - 软件度量及其应用
 tags:
-  - McCabe
-  - 控制流结构
   - 数据流结构
   - 软件度量
   - 软件结构度量

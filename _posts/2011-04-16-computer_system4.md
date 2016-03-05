@@ -10,8 +10,6 @@ duoshuo_thread_id:
 categories:
   - 软考
 tags:
-  - 数学基础知识
-  - 离散数学
 ---
 **1.9** **数学基础知识**
 

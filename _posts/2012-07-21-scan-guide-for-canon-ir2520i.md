@@ -10,8 +10,6 @@ duoshuo_thread_id:
 categories:
   - 经验技巧
 tags:
-  - 扫描仪
-  - 教程
 ---
 1、安装驱动，运行scangear tool 工具，设置IP，找到打印机/扫描仪。如果下图中没有找到，请检查下驱动程序是否安装正确。驱动程序在\\10.18.103.226\share\常用资源\Software\Drivers\大打印机驱动\……中，扫描仪驱动是ColorNetworkScanGear_* 类似。
 

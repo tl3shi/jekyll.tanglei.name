@@ -10,8 +10,6 @@ duoshuo_thread_id:
 categories:
   - 实习那些事儿
 tags:
-  - 2011腾讯hr面
-  - 腾讯三面
   - 腾讯面经
 ---
 <div>

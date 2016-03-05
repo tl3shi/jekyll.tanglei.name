@@ -15,7 +15,6 @@ tags:
   - AOP
   - decorator
   - python
-  - 装饰器
 ---
 前面写python的AOP解决方案时提到了decorator，这篇文章就详细的来整理下python的装饰器——decorator。
 

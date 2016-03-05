@@ -10,11 +10,8 @@ duoshuo_thread_id:
 categories:
   - MyLife
 tags:
-  - 怀柔
   - 旅游
-  - 水长城
   - 清明
-  - 游记
 ---
 北京出发先到怀柔，然后乘坐“怀柔——水长城”专线到达黄花城水长城景区。
 

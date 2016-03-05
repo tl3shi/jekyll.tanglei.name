@@ -10,8 +10,6 @@ duoshuo_thread_id:
 categories:
   - 软考
 tags:
-  - 局域网
-  - 网络协议
   - 计算机网络
 ---
 **1****、计算机网络知识**

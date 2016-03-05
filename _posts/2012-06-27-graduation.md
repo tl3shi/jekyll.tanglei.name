@@ -10,8 +10,6 @@ duoshuo_thread_id:
 categories:
   - MyLife
 tags:
-  - 毕业
-  - 离别
 ---
 写下这个题目的时候，我已经在家了。
 

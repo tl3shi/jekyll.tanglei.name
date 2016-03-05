@@ -13,9 +13,7 @@ enable_highlight:
 categories:
   - 'Linux'
 tags:
-  - fork
   - Linux
-  - 进程
 ---
 今天写实验报告。遇到了fork函数。网上看了下。总结如下：
   

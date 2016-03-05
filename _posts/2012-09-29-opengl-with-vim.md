@@ -12,7 +12,6 @@ enable_highlight:
 categories:
   - 计算机图形学
 tags:
-  - MinGW
   - opengl
   - vim
 ---

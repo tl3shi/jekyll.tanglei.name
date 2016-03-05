@@ -10,8 +10,6 @@ duoshuo_thread_id:
 categories:
   - MyLife
 tags:
-  - tell me why
-  - 反战
 ---
 高中的时候听过，今天突然又听了下，的确很……
 

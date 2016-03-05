@@ -13,8 +13,6 @@ categories:
   - Windows
   - 经验技巧
 tags:
-  - ipv6
-  - 校园网
   - 百度云管家
   - 百度网盘
 ---

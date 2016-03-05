@@ -15,7 +15,6 @@ tags:
   - a+=b
   - a=a+b
   - python
-  - __iadd__
 ---
 在上一篇文章中谈到了我碰到的<a href="/blog/a-python-problem-about-a-plusequal-b-and-a-equal-a-plus-b.html" target="_blank">关于python里a+=b和a=a+b</a>问题。在<a href="http://www.zhihu.com/question/20114936" target="_blank">知乎</a>上也问了这个问题，看了各位大侠的解释，现在似乎明白了，得赶紧记下来总结下，不然以后又忘了。
 

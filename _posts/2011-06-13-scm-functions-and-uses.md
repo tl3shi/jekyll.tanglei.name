@@ -10,10 +10,6 @@ duoshuo_thread_id:
 categories:
   - 软件配置管理
 tags:
-  - SCM功能
-  - 变更管理
-  - 基线管理
-  - 软件配置管理流程
 ---
 ### 软件配置管理功能
 

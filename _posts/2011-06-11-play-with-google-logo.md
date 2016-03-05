@@ -11,8 +11,6 @@ categories:
   - 网络文摘
 tags:
   - Google
-  - Google doodle
-  - 谷歌logo
 ---
 之前google有个logo 小游戏。后来发现叫doodle。然后百科了以下：
 

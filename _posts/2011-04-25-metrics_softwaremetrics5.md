@@ -10,13 +10,7 @@ duoshuo_thread_id:
 categories:
   - 软件度量及其应用
 tags:
-  - Boehm
   - CMM
-  - ISO9126
-  - McCall
-  - MUSiC
-  - 外部属性度量
-  - 质量模型
   - 软件度量
 ---
 ## Measuring External Product Attributes

@@ -10,7 +10,6 @@ duoshuo_thread_id:
 categories:
   - 敲敲代码
 tags:
-  - regular expression
   - 正则表达式
 ---
 时不时会用到，网上找滴，整理下，收藏下吧。

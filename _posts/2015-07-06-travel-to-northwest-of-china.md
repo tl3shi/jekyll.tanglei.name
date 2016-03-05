@@ -5,7 +5,6 @@ layout: post
 tags: 
     - 旅游 
     - 玩遍中国 
-    - 西北旅游
 categories: 
     - MyLife 
     - 旅游

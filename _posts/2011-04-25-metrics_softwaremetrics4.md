@@ -10,11 +10,6 @@ duoshuo_thread_id:
 categories:
   - 软件度量及其应用
 tags:
-  - Henry and Kafura’s Metrics
-  - Shepperd’s Metrics
-  - 信息流
-  - 内聚
-  - 耦合
   - 软件度量
 ---
 <address>

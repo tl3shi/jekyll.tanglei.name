@@ -10,7 +10,6 @@ duoshuo_thread_id:
 categories:
   - 软件项目管理
 tags:
-  - IT项目管理模拟试题
   - IT项目管理考试
 ---
 上接：**<a title="查看此文：IT项目管理考试资料整理(一)" rel="bookmark" href="/blog/it-management-exam1.html">IT项目管理考试资料整理(一)</a>**

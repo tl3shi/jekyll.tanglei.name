@@ -10,7 +10,6 @@ duoshuo_thread_id:
 categories:
   - 业界动态
 tags:
-  - Google API
 ---
 刚还说了google的android让微软赚了很大一笔。又看了一篇博文，说google一些产品关闭一批API。你不能这样啊。google……下面转(来自谷奥<http://www.guao.hk/posts/google-pinpoints-shutdown-dates-for-wave-translate-apis.html>)
 

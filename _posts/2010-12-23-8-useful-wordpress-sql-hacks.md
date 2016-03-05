@@ -11,7 +11,6 @@ categories:
   - Wordpress
 tags:
   - Wordpress
-  - 优化
 ---
 已下内容转自<a href="http://www.smashingmagazine.com/2008/12/18/8-useful-Wordpress-sql-hacks" target="_blank">http://www.smashingmagazine.com/2008/12/18/8-useful-Wordpress-sql-hacks</a>收藏着吧，网上也有翻译版本。训练下英文阅读能力，我就转原版的。
   

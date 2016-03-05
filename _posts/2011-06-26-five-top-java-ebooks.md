@@ -10,8 +10,6 @@ duoshuo_thread_id:
 categories:
   - JAVA
 tags:
-  - Java教程
-  - Java电子书
 ---
 转自：<http://www.mkyong.com/featured/top-5-free-java-ebooks/>
 

@@ -10,8 +10,5 @@ duoshuo_thread_id:
 categories:
   - MyLife
 tags:
-  - 亲情
-  - 微电影
-  - 感人
 ---
 今天看到了这个视频，挺感人滴。大家经常给家里人打个电话吧。

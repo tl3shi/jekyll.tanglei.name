@@ -10,7 +10,6 @@ duoshuo_thread_id:
 categories:
   - android
   - 业界动态
-  - 移动领域
 tags:
   - android
   - windows

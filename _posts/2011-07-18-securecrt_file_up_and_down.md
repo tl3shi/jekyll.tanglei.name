@@ -11,10 +11,6 @@ categories:
   - 'Linux'
 tags:
   - Linux
-  - linux命令
-  - RZ
-  - SecureCRT
-  - SZ
 ---
 公司开发机跟本机交互，通常用SecureCRT。
   

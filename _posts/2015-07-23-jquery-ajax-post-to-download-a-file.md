@@ -4,9 +4,6 @@ date: 2015-07-23
 layout: post
 tags: 
     - work 
-    - scala 
-    - jquery 
-    - 前端 
 categories: 
     - 工作那些事儿
     - 敲敲代码 

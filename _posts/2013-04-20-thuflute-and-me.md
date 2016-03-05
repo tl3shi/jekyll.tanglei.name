@@ -11,7 +11,6 @@ categories:
   - MyLife
   - 清华大学
 tags:
-  - thuflute
   - 清华笛协
   - 爱好
   - 笛子

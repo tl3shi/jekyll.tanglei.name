@@ -12,10 +12,7 @@ categories:
   - SoftwareEngineering
   - Windows
 tags:
-  - 3次握手
   - TCP/IP
-  - tcpdump
-  - windump
   - 计算机网络
 ---
 Mac OS系统10.9.1，安装[Wireshark](http://www.wireshark.org/download.html)，后不能跑，提示安装X11，到这里安装[XQuartz](http://xquartz.macosforge.org/landing/)即可。

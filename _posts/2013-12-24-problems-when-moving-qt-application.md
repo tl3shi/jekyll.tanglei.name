@@ -13,7 +13,6 @@ categories:
   - 敲敲代码
 tags:
   - c++
-  - QT
   - windows
 ---
 Untitled Blog Post NameUntitled Blog Post NameUntitled Blog Post Name

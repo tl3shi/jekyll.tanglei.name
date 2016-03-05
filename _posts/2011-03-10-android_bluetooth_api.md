@@ -13,9 +13,6 @@ categories:
   - android
 tags:
   - android
-  - bluetooth
-  - 反射
-  - 蓝牙
 ---
 今天看了篇文章，思想值得学习呀。要学会用反射……
 

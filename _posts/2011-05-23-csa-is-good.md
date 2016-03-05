@@ -10,7 +10,6 @@ duoshuo_thread_id:
 categories:
   - MyLife
 tags:
-  - 免审稿费
   - 本科生
   - 论文
 ---

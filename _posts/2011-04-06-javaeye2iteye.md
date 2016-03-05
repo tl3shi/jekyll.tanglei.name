@@ -11,9 +11,7 @@ categories:
   - 业界动态
   - 网络文摘
 tags:
-  - iteye
   - Javaeye
-  - 改域名
 ---
 几天不上javaeye了。才发现javaeye已经被重定向至ITeye了。看原因才知道。。以下内容转自：<http://www.iteye.com/news/20605>
 

@@ -10,11 +10,8 @@ duoshuo_thread_id:
 categories:
   - MyLife
 tags:
-  - 学习
   - 总结
   - 生活
-  - 社会工作
-  - 笛协
 ---
 其实,近况就是过得稀里糊涂.
 

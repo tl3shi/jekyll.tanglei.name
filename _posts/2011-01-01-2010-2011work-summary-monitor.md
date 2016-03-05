@@ -11,7 +11,6 @@ categories:
   - 软件0804
 tags:
   - 工作总结
-  - 班长
   - 软件0804
 ---
 <p style="text-align: center;">

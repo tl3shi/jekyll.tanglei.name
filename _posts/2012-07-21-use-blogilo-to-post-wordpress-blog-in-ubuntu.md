@@ -11,7 +11,6 @@ categories:
   - Wordpress
   - 经验技巧
 tags:
-  - blogilo
   - Ubuntu
   - Wordpress
   - writer

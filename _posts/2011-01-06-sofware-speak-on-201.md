@@ -12,7 +12,6 @@ categories:
 tags:
   - 中南大学
   - 先进班集体
-  - 表彰
   - 软件0804
 ---
 <!-- 		@page { margin: 2cm } 		P { margin-bottom: 0.21cm } -->尊敬的各位老师，亲爱的同学们：

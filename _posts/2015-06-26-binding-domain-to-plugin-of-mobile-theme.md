@@ -4,7 +4,6 @@ date: 2015-06-26
 layout: post
 tags: 
     - 经验技巧 
-    - wptouch 
     - Wordpress plugin
 categories: 
     - 经验技巧 

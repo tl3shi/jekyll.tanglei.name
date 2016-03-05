@@ -12,8 +12,6 @@ enable_highlight:
 categories:
   - android
 tags:
-  - android短信协议
-  - android短信管理代码
 ---
 写android群发消息的小工具，涉及到短信管理，这篇文章写得不错，转载了[android 中短信管理](http://www.cnblogs.com/GnagWang/archive/2011/01/06/1929075.html)。
 

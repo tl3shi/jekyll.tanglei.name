@@ -10,10 +10,7 @@ duoshuo_thread_id:
 categories:
   - 软件度量及其应用
 tags:
-  - CK
-  - LK
   - 软件度量
-  - 面向对象软件度量
 ---
 ## Object-Oriented Metrics
 

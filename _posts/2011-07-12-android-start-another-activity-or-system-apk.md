@@ -14,9 +14,6 @@ categories:
   - coding小工具
 tags:
   - android
-  - android启动另一个APK
-  - android启动系统应用程序
-  - 启动另外APK
 ---
 写短信群发小工具，当发送成功后，想跳动到系统自带的已发送或者发件箱，网上搜了下。开始关键字没输好，搜不到，结果用一个apk启动另一个apk就搜到了。
 

@@ -11,7 +11,6 @@ categories:
   - 我做站长
 tags:
   - Foxmail
-  - 企业邮局
 ---
 <p style="text-align: center;">
   <div style="text-align: left;">

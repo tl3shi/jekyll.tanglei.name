@@ -10,8 +10,6 @@ duoshuo_thread_id:
 categories:
   - 经验技巧
 tags:
-  - 人人网
-  - 明文传输
   - 网络安全
   - 腾讯
 ---

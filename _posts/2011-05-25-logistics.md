@@ -10,9 +10,7 @@ duoshuo_thread_id:
 categories:
   - SoftwareEngineering
 tags:
-  - 物流
   - 电子商务
-  - 配送
 ---
 一、  物流
 

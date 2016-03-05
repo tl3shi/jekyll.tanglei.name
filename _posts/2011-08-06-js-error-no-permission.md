@@ -10,9 +10,7 @@ duoshuo_thread_id:
 categories:
   - PHP
 tags:
-  - JS错误
   - 没有权限
-  - 跨域访问
 ---
 在写后台管理的时候一直用过得firefox做开发调试，写得挺顺利的，后来Leaner准备将测试的数据删除，添加点像样的数据时，一点删除就报错了。然后就…… 
 

@@ -11,7 +11,6 @@ categories:
   - MyLife
   - 旅游
 tags:
-  - 北戴河
   - 旅游
   - 玩遍中国
 ---

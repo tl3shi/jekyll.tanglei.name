@@ -10,8 +10,6 @@ duoshuo_thread_id:
 categories:
   - 软考
 tags:
-  - 中央处理器CPU
-  - 存储器系统
   - 输入/输出系统
 ---
 上接</blog/computer_system1.html>

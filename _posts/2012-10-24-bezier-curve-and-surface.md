@@ -12,11 +12,6 @@ enable_highlight:
 categories:
   - 计算机图形学
 tags:
-  - bezier
-  - bezier曲线
-  - bezier曲面
-  - de Casteljau算法
-  - mfc
   - opengl
   - 计算机图形学
 ---

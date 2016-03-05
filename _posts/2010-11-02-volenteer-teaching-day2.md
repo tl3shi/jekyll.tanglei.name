@@ -13,7 +13,6 @@ tags:
   - 中南大学
   - 云南赶集
   - 贵州支教
-  - 龙场镇小学
 ---
 <p class="MsoNormal" style="margin: 0cm 0cm 0pt;">
   <span style="font-family: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman';">今天是支教的第二天了</span><span lang="EN-US"><span style="font-family: 'Times New Roman';">.</span></span>

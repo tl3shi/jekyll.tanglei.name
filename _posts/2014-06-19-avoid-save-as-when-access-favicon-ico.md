@@ -13,8 +13,6 @@ categories:
   - 我做站长
 tags:
   - APACHE
-  - config
-  - favicon.ico
 ---
 Blog从虚拟主机换到了VPS，网站的favicon.ico图标出现了问题。用浏览器访问 </blog/favicon.ico> 总提示下载.html保存（另存为……）.
 

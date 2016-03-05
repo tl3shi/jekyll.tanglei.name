@@ -11,7 +11,6 @@ categories:
   - MyLife
   - 清华大学
 tags:
-  - 毕业设计
   - 清华大学
   - 租房
 ---

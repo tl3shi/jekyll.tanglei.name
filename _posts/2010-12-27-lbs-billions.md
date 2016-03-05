@@ -8,11 +8,8 @@ guid: http://www.tanglei.name/?p=194
 duoshuo_thread_id:
   - 1351844048792453135
 categories:
-  - 移动领域
   - 网络文摘
 tags:
-  - LBS.位置服务
-  - 移动
 ---
 _根据市场研究公司ABI
   

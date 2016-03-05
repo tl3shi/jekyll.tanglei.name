@@ -10,7 +10,6 @@ duoshuo_thread_id:
 categories:
   - android
 tags:
-  - android调试证书过期
   - bug
 ---
 今天网上down了一个android源码，导入eclipse，build总是出错，提示：Error generating final archive: Debug certificate expired on 11-7-7 上午11:42!

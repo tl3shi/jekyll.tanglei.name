@@ -11,7 +11,6 @@ categories:
   - 实习那些事儿
   - 我做站长
 tags:
-  - Sosospider
   - 垃圾蜘蛛
 ---
 <p align="left">

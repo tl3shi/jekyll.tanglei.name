@@ -11,7 +11,6 @@ categories:
   - Windows
   - 经验技巧
 tags:
-  - 右键菜单
   - 经验技巧
 ---
 <p align="left">

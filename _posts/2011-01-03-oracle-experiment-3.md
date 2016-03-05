@@ -13,8 +13,6 @@ enable_highlight:
 categories:
   - 数据库应用
 tags:
-  - bulk collect
-  - emp
   - oracle
   - 存储过程
 ---

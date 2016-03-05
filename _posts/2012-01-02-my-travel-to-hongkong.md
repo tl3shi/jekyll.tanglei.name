@@ -12,9 +12,7 @@ categories:
   - 旅游
 tags:
   - 旅游
-  - 旅游跟团
   - 玩遍中国
-  - 香港旅游
 ---
 <span style="font-size: small;">          通行证早办理了，但一直苦于找不到同去的伴儿而没有去。<a href="/blog/my-travel-to-macao.html">上次去澳门</a>也是一个人去的，计划<span style="font-family: Times New Roman;">1</span>月份就离开深圳了，所以得抓紧时间赶紧去香港玩下，所以就选择了<span style="font-family: Times New Roman;">2012</span>年的第一天。同样是报团，团购的。签注是<span style="font-family: Times New Roman;">L</span>签的<span style="font-family: Times New Roman;">(</span>我们那只能办理<span style="font-family: Times New Roman;">L</span>签<span style="font-family: Times New Roman;">)</span>，其实要是想自由行也是很简单的，在口岸直接交<span style="font-family: Times New Roman;">50</span>块，找旅行公司之类盖个章，即可。</span>
 

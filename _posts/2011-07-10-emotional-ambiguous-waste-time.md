@@ -10,8 +10,6 @@ duoshuo_thread_id:
 categories:
   - MyLife
 tags:
-  - 暧昧
-  - 青春岁月
 ---
 一个文学院的哥们写的，感觉蛮不错的。转过来。看看。
 

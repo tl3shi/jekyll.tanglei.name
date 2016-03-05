@@ -10,7 +10,6 @@ duoshuo_thread_id:
 categories:
   - 软件配置管理
 tags:
-  - SCM工具对比
   - 软件配置管理工具
 ---
 软件配置管理的重要性已被大多数软件及相关企业所认识，而配置管理工具的使用是实施配置管理的重要部分。本文对目前较为流行的配置管理工具VSS,CVS,ClearCase,StarTeam做出比较分析。

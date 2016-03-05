@@ -10,7 +10,6 @@ duoshuo_thread_id:
 categories:
   - 实习那些事儿
 tags:
-  - 周末加班
   - 腾讯实习
   - 腾讯实习日志
 ---

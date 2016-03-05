@@ -13,8 +13,6 @@ categories:
   - 经验技巧
 tags:
   - Linux
-  - linux命令
-  - Windows Linux命令
   - 经验技巧
 ---
 之前在[外刊评论](http://www.aqee.net/)上看到滴这个工具的介绍，感觉还不错。转过来了。有时候用用linux的命令感觉挺方便的。例如在整个目录下搜索某个关键字啊之类的。

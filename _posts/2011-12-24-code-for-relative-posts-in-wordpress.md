@@ -13,8 +13,6 @@ categories:
   - Wordpress
 tags:
   - Wordpress
-  - 相关文章
-  - 纯代码实现
 ---
 看其他人的Wordpress站点等都有相关文章，所以自己也弄了个。之前装了个插件，不过感觉不怎么样，如图。<a href="http://s1123.photobucket.com/albums/l549/tl3shi/?action=view&current=1.jpg" target="_blank"><img src="http://i1123.photobucket.com/albums/l549/tl3shi/1.jpg" alt="Photobucket" border="0" /></a>
   

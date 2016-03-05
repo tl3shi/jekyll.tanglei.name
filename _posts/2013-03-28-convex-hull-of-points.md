@@ -12,9 +12,6 @@ enable_highlight:
 categories:
   - 计算机图形学
 tags:
-  - GiftWrapping
-  - Graham Scan
-  - 凸包
   - 计算几何
 ---
 凸的意思就是，点集当中任意两个点的连线仍然在这个集合当中。凸包就是说用一个足够大的橡皮筋把这些点包围住，这个最小的橡皮筋就构成了这些点集的凸包。

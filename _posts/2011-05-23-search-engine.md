@@ -10,9 +10,7 @@ duoshuo_thread_id:
 categories:
   - SoftwareEngineering
 tags:
-  - 搜索引擎
   - 电子商务
-  - 网络蜘蛛
 ---
 **一、 搜索引擎定义**
   

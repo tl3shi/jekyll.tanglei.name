@@ -13,7 +13,6 @@ categories:
   - android
 tags:
   - android
-  - Android环境变量
 ---
 今天收拾桌面，看到这个文档，以前搞开发时用的。maybe大家用的着。下面环境变量是我的水货机子defy，买了之后的，android 2.1update1系统的环境变量。由如下代码产生
 

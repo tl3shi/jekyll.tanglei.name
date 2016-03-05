@@ -10,7 +10,6 @@ duoshuo_thread_id:
 categories:
   - 实习那些事儿
 tags:
-  - QQ手机管家
   - wifi自动关闭
   - 腾讯实习
 ---

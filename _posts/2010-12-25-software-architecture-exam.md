@@ -10,15 +10,7 @@ duoshuo_thread_id:
 categories:
   - 软件体系结构
 tags:
-  - DIP
-  - ISP
-  - LoD
-  - LSP
-  - OCP
-  - SRP
-  - UML
   - 软件体系结构
-  - 面向对象设计原则
 ---
 **<span style="font-size: 24.0pt; font-family: 宋体;">目录</span>**
 

@@ -11,8 +11,6 @@ categories:
   - SoftwareEngineering
 tags:
   - CMM
-  - CMM考点
-  - 考试复习资料
   - 软件能力成熟度模型
   - 软件过程改进
 ---

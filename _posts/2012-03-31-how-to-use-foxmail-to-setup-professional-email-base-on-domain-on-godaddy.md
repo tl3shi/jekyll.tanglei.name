@@ -15,8 +15,6 @@ categories:
 tags:
   - Foxmail
   - godaddy
-  - 企业邮箱
-  - 域名邮箱
 ---
 今天本人入手新域名一枚：<a href="http://tanglei.me" target="_blank">tanglei.me</a>，有空再玩玩。之前的爱山寨(i3zhai.com)也是在这里注的，记得有个免费企业邮局(企业邮局就是诸如<tanglei@tanglei.name>，以自己的域名作为后缀的电子邮件地址,也叫企业邮箱)帐号的，于是今天去设置了下。(具体设置就是到godaddy主页，首部导航Email，然后如图有一个Email的下拉列表，你有几个域名(貌似info的木有送)，就送了几个邮箱。如果从来没有设置过，点击setup就开通了，再转至email management管理端设置邮箱帐号密码即可使用，Web 端很慢，不方便使用。一般配置outlook，foxmail客户端方便些。[<img title="godaddy-域名免费企业邮局 1" src="/wp-content/uploads/2012/03/godaddy1_thumb.jpg" alt="godaddy-域名免费企业邮局 1"  data-pinit="registered" />](/wp-content/uploads/2012/03/godaddy1.jpg) )
 

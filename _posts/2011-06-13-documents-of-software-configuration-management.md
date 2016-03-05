@@ -11,7 +11,6 @@ categories:
   - 软件工程
   - 软件配置管理
 tags:
-  - 软件配置管理文档
 ---
 ### <span style="font-size:15pt">软件配置管理计划 </span>
 	  

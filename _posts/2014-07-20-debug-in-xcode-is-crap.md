@@ -11,9 +11,7 @@ categories:
   - c++
   - 经验技巧
 tags:
-  - debug
   - mac
-  - xcode
 ---
 不得不吐槽下Xcode的debug功能实在是弱爆了～ 网上也不止我一个人吐槽～废话不多说，看图
 

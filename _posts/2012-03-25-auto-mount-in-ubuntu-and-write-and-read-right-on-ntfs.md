@@ -13,10 +13,7 @@ categories:
   - 'Linux'
   - 经验技巧
 tags:
-  - ext
   - Linux
-  - mount
-  - ntfs
   - Ubuntu
 ---
 这两天都用了下ubuntu写代码，记得以前好像不是那么容易使eclipse和windows下的workspace同步的，得需要一些配置才可以。现在把它写下来备份一下。

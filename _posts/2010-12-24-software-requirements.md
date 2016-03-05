@@ -10,8 +10,6 @@ duoshuo_thread_id:
 categories:
   - 软件体系结构
 tags:
-  - requirements
-  - 需求工程
 ---
 **需求的基本概念**
 

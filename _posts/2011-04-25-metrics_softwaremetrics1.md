@@ -10,8 +10,6 @@ duoshuo_thread_id:
 categories:
   - 软件度量及其应用
 tags:
-  - FP
-  - Function Points
   - 软件度量
 ---
 ##  基本概念

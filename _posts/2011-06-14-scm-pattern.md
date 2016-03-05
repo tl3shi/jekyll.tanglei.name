@@ -10,11 +10,6 @@ duoshuo_thread_id:
 categories:
   - 软件配置管理
 tags:
-  - 主线
-  - 储存库
-  - 冒烟测试
-  - 每日构建
-  - 私有工作区
 ---
 <span style="font-size:12pt"><strong>相关概念：<br /> </strong></span>
 

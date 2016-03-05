@@ -4,10 +4,6 @@ date: 2015-06-25
 layout: post
 tags: 
     - Latex 
-    - beamer 
-    - tsinghua 
-    - 学位论文答辩 
-    - ppt 模版
 categories: 
     - MyLife 
     - 清华大学 
@@ -42,7 +38,6 @@ published: true
 - 参考文献格式 ``\usepackage[backend=bibtex,sorting=none]{biblatex}``
 - beamer单页上要引用多次reference：
      - 避免重复的的footnote[^4][ref](http://tex.stackexchange.com/questions/35043/reference-different-places-to-the-same-footnote)
-     - autocite的方式 
 - xelatex 编译提示 ``** WARNING ** Version of PDF file (1.5) is newer than version limit specification ``，需要编译时加参数选项 ``xelatex -output-driver="xdvipdfmx -V 5"  source.tex ``, 具体根据 version版本改相应参数；
 - xelatex mac下中文乱码，
 两种方法： 

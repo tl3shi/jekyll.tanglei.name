@@ -10,8 +10,6 @@ duoshuo_thread_id:
 categories:
   - MyLife
 tags:
-  - QQ
-  - 防盗链
 ---
 郁闷啊。就在刚才不到1个小时前，我才发了这篇[随便说](/blog/say-easily.html)说的日志，现在 就……
 

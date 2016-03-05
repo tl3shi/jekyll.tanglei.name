@@ -10,8 +10,6 @@ duoshuo_thread_id:
 categories:
   - 软考
 tags:
-  - 数据压缩
-  - 编码技术标准
 ---
 上接：[/blog/ruankao\_multi\_media1.html](/blog/ruankao_multi_media1.html)
 

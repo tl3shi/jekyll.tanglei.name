@@ -11,11 +11,6 @@ categories:
   - 业界动态
   - 开开眼界
 tags:
-  - bump
-  - Google Goggles
-  - My Name Is E
-  - SnapDat
-  - 名片
 ---
 以下内容转自：http://android.guao.hk/tag/bump
 

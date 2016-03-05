@@ -10,7 +10,6 @@ duoshuo_thread_id:
 categories:
   - 软件配置管理
 tags:
-  - SCM基本活动
   - SCM复习资料
   - SCM考试
 ---

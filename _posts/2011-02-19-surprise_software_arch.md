@@ -11,8 +11,6 @@ categories:
   - SoftwareEngineering
 tags:
   - 2010系统架构师
-  - 前十名
-  - 湖南省
   - 系统架构师
   - 软考
 ---

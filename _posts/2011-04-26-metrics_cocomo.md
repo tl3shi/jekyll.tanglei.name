@@ -10,7 +10,6 @@ duoshuo_thread_id:
 categories:
   - 软件度量及其应用
 tags:
-  - CoCoMo模型
   - 软件度量
 ---
 **概念**

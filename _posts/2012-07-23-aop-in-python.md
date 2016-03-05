@@ -15,7 +15,6 @@ categories:
 tags:
   - AOP
   - decorator
-  - log
   - python
 ---
 背景：之前在腾讯实习的时候做了相关接口监控报送状态时写了<a href="/blog/aop-in-php.html" target="_blank">PHP中的AOP</a> ，这几天在UMeng实习要做到一个log模块，之前的类似代码是这样的：

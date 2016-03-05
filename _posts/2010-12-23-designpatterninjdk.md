@@ -12,7 +12,6 @@ categories:
   - 设计模式
 tags:
   - Java
-  - JDK
   - 设计模式
 ---
 关于本文的说明：本文是本来从网上收集进过自己细心**整理**而得。参考文章来自：<http://stackoverflow.com/questions/1673841/examples-of-gof-design-patterns>，本人不保证内容的正确性。仅供参考，因用word排版，因此贴到Wordpress格式比较乱，时间关系，不作调整，还请谅解。

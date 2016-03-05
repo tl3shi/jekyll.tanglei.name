@@ -10,9 +10,7 @@ duoshuo_thread_id:
 categories:
   - 软考
 tags:
-  - OSI
   - TCP/IP
-  - 子网掩码
 ---
 **2****．计算机网络重点和难点：******
 

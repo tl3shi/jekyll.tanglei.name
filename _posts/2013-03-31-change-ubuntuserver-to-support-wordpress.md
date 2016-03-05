@@ -14,7 +14,6 @@ categories:
 tags:
   - Ubuntu
   - Wordpress
-  - 固定链接失效
   - 虚拟主机
 ---
 今天突然发现博客主机流量超过了15G而被停调了。 

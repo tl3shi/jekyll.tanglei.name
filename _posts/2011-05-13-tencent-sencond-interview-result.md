@@ -10,8 +10,6 @@ duoshuo_thread_id:
 categories:
   - 实习那些事儿
 tags:
-  - 2011腾讯实习生
-  - 腾讯二面结果
   - 腾讯面经
 ---
 <div>
