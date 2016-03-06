@@ -26,8 +26,8 @@ tags:
 - Wordpress导出markdown格式的文件用wordpress插件[jekyll-exporter](https://wordpress.org/plugins/jekyll-exporter/), 本地preview一下，发现了不少问题。一个一个说下这些坑.
 
 - 分类目录重复的问题
-    1. 原因: 多级分类目录, 不能直接用wordpress导出的分类目录。 wordpress导出的分类目录多级的话, 在hexo就会显示重复（jekyll不会有这个问题）。比如 cat1 / cat2, cat3 / cat2 。 这里分类目录里就会显示两个cat2. 分别链接上cat1 / cat2, cat3 / cat2 。 如果修改category.jade种的 ``(list_categories({show_count: true, depth: -1}))`` 的话， 就会只把第一级cat列出来。 （jekyll 会把这些都列出来，没有层级概念）
-    2. Fix: `` themes/maupassant/layout/_widget/category.jade`` 中 ``list_categories({show_count: false, depth: -1})``
+    - 原因: 多级分类目录, 不能直接用wordpress导出的分类目录。 wordpress导出的分类目录多级的话, 在hexo就会显示重复（jekyll不会有这个问题）。比如 cat1 / cat2, cat3 / cat2 。 这里分类目录里就会显示两个cat2. 分别链接上cat1 / cat2, cat3 / cat2 。 如果修改category.jade种的 ``(list_categories({show_count: true, depth: -1}))`` 的话， 就会只把第一级cat列出来。 （jekyll 会把这些都列出来，没有层级概念）
+    - Fix: `` themes/maupassant/layout/_widget/category.jade`` 中 ``list_categories({show_count: false, depth: -1})``
 - 上线github看看效果
 用了二级域名 `hexo.tanglei.name` (添加CNAME到gh-pages分支即可)
 - 留言迁移
@@ -39,59 +39,59 @@ tags:
 	我之前wordpress的blog的url都是形如 `www.tanglei.name/blog-url-id/`, 这样 Hexo就会生成很多`blog-url-id`这样的目录，访问这个页面请求时实际上是到`blog-url-id/index.html`， 这样不爽， 于是我将所有的permalink调整了， 变成 ``blog/blog-url-id.html``, ``_config.yml``可直接配置，但需要对wordpress导出的permalink进行调整. 例如将 ``permalink: /return-object-in-cpp-and-return-value-optimazation/`` 调整成 ``return-object-in-cpp-and-return-value-optimazation``， 用`sed`替换即可 ``sed -i "" 's|^permalink: /\([^/]*\)/|permalink: \1|' `ls *.md` ``
 
 - pictures 迁移，改变链接，去掉host
-   1. 去掉绝对路径， 去掉host
+   -  去掉绝对路径， 去掉host
 
-```bash
-#去掉绝对路径
-sed -i "" 's|http://www\.tanglei\.name\/wp-content|/wp-content|g' `ls`
-```
-   - 修正一些图片格式因为缩进问题(例如``![](xx.pnag)``前面有tab符)被markdow误认为是``reference/preview block ``错误
+      ```bash
+      #去掉绝对路径
+      sed -i "" 's|http://www\.tanglei\.name\/wp-content|/wp-content|g' `ls`
+      ```
+    - 修正一些图片格式因为缩进问题(例如``![](xx.pnag)``前面有tab符)被markdow误认为是``reference/preview block ``错误
 
-```bash
-sed -i "" 's|[[:space:]]!\[|![|g' `ls`
-```
+      ```bash
+      sed -i "" 's|[[:space:]]!\[|![|g' `ls`
+      ```
 
 - 代码高亮
-   1. 之前mardown2wordpress工具将代码插件变换后，export成md后，标签被转义了。
+    - 之前mardown2wordpress工具将代码插件变换后，export成md后，标签被转义了。
 
-```html
-<pre>&lt;cc class="cpp">
-#include &lt;iostream>
-int main(int argc, char** argv)
-{
-    std::cout &lt;&lt; "Hello world." &lt;&lt; std::endl;
-    std::cout &lt;&lt; "argc: " &lt;&lt; argc &lt;&lt; std::endl;
-    for(int i = 0; i &lt; argc; i++)
-        std::cout &lt;&lt; argv[i] &lt;&lt; std::endl;
-    int t;
-    std::cin >> t;
-    return 0;
-}
-&lt;/cc></pre>
-```
-    整体进行替换.
+      ```html
+      <pre>&lt;cc class="cpp">
+      #include &lt;iostream>
+      int main(int argc, char** argv)
+      {
+          std::cout &lt;&lt; "Hello world." &lt;&lt; std::endl;
+          std::cout &lt;&lt; "argc: " &lt;&lt; argc &lt;&lt; std::endl;
+          for(int i = 0; i &lt; argc; i++)
+              std::cout &lt;&lt; argv[i] &lt;&lt; std::endl;
+          int t;
+          std::cin >> t;
+          return 0;
+      }
+      &lt;/cc></pre>
+      ```
+整体进行替换
 
-```bash
-sed -i "" 's|<pre>&lt;cc class="\([a-zA-Z]*\)">|```\1|g' `ls`
-sed -i "" 's|&lt;/cc></pre>|```|g' `ls`
-sed -i "" 's|&lt;|<|g'  `ls`
+      ```bash
+      sed -i "" 's|<pre>&lt;cc class="\([a-zA-Z]*\)">|```\1|g' `ls`
+      sed -i "" 's|&lt;/cc></pre>|```|g' `ls`
+      sed -i "" 's|&lt;|<|g'  `ls`
+      
+      sed -i "" 's|</cc></pre>|```|g' `ls`
+      sed -i "" 's|<pre><cc>|```|g' `ls`
+      ```
+    - 还有codecolorer的一些插件生产的代码。
 
-sed -i "" 's|</cc></pre>|```|g' `ls`
-sed -i "" 's|<pre><cc>|```|g' `ls`
-```
-   - 还有codecolorer的一些插件生产的代码。
-
-```bash
-sed -i "" 's|<cc lang="\([a-zA-Z]*\)">|```\1|g' `ls`
-sed -i "" 's|</cc>|```|g' `ls` 得新增一行
-&#038; --> & //&需要转义
-sed -i "" 's|&#038;|\&|g' `ls`
-```
+      ```bash
+      sed -i "" 's|<cc lang="\([a-zA-Z]*\)">|```\1|g' `ls`
+      sed -i "" 's|</cc>|```|g' `ls` 得新增一行
+      &#038; --> & //&需要转义
+      sed -i "" 's|&#038;|\&|g' `ls`
+      ```
    - Hexo 不支持用用三个"`"进行代码高亮，也要进行调整。而这个github和jekyll都是支持的。所有Hexo官网声称的支持所有GFM也是假的。
 
--    其他资源
-    1. hexo generate 的时候 会删除 public folder 重新生成里面的每个文件
-    * 这个自己写diploy脚本可以解决。
+- 其他资源
+    - hexo generate 的时候 会删除 public folder 重新生成里面的每个文件
+    - 这个自己写diploy脚本可以解决。
 
 #### 放弃Hexo
 
@@ -120,11 +120,11 @@ sed -i "" 's|&#038;|\&|g' `ls`
 
 - 每个markdown中的permalink， 会覆盖全局的url设置, 将每个md中的permalink删除
 
-```bash
-sed -i "" '/^permalink: /d' 2015-07-06-travel-to-northwest-of-china.md
-sed -i "" '/^permalink: /d' `ls`
-```
-- 删掉资源文件夹中，wordpress生产的缩略图 ` find . -name "*-*x*" `
+  ```bash
+  sed -i "" '/^permalink: /d' 2015-07-06-travel-to-northwest-of-china.md
+  sed -i "" '/^permalink: /d' `ls`
+  ```
+- 删掉资源文件夹中，wordpress生产的缩略图 `find . -name "*-*x*"`
 - tags 过多 ``for tag in site.tags limit:60 `` [Ref Liquid语法](https://docs.shopify.com/themes/liquid/tags/iteration-tags)
 - post中的author如果没有的话就用全局的 [commitid](2c45efe74cd70c9778051763d127d9be3768eb05)
 - [Jekyll 3.1.1 无法正确解析 GFM 的解决方法](http://jekyll-china.com/2016/02/jekyll-gfm-regression-issue/?utm_source=tuicool&utm_medium=referral)
@@ -134,7 +134,7 @@ sed -i "" '/^permalink: /d' `ls`
 - git 当前分支push到远程另外分支上
 `` git push -u origin local_branch_name:romote_branch_name `` 一般 remote_branch_name为空则远程会创建同名分支, local 和remote可以不一样，当使用了 -u 参数后，push local时候 默认的远程分支就是remote了
 - disqus 总是加载有问题， 上传url mapping后。
-   1. 要么把script中的disqus_config注释掉，直接用完成的域名shortname，让disqus自己去匹配加载。
+   - 要么把script中的disqus_config注释掉，直接用完成的域名shortname，让disqus自己去匹配加载。
    - 要么 script中要加上`‘’`， 防止 script错误。 另外，`this.page.url = 'http://example.com/article/1/';` siteurl加上http://与disqus完全一致。[ref](https://help.disqus.com/customer/portal/articles/472007-i-m-receiving-the-message-%22we-were-unable-to-load-disqus-%22)
 
 - 分页目录整理 之前总是 `/page1/, /page2/` 这样的，改成了 `/page/1/, /page/2/`
@@ -146,35 +146,35 @@ sed -i "" '/^permalink: /d' `ls`
 - 文章页面显示 前/后一篇 [Commit](https://github.com/tl3shi/jekyll.tanglei.name/commit/c85194471053db8e6f782b9d29f98ca5e64d27dd)
 - 移动端Bug, 点击菜单不弹框 [commit](https://github.com/tl3shi/jekyll.tanglei.name/commit/b7a2bdda7d4cfef4359127c3b10a863ede56199a)
 - 文章内链得重新修改
-   1. tag 替换 `` sed -i "" 's|http://www.tanglei.name/tag/|/tag/#|g' `ls`  ``
-   - tag后面不能有 `/`
+   - tag 替换 `` sed -i "" 's|http://www.tanglei.name/tag/|/tag/#|g' `ls`  ``
+    - tag后面不能有 `/`
 
-```bash
-#替换前 预览下
-sed 's|/tag/#\([^/]*\)\/|/tag/#\1|g' `ls` | grep '/tag/#'
-sed -i "" 's|/tag/#\([^/]*\)\/|/tag/#\1|g' `ls`
-```
+      ```bash
+      #替换前 预览下
+      sed 's|/tag/#\([^/]*\)\/|/tag/#\1|g' `ls` | grep '/tag/#'
+      sed -i "" 's|/tag/#\([^/]*\)\/|/tag/#\1|g' `ls`
+      ```
    - 其他链接 `` sed -i "" 's|http://www.tanglei.name/\([^/]*\)\/|/blog/\1.html|g' `ls` ``
    - 少数之前含有目录的链接就不对了, 其他的遇到了再改吧.
 
 - 搜索引擎收录页面跳转。可以用插件jekyll-redirect, 但这个还是会生成太多的目录就放弃了。301 太麻烦，跳转就算了, 搜索引擎的链接404后，在404页面中用一个js跳转即可。(301的话，可以在原有的机器上写`htaccess`将原来的url访问跳转至新的， 过一段时间搜索引擎重新搜录新url后，再完全用static的html)
 - sitemap.xml  用插件 jekyll-sitemap.
-- 图片响应式布局， wordpress导出时 自动添加了width， 在mobile端显示不友好.
+-     图片响应式布局， wordpress导出时 自动添加了width， 在mobile端显示不友好.
 
-```
-sed -i "" 's|width="[0-9]*" height="[0-9]*" border="0"||g' `ls`
-sed -i "" 's|width="[0-9]*" height="[0-9]*"||g' `ls`
-# 去掉所有img标签里的style
-sed -i "" 's|<img style="[a-z0-9 -:;]*"|<img|g' `ls`
-```
+      ```bash
+      sed -i "" 's|width="[0-9]*" height="[0-9]*" border="0"||g' `ls`
+      sed -i "" 's|width="[0-9]*" height="[0-9]*"||g' `ls`
+      # 去掉所有img标签里的style
+      sed -i "" 's|<img style="[a-z0-9 -:;]*"|<img|g' `ls`
+      ```
 
--   Disqus Bug
-    1. 首页无评论狂, 找不到 `` <div id="disqus_thread"></div> `` 因此报了一下错误`` "Cannot read property 'appendChild' of null" with Disqus ...``
-    1. Fix: 添加 ` if($("#disqus_thread").length) `
+- Disqus Bug
+    - 首页无评论狂, 找不到 `` <div id="disqus_thread"></div> `` 因此报了一下错误`` "Cannot read property 'appendChild' of null" with Disqus ...``
+    - Fix: 添加 ` if($("#disqus_thread").length) `
 
-*   自动部署脚本deploy.sh 替换成 travis-ci
-    1. [travis添加环境变量](http://stackoverflow.com/questions/23277391/how-to-publish-to-github-pages-from-travis-ci)
-	* [travis设置ssh](https://xuanwo.org/2015/02/07/Travis-CI-Hexo-Autodeploy/)
+* 自动部署脚本deploy.sh 替换成 travis-ci
+    - [travis添加环境变量](http://stackoverflow.com/questions/23277391/how-to-publish-to-github-pages-from-travis-ci)
+	- [travis设置ssh](https://xuanwo.org/2015/02/07/Travis-CI-Hexo-Autodeploy/)
 
 纪念我那逝去的Wordpress, 放截图一张如下， 暂时还可以用 [wordpress.tanglei.name](http://wordpress.tanglei.name)访问. 
 
