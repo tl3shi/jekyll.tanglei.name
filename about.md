@@ -25,9 +25,9 @@ duoshuo_thread_id:
   
 some links:
 
-  * <a href="http://www.tanglei.name/where-i-have-been/" target="_blank">去过的地方</a>
-  * <a href="http://www.tanglei.name/photos/" target="_blank">some photos</a>
-  * <a href="http://tanglei.me" target="_blank">我的简历</a>
+  * <a href="http://www.tanglei.name/blog/where-i-have-been.html" target="_blank">去过的地方</a>
+  * <a href="http://remote.tanglei.name/photos/" target="_blank">some photos</a>
+  * <a href="http://cv.tanglei.me" target="_blank">我的简历</a>
 
 tanglei
 

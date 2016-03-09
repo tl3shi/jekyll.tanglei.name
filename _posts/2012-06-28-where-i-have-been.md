@@ -14,14 +14,11 @@ tags:
   - 旅游
   - 足迹
 ---
+
 > 好久前就想弄个这样的页面，现在终于出来了。本页面记录了我去过的主要城市。
 
-<center>
-  <br />
-</center>
+<iframe src="/resources/where-i-have-been.html" frameborder="0" width="700px" height="555px"></iframe>
 
-
-  
 主要经历：
 
   * 重庆：这个就不多说了。
