@@ -114,8 +114,8 @@ duoshuo_share:
 #---------------------------------------------------------------
 # Baidu analysis
 baidu_analysis:
-  enable: false
-  token: "your baidu analysis token"
+  enable: true
+  token: "f0117177475f54027bfcaceb8d668cee"
 
 # Google analysis
 google_analysus:
