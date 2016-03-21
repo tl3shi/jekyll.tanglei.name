@@ -31,7 +31,7 @@ tags:
 如下图：
 
 <div id="attachment_662" style="width: 232px" class="wp-caption aligncenter">
-  <a href="/wp-content/uploads/2011/05/d.png"><img class="size-medium wp-image-662" title="win7声音忽大忽小" src="/wp-content/uploads/2011/05/d-222x300.png" alt=""  /></a>
+  <a href="/wp-content/uploads/2011/05/d.png"><img class="size-medium wp-image-662" title="win7声音忽大忽小" src="/wp-content/uploads/2011/05/d.png" alt=""  /></a>
   
   <p class="wp-caption-text">
     声音忽大忽小

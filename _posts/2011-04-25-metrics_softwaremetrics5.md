@@ -149,7 +149,7 @@ Optimizing: Measures used to improve process/product.
 优化级：持续改进过程/产品。
 
 <p style="text-align: center;">
-  <a href="/wp-content/uploads/2011/04/cmm.png"><img class="size-medium wp-image-528 aligncenter" title="cmm" src="/wp-content/uploads/2011/04/cmm-300x217.png" alt=""  /></a>
+  <a href="/wp-content/uploads/2011/04/cmm.png"><img class="size-medium wp-image-528 aligncenter" title="cmm" src="/wp-content/uploads/2011/04/cmm.png" alt=""  /></a>
 </p>
 
 ### Portability

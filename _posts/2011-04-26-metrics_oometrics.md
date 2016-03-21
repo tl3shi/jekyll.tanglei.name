@@ -170,7 +170,7 @@ LCOM = 0 otherwise
 
 例子：
 
-[<img class="aligncenter size-medium wp-image-547" title="LCOM" src="/wp-content/uploads/2011/04/LCOM-300x155.png" alt="LCOM Metrics"  />](/wp-content/uploads/2011/04/LCOM.png)
+[<img class="aligncenter size-medium wp-image-547" title="LCOM" src="/wp-content/uploads/2011/04/LCOM.png" alt="LCOM Metrics"  />](/wp-content/uploads/2011/04/LCOM.png)
 
 ## MOOD metrics
 

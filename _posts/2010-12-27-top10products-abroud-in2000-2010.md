@@ -16,13 +16,13 @@ tags:
 
 _2000-2010年，是世界软件业蓬勃发展的10年，其中诞生的明星级产品和应用可谓汗牛充栋。那么,在中国的开发者心目中，有哪些占据更重要的位置呢？不久前《程序员》杂志联合CSDN网站做了一个“2000-2010十大最具技术影响力产品（国外）”的用户调查，评选出10款得票最高的软件产品。_
 
-**[<img class="aligncenter size-medium wp-image-4486" title="facebook" src="http://www.programmer.com.cn/wp-content/uploads/2010/12/facebook-300x112.gif" alt="facebook"  />](http://www.programmer.com.cn/wp-content/uploads/2010/12/facebook.gif)产品名称：Facebook**
+**[<img class="aligncenter size-medium wp-image-4486" title="facebook" src="http://www.programmer.com.cn/wp-content/uploads/2010/12/facebook.gif" alt="facebook"  />](http://www.programmer.com.cn/wp-content/uploads/2010/12/facebook.gif)产品名称：Facebook**
 
 Facebook真正解释了“社交”，接入网络，登入Facebook，你就进入了另一个世界：这里有你的好友，你的圈子，你感兴趣的事件……这一切是虚幻的，但又都有现实依据——从Facebook诞生开始就强调“真实”，所以它上线的最初4小时就收获了22000次照片浏览，也确实很少有人在Facebook上匿名。
 
 Facebook还是力推Open API的典范，它很早就提供了相对完备的API，并且依据形势需要不断修改，目前已经吸引了大量第三方开发者，涌现了大量有趣的应用，并促生了Aynga这样可能具有划时代意义的公司，这种模式也为许多后来者所效仿。另外要提的是，Facebook中的一切都是Google的“黑洞”，这其中蕴藏着颠覆性的潜力。
 
-**[<img class="aligncenter size-medium wp-image-4487" title="eclipse" src="http://www.programmer.com.cn/wp-content/uploads/2010/12/eclipse-300x225.gif" alt="eclipse"  />](http://www.programmer.com.cn/wp-content/uploads/2010/12/eclipse.gif)产品名称：Eclipse**
+**[<img class="aligncenter size-medium wp-image-4487" title="eclipse" src="http://www.programmer.com.cn/wp-content/uploads/2010/12/eclipse.gif" alt="eclipse"  />](http://www.programmer.com.cn/wp-content/uploads/2010/12/eclipse.gif)产品名称：Eclipse**
 
 Eclipse原本是IBM加拿大的一个项目，最初只是希望做成Java的IDE（它也确实做到了），但是今天，依赖开源和插件两大利器，Eclipse已经远远超出了Java IDE的范畴，演化成一个无所不包的大平台。虽然过多插件也容易造成问题，众多插件“拱卫”下的Eclipse已现臃肿，但是瑕不掩瑜，借助Eclipse，你可以跨平台进行各种开发：PHP、Python、JavaScript和C++程序，虽然或许没有开发Java那么方便，但Eclipse确实“够用”了，而且，它是免费的！
 
@@ -38,19 +38,19 @@ Twitter也提供了相对完备的API，虽然它的API与Facebook不同，更�
 
 Twitter的另一点重大意义是降低了发言的门槛，在互联网上表达自己的看法，从泡论坛，到开博客，到发Twitter，发言的门槛不断地降低，平时默默无闻的人也有可能说出一两句“金句”，名人们也乐得在Twitter上与观众和粉丝互动——要知道，你说的任何话，几乎总可能通过Twitter的“人肉路由”，传到感兴趣的耳朵里。
 
-**[<img class="aligncenter size-medium wp-image-4489" title="gmail" src="http://www.programmer.com.cn/wp-content/uploads/2010/12/gmail-300x123.gif" alt="gmail"  />](http://www.programmer.com.cn/wp-content/uploads/2010/12/gmail.gif)产品名称：Gmail**
+**[<img class="aligncenter size-medium wp-image-4489" title="gmail" src="http://www.programmer.com.cn/wp-content/uploads/2010/12/gmail.gif" alt="gmail"  />](http://www.programmer.com.cn/wp-content/uploads/2010/12/gmail.gif)产品名称：Gmail**
 
 2004年4月1日，Google宣布推出容量“高达”1G的免费邮箱：Gmail。当时许多人认为这是个玩笑，但Gmail是真的，而且，它开创了电子邮箱的新局面。在Hotmail只有2MB空间、Yahoo mail也只有不到100MB空间的时代，Gmail提供了近乎无穷的空间让用户释放想象力，如今流行的“网盘”就脱胎自容量超大的邮箱。而且，Gmail从一开始就提供了全新的用户体验，通过Web收发邮件不再是痛苦的差事，甚至比不少客户端软件都要顺畅，有时你甚至可以用它与人聊天。
 
 Gmail算是Google相当成功的产品了，虽然它并非用户最多的邮件系统，但正是依靠它，用户才开始，也才有理由在Google注册，基于此，Google近年来提供了一系列针对个人的服务，个性化搜索也才成为可能。
 
-**[<img class="aligncenter size-medium wp-image-4490" title="_net" src="http://www.programmer.com.cn/wp-content/uploads/2010/12/net-300x157.gif" alt="_net"  />](http://www.programmer.com.cn/wp-content/uploads/2010/12/net.gif)产品名称：.NET**
+**[<img class="aligncenter size-medium wp-image-4490" title="_net" src="http://www.programmer.com.cn/wp-content/uploads/2010/12/net.gif" alt="_net"  />](http://www.programmer.com.cn/wp-content/uploads/2010/12/net.gif)产品名称：.NET**
 
 .NET是一个很难介绍的东西，因为从它创始以来，几乎每年所代表的含义都有变化。微软最开始开发这个系统的时候，并没有真正规划好未来，或者说，微软规划的未来和今天的实际差距很远。而从另外一方面看，这也说明了，.NET确实一直在代表“最先进的生产力”，几乎所有流行和有效的技术都能在其中找到。
 
 .NET成功改变了Windows系统下的开发生态，让开发变得更容易，让更多人可以在这个平台上开发程序，也让微软在这个互联网时代多少保住了一些份额。值得一提的是，.NET上C#迅速发展，已经成长为最先进的主流语言。
 
-**[<img class="aligncenter size-medium wp-image-4495" title="ror" src="http://www.programmer.com.cn/wp-content/uploads/2010/12/ror-300x187.gif" alt="ror"  />](http://www.programmer.com.cn/wp-content/uploads/2010/12/ror.gif)产品名称：Ruby on Rails**
+**[<img class="aligncenter size-medium wp-image-4495" title="ror" src="http://www.programmer.com.cn/wp-content/uploads/2010/12/ror.gif" alt="ror"  />](http://www.programmer.com.cn/wp-content/uploads/2010/12/ror.gif)产品名称：Ruby on Rails**
 
 Ruby on Rails（RoR）是一种基于Ruby语言的快速Web开发框架。对于Web开发方式，RoR出现相对比较晚，但开发速度最快。据RoR爱好者说，这种快来自诸多细节，难以简单形容，必须要亲自用起来才能感觉到。
 
@@ -58,7 +58,7 @@ Ruby on Rails（RoR）是一种基于Ruby语言的快速Web开发框架。对�
 
 采用RoR的成功案例是一个耀眼的名单，它们都是这几年创业成功的应用，这个名单上有Twitter，Hulu，Github……
 
-**[<img class="aligncenter size-medium wp-image-4494" title="wikipedia-logo-en-big" src="http://www.programmer.com.cn/wp-content/uploads/2010/12/wikipedia-logo-en-big-244x300.gif" alt="wikipedia-logo-en-big"  />](http://www.programmer.com.cn/wp-content/uploads/2010/12/wikipedia-logo-en-big.gif)产品名称：Wikipedia**
+**[<img class="aligncenter size-medium wp-image-4494" title="wikipedia-logo-en-big" src="http://www.programmer.com.cn/wp-content/uploads/2010/12/wikipedia-logo-en-big.gif" alt="wikipedia-logo-en-big"  />](http://www.programmer.com.cn/wp-content/uploads/2010/12/wikipedia-logo-en-big.gif)产品名称：Wikipedia**
 
 这是一个神奇的互联网产品。没有广告，完全依靠外部捐助，但它却是全世界访问量第七大的网站，与“通过亿万美金的投资、庞大公司员工和不断的市场营销来建成与维护的”Google、Facebook、百度、腾讯等并驾齐驱。
 
@@ -66,13 +66,13 @@ Ruby on Rails（RoR）是一种基于Ruby语言的快速Web开发框架。对�
 
 从技术角度来看，以开源理念建立起来的Wikipedia也有很多可称道之处。它的支撑软件MediaWiki获得了Usenix的2010年STUG大奖。此外，网站的底层也是LAMP架构的典范之一，有诸多亮点。2007年，200万美元和6个技术人员就支撑起了整个Wikipedia。直到今天它的技术人员也不过22名。
 
-**[<img class="aligncenter size-medium wp-image-4491" title="foursquare" src="http://www.programmer.com.cn/wp-content/uploads/2010/12/foursquare-300x211.gif" alt="foursquare"  />](http://www.programmer.com.cn/wp-content/uploads/2010/12/foursquare.gif)产品名称：Foursquare**
+**[<img class="aligncenter size-medium wp-image-4491" title="foursquare" src="http://www.programmer.com.cn/wp-content/uploads/2010/12/foursquare.gif" alt="foursquare"  />](http://www.programmer.com.cn/wp-content/uploads/2010/12/foursquare.gif)产品名称：Foursquare**
 
 Foursquare是基于地理位置（LBS）的SNS应用。在此之前，基于地理位置的探索有很多，但都不太成功。Foursquare第一次成功地把地理位置、商家、游戏式的勋章系统结合起来，利用了Twitter的社会化特征，又正好是移动设备快速增长的时期，于是Foursquare迅速成功了。
 
 LBS服务让我们看到了信息的一个新的维度——基于空间的维度，这与微博的基于时间的维度很相似。除此之外，更有趣的是他们的服务运行在一堆VPS和Amazon的S3服务上。在这个时代创业变得越来越简单，云的出现改变了整个生态链。对照Hadoop来看，会发现很多值得思考的点。当然，这种创业方式距离中国还有很远、很远……
 
-**[<img class="aligncenter size-medium wp-image-4492" title="ios4_logo20100901" src="http://www.programmer.com.cn/wp-content/uploads/2010/12/ios4_logo20100901-300x130.gif" alt="ios4_logo20100901"  />](http://www.programmer.com.cn/wp-content/uploads/2010/12/ios4_logo20100901.gif)产品名称：iOS**
+**[<img class="aligncenter size-medium wp-image-4492" title="ios4_logo20100901" src="http://www.programmer.com.cn/wp-content/uploads/2010/12/ios4_logo20100901.gif" alt="ios4_logo20100901"  />](http://www.programmer.com.cn/wp-content/uploads/2010/12/ios4_logo20100901.gif)产品名称：iOS**
 
 iOS几乎不需要介绍，因为iPhone和iPad的光芒实在太耀眼，你可能会喜欢或者讨厌iOS，但如果你不知道，那实在是不可思议。iOS真正让移动设备普及，并把我们带入基于应用（App）的应用模式，App变成一种使用模式，同时也是一种消费模式，直接改变了很多的人生活方式。
 

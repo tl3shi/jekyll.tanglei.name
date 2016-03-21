@@ -17,7 +17,7 @@ tags:
 
 然后想了下，应该就是这个文件是保存了相应的内容了。猜想估计经过百度处理，进行加密啊之类的。展示在html页面的时候再逆向解析出来。结果……居然没有加密。直接copy出来。用记事本之类的文本工具就能现实出来了：
 
-[<img class="size-medium wp-image-581" title="baid" src="/wp-content/uploads/2011/05/baid-300x108.jpg" alt="免费获取百度文库"  />](/wp-content/uploads/2011/05/baid.jpg)
+[<img class="size-medium wp-image-581" title="baid" src="/wp-content/uploads/2011/05/baid.jpg" alt="免费获取百度文库"  />](/wp-content/uploads/2011/05/baid.jpg)
 
 这样一个json格式{&#8220;totalPage&#8221;:&#8221;4&#8243;,&#8221;fromPage&#8221;:&#8221;1&#8243;,&#8221;toPage&#8221;:&#8221;4&#8243;}数据，是用来展示的时候解析时调用的吧。
 

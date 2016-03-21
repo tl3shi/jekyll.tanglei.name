@@ -15,11 +15,11 @@ tags:
 ---
 有两个画图的题目。如下。
 
-[<img class="aligncenter size-medium wp-image-768" title="organization-software-process" src="/wp-content/uploads/2011/06/organization-software-process-257x300.jpg" alt="机构软件过程资源"  />](/wp-content/uploads/2011/06/organization-software-process.jpg)
+[<img class="aligncenter size-medium wp-image-768" title="organization-software-process" src="/wp-content/uploads/2011/06/organization-software-process.jpg" alt="机构软件过程资源"  />](/wp-content/uploads/2011/06/organization-software-process.jpg)
 
 还有一个画SEI的IDEAL图：
 
-[<img class="aligncenter size-medium wp-image-769" title="ideal" src="/wp-content/uploads/2011/06/ideal-300x220.gif" alt="IDEAL模型"  />](/wp-content/uploads/2011/06/ideal.gif)
+[<img class="aligncenter size-medium wp-image-769" title="ideal" src="/wp-content/uploads/2011/06/ideal.gif" alt="IDEAL模型"  />](/wp-content/uploads/2011/06/ideal.gif)
 
 然后还有
 

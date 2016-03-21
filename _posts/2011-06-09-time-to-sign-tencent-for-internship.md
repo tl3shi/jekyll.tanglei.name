@@ -15,7 +15,7 @@ tags:
 o(︶︿︶)o 唉，原本来打算想6月底就去深圳实习的。就给tencent给了封邮件过去。申请提前。然后给我回复了。。。
 
 <p style="text-align: center;">
-  <a href="/wp-content/uploads/2011/06/tencent-response-my-time-consult.jpg"><img class="aligncenter size-medium wp-image-782" title="tencent-response-my-time-consult" src="/wp-content/uploads/2011/06/tencent-response-my-time-consult-300x130.jpg" alt="腾讯实习咨询"  /></a>
+  <a href="/wp-content/uploads/2011/06/tencent-response-my-time-consult.jpg"><img class="aligncenter size-medium wp-image-782" title="tencent-response-my-time-consult" src="/wp-content/uploads/2011/06/tencent-response-my-time-consult.jpg" alt="腾讯实习咨询"  /></a>
 </p>
 
 <p style="text-align: left;">

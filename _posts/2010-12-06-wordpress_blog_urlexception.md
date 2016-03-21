@@ -31,6 +31,6 @@ tags:
 
 wp_post里面全死了滴
 
-如图<a rel="attachment wp-att-18" href="/blog/Wordpress_blog_urlexception.htmltemp/"><img class="alignleft size-medium wp-image-18" title="temp" src="/wp-content/uploads/2010/12/temp-300x111.png" alt=""  /></a>
+如图<a rel="attachment wp-att-18" href="/blog/Wordpress_blog_urlexception.htmltemp/"><img class="alignleft size-medium wp-image-18" title="temp" src="/wp-content/uploads/2010/12/temp.png" alt=""  /></a>
 
 再写个update语句replace就可以了。
