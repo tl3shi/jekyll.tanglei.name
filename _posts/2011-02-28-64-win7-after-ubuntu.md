@@ -30,7 +30,7 @@ tags:
 
 刚开始以为还要手动指定UBUNTU在哪个分区。结果居然可以自动识别。UBUNTU10.10 是grub2.add 之后，重庆，有了启动菜单，选中之后，闪过一段words，出现了以前熟悉的ubuntu启动画面。
 
-[<img class="aligncenter size-large wp-image-335" title="2011-02-28_12-52-20_953" src="/wp-content/uploads/2011/02/2011-02-28_12-52-20_953-1024x764.jpg" alt=""  />](/wp-content/uploads/2011/02/2011-02-28_12-52-20_953.jpg)
+[<img class="aligncenter size-large wp-image-335" title="2011-02-28_12-52-20_953" src="/wp-content/uploads/2011/02/2011-02-28_12-52-20_953.jpg" alt=""  />](/wp-content/uploads/2011/02/2011-02-28_12-52-20_953.jpg)
 
 于是，本机现在三个系统都OK啦。。。
 

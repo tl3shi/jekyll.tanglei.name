@@ -133,4 +133,4 @@ layout的XML就不上了，一个textview而已。
   
 系统参数啊环境变量之类的：
   
-[<img src="/wp-content/uploads/2011/02/defy_envir-1024x585.jpg" alt="" title="defy_envir"  class="aligncenter size-large wp-image-361" />](/wp-content/uploads/2011/02/defy_envir.jpg)
+[<img src="/wp-content/uploads/2011/02/defy_envir.jpg" alt="" title="defy_envir"  class="aligncenter size-large wp-image-361" />](/wp-content/uploads/2011/02/defy_envir.jpg)

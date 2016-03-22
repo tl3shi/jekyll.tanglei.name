@@ -50,7 +50,7 @@ D = c E^d ;D是开发时间(月) ，c和d是经验常数
 
 其中，a,b,c,d为经验常数，其取值见下表
 
-[<img class="size-medium wp-image-553 alignleft" title="cocomo1" src="/wp-content/uploads/2011/04/cocomo1-300x80.png" alt="CoCoMo1"  />](/wp-content/uploads/2011/04/cocomo1.png)
+[<img class="size-medium wp-image-553 alignleft" title="cocomo1" src="/wp-content/uploads/2011/04/cocomo1.png" alt="CoCoMo1"  />](/wp-content/uploads/2011/04/cocomo1.png)
 
 **中间CoCoMo模型**
 
