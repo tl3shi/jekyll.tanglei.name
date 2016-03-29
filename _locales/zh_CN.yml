@@ -3,6 +3,7 @@ zh_CN:
   menu:
     home: "首页"
     about: "关于"
+    archives: "Archives"
 
   list:
     read_more: "阅读全文"

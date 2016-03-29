@@ -1,0 +1,24 @@
+---
+layout: default
+---
+
+<div class="container page-content">
+    <div class="col-md-9 col-content">
+        <div class="panel panel-pithy post">
+            <div class="panel-heading">
+                <h2 class="title">
+                    <i class="fa fa-bookmark-o"></i> Archives
+                </h2>
+            </div>
+            <div class="panel-body">
+                {% include posts_archive.html %}
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3 col-sidebar">
+        {% include sidebar_author.html %}
+        {% include sidebar_categories.html %}
+        {% include sidebar_tags.html %}
+    </div>
+</div>

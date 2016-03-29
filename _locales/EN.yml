@@ -3,6 +3,7 @@ en:
   menu:
     home: "HOME"
     about: "ABOUT"
+    archives: "Archives"
 
   list:
     read_more: "READ MORE"
