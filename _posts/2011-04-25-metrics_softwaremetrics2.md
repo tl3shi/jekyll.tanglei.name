@@ -10,7 +10,7 @@ duoshuo_thread_id:
 categories:
   - 软件度量及其应用
 tags:
-  - "Halstead's"
+  - Halstead
   - 数据流结构
   - 软件度量
   - 软件结构度量
