@@ -140,7 +140,7 @@ tags:
 - 分页目录整理 之前总是 `/page1/, /page2/` 这样的，改成了 `/page/1/, /page/2/`
 - tag权重整理
    - 删除只有1个的tag
-   - 按照权重排序显示在首页TODO
+   - 按照权重排序显示在首页 ~~TODO~~(最后还是在前端解决的)
 
 - 分页太多，拆分, 可以[ref](https://github.com/levinxo/jekyll-blog/blob/master/_includes/JB/posts_paginator)
 - 文章页面显示 前/后一篇 [Commit](https://github.com/tl3shi/jekyll.tanglei.name/commit/c85194471053db8e6f782b9d29f98ca5e64d27dd)
