@@ -2,10 +2,11 @@
 title: 一个关于map和foreach的bug
 layout: post
 categories:
-  - 敲敲代码
+  - 工作那些事儿
   - Scala
 tags:
   - Scala
+  - Work
   - Bug
 ---
 
