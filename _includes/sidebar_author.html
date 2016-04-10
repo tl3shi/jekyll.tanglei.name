@@ -9,7 +9,7 @@
         <ul>
             {% for social in site.socials%}
             <li>
-                <a href="{{ social.url }}" target="_blank"><i class="fa fa-{{social.icon}}"></i></a>
+                <a rel="nofollow" href="{{ social.url }}" target="_blank"><i class="fa fa-{{social.icon}}"></i></a>
             </li>
             {% endfor %}
             <li>

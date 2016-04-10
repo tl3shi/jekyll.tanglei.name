@@ -10,7 +10,7 @@
             {% endfor %}
         {% endcapture %} 
         <input type="hidden" id="tag-values" value='{{ tagCounts | split: ' ' | join: "," }}'/>
-        <div style="display: none"><a id="tag-value" class="taglink" href="{{site.baseurl}}/tag/#" data-target-cate="#"></a></div>
+        <div style="display: none"><a id="tag-value" class="taglink" rel="bookmark" href="{{site.baseurl}}/tag/#" data-target-cate="#"></a></div>
         <div class="tag-values-container">
         </div>
     </div>

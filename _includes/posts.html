@@ -17,10 +17,10 @@
           <span class="time">
               <i class="fa fa-clock-o"></i> {{ post.date | date: "%Y-%m-%d"}}
             </span>
-          <a class="read" href="{{ post.url | prepend: site.baseurl }}#post-content">
+          <a class="read" rel="nofollow" href="{{ post.url | prepend: site.baseurl }}#post-content">
             <i class="fa fa-gg"></i> {{ 'list.read_more' | translate }}
           </a>
-          <a class="comment" href="{{ post.url | prepend: site.baseurl }}#post-comment">
+          <a class="comment" rel="nofollow" href="{{ post.url | prepend: site.baseurl }}#post-comment">
             <i class="fa fa-comment-o"></i> {{ 'list.comment' | translate }}
           </a>
         </div>
