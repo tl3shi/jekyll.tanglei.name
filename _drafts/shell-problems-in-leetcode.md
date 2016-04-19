@@ -12,7 +12,10 @@ tags:
 
 最近重温了一下 ``awk, sed, tr`` 等命令，然后发现leetcode中还有几道专门关于shell的题目[shell in leetcode](https://leetcode.com/problemset/shell/)， 于是就也做了一下。下面是几道题目的解决方案。
 
-### [tenth-line](https://leetcode.com/problems/tenth-line/)
+* TOC
+{:toc}
+
+### tenth-line [ref](https://leetcode.com/problems/tenth-line/)
 
 >How would you print just the 10th line of a file?
 >For example, assume that file.txt has the following content:
@@ -41,7 +44,7 @@ AC的解决方案有3个如下：
 - ``awk 'NR==10' file.txt ``  或者 ``awk 'NR==10{print $0}' file.txt``, awk参考[AWK简明教程](http://coolshell.cn/articles/9070.html)
 
 
-### [valid-phone-numbers](https://leetcode.com/problems/valid-phone-numbers/)
+### valid-phone-numbers [ref](https://leetcode.com/problems/valid-phone-numbers/)
 
 >Given a text file file.txt that contains list of phone numbers (one per line), write a one liner bash script to print all valid phone numbers.
 >
@@ -88,7 +91,7 @@ Reference
 - [\n in bsd sed](http://unix.stackexchange.com/questions/42321/how-can-i-instruct-bsd-sed-to-interpret-escape-sequences-like-n-and-t)
 - [newlines-in-sed-on-mac](http://nlfiedler.github.io/2010/12/05/newlines-in-sed-on-mac.html)
 
-### [transpose-file](https://leetcode.com/problems/transpose-file/)
+### transpose-file [ref](https://leetcode.com/problems/transpose-file/)
 >Given a text file file.txt, transpose its content.
 >
 You may assume that each row has the same number of columns and each field is separated by the ' ' character.
@@ -147,7 +150,7 @@ awk  '{for(i=1;i<=NF;i++){ a[i]=a[i] " " $i; }} END { for (i=1;i<=NF;i++) print 
 这个参考了[ref SO](http://unix.stackexchange.com/questions/79642/transposing-rows-and-columns)
 
 
-### [Word Frequency](https://leetcode.com/problems/word-frequency/)
+### Word Frequency [ref](https://leetcode.com/problems/word-frequency/)
 
 >Write a bash script to calculate the frequency of each word in a text file words.txt.
 >
