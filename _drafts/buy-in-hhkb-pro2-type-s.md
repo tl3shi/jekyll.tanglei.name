@@ -16,7 +16,8 @@ tags:
 
 ![HHKB Pro2 Type-S 白色有刻](/resources/buy-in-hhkb-pro2-type-s/hhkb-pro2-type-s-with-print.png)
 
-和我公司电脑MBPR的合影, 因为之前就把电脑的Caps Lock键映射成了 Ctrl了, 所以直接切换过来还比较顺手和省力. 然后发现这HHKB的键盘 USB接口在前面啊, 这个设计不太喜欢. 囧了, 都挡住屏幕了. 另外再配一个trackpad又嫌太贵, 就直接放在原来的笔记本内置键盘上吧. 
+和我公司电脑MBPR的合影, 因为之前就把电脑的Caps Lock键映射成了 Ctrl了, 所以直接切换过来还比较顺手和省力. 然后发现这HHKB的键盘 USB接口在前面啊, 这个设计不太喜欢. 囧了, 都挡住屏幕了(见后, 可以另外买一个弯头解决). 另外再配一个trackpad又嫌太贵, 就直接放在原来的笔记本内置键盘上吧. 
+
 ![HHKB Pro2 Type-S 无刻 配 MacBook Pro Retina](/resources/buy-in-hhkb-pro2-type-s/hhkb-pro2-type-s-on-mbpr.jpg)
 再上一个侧面照. 
 ![HHKB Pro2 Type-S 无刻 配 MacBook Pro Retina](/resources/buy-in-hhkb-pro2-type-s/hhkb-pro2-type-s-on-mbpr-right.jpg)
@@ -32,11 +33,17 @@ tags:
 
 ### HHKB小技巧
 
-其实这不仅仅是说HHKB的, 而更多的时一些在使用Mac的小技巧. 这里也一并分享一下(其实是不是应该考虑新po一篇啊). 
+其实这不仅仅是说HHKB的, 而更多的时一些在使用Mac的小技巧. 这里也一并分享一下(其实是不是应该将标题改为<b>"Mac软件推荐"</b>然后重新考虑新po一篇啊). 
 
-#### 1. 下载HHKB驱动
+#### 0. 下载HHKB驱动
 
 先去pfu官网下一个驱动. 这个驱动解决了如 `{}[]:"` 等键位可能错乱, 跟相应有刻标的不一致, 我开始用的时候就发生了这种情况. [驱动下载地址](http://www.pfu.co.jp/hhkeyboard/macdownload.html)
+
+#### 1. Mini-USB 弯头
+
+上面的图片也能看到, 那个mini-usb头在前面, 直直的, 挺别扭的, 还容易挡住前面的屏幕. 因此如果要用MacBook自带的trackpad的话, 买一个Mini-USB的弯头时很有必要的. (这里参考了[ref](http://synckey.github.io/posts/2016/02/26/hhkb-settings-and-shortcut-keys.html#comment-2634817881))如下图:
+
+![HHKB Pro2 Type-S 键盘mini-usb弯头](/resources/buy-in-hhkb-pro2-type-s/hhkb-pro2-mini-usb-connector.jpg)
 
 #### 2. Karabiner
 
@@ -78,19 +85,21 @@ zsh中 bindkey 列出快捷键`(^[ = esc)`
 - autojump: 会记住你的一些常用的历史记录位置, 并且带纠错功能(目录中一两个字符输错了也不要紧). 你常常需要比如 `cd ~/xx1/xx2/dir5` 乱七八糟的, 这个功能使得你只需键入 `j dir5` 即可.
 - osx: 比如你现在正在 Finder 中浏览某些文件夹. 此时你正想通过 shell 去处理. 不用你去慢慢看绝对路径是啥, 只需要打开zsh, 然后输入 `cdf` 即跳转到你当前Finder中的路径中.
 
-
-其他还有很多, 这里分享这几个常见的. 
-
 #### 5. Alfred   
 
 这个就不多说了, 太好用了. [alfred workflow](http://alfredworkflow.com/)
 
 #### 6. Moom
-用快捷键改变窗口布局和在多显示器间移动窗口
+
+用快捷键改变窗口布局和在多显示器间移动窗口.
 
 #### 7. Dash
-离线文档, 配合Alfred更佳
+
+离线文档, 配合Alfred更佳.
 
 #### 8. cVim
+
 [cVim](https://chrome.google.com/webstore/detail/cvim/ihlenndgcmojhcghmfjfneahoeklbjjh)浏览器插件: 使用 VIM 方式控制 Chrome 浏览器的插件, 
 或者[Vimium](https://chrome.google.com/webstore/detail/dbepggeogbaibhgnhhndojpepiihcmeb)
+
+其他还有很多, 这里分享这几个常见的. 
