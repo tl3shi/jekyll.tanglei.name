@@ -95,12 +95,12 @@ comment:
 
 # duoshuo
 duoshuo:
-  enable: false
-  short_name: "your duoshuo short_name"
+  enable: true
+  short_name: "tangleithu"
 
 # disqus
 disqus:
-  enable: true
+  enable: false # network is not stable
   short_name: "hexo-tanglei"
 
 #---------------------------------------------------------------

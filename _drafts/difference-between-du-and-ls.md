@@ -1,0 +1,62 @@
+---
+title: difference-between-du-and-ls
+layout: post
+categories: 
+  - 经验技巧
+tags: 
+  - 经验技巧
+  - Linux
+---
+
+
+### 由一次磁盘告警引发的血案
+
+准确点说，不是收到的自动告警短信或者邮件告诉我某机器上的磁盘满了，而是某同学人肉告诉我为啥该机器写不了新文件了, 说明我司告警服务还不太稳定 :) 
+
+第一次出现该问题时，先删了 `/tmp/` 目录, 空闲出了一些空间, 然后看了下主要的几个用户目录，发现某服务A的日志文件(contentutil.log)占用了好几个大G, 询问了相关开发人员该日志作用等是否可以直接删除还是说需要压缩备份到某地然后再删. 结论是可以直接删除, 于是 `rm contentutil.log` 之后就以为万事大吉了...
+
+然而, 大约xx天后, 发现该机器磁盘又满了, 惊呼奇怪咋这么快又满了. 最终发现是上次 `rm contentutil.log` 后, 占用好几个大G的contentutil.log 一直被服务A的进程打开了, rm后空间并没有释放。 `rm` 其实是删除了该文件名到文件真正保存的磁盘位置的链接, 此时该文件句柄还被服务A打开, 因此对应的数据块并没有被回收, 其实可以理解为 GC 里面的引用计数, `rm` 只是减少了引用计数, 并没有真正的进行释放内存, 当引用计数为0的时候, OS内核才会释放空间, 供其他进程使用。所以当A进程停止或者重启后，占用的存储空间才被释放(从某种程度上讲说明该服务一直很稳定, 可以连续跑很久不出故障~ 微笑脸)。 
+(tip: 如果不知道具体文件名的话：`lsof | grep deleted`，这样会查找所有被删除的但是文件句柄没有释放的文件和相应的进程，然后再kill掉进程或者重启进程即可)
+后来, 白老板告知可以用修改文件内容的方式在不用重启的情况下释放空间。
+
+### du vs ls
+前两天又出现了该问题了, 该服务A的日志文件(contentutil.log)占用了约7.6G(请原谅我们没有对该服务的日志做logrotate)。这一次学聪明了, 直接用`echo 'hello' > contentutil.log` 然后 `df` 看了下确实释放空间了, 心想着这次可以 Happy 了, 突然手贱执行了下 `ls` 和 `du`, 有了以下结果: 
+
+```
+[root@xxx shangtongdai-content-util]# ls -lah contentutil.log
+-rw-r--r--. 1 root root 7.6G Nov  7 19:36 contentutil.log
+[root@xxx shangtongdai-content-util]# du -h contentutil.log
+2.3M    contentutil.log
+```
+
+百思不得其解, `ls` 和 `du` 这里的结果肯定代表不同的含义, 在朋友圈求助了下, 有了一些眉目. 大概与文件空洞和稀疏文件(holes in 'sparse' files)相关. 
+
+`ls` 的结果中是 apparent sizes, 我的理解是文件长度, 好比 file 这个数据结构中的文件长度这个字段, `du` 的结果 disk usage, 真正占用存储空间的大小, 且度量单位是 block.  (apparent sizes 和 disk usage 说法摘自 `man du` 中的 `--apparent-size` 部分)
+
+```
+// Mac OS 10.11.6 (15G1004)
+➜  _drafts git:(source) ✗ echo -n a >1B.log
+➜  _drafts git:(source) ✗ ls -las 1B.log
+8 -rw-r--r--  1 tanglei  staff  1 11  9 00:06 1B.log
+➜  _drafts git:(source) ✗ du 1B.log
+8	1B.log
+➜  _drafts git:(source) ✗ du -h 1B.log
+4.0K	1B.log
+➜  _drafts git:(source) ✗
+```
+
+上面示例中, 文件 1B.log 内容就含一个字母 a, 文件长度为1个字节, 前面的 8 为占用的存储空间 8 个 block, (ls -s 的结果跟 du 的结果等价, 都是现实占用的空间), 为什么直接就占用8个 block 呢, 可以这样理解, block 为磁盘存储的基本的单位, 方便磁盘寻址等. 默认情况下, Mac中1个block中是 512-byte, 因此 `du -h` 结果是 `8 * 512 = 4096 = 4.0K` (ref `man du`: If the environment variable BLOCKSIZE is set, and the -k option is not specified, the block counts will be displayed in units of that size block.  If BLOCKSIZE is not set, and the -k option is not specified, the block counts will be displayed in 512-byte blocks.)
+
+所以通常情况下, `ls` 的结果应该比 `du`的结果更小才对(都指用默认的参数执行, 调整参数可使其结果相等), 然而上面跑服务 A 的机器上 contentutil.log 的对比是 `7.6G vs. 2.3M`, 无法理解了. 顺着 [man du](https://linux.die.net/man/1/du) 可以看到 *although the apparent size is usually smaller, it may be larger due to holes in ('sparse') files, internal fragmentation, indirect blocks, and the like* 即因contentutil.log是一个稀疏文件, 虽然其文件长度很大, 到7.6G了, 然而其中的`holes`并不占用实际空间.   
+
+下面用一个具体的例子来复现以上遇到的问题. 注意以下例子为 Linux version 2.6.32 中运行结果, 且在 Mac 中并不能复现.
+
+TODO
+
+参考资料: 
+
+- [删除守护进程的日志](http://blog.qiusuo.im/blog/2014/08/18/rm-daemon-log/)
+- [man du](https://linux.die.net/man/1/du)
+- [《UNIX环境高级编程》笔记--read函数，write函数，lseek函数](http://m.myexception.cn/operating-system/1762453.html)
+- [为什么用ls和du显示出来的文件大小有差别？](http://www.cnblogs.com/coldplayerest/archive/2012/02/19/2358098.html)
+- UNIX环境高级编程 第2版, 第3章 文件 I/O, 第4章 文件和目录
