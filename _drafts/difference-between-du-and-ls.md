@@ -98,17 +98,68 @@ tags:
 10240	sparse-file
 ```
 
-以上是用 dd 等命令创建稀疏文件, 也有同学用 c 代码实现了相同的功能. 其实就是写文件的时候, 改变下当前文件指针. 
+以上是用 `dd` 等命令创建稀疏文件, 也有同学用 c 代码实现了相同的功能. 其实就是写文件的时候, 改变下当前文件写指针. 前面提到的问题也应该是类似.
 
-TODO
+```c
+#include <stdio.h>
+#include <fcntl.h>
+#include <string.h>
 
+int main() {
+    int fd, result;
+    char wbuf[] = "hello";
+
+    if ((fd = open("./filetest.log", O_RDWR|O_CREAT|O_EXCL, S_IRUSR|S_IWUSR))
+)  {
+            perror("open");
+            return -1;
+    }
+    if ((result = write(fd, wbuf, strlen(wbuf)+1)) < 0) {
+            perror("write");
+            return -1;
+    }
+    if ((result = lseek(fd, 1024*1024*10, SEEK_END)) < 0) {
+            perror("lseek");
+            return -1;
+    }
+    if ((result = write(fd, wbuf, strlen(wbuf)+1)) < 0) {
+            perror("write");
+            return -1;
+    }
+
+    close(fd);
+    return 0;
+}
+```
+gcc 编译后， 运行结果产生的 filetest.log 文件详情如下: 
+
+```
+[root@localhost ~]# ls -ls filetest.log
+8 -rw-------. 1 root root 10485772 Nov  9 17:45 filetest.log
+[root@localhost ~]# du  filetest.log
+8	filetest.log
+[root@localhost ~]# du -h filetest.log
+8.0K	filetest.log
+[root@localhost ~]# ls -lh filetest.log
+-rw-------. 1 root root 11M Nov  9 17:45 filetest.log
+[root@localhost ~]# od -c filetest.log
+0000000   h   e   l   l   o  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0
+0000020  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0
+*
+50000000  \0  \0  \0  \0  \0  \0   h   e   l   l   o  \0
+50000014
+```
+
+文件长度应该是 "hello" 加上 "\n" 共6个字节`*2 = 12`, 再加上`1024*1024*10`个字节为ls产生的结果10485772个字节约11M, 而du的结果为8个block也为8k(这台机器上得block大小为1024). (`du --help`能得到: *Display values are in units of the first available SIZE from --block-size, and the DU_BLOCK_SIZE, BLOCK_SIZE and BLOCKSIZE environment variables.  Otherwise, units default to 1024 bytes (or 512 if POSIXLY_CORRECT is set).*
 
 总结: 出现以上问题说明自己对一些基础掌握得尚不牢固, 比如 1). rm 某文件后, 文件占用的磁盘空间并不是立即释放, 而是其句柄没有被其他进程引用时才回收; 2). ls/du 命令结果的具体含义; 3). 稀疏文件. 这些知识点都在 <UNIX环境高级编程> 这本书中有讲 (之前走马观花看过不少, 咋对稀疏文件等一点印象都木有!) 
+
+以上内容若有不清楚或不正确的地方, 还望大家指出, 感谢.
 
 参考资料: 
 
 - [删除守护进程的日志](http://blog.qiusuo.im/blog/2014/08/18/rm-daemon-log/)
-- [wiki Sparse_file	](https://en.wikipedia.org/wiki/Sparse_file)
+- [wiki Sparse\_file	](https://en.wikipedia.org/wiki/Sparse_file)
 - [man du](https://linux.die.net/man/1/du)
 - [《UNIX环境高级编程》笔记--read函数，write函数，lseek函数](http://blog.csdn.net/todd911/article/details/11237627)
 - [为什么用ls和du显示出来的文件大小有差别？](http://www.cnblogs.com/coldplayerest/archive/2012/02/19/2358098.html)
