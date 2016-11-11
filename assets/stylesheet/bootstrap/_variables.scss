@@ -861,7 +861,7 @@ $headings-small-color:        $gray-light !default;
 //** Blockquote small color
 $blockquote-small-color:      $gray-light !default;
 //** Blockquote font size
-$blockquote-font-size:        floor($font-size-base * 1.1) !default;
+$blockquote-font-size:        floor($font-size-base * 1.0) !default;
 //** Blockquote border color
 $blockquote-border-color:     $gray-lighter !default;
 //** Page header border color
