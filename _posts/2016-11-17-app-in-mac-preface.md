@@ -1,5 +1,5 @@
 ---
-title: Mac 软件推荐
+title: Mac 软件推荐(序)
 layout: post
 categories:
   - 经验技巧
@@ -7,8 +7,6 @@ tags:
   - 经验技巧
   - Mac
 ---
-
-# Mac 软件推荐
 
 如果你在使用 Mac 电脑, 并且没有如某些人那样愚蠢地安装 Windows 系统, 那么你可以尝试使用以下一些软件. 下面的这些软件都是我自己使用过且觉得还不错的, 在这里推荐给大家.  或者可以极大地提高效率或者可以足够装13. (注: 这里的软件不一定是软件开发者才会使用到的)
 
@@ -46,19 +44,23 @@ Workflow 是其更强大的卖点. 比如以下一些或者极其高效或者很
 ![](/resources/app-in-mac/baidu-tianqi.png)
 - mail: 快速搜索邮件
 ![](/resources/app-in-mac/mail.png)
+- 印象笔记(evernote): 快速搜索印象笔记/evernote 中保存的内容
+这个得首先去 [印象笔记官网](https://app.yinxiang.com/api/DeveloperToken.action) 生成一个 token, 然后安装好 [alfred-evernote](https://github.com/tl3shi/alfred-evernote)后, 配置好(es-token 你自己的generated-token) token 成功后就可以使用了. 查询有不同的语法格式, 详情可以看[这里](https://dev.evernote.com/doc/articles/search_grammar.php). 
+
+![alfred-印象笔记 workflow](/resources/app-in-mac/alfred-es-search.png)
+
+搜索后直接回车打开是默认在应用程序中打开, 按住 cmd 后会在浏览器中打开(由于最开始开发的作者是国际版 evernote, 中国版补丁的作者也忘记改这个链接了, 所以在浏览器中打开的跳转链接不对, 直接下载我修改后 workflow 是 OK 的 [github](https://github.com/tl3shi/alfred-evernote)), 其实就是修改一下其中的 `app.js`中的 `get-link`方法.
 
 当然还有更多其他好玩有用的 workflow, 你可以直接到[github 这里](https://github.com/hzlzh/AlfredWorkflow.com)"选购", 没有的, 你也可以自己实现(也比较简单, 用 php/python 等都可以实现, 你打开 alfred 设置项, 双击具体某个 workflow 就能看到源码)一个也贡献出来哦. 
 
 
-未完待续...
+*未完待续*...
 
 p.s 其实刚开始是准备1篇写完的, 但目前到此结束一篇了. 一方面内容确实有点多, 另外一个方面也从文章数量上让这公众号多点, 阴险脸.  再一个方面, 大家如果没有使用的, 也可以按照我这个推送节奏1次使用或者熟悉1个软件. 
 
 p.p.s 如果你觉得这文章对你有那么一点点收获, 能帮忙转发一下么. 么么哒 
 
-## Dash 
+-----
+本文同步发于"唐磊coder"微信公众号(tangleithu)(较微信原文有修改), 欢迎有兴趣的同学扫码关注, 谢谢.
 
-其实前面 Alfred 已经介绍过了, 这里再介绍一下. 程序猿应该必备啊. 内置各种语言, 各种环境的各种文档. 该 App 还提供各种 API 供其他工具交互使用. 例如 Vim(不是想象当中自动补全功能, 只是能够快捷地搜索 API), Sublime 等.  
-
-![](/resources/app-in-mac/dash-main.png)
-
+![微信公众号](/resources/wechat-tangleithu.jpg)
