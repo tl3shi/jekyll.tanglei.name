@@ -88,6 +88,6 @@ windump: listening on \Device\NPF_{84E79A70-5025-44D2-AB45-24F3203D00D6}
 
 画个图描述下3/4次握手是什么样的.
 
-[<img title="image" src="/wp-content/uploads/2014/03/image_thumb.png" alt="image"  />](/wp-content/uploads/2014/03/image.png)
+[<img title="image" src="/wp-content/uploads/2014/03/image.png" alt="image"  />](/wp-content/uploads/2014/03/image.png)
 
 以前计算机网络课还详细学了下TCP/UDP的协议，这些数据包是怎么组织放在某个位之类的，时间久了都忘了啊～
