@@ -31,7 +31,7 @@ tags:
 
 &nbsp;
 
-再然后就是不停地刷清华软件院官方网站，不停的刷。一直没消息……直到9月30号下午才刷出来了。激动的<a title="清华大学2011年软件学院校外推荐免试直硕拟录取名单" href="http://www.tsinghua.edu.cn/publish/soft/3649/2011/20110929172848279367829/20110929172848279367829_.html" target="_blank">打开网站</a>，我居然榜上有名，有两个工学名额，我还是No.1呢。哈哈。高兴……激动……马上把消息通知给dear friends们。
+再然后就是不停地刷清华软件院官方网站，不停的刷。一直没消息……直到9月30号下午才刷出来了。激动的<a title="清华大学2011年软件学院校外推荐免试直硕拟录取名单" href="http://www.tsinghua.edu.cn/publish/soft/3649/2011/20110929172848279367829/20110929172848279367829_.html" target="_blank">打开网站</a>，(<a href="/wp-content/blogresources/offer-in-thu.png" target="_blank">网站截图在这里</a>) 我居然榜上有名，有两个工学名额，我还是No.1呢。哈哈。高兴……激动……马上把消息通知给dear friends们。
 
 [<img class="aligncenter size-full wp-image-1202" title="postgraduate-in-tsinghua" src="/wp-content/uploads/2011/10/postgraduate-in-tsinghua.jpg" alt="清华大学保研"  />](/wp-content/uploads/2011/10/postgraduate-in-tsinghua.jpg)
 
