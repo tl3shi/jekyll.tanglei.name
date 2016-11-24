@@ -8,6 +8,7 @@ tags:
 ---
 
 注意题目, "程序猿篇"前面有逻辑运算符“!”, 其实不太恰当, 这篇不是说程序猿不能用, 也不是只针对程序猿的, 总之就是针对普通大众啦~ Alfred, RescueTime, Moom, Karabiner, Manico, MacDown, Near Lock, iStat Menus, Parallels Desktop, Squirrel 你听说过几个? 
+(**update**: 被这个题目给蠢哭了, 非程序员能看懂前面的“!”, 以为是给程序猿写的, 就不会继续看了, 程序猿看懂了“!”, 针对非程序猿的, 也就不会继续往下看了!!)
 
 ## Alfred v2
 在[前面一篇文章](http://www.tanglei.name/blog/app-in-mac-preface.html)中, 其实也已经推荐了这个神器了, 这里再强调并补充一个大家可能会用到的workflow, 即印象笔记(evernote): 可以快速搜索印象笔记/evernote 中保存的内容. 
