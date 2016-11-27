@@ -2,9 +2,10 @@
 title: Mac 软件推荐续(!程序猿篇)
 layout: post
 categories: 
-  - default
+  - 经验技巧
 tags: 
-  - MyLife
+  - 经验技巧
+  - Mac
 ---
 
 注意题目, "程序猿篇"前面有逻辑运算符“!”, 其实不太恰当, 这篇不是说程序猿不能用, 也不是只针对程序猿的, 总之就是针对普通大众啦~ Alfred, RescueTime, Moom, Karabiner, Manico, MacDown, Near Lock, iStat Menus, Parallels Desktop, Squirrel 你听说过几个? 
