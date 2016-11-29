@@ -15,7 +15,7 @@ tags:
 在《Effective C++》里提到对内置(C-like)类型在函数传参时pass by value比pass by reference更高效，当用OO的c++自定义类型(存在构造/析构等)pass by reference to const 更好，STL里的迭代器和函数对象是用C指针实现的，因此pass by value更好。至于为什么，下面的代码验证了下。
 
 ```cpp
-#include <iostream&gt;
+#include <iostream>
 using namespace std;
 
 int f(int i)
@@ -87,7 +87,7 @@ int main()
 
 后面的几个函数，只截取了关键代码了。
 
-```
+```asm
     10: int g(const int &i)
     11: { 
  ...... 
@@ -104,7 +104,7 @@ int main()
 
 [<img class="size-full wp-image-2472 aligncenter" src="/wp-content/uploads/2014/07/1.png" alt="传引用 传指针"  />](/wp-content/uploads/2014/07/1.png)
 
-```
+```asm
     16: int h(int * p)
     17: {
 ......
@@ -121,7 +121,7 @@ int main()
 
 指针跟上面引用一样。 
 
-```    
+```asm    
     22: int inter(int * &p)
     23: {
 ......
