@@ -153,7 +153,6 @@ alias grom='git rebase origin/master'
 /usr/local/bin/subl
 ➜  app-in-mac git:(source) ✗ ls -la /usr/local/bin/subl
 lrwxr-xr-x  1 tanglei  admin  62  1 24  2016 /usr/local/bin/subl -> /Applications/Sublime Text.app/Contents/SharedSupport/bin/subl
-➜  app-in-mac git:(source) ✗
 ```
 
 ## Vim 
@@ -161,11 +160,17 @@ lrwxr-xr-x  1 tanglei  admin  62  1 24  2016 /usr/local/bin/subl -> /Application
 介绍 Vim 的文章也很多了. 这里就不详细展开了. 分享下俩我用的部分插件. 
 
 
-Vundle/pathogen
-nerdtree
-YouCompleteMe: [YouCompleteMe](https://github.com/Valloric/YouCompleteMe)
-conque_term
-ag
+- Vundle/Pathogen: 插件管理
+- NERDTree: 文件目录树
+- YouCompleteMe: [YouCompleteMe](https://github.com/Valloric/YouCompleteMe) 自动补全
+- ctrlp.vim: [快速搜索文件](https://github.com/ctrlpvim/ctrlp.vim)
+- ConqueTerm: shell 跑在 vim 里面
+- ag: 代码搜索, 可结合 ctrlp.vim, 如果后者搜索太慢的话
+- tagbar
+- vim-surround
+- vim-easymotion
+
+[](http://yuez.me/jiang-ni-de-vim-da-zao-cheng-qing-qiao-qiang-da-de-ide/)
 
 ## Dash 
 
@@ -180,9 +185,18 @@ ag
 
 插件
 
-- dont redirect
-- f + 字母链接
-- cVim/Vimium
+- AdBlock: 广告屏蔽
+- EditThisCookie: 修改 cookie
+- Evernote Web Clipper: 印象笔记
+- JSONView and JSONLint for Google Chrome™: 请求返回的json进行beautify方便查看
+- Markdown Here: 在富文本输入markdown, 渲染成 html
+- Markdown Preview Plus: 渲染 .md 文件, 相当于 preview markdown
+- Open Screenshot: 网页截图
+- Postman: 请求伪造/抓包等
+- Proxy SwitchySharp: proxy 切换
+- RescueTime: [前文有介绍的RescueTime](www.tanglei.name/blog/app-in-mac-for-common.html)
+- 移除百度搜索结果跳转: RT
+- Vimium: 操作 vim 一样操作浏览器
 
 
 ### Charles
@@ -198,6 +212,8 @@ ag
 ifttt
 
 ## 其他有用的命令行
+
+可能较少用, 但一旦用, 能省不少时间. 也有一些online 的工具, 有的都不太准.
 
 - openssl sha1 
 - md5
