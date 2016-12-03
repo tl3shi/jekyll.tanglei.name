@@ -145,7 +145,7 @@ alias grom='git rebase origin/master'
 
 文本编辑器, 也有丰富的插件支持, 直接[官网](http://www.sublimetext.com/)看吧. 这个 App, 我用得也不是很多. 
 
-这里分享一个小的功能, 怎么在命令行用 sublime 打开特定的文件. 其实就是添加一个软链即可. 
+这里分享一个小的功能, 怎么在命令行用 sublime 打开特定的文件. 其实就是添加一个软链即可. (直接 `open filename` 会以文件默认关键的软件打开)
 
 ```bash
 ➜  app-in-mac git:(source) ✗ subl dungeon-game.cpp
@@ -157,20 +157,28 @@ lrwxr-xr-x  1 tanglei  admin  62  1 24  2016 /usr/local/bin/subl -> /Application
 
 ## Vim 
 
-介绍 Vim 的文章也很多了. 这里就不详细展开了. 分享下俩我用的部分插件. 
-
+介绍 Vim 的文章也很多了. 这里就不详细展开了. 分享下我用的部分插件. (最近被 IntelliJ IDEA 搞得恶心了, 准备尝试抛弃)
 
 - Vundle/Pathogen: 插件管理
 - NERDTree: 文件目录树
-- YouCompleteMe: [YouCompleteMe](https://github.com/Valloric/YouCompleteMe) 自动补全
+- YouCompleteMe: [YouCompleteMe](https://github.com/Valloric/YouCompleteMe) 自动补全, 对C系列, 结合其他的可支持 Java/Python/Js 等, 征求 Scala 支持
 - ctrlp.vim: [快速搜索文件](https://github.com/ctrlpvim/ctrlp.vim)
+- minibufexpl.vim: 会把最近打开的文件列出来方便跳转
 - ConqueTerm: shell 跑在 vim 里面
 - ag: 代码搜索, 可结合 ctrlp.vim, 如果后者搜索太慢的话
-- tagbar
-- vim-surround
-- vim-easymotion
+- tagbar/taglist
+- vim-surround: 
+- vim-easymotion: 快速跳转, 关键字后会给匹配到的标记, 再选标记并跳转(类似后文介绍 Chrome 插件的Vimium中的链接标记并跳转功能:按键 `f` 会将本文所有链接突出显示并用字母标记, 然后按相应的字母则会新开标签页打开)
+- vim-powerline: [增强状态栏](https://github.com/Lokaltog/vim-powerline.git)
+- vim-indent-guides: [缩进可视化](https://github.com/nathanaelkane/vim-indent-guides)
 
-[](http://yuez.me/jiang-ni-de-vim-da-zao-cheng-qing-qiao-qiang-da-de-ide/)
+YouCompleteMe     ctrlp.vim         minibufexpl.vim   tagbar            vim-fugitive      vim-latex         vim-surround
+ag                dash.vim          nerdtree          vim-easymotion    vim-indent-guides vim-powerline
+
+Reference 
+
+- [将你的Vim 打造成轻巧强大的IDE](http://yuez.me/jiang-ni-de-vim-da-zao-cheng-qing-qiao-qiang-da-de-ide/)
+- [所需即所获：像 IDE 一样使用 vim](https://github.com/yangyangwithgnu/use_vim_as_ide)
 
 ## Dash 
 
@@ -195,12 +203,10 @@ lrwxr-xr-x  1 tanglei  admin  62  1 24  2016 /usr/local/bin/subl -> /Application
 - Postman: 请求伪造/抓包等
 - Proxy SwitchySharp: proxy 切换
 - RescueTime: [前文有介绍的RescueTime](www.tanglei.name/blog/app-in-mac-for-common.html)
-- 移除百度搜索结果跳转: RT
-- Vimium: 操作 vim 一样操作浏览器
-
+- undirect: google/baidu 搜索结果, 点击直达网站, 这个貌似不太好用了. 征求替代品. 
+- Vimium: 操作 vim 一样操作浏览器, 移动查找等功能, 还有前文提到的快速标记链接并跳转
 
 ### Charles
-
 类 Windows 下 Fiddler 抓包应用. 
 
 类似命令 tcpdump
