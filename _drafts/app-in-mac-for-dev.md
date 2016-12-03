@@ -53,13 +53,12 @@ ctrl + _: undo
 ctrl + r: bck-i-search/reverse-i-search, 输入关键字搜索历史命令
 ```
 
-上面的这些快捷键特别是在敲命令时还是很有用的(可能有得确实是在命令行中才生效), 特别是结合 zsh 自动补全等功能. 比较 DT 的是就是 `esc` 一起用的时候, 不能连续使用. 举个例子, terminal 中输入了 `git push origin source`, 光标在末尾, 这时按住`ctrl` 不放, 按一下 `w` 即向前删除一个单词. 而 `esc + d` 不能这样结合使用, `esc` 必须中途释放再按才能 work. 
+上面的这些快捷键特别是在敲命令时还是很有用的(可能有的确实是在命令行中才生效), 特别是结合 zsh 自动补全等功能. 比较 DT 的是就是 `esc` 一起用的时候, 不能连续使用. 举个例子, terminal 中输入了 `git push origin source`, 光标在末尾, 这时按住`ctrl` 不放, 按一下 `w` 即向前删除一个单词. 而 `esc + d` 不能这样结合使用, `esc` 必须中途释放再按才能 work. 
 
 啥? 你说上面快捷键 `ctrl + w` 等不太好按? 按键特别别扭? 
 你需要做的就是将 `caps lock` 映射为 `ctrl`, `Keyboard -> Modifier Keys `修改, 目前我笔记本上的 `ctrl` 键无效. 不过, 一般情况下我用我的 HHKB, 这种映射方式正好符合 HHKB 的布局. (其实我是在买 HHKB 之前就修改的这个映射)
 
-另外, 借助之前介绍的Karabiner, 可以将一些常用的方向键(上下左右)重新映射一下, 比如我目前是 `s + h/j/k/l` 来表示方向, 手不用太移动就能直接按方向(HHKB 本身按方向太麻烦, Mac 内置键盘有方向键还需要大幅度移动手), 用起来方便多了. 
-
+另外, 借助之前介绍的**Karabiner**, 可以将一些常用的方向键(上下左右)重新映射一下, 比如我目前是 `s + h/j/k/l` 来表示方向, 手不用太移动就能直接按方向(HHKB 本身按方向太麻烦, Mac 内置键盘有方向键还需要大幅度移动手), 用起来方便多了. 
 
 Mac 内置的更多的快捷键列表可以参考 [Mac 官网](https://support.apple.com/zh-cn/HT201236)
 
@@ -70,7 +69,7 @@ Mac 内置的更多的快捷键列表可以参考 [Mac 官网](https://support.a
 这个从快捷键中单独列出来了, 就强调下这个功能. 
 
 `cmd + shift + 3` 截取整个屏幕. 
-`cmd + shift + 4` 部分窗口, 出现十字供选取, 若此时按空格键(这个技能得点赞), 会选取当前应用的窗口, 再 **tap** 即可完成截图. 
+`cmd + shift + 4` 部分窗口, 出现十字供选取, 若此时按**空格键**(这个技能得点赞), 会选取当前应用的窗口, 再 **tap** 即可完成截图. 
 
 上面快捷键是截图后以文件形式保存在桌面(默认是桌面, 当然你也可以自己修改保存位置), 再上面快捷键基础上再同时按 `ctrl` 就会把图片保存在内存/剪贴板中, 直接去相应窗口粘贴即可.
 
@@ -131,7 +130,7 @@ alias grod='git rebase origin/develop'
 alias grom='git rebase origin/master'
 ```
 
-2. **autojump**: 这个也炒鸡赞. 会自动记录你 `cd` 过的目录, 下次你直接 `j keyword` 就会自动 `cd` 到以 *keyword* 匹配的目录. 
+2. **autojump**: 这个也炒鸡赞. 会自动记录你 `cd` 过的目录, 下次你直接 `j keyword` 就会自动 `cd` 到以 *keyword* 匹配的目录. 输入 `d` 会展示当前会话访问过的目录, 然后对应目录有标号, 接下来按标号即可跳转.
 
 3. **osx**: 举个最简单的例子, 比如你现在正在 finder 中浏览一个很深的目录, 现在突然想 cd 到这个目录去做一些命令操作. 如果你用xtrafinder 这样的软件的话道有这样的功能, 如果配上这个插件, 你直接输入 `cdf` (cd finder)就自动 `cd` 到 finder 打开的目录下. 
 
@@ -182,7 +181,7 @@ Reference
 
 ## Dash 
 
-其实介绍[前文](http://www.tanglei.name/blog/app-in-mac-preface.html) 介绍 Alfred 已经提到过, 这里再介绍一下. 程序猿应该必备啊. 内置各种语言, 各种环境的各种文档. 该 App 还提供各种 API 供其他工具交互使用. 例如 Vim(不是想象当中自动补全功能, 只是能够快捷地搜索 API), Sublime 等.  (p.s 要是有人写了一个 Vim 插件, 能够支持调用 dash 的 API 自动补全代码, 那应该会很受欢迎的)
+其实介绍[前文](http://www.tanglei.name/blog/app-in-mac-preface.html) 介绍 Alfred 已经提到过, 这里再介绍一下. 程序猿应该必备啊. 内置各种语言, 各种环境的各种文档. 该 App 还提供各种 API 供其他工具交互使用. 例如 Vim(不是想象当中自动补全功能, 只是能够快捷地搜索 API), Sublime 等.  (p.s 要是有人写了一个 Vim 插件, 能够支持调用 dash 的 API(如果有的话) 自动补全代码, 那应该会很受欢迎的)
 
 ![](/resources/app-in-mac/dash-main.png)
 
@@ -198,9 +197,9 @@ Reference
 - Evernote Web Clipper: 印象笔记
 - JSONView and JSONLint for Google Chrome™: 请求返回的json进行beautify方便查看
 - Markdown Here: 在富文本输入markdown, 渲染成 html
-- Markdown Preview Plus: 渲染 .md 文件, 相当于 preview markdown
-- Open Screenshot: 网页截图
-- Postman: 请求伪造/抓包等
+- Markdown Preview Plus: 渲染 **.md** 文件, 相当于 preview markdown
+- Open Screenshot: 网页截图, 能够自动下拉截长图
+- Postman: 请求伪造/抓包等, 也可以用`curl`
 - Proxy SwitchySharp: proxy 切换
 - RescueTime: [前文有介绍的RescueTime](www.tanglei.name/blog/app-in-mac-for-common.html)
 - undirect: google/baidu 搜索结果, 点击直达网站, 这个貌似不太好用了. 征求替代品. 
@@ -209,18 +208,50 @@ Reference
 ### Charles
 类 Windows 下 Fiddler 抓包应用. 
 
-类似命令 tcpdump
-
-### Postman
-
-类似命令 curl 
-
-ifttt
+类似命令 `tcpdump`
 
 ## 其他有用的命令行
 
-可能较少用, 但一旦用, 能省不少时间. 也有一些online 的工具, 有的都不太准.
+一些好用的命令(基本的什么`ls/cd/cp/rm`之类的这里就直接忽略了), 我觉得作为程序猿还是应该了解, 至少只当某个场景下直接用相应的命令就能解决. 具体参数可以再 `--help` 或者 `man commond`  再看.
 
-- openssl sha1 
-- md5
-- base64
+- screen: 特别是 ssh 到登录远程时用以管理会话
+- curl: 网络请求, 相关的还有 `traceroute, dig` 等
+- find: 文件查找
+- grep/zgrep/zcat: 查看日志的时候用
+- awk: 这个本身就很强大了, 但可以了解一些基本的用法
+- sed: 文本替换, 还有 `tr`
+- cut: 按列取数据, `awk` 也可以
+- sort: 这个就不多说了
+- uniq: 一般和 `sort` 一块用, 只能去重相邻的行
+- diff: 比较文件, 类似的还有 `comm` (输出3列, 分别是: 只在文件1, 只在文件2 和两个文件都在的行)
+- paste: 两个文件按列拼接
+- od: 以16/8/2进制查看文件
+- wc: 统计文件字节数/字数/行数
+
+结合这些命令可能就能完成某些复杂的功能, 举个例子, 如线上的web 访问日志会记录 *请求时间, 请求路径, 参数* 等等. 现在需要统计 当天请求路径为 A, 排名前10的参数, 就可以 ` grep 路径A | cut 取出想要的数据列 | sort | uniq ` 之类的. 再比如, 随机生成3个长度为8包含字母数字的字符串(偶尔会用到, 比如各种生产 secret key 的时候), 
+`cat /dev/urandom | sed 's/[^a-zA-Z0-9]//g' | head -n 10 | cut -c 1-8`
+
+```
+➜  _includes git:(source) ✗ cat /dev/urandom | sed 's/[^a-zA-Z0-9]//g' | head -n 3 | cut -c 1-8
+MaL6nEmZ
+00m2Ub19
+rsc4AOQm
+```
+
+其他的可能较少用, 但一旦用, 能省不少时间. 网上也有一些 online 的工具, 但哪有这个快准狠.
+
+- openssl sha1/aes-256-ecb/des/base64 等等: 比如当前我们开发用的 MVC 框架play framework用来加密 session 的算法
+- md5/base64: 常见的 md5, base64 编码
+- sips: `scriptable image processing system` 比如批量处理图片大小, 压缩等等
+
+---
+
+全文完, 关于 Mac 使用技巧和工具软件推荐, 一共如下3篇文章: 
+
+- [Mac 软件推荐(序)](http://www.tanglei.name/blog/app-in-mac-preface.html)
+- [Mac 软件推荐续 -- 大众篇](http://www.tanglei.name/blog/app-in-mac-for-common.html)
+- [Mac 软件推荐续 -- 程序猿篇](http://www.tanglei.name/blog/app-in-mac-for-dev.html)
+
+p.s 如果你觉得这文章对你有那么一点点收获, 请不要犹豫扫描下面二维码关注我的公众号, 如果你再能帮忙转发一下就更好了. 么么哒.
+
+![tanglei 微信号](/resources/wechat-tangleithu.jpg)
