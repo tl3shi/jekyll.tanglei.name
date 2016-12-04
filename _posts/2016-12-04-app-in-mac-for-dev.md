@@ -52,7 +52,7 @@ ctrl + r: bck-i-search/reverse-i-search, 输入关键字搜索历史命令
 
 上面的这些快捷键特别是在敲命令时还是很有用的(可能有的确实是在命令行中才生效), 特别是结合 zsh 自动补全等功能. 比较 DT 的是就是 `esc` 一起用的时候, 不能连续使用. 举个例子, terminal 中输入了 `git push origin source`, 光标在末尾, 这时按住`ctrl` 不放, 按一下 `w` 即向前删除一个单词, 第一次按 `w` 删除 *source*, 再按 `w` 删除 *origin*. 而 `esc + d` 不能这样结合使用(如下 gif连续按就不 work), `esc` 必须中途释放再按才能 work. 
 
-![](/resources/app-in-mac/builtin-quick-key-git-push.gif)
+![bash自动补全](/resources/app-in-mac/builtin-quick-key-git-push.gif)
 
 啥? 你说上面快捷键 `ctrl + w` 等不太好按? 按键特别别扭? 
 你需要做的就是将 `caps lock` 映射为 `ctrl`, `Keyboard -> Modifier Keys `修改, 目前我笔记本上的 `ctrl` 键无效. 不过, 一般情况下我用我的 HHKB, 这种映射方式正好符合 HHKB 的布局. (其实我是在买 HHKB 之前就修改的这个映射)
@@ -99,7 +99,7 @@ brew-cask 是 brew 的一个加强版, 可以安装一些桌面应用, 例如 ch
 	- `cmd + f`搜索输入关键字后, 匹配的会黄色高亮, 此时按 `tab` 或者 `shift + tab` 会自动向后/前以word 的方式选中高亮的, 并自动 copy 到剪切板.
 	- `cmd + alt + e`, 在所有的 tab 中全局搜索, 搜索出候选项后, 再选着你想要进入的 tab. 
 	
-	![iTerm2 search](/resources/app-in-mac/iterm2-search-all.png)
+![iTerm2 search](/resources/app-in-mac/iterm2-search-all.png)
 
 4. 其他
 	- 新版本的 iTerm2 还支持直接在控制台里 ls 图片文件(图片显示在控制台里).(如上图下半部分, 连 gif 都支持)
@@ -159,7 +159,7 @@ lrwxr-xr-x  1 tanglei  admin  62  1 24  2016 /usr/local/bin/subl -> /Application
 介绍 Vim 的文章也很多了. 这里就不详细展开了. 分享下我用的部分插件. (最近被 IntelliJ IDEA 搞得恶心了, 准备尝试抛弃), 
 为了让多台电脑同步我的 vim 配置/插件等, 我直接放 github 了([ref vimconfigs](https://github.com/tl3shi/vimconfigs.git)), 不同电脑只需要再建一个软链到github 中的 vimrc 即可.
 
-![](/resources/app-in-mac/vim-autocomplete.png)
+![vim 自动补全](/resources/app-in-mac/vim-autocomplete.png)
 
 - Vundle/Pathogen: 插件管理, 我用的Pathogen, 直接将下面 github repo clone 到 `~/.vim/bundle/` 目录下即可
 - NERDTree: 文件目录树[nerdtree github src](https://github.com/scrooloose/nerdtree.git)
