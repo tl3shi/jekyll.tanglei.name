@@ -158,21 +158,20 @@ lrwxr-xr-x  1 tanglei  admin  62  1 24  2016 /usr/local/bin/subl -> /Application
 
 介绍 Vim 的文章也很多了. 这里就不详细展开了. 分享下我用的部分插件. (最近被 IntelliJ IDEA 搞得恶心了, 准备尝试抛弃)
 
-- Vundle/Pathogen: 插件管理
-- NERDTree: 文件目录树
-- YouCompleteMe: [YouCompleteMe](https://github.com/Valloric/YouCompleteMe) 自动补全, 对C系列, 结合其他的可支持 Java/Python/Js 等, 征求 Scala 支持
+- Vundle/Pathogen: 插件管理, 我用的Pathogen, 直接将下面 github repo clone 到 `~/.vim/bundle/` 目录下即可
+- NERDTree: 文件目录树[nerdtree github src](https://github.com/scrooloose/nerdtree.git)
+- YouCompleteMe: [YouCompleteMe github src](https://github.com/Valloric/YouCompleteMe) 自动补全, 对C系列, 结合其他的可支持 Java/Python/Js 等,  跪求 Scala 支持
 - ctrlp.vim: [快速搜索文件](https://github.com/ctrlpvim/ctrlp.vim)
 - minibufexpl.vim: 会把最近打开的文件列出来方便跳转
-- ConqueTerm: shell 跑在 vim 里面
-- ag: 代码搜索, 可结合 ctrlp.vim, 如果后者搜索太慢的话
-- tagbar/taglist
-- vim-surround: 
-- vim-easymotion: 快速跳转, 关键字后会给匹配到的标记, 再选标记并跳转(类似后文介绍 Chrome 插件的Vimium中的链接标记并跳转功能:按键 `f` 会将本文所有链接突出显示并用字母标记, 然后按相应的字母则会新开标签页打开)
-- vim-powerline: [增强状态栏](https://github.com/Lokaltog/vim-powerline.git)
-- vim-indent-guides: [缩进可视化](https://github.com/nathanaelkane/vim-indent-guides)
+- conque-term: shell 跑在 vim 里面, [github src](https://github.com/tl3shi/conque-term.git)
+- ag: 代码搜索, 可结合 ctrlp.vim, 如果后者搜索太慢的话, [github src](https://github.com/rking/ag.vim.git)
+- tagbar/taglist: 标签, 能显示类结构信息等
+- vim-surround:  处理诸如`(), "", []` 等配对信息, [github src](https://github.com/tpope/vim-surround.git), [ref](http://zuyunfei.com/2013/04/17/killer-plugin-of-vim-surround/)
+- vim-easymotion: 快速跳转, 关键字后会给匹配到的标记, 再选标记并跳转(类似后文介绍 Chrome 插件的Vimium中的链接标记并跳转功能:按键 `f` 会将本文所有链接突出显示并用字母标记, 然后按相应的字母则会新开标签页打开). [github src](https://github.com/easymotion/vim-easymotion.git), [ref](http://www.wklken.me/posts/2015/06/07/vim-plugin-easymotion.html)
+- vim-powerline: 增强状态栏 [github src](https://github.com/Lokaltog/vim-powerline.git)
+- vim-indent-guides: 缩进可视化, [github src](https://github.com/nathanaelkane/vim-indent-guides)
 
-YouCompleteMe     ctrlp.vim         minibufexpl.vim   tagbar            vim-fugitive      vim-latex         vim-surround
-ag                dash.vim          nerdtree          vim-easymotion    vim-indent-guides vim-powerline
+具体效果等配置方法可以参考下面的两篇文章, 插件具体用法可阅读具体插件的 doc
 
 Reference 
 
@@ -183,7 +182,7 @@ Reference
 
 其实介绍[前文](http://www.tanglei.name/blog/app-in-mac-preface.html) 介绍 Alfred 已经提到过, 这里再介绍一下. 程序猿应该必备啊. 内置各种语言, 各种环境的各种文档. 该 App 还提供各种 API 供其他工具交互使用. 例如 Vim(不是想象当中自动补全功能, 只是能够快捷地搜索 API), Sublime 等.  (p.s 要是有人写了一个 Vim 插件, 能够支持调用 dash 的 API(如果有的话) 自动补全代码, 那应该会很受欢迎的)
 
-![](/resources/app-in-mac/dash-main.png)
+![dash](/resources/app-in-mac/dash-main.png)
 
 
 ## 其他App
@@ -192,23 +191,24 @@ Reference
 
 插件
 
-- AdBlock: 广告屏蔽
-- EditThisCookie: 修改 cookie
-- Evernote Web Clipper: 印象笔记
-- JSONView and JSONLint for Google Chrome™: 请求返回的json进行beautify方便查看
-- Markdown Here: 在富文本输入markdown, 渲染成 html
-- Markdown Preview Plus: 渲染 **.md** 文件, 相当于 preview markdown
-- Open Screenshot: 网页截图, 能够自动下拉截长图
-- Postman: 请求伪造/抓包等, 也可以用`curl`
-- Proxy SwitchySharp: proxy 切换
-- RescueTime: [前文有介绍的RescueTime](www.tanglei.name/blog/app-in-mac-for-common.html)
-- undirect: google/baidu 搜索结果, 点击直达网站, 这个貌似不太好用了. 征求替代品. 
-- Vimium: 操作 vim 一样操作浏览器, 移动查找等功能, 还有前文提到的快速标记链接并跳转
+- AdBlock: 广告屏蔽;
+- EditThisCookie: 修改 cookie;
+- Evernote Web Clipper: 印象笔记;
+- JSONView and JSONLint for Google Chrome™: 请求返回的json进行beautify方便查看;
+- Markdown Here: 在富文本输入markdown, 渲染成 html;
+- Markdown Preview Plus: 渲染 **.md** 文件, 相当于 preview markdown;
+- Open Screenshot: 网页截图, 能够自动下拉截长图;
+- Postman: 请求伪造/抓包等, 也可以用`curl`;
+- Proxy SwitchySharp: proxy 切换;
+- RescueTime: [前文有介绍的RescueTime](www.tanglei.name/blog/app-in-mac-for-common.html);
+- undirect: google/baidu 搜索结果, 点击直达网站, 这个貌似不太好用了. 征求替代品; 
+- Vimium: 操作 vim 一样操作浏览器, 移动查找等功能, 还有前文提到的快速标记链接并跳转;
 
 ### Charles
+
 类 Windows 下 Fiddler 抓包应用. 
 
-类似命令 `tcpdump`
+相关命令 `tcpdump`
 
 ## 其他有用的命令行
 
@@ -218,8 +218,8 @@ Reference
 - curl: 网络请求, 相关的还有 `traceroute, dig` 等
 - find: 文件查找
 - grep/zgrep/zcat: 查看日志的时候用
-- awk: 这个本身就很强大了, 但可以了解一些基本的用法
-- sed: 文本替换, 还有 `tr`
+- awk: 这个本身就很强大了, 具体编程语法不用太掌握但可以了解一些基本的用法, 比如之前用到过给一个log文件, 能够取里面的参数拼接update 的sql(文件里有相应 update 的值和 where 条件值)
+- sed: 文本替换, 还有 `tr`, 注意 sed 的语法 Mac 和 一般 Linux 还有些不一样( 比如原文替换的时候 mac 里需要用参数 `-i ""`), 比如之前[迁移 wordpress 到 jekyll](/blog/give-up-wordpress-to-jekyll.html) 上的时候需要将一些链接整体替换成新的路径.
 - cut: 按列取数据, `awk` 也可以
 - sort: 这个就不多说了
 - uniq: 一般和 `sort` 一块用, 只能去重相邻的行
@@ -228,8 +228,7 @@ Reference
 - od: 以16/8/2进制查看文件
 - wc: 统计文件字节数/字数/行数
 
-结合这些命令可能就能完成某些复杂的功能, 举个例子, 如线上的web 访问日志会记录 *请求时间, 请求路径, 参数* 等等. 现在需要统计 当天请求路径为 A, 排名前10的参数, 就可以 ` grep 路径A | cut 取出想要的数据列 | sort | uniq ` 之类的. 再比如, 随机生成3个长度为8包含字母数字的字符串(偶尔会用到, 比如各种生产 secret key 的时候), 
-`cat /dev/urandom | sed 's/[^a-zA-Z0-9]//g' | head -n 10 | cut -c 1-8`
+结合这些命令可能就能完成某些复杂的功能, 举个例子, 如线上的web 访问日志会记录 *请求时间, 请求路径, 参数* 等等. 现在需要统计 当天请求路径为 A, 排名前10的参数, 就可以 ` grep 路径A | cut 取出想要的数据列 | sort | uniq ` 之类的. 再比如, 随机生成3个长度为8包含字母数字的字符串(偶尔会用到, 比如各种生产 secret key 的时候),  直接用如下命令即可
 
 ```
 ➜  _includes git:(source) ✗ cat /dev/urandom | sed 's/[^a-zA-Z0-9]//g' | head -n 3 | cut -c 1-8
