@@ -156,22 +156,23 @@ lrwxr-xr-x  1 tanglei  admin  62  1 24  2016 /usr/local/bin/subl -> /Application
 
 ## Vim 
 
-介绍 Vim 的文章也很多了. 这里就不详细展开了. 分享下我用的部分插件. (最近被 IntelliJ IDEA 搞得恶心了, 准备尝试抛弃)
+介绍 Vim 的文章也很多了. 这里就不详细展开了. 分享下我用的部分插件. (最近被 IntelliJ IDEA 搞得恶心了, 准备尝试抛弃), 
+为了让多台电脑同步我的 vim 配置/插件等, 我直接放 github 了([ref vimconfigs](https://github.com/tl3shi/vimconfigs.git)), 不同电脑只需要再建一个软链到github 中的 vimrc 即可.
 
 - Vundle/Pathogen: 插件管理, 我用的Pathogen, 直接将下面 github repo clone 到 `~/.vim/bundle/` 目录下即可
 - NERDTree: 文件目录树[nerdtree github src](https://github.com/scrooloose/nerdtree.git)
 - YouCompleteMe: [YouCompleteMe github src](https://github.com/Valloric/YouCompleteMe) 自动补全, 对C系列, 结合其他的可支持 Java/Python/Js 等,  跪求 Scala 支持
 - ctrlp.vim: [快速搜索文件](https://github.com/ctrlpvim/ctrlp.vim)
-- minibufexpl.vim: 会把最近打开的文件列出来方便跳转
+- minibufexpl.vim: 会把最近打开的文件列出来方便跳转, [github src](https://github.com/fholgado/minibufexpl.vim.git)
 - conque-term: shell 跑在 vim 里面, [github src](https://github.com/tl3shi/conque-term.git)
 - ag: 代码搜索, 可结合 ctrlp.vim, 如果后者搜索太慢的话, [github src](https://github.com/rking/ag.vim.git)
-- tagbar/taglist: 标签, 能显示类结构信息等
+- tagbar/taglist: 标签, 能显示类结构信息等, [tagbar github src](https://github.com/majutsushi/tagbar.git)
 - vim-surround:  处理诸如`(), "", []` 等配对信息, [github src](https://github.com/tpope/vim-surround.git), [ref](http://zuyunfei.com/2013/04/17/killer-plugin-of-vim-surround/)
 - vim-easymotion: 快速跳转, 关键字后会给匹配到的标记, 再选标记并跳转(类似后文介绍 Chrome 插件的Vimium中的链接标记并跳转功能:按键 `f` 会将本文所有链接突出显示并用字母标记, 然后按相应的字母则会新开标签页打开). [github src](https://github.com/easymotion/vim-easymotion.git), [ref](http://www.wklken.me/posts/2015/06/07/vim-plugin-easymotion.html)
 - vim-powerline: 增强状态栏 [github src](https://github.com/Lokaltog/vim-powerline.git)
 - vim-indent-guides: 缩进可视化, [github src](https://github.com/nathanaelkane/vim-indent-guides)
 
-具体效果等配置方法可以参考下面的两篇文章, 插件具体用法可阅读具体插件的 doc
+具体效果等配置方法可以参考下面的两篇文章, 插件具体用法可阅读具体插件的 doc. 
 
 Reference 
 
@@ -228,7 +229,7 @@ Reference
 - od: 以16/8/2进制查看文件
 - wc: 统计文件字节数/字数/行数
 
-结合这些命令可能就能完成某些复杂的功能, 举个例子, 如线上的web 访问日志会记录 *请求时间, 请求路径, 参数* 等等. 现在需要统计 当天请求路径为 A, 排名前10的参数, 就可以 ` grep 路径A | cut 取出想要的数据列 | sort | uniq ` 之类的. 再比如, 随机生成3个长度为8包含字母数字的字符串(偶尔会用到, 比如各种生产 secret key 的时候),  直接用如下命令即可
+结合这些命令可能就能完成某些复杂的功能, 举个例子, 如线上的web 访问日志会记录 *请求时间, 请求路径, 参数* 等等. 现在需要统计 当天请求路径为 A, 排名前10的参数, 就可以 ` grep 路径A | cut 取出想要的数据列 | sort | uniq ` 之类的, 或者比如统计http 404 请求最多的10个路径. 再比如, 随机生成3个长度为8包含字母数字的字符串(偶尔会用到, 比如各种生产 secret key 的时候),  直接用如下命令即可
 
 ```
 ➜  _includes git:(source) ✗ cat /dev/urandom | sed 's/[^a-zA-Z0-9]//g' | head -n 3 | cut -c 1-8
@@ -239,7 +240,7 @@ rsc4AOQm
 
 其他的可能较少用, 但一旦用, 能省不少时间. 网上也有一些 online 的工具, 但哪有这个快准狠.
 
-- openssl sha1/aes-256-ecb/des/base64 等等: 比如当前我们开发用的 MVC 框架play framework用来加密 session 的算法
+- openssl sha1/aes-256-ecb/des/base64 等等: 比如当前我们开发用的 MVC 框架play framework用来加密 session 的算法, 可以方便算出 encoded 的 sessionid 进行 debug.
 - md5/base64: 常见的 md5, base64 编码
 - sips: `scriptable image processing system` 比如批量处理图片大小, 压缩等等
 
