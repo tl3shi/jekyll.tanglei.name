@@ -8,7 +8,7 @@ tags:
   - Mac
 ---
 
-在前面一篇文章["Mac 软件推荐续(!程序猿篇)"](http://www.tanglei.name/blog/app-in-mac-for-common.html) (文章取名装X失败, 悲伤脸)中, 我已经介绍了一些大众化的软件, 当然作为程序猿的你也应该参考参考. 
+在前面一篇文章["Mac 软件推荐续(!程序猿篇)"](http://www.tanglei.name/blog/app-in-mac-for-common.html) (文章取名装X失败, 悲伤)中, 我已经介绍了一些大众化的软件, 当然作为程序猿的你也应该参考参考. 
 本篇文章将介绍一些可以提高程序猿工作效率的一些软件和工具及相关配置. 
 
 ## Mac built-in
@@ -17,19 +17,16 @@ tags:
 
 ### trackpad 配置
 
-1. **启用 Tap**
-启用 **Tap to click**, 在 `System Preferences -> Trackpad ` 中启用, 用 **tap** 替换 **click** 的操作, 明明轻轻 **tap** 就可以完成的, 为何还要用力点击才 OK. 现在偶尔用其他人电脑非得用力 click 就太纠结了.
-
+1. **启用 Tap to click**: 在 `System Preferences -> Trackpad ` 中启用, 用 **tap** 替换 **click** 的操作, 明明轻轻 **tap** 就可以完成的, 为何还要用力点击才 OK. 现在偶尔用其他人电脑非得用力 click 就太纠结了.
 同时, 还有 "右键"功能, **Secondary click**, 用两个手指 tap 弹出右键菜单. 
 ![mac trackpad 设置](/resources/app-in-mac/mac-os-trackpad.png)
 
-2. **开启单词选词查询**
-选中某个中英文单词后, 三指 tab 会弹出词典释义. 这个在[之前一篇文章](http://www.tanglei.name/blog/app-in-mac-preface.html)中有介绍. 
+2. **开启单词选词查询**:
+选中某个中英文单词后, 三指 tab 会弹出词典释义. 这个在[之前一篇文章](http://www.tanglei.name/blog/app-in-mac-preface.html)中也有介绍. 
 
-3. **Scroll 方向 **
-这个道是自己习惯就好. 由于我刚开始从 Win 转向 Mac 的时候习惯用 Win 的那种方式, 于是就没有开启 *Scroll direction: natural*, 然后也一直沿用至今. 
+3. **Scroll 方向**: 这个道是自己习惯就好. 由于我刚开始从 Win 转向 Mac 的时候习惯用 Win 的那种方式, 于是就没有开启 *Scroll direction: natural*, 然后也一直沿用至今. 
 
-4. **其他手势** 其他手势有必要熟悉一下, 比如知道在 Win 环境下用 `win+d` 可以显示桌面, 相应的功能在 Mac 下如何做. 
+4. **其他手势**: 有必要熟悉一下, 比如知道在 Win 环境下用 `win+d` 可以显示桌面, 相应的功能在 Mac 下如何做. 
 
 ### 快捷键
 
@@ -53,7 +50,9 @@ ctrl + _: undo
 ctrl + r: bck-i-search/reverse-i-search, 输入关键字搜索历史命令
 ```
 
-上面的这些快捷键特别是在敲命令时还是很有用的(可能有的确实是在命令行中才生效), 特别是结合 zsh 自动补全等功能. 比较 DT 的是就是 `esc` 一起用的时候, 不能连续使用. 举个例子, terminal 中输入了 `git push origin source`, 光标在末尾, 这时按住`ctrl` 不放, 按一下 `w` 即向前删除一个单词. 而 `esc + d` 不能这样结合使用, `esc` 必须中途释放再按才能 work. 
+上面的这些快捷键特别是在敲命令时还是很有用的(可能有的确实是在命令行中才生效), 特别是结合 zsh 自动补全等功能. 比较 DT 的是就是 `esc` 一起用的时候, 不能连续使用. 举个例子, terminal 中输入了 `git push origin source`, 光标在末尾, 这时按住`ctrl` 不放, 按一下 `w` 即向前删除一个单词, 第一次按 `w` 删除 *source*, 再按 `w` 删除 *origin*. 而 `esc + d` 不能这样结合使用(如下 gif连续按就不 work), `esc` 必须中途释放再按才能 work. 
+
+![](/resources/app-in-mac/builtin-quick-key-git-push.gif)
 
 啥? 你说上面快捷键 `ctrl + w` 等不太好按? 按键特别别扭? 
 你需要做的就是将 `caps lock` 映射为 `ctrl`, `Keyboard -> Modifier Keys `修改, 目前我笔记本上的 `ctrl` 键无效. 不过, 一般情况下我用我的 HHKB, 这种映射方式正好符合 HHKB 的布局. (其实我是在买 HHKB 之前就修改的这个映射)
@@ -97,23 +96,24 @@ brew-cask 是 brew 的一个加强版, 可以安装一些桌面应用, 例如 ch
 ![iTerm2 hotkey](/resources/app-in-mac/iterm2-hotkey.png)
 
 3. 搜索
-	- `cmd + f`搜索输入关键字后, 匹配的会黄色高亮, 此时按 `tab` 或者 `shift + tab` 会自动向后/前以word 的方式选中高亮的, 并自动 copy 到剪切板
-	- 在所有的 tab 中全局搜索, 搜索出候选项后, 再选着你想要进入的 tab. 
+	- `cmd + f`搜索输入关键字后, 匹配的会黄色高亮, 此时按 `tab` 或者 `shift + tab` 会自动向后/前以word 的方式选中高亮的, 并自动 copy 到剪切板.
+	- `cmd + alt + e`, 在所有的 tab 中全局搜索, 搜索出候选项后, 再选着你想要进入的 tab. 
 	
 	![iTerm2 search](/resources/app-in-mac/iterm2-search-all.png)
 
 4. 其他
 	- 新版本的 iTerm2 还支持直接在控制台里 ls 图片文件(图片显示在控制台里).(如上图下半部分, 连 gif 都支持)
 	- 自动识别控制台里的内容, 如含有链接或者本地文件路径可以用 `cmd` 加点击的方式直接打开链接或者文件(如下图上半部分). 这个功能很重要呢, 比如在编译过程中, 出现了 warning 或者 error, 一般会打印出具体文件路径, 此时直接从控制台就能打开文件进行 fix 了. 
-![iTerm2 imgcat](/resources/app-in-mac/iterm2-imgcat.png)
-	- 自动补全, iTerm2 本身是支持自动补全的, 不过建议直接结合后面的zsh使用.
+	- 自动补全, iTerm2 本身是支持自动补全的(`cmd + ;`), 不过建议直接结合后面的zsh使用. `cmd + shift + h` 剪贴板历史(下图最后一行).
 	- 一些高级的功能目前可能处于测试版本, 你若用的稳定版是不支持的, 需要到官网下测试版. 还有更多的功能请到 iTerm2 官网探索吧. 
+
+![iTerm2 imgcat](/resources/app-in-mac/iterm2-imgcat-show-history.png)
 
 ## zsh
 
 这个墙裂推荐啊. 结合 [oh my zsh](http://ohmyz.sh/), 丰富的[插件资源](https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins-Overview). 
 
-语法高亮, 自动补全等特别好, 在此推荐的几个插件或功能
+语法高亮, 自动补全等特别好, 在此推荐的几个插件或功能.
 
 1. **git**: 当前目录若是在一个 git repo 下面的话, 会自动显示当前的分支信息等等. 然后可以自己搞一些 alias, 简写命令, 比如我常用的一些. 
 
@@ -158,6 +158,8 @@ lrwxr-xr-x  1 tanglei  admin  62  1 24  2016 /usr/local/bin/subl -> /Application
 
 介绍 Vim 的文章也很多了. 这里就不详细展开了. 分享下我用的部分插件. (最近被 IntelliJ IDEA 搞得恶心了, 准备尝试抛弃), 
 为了让多台电脑同步我的 vim 配置/插件等, 我直接放 github 了([ref vimconfigs](https://github.com/tl3shi/vimconfigs.git)), 不同电脑只需要再建一个软链到github 中的 vimrc 即可.
+
+![](/resources/app-in-mac/vim-autocomplete.png)
 
 - Vundle/Pathogen: 插件管理, 我用的Pathogen, 直接将下面 github repo clone 到 `~/.vim/bundle/` 目录下即可
 - NERDTree: 文件目录树[nerdtree github src](https://github.com/scrooloose/nerdtree.git)
