@@ -70,7 +70,9 @@ nickistre/centos-lamp-wordpress   latest              14331568cd2f        6 mont
 ```
 
 `docker run -d -p 1024:80 nickistre/centos-lamp-wordpress` 然后 `curl localhost:1024 ` check 一下能够 work. 
+
 ![qcloud-docker-lamp-wordpress](/resources/qcloud/docker-lamp-wordpress.png)
+
 事后才发现, 上面的那个环境果然仅仅是一个 wp-client, 并不是我想要的 wordpress, 不过另外再下一个 wordpress 源码包就可以了. 
 
 对, 目前这台主机上就跑了一个 wordpress, 博主不是我, 是自称北邮最美女博士, 站点是 [论如何get博士成就 -- 北邮不会码代码的博士生中最不会码代码的博士生的博士生活](http://www.dr-sun.cn/), 网址是 [dr-sun.cn](http://dr-sun.cn), 没错, 就是 孙博士, 欢迎大家关注. 
@@ -93,7 +95,6 @@ docker 其实, 我并不太会, 只是之前从白老板, 胖子那里学了两�
 对了, 腾讯提供的 CDN 服务也只支持给已经备案的域名使用. 
 
 先看一下 CDN 大概怎么配置和使用吧, 原理就是你添加一个域名的 CNAME, 指向腾讯的 host, 所以用户发起请求的时候实际是解析到腾讯的 CDN 服务器的, CDN 后台配置一个源站点, 如 `www.tanglei.name`, 用户请求到 CDN 服务器时, 如果没有命中, 就去源站点请求并将内容缓存至 CDN 服务器. 
-
 
 ![腾讯云 CDN 配置](/resources/qcloud/www.tanglei.me-cdn-config.png)
 
@@ -131,7 +132,6 @@ round-trip min/avg/max/stddev = 6.863/7.933/9.846/1.356 ms
 计划仍然通过 [travis-ci](http://travis-ci.org/), 直接 `git commit ` *.md* 文件后, CI 负责帮忙自动从 github 中 pull 代码进行 build 并部署到腾讯云, 进而更新站点. **travis-ci** 这个工具, 程序猿也应该了解下. 
 
 后续还可以做的就是全站 HTTPS 的支持, 虽然对于本 blog 来说并没有什么卵用, 然而我就想试试, 哈哈哈哈. 其实还是有用的, 比如有利于 SEO, 然后自己也可以练练手. 
-
 
 对了, Last but not the least,  如果你还是**在校学生**的话, 去腾讯云有惊喜哦~ 看到这个消息的并受益的同学别忘了回来分享, 并给我点赞. 
 
