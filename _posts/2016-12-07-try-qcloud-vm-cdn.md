@@ -125,6 +125,10 @@ round-trip min/avg/max/stddev = 6.863/7.933/9.846/1.356 ms
 
 ![腾讯云CDN 对比效果](/resources/qcloud/tanglei.name-vs-tanglei.me(cdn).png)
 
+接入 CDN 后台看到的差不多1天后的效果, 没骗你吧, 一天也就400~500 PV. 
+
+![腾讯云CDN 对比效果](/resources/qcloud/qcloud-cdn-status.png)
+
 ## TODO
 
 现在是两个域名生效, 下一步得做一个301跳转, 不然两个站内容一样, 在 SEO 肯定不友好, 还拉低两个站的权重. 貌似用 github 直接 host 还不太好做, 所以准备自己 host. 
