@@ -75,7 +75,7 @@ nickistre/centos-lamp-wordpress   latest              14331568cd2f        6 mont
 
 事后才发现, 上面的那个环境果然仅仅是一个 wp-client, 并不是我想要的 wordpress, 不过另外再下一个 wordpress 源码包就可以了. 
 
-对, 目前这台主机上就跑了一个 wordpress, 博主不是我, 是自称北邮最美女博士, 站点是 [论如何get博士成就 -- 北邮不会码代码的博士生中最不会码代码的博士生的博士生活](http://www.dr-sun.cn/), 网址是 [dr-sun.cn](http://dr-sun.cn), 没错, 就是 孙博士, 欢迎大家关注. 
+对, 目前这台主机上就跑了一个 wordpress, 博主不是我, 是自称北邮最美女博士, 站点是 [论如何get博士成就 -- 北邮不会码代码的博士生中最不会码代码的博士生的博士生活](http://www.dr-sun.cn/), 网址是 [dr-sun.cn](http://www.dr-sun.cn), 没错, 就是 孙博士, 欢迎大家关注. 
 
 其实, docker 官网就有相应的 [wordpress 镜像](https://hub.docker.com/_/wordpress/), 可以直接拉取, 或者直接从 [CentOS github](https://github.com/CentOS/CentOS-Dockerfiles/tree/master/wordpress/centos7)拉去也行. 
 
