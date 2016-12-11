@@ -27,5 +27,6 @@ after_success:
 - git push --force --quiet "https://tl3shi:$GITHUB_TOKEN@github.com/tl3shi/jekyll.tanglei.name.git"
   master:gh-pages
 - git log | head -n 4
+- cd ../ 
 - tar -czvf site.tar _site/*  
 - scp site.tar root@qcloud.tanglei.me:/tmp/
