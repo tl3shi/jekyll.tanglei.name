@@ -167,7 +167,7 @@ p.s 如果你觉得这文章对你有那么一点点收获, 请不要犹豫扫�
 ![tanglei 微信号](/resources/wechat-tangleithu.jpg)
 
 <script type="text/javascript"
- src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+ src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
  </script>
 
 <script type="text/javascript">
