@@ -35,7 +35,7 @@ double sqrt(int v, double t)
 要求: 
 
 0. 不能调用系统库函数, 诸如 `Math.sqrt(v)` 之类的;
-1. 假设计算出的结果为 `r`, 要求满足如下条件 $|r - \sqrt v| \leq t $, 其中, $\sqrt v$ 是真实的值, `t` 为给定的一个误差, 例如`0.1`等. 千万别被这个不等式吓住, 其实就是希望你计算出的答案 `r` 要在给定的误差范围内. 举个例子, 我调用你的接口 `sqrt(9, 0.21)` 返回值属于 `[2.79, 3.21]` 这个区间的任意一个都满足条件. 因为 $\sqrt 9 = 3$,  对于任意的 $r \in [2.79, 3.21]$, 都满足 $|r - 3| \leq 0.21$. 
+1. 假设计算出的结果为 `r`, 要求满足如下条件 $|r - \sqrt v| \leq t$, 其中, $\sqrt v$ 是真实的值, `t` 为给定的一个误差, 例如`0.1`等. 千万别被这个不等式吓住, 其实就是希望你计算出的答案 `r` 要在给定的误差范围内. 举个例子, 我调用你的接口 `sqrt(9, 0.21)` 返回值属于 `[2.79, 3.21]` 这个区间的任意一个都满足条件. 因为 $\sqrt 9 = 3$,  对于任意的 $r \in [2.79, 3.21]$, 都满足 $|r - 3| \leq 0.21$. 
 2. 实现语言不限, 你条件可以比上述**更加苛刻, 但不能宽松**. 
 
 看到这里, 其实你可以 <font color="red">拿出笔和纸, 尝试解答一下</font>, 强调一下, 一定要注意**给定的误差条件**, 欢迎沟通交流. 其实, 这个题目就是 leetcode 上的一个原题 [sqrtx](https://leetcode.com/problems/sqrtx/) 稍加变化得到. 
@@ -198,14 +198,4 @@ p.s 如果你觉得这文章对你有那么一点点收获, 请不要犹豫扫�
 
 <script type="text/javascript"
  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
- </script>
-
-<script type="text/javascript">
-MathJax.Hub.Config({
-  tex2jax: {
-    inlineMath: [['$','$'], ['\\(','\\)']],
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-    processEscapes: true
-  }
-});
  </script>
