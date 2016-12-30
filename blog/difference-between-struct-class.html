@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+  <head>
+    <title>struct与class区别联系</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="keywords" content="struct与class区别联系, 学到老, C++,OOP,, 唐磊, 中南大学, 清华大学, 软件工程师, 计算机, 全栈工程师" />
+    <meta name="description" content="struct与class区别联系, 学到老, C++,OOP, 注意C中的struct和C++中的struct是不一样的，c中的struct比较原生，仅仅是将一些属性封装起来构成一个整体，没有OO的相关特性。而c++中的struct是对c中的struct进行扩展(兼容c中的struct)，具备OO的特性，其实c++中的class能干的事情struct几乎都能干,  什么继承、..." />
+
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+
+  <!--Font awesome-->
+  <link href="/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- The pithy main css -->
+  <link rel="stylesheet" href="/assets/stylesheet/pithy.css">
+  <link rel="stylesheet" href="/assets/stylesheet/molokai.css">
+
+
+  <!--[if lt IE 9]>
+  <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv-printshiv.js"></script>
+  <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+  <![endif]-->
+  <link rel="alternate" type="application/rss+xml" title="tanglei's blog|唐磊的个人博客" href="https://www.tanglei.name/feed.xml" />
+</head>
+
+<body>
+  <nav class="navbar navbar-pithy" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+                data-target="#pithy-navbar" aria-expanded="false">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" rel="bookmark" href="/">TangLei</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="pithy-navbar">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="bookmark" href="/">首页</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/archives.html">Archives</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/about/">关于</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+  <div class="container page-content">
+    <div>
+    <div class="col-md-9 col-content">
+        <div id="post-content" class="panel panel-pithy post">
+            <div class="panel-heading">
+                <div class="title">
+                  <i class="fa fa-bookmark-o"></i>struct与class区别联系
+                </div>
+                <ul class="info">
+                    <li>
+                      作者 <span class="author"> 
+        
+            tanglei
+        
+        </span>
+                    </li>
+                    <li>
+                      最后编辑 2014年05月28日
+                    </li>
+                    <li>
+                      Tags
+                     
+                         <a class="tag" href="/tag/#C++">C++</a>
+                     
+                         <a class="tag" href="/tag/#OOP">OOP</a>
+                     
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body content">
+                <p>注意C中的struct和C++中的struct是不一样的，c中的struct比较原生，仅仅是将一些属性封装起来构成一个整体，没有OO的相关特性。而c++中的struct是对c中的struct进行扩展(兼容c中的struct)，<strong>具备OO的特性</strong>，
+其实<strong>c++中的class能干的事情struct几乎都能干</strong>,  什么继承、多态等都OK。直接看下面代码，不同编译器对结果可能不一样：</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="cp">#include &lt;stdio.h&gt;
+</span><span class="k">struct</span> <span class="n">A</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">a</span><span class="p">;</span>
+    <span class="c1">//D:\github\cpp_hello_world&gt;gcc -x c structtest.cpp
+</span>    <span class="c1">//structtest.cpp:7:5: error: expected ‘:’, ‘,’, ‘;’, ‘}’ or ‘__at
+</span>    <span class="c1">// _’ before ‘{’ token
+</span>    <span class="kt">void</span> <span class="nf">print</span><span class="p">()</span> <span class="c1">// pure c, this is not allowd
+</span>    <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"a printf %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">a</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+ 
+<span class="k">struct</span> <span class="n">B</span> <span class="o">:</span> <span class="n">A</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">b</span><span class="p">;</span>
+    <span class="n">B</span><span class="p">(</span><span class="kt">int</span> <span class="n">bb</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">bb</span><span class="p">;</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">B</span><span class="p">(){</span><span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;}</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">C</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>  <span class="c1">// if there's no pubic, cannot use this way:  C c = {11};
+</span>    <span class="kt">int</span> <span class="n">c</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">d</span><span class="p">;</span>
+    <span class="kt">void</span> <span class="nf">func</span><span class="p">()</span> <span class="c1">//normal function(no construct/inherit .etc OO properties), you can also use this way:   C c = {11};
+</span>    <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"%d, %c</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="c1">//C(){}
+</span><span class="p">};</span>
+
+
+<span class="k">struct</span> <span class="n">D</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">c</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">d</span><span class="p">;</span>
+    <span class="n">D</span><span class="p">()</span> <span class="c1">// if there's no Construct or some other OO properties(like inherit), you can use this way:  D d = {1,'y'}
+</span>    <span class="p">{</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="sc">'x'</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="n">E</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">c</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">d</span><span class="p">;</span>
+    <span class="kt">void</span> <span class="nf">func</span><span class="p">()</span> <span class="c1">//normal function, you can also use this way:   E e = {2,'z'};  
+</span>    <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"%d, %c</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+
+<span class="k">struct</span> <span class="n">AA</span>
+<span class="p">{</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="kt">int</span> <span class="n">a</span><span class="p">;</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">int</span> <span class="n">b</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="k">class</span> <span class="nc">BClass</span><span class="o">:</span> <span class="n">AA</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">void</span> <span class="n">fun</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+<span class="k">struct</span> <span class="n">BStruct</span><span class="o">:</span> <span class="n">AA</span>
+<span class="p">{</span>
+    <span class="kt">void</span> <span class="n">func</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+
+<span class="k">struct</span> <span class="n">Base</span>
+<span class="p">{</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">fun</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Base</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+<span class="k">struct</span> <span class="n">Child</span><span class="o">:</span> <span class="n">Base</span>
+<span class="p">{</span>
+    <span class="kt">void</span> <span class="n">fun</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Child</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">B</span> <span class="n">b</span><span class="p">,</span> <span class="n">b1</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%d, %d </span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">b</span><span class="p">.</span><span class="n">b</span><span class="p">,</span> <span class="n">b</span><span class="p">.</span><span class="n">a</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%d, %d </span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">b1</span><span class="p">.</span><span class="n">b</span><span class="p">,</span> <span class="n">b1</span><span class="p">.</span><span class="n">a</span><span class="p">);</span>
+    <span class="n">A</span> <span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="mi">10</span><span class="p">};</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">a</span><span class="p">);</span>
+    <span class="n">C</span> <span class="n">c</span> <span class="o">=</span> <span class="p">{</span><span class="mi">11</span><span class="p">,</span> <span class="sc">'a'</span><span class="p">};</span>
+    <span class="n">C</span> <span class="n">c1</span> <span class="o">=</span> <span class="p">{</span><span class="sc">'d'</span><span class="p">};</span> <span class="c1">//convert to int 
+</span>    <span class="n">C</span> <span class="n">c2</span> <span class="o">=</span> <span class="p">{};</span> <span class="c1">//init with default
+</span>    <span class="n">C</span> <span class="n">c3</span><span class="p">;</span> 
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%d, %c</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">c</span><span class="p">.</span><span class="n">c</span><span class="p">,</span> <span class="n">c</span><span class="p">.</span><span class="n">d</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%d, %c, %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">c1</span><span class="p">.</span><span class="n">c</span><span class="p">,</span> <span class="n">c1</span><span class="p">.</span><span class="n">d</span><span class="p">,</span> <span class="n">c1</span><span class="p">.</span><span class="n">d</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%d, %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">c2</span><span class="p">.</span><span class="n">c</span><span class="p">,</span> <span class="n">c2</span><span class="p">.</span><span class="n">d</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%d, %c</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">c3</span><span class="p">.</span><span class="n">c</span><span class="p">,</span> <span class="n">c3</span><span class="p">.</span><span class="n">d</span><span class="p">);</span><span class="c1">//uninit, vs2012 will show Run-Time Check Failure #3 window, 
+</span>    <span class="n">c3</span><span class="p">.</span><span class="n">func</span><span class="p">();</span><span class="c1">//uninit, but this way will pass the "Run-Time Check" in vs2012
+</span>    <span class="c1">//D d = {1,'y'}; //error: in C++98 ‘d’ must be initialized by constructo not by ‘{...}’
+</span>    <span class="c1">//printf("%d, %c\n", d.c, d.d);
+</span>
+    <span class="n">E</span> <span class="n">e</span> <span class="o">=</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="sc">'z'</span><span class="p">};</span>  
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%d, %c</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">c</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">d</span><span class="p">);</span>
+    <span class="n">e</span><span class="p">.</span><span class="n">func</span><span class="p">();</span>
+
+
+    <span class="n">BClass</span> <span class="n">bclass</span><span class="p">;</span>
+    <span class="n">BStruct</span> <span class="n">bstruct</span><span class="p">;</span>
+    <span class="n">bclass</span><span class="p">.</span><span class="n">fun</span><span class="p">();</span>
+    <span class="n">bstruct</span><span class="p">.</span><span class="n">func</span><span class="p">();</span>
+    <span class="c1">//printf("%d", bclass.b); // “AA::b”不可访问，因为“BClass”使用“private”从“AA”继承
+</span>    <span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">bstruct</span><span class="p">.</span><span class="n">b</span><span class="p">);</span> <span class="c1">//OK
+</span>
+    <span class="n">Base</span> <span class="n">base</span><span class="p">;</span>
+    <span class="n">Child</span> <span class="n">child</span><span class="p">;</span>
+    <span class="n">base</span><span class="p">.</span><span class="n">fun</span><span class="p">();</span>
+    <span class="n">child</span><span class="p">.</span><span class="n">fun</span><span class="p">();</span>
+    <span class="n">Base</span><span class="o">*</span> <span class="n">base2</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">child</span><span class="p">;</span>
+    <span class="n">base2</span><span class="o">-&gt;</span><span class="n">fun</span><span class="p">();</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>VisualStudio 2012默认debug和release结果：</p>
+
+<p><a href="/wp-content/uploads/2014/05/Image84.png"><img title="Image(8)[4]" src="/wp-content/uploads/2014/05/Image84_thumb.png" alt="Image(8)[4]" /></a><a href="/wp-content/uploads/2014/05/73028934dad360862f6ed22a22a35c24.png"><img title="73028934dad360862f6ed22a22a35c24" src="/wp-content/uploads/2014/05/73028934dad360862f6ed22a22a35c24_thumb.png" alt="73028934dad360862f6ed22a22a35c24" /></a></p>
+
+<p>G++ 4.5.3, 默认和O2(g++ -O2 structtest.cpp)结果：</p>
+
+<p><a href="/wp-content/uploads/2014/05/600b675239e56d6d70ac255f68e353f5.png"><img title="600b675239e56d6d70ac255f68e353f5" src="/wp-content/uploads/2014/05/600b675239e56d6d70ac255f68e353f5_thumb.png" alt="600b675239e56d6d70ac255f68e353f5" /></a><a href="/wp-content/uploads/2014/05/44e877ad37f3a2a6f5a77577dfb4adc5.png"><img title="44e877ad37f3a2a6f5a77577dfb4adc5" src="/wp-content/uploads/2014/05/44e877ad37f3a2a6f5a77577dfb4adc5_thumb.png" alt="44e877ad37f3a2a6f5a77577dfb4adc5" /></a></p>
+
+<p>mac下的g++(Apple LLVM version 5.1 (clang-503.0.40) (based on LLVM 3.4svn))无优化和O2结果</p>
+
+<p><a href="/wp-content/uploads/2014/05/struct-and-class.png"><img src="/wp-content/uploads/2014/05/struct-and-class.png" alt="" title="struct-and-class" class="aligncenter size-full wp-image-2430" /></a></p>
+
+<p>不同编译器结果不一样主要是体现在printf函数实现(有空再研究下)下以及C c3的未初始化（注意c2和c3的区别）～ 这也告诉我们一定要注意初始化啊～未初始化的值是未定义的，啥结果可能都有。</p>
+
+<p>可以看出：</p>
+
+<p>区别关键就是访问控制，struct默认是public，class默认是private。包括struct下定义的属性/成员访问控制（默认public），继承方式默认public。几个注意的地方，struct还能继承class，class也能继承struct，一定条件下class也能像struct用{…}初始化构造.当struct/class带有OO特性时，如继承、构造函数、虚函数时，除了默认的访问控制符外，struct跟class行为完全一样。例子中的通过{…}提供参数化列表构造一个实例,<strong>class也能通过这样的方式构造</strong>。当有继承、构造函数等OO特性定义(非成员函数)时，即便是struct也不能通过{…}初始化构造.</p>
+
+<p>另外，class在c++中还能在模版定义中，类似(typename)，而struct不行。</p>
+
+<p>以上算是struct和class的区别和联系吧。核心思想是记住c++中的struct也能用于OOP,与class的默认访问控制权限不一样。</p>
+
+<ul>
+  <li>Reference : <a href="http://blog.sina.com.cn/s/blog_48f587a80100k630.html">http://blog.sina.com.cn/s/blog_48f587a80100k630.html</a></li>
+  <li>C# struct和class区别: <a href="http://www.cnblogs.com/gsk99/archive/2011/05/20/1904552.html">http://www.cnblogs.com/gsk99/archive/2011/05/20/1904552.html</a></li>
+</ul>
+
+            </div>
+            <div class="post-nav">
+    
+    <a class="prev" href=/blog/marketing-method-of-niubility-with-cheating.html>&laquo; &nbsp;牛X的网络营销(Pian Zi)手段</a>
+    
+    
+    <a class="next" href=/blog/avoid-save-as-when-access-favicon-ico.html>访问favicon.ico总提示下载保存&nbsp;&raquo;</a>
+    
+</div>
+
+            
+        </div>
+        <!--
+            if config set comment enable,include comment
+        -->
+        
+            <!-- comment -->
+<div id="post-comment" class="panel panel-default">
+    <div class="panel-body">
+        
+
+        
+            <div id="disqus_thread"></div>
+        
+    </div>
+</div>
+
+        
+    </div>
+    <div class="col-md-3 col-sidebar">
+        <div class="panel panel-pithy author">
+    <div class="panel-heading avastar">
+        <img src="/tx.jpg" alt="tanglei"/>
+    </div>
+    <div class="panel-body">
+        码农 @ 宜信大数据创新中心, 毕业于CSU && THU,  曾工作于<a href='http://www.tencent.com/zh-cn/index.shtml' target='_blank'>腾讯</a> && <a href='http://www.umeng.com/' target='_blank'>友盟</a>.  &nbsp; <a href='/about/'> MORE </a>
+    </div>
+    <div class="panel-footer social">
+        <ul>
+            
+            <li>
+                <a rel="nofollow" href="http://www.weibo.com/tangleithu/" target="_blank"><i class="fa fa-weibo"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://github.com/tl3shi" target="_blank"><i class="fa fa-github"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://www.facebook.com/tanglei.name" target="_blank"><i class="fa fa-facebook"></i></a>
+            </li>
+            
+            <li>
+                <a href="https://www.tanglei.name/feed.xml" target="_blank"><i class="fa fa-rss"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar:category list -->
+<div class="panel panel-default categories">
+    <div class="panel-heading title">
+        分类列表
+    </div>
+    <div class="panel-body list">
+        <ul>
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/贵州支教行/">
+                  贵州支教行&nbsp;<span class="count">[12]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/课程学习/">
+                  课程学习&nbsp;<span class="count">[88]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/MyLife/">
+                  MyLife&nbsp;<span class="count">[45]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/经验技巧/">
+                  经验技巧&nbsp;<span class="count">[93]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/社会工作/">
+                  社会工作&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/网络文摘/">
+                  网络文摘&nbsp;<span class="count">[28]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件体系结构/">
+                  软件体系结构&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/旅游/">
+                  旅游&nbsp;<span class="count">[23]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软考/">
+                  软考&nbsp;<span class="count">[2]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件度量及其应用/">
+                  软件度量及其应用&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/工作那些事儿/">
+                  工作那些事儿&nbsp;<span class="count">[42]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我做站长/">
+                  我做站长&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/coding小工具/">
+                  coding小工具&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/除臭虫/">
+                  除臭虫&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/学到老/">
+                  学到老&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我不会算法/">
+                  我不会算法&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/数据挖掘/">
+                  数据挖掘&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/计算机图形学/">
+                  计算机图形学&nbsp;<span class="count">[5]</span>
+              </a>
+          </li>
+
+          
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar: tag list -->
+<div class="panel panel-default tags">
+    <div class="panel-heading title">
+        标签云
+    </div>
+    <div class="panel-body list">
+         
+        <input type="hidden" id="tag-values" value='{"name":"丰田助学","count":16},{"name":"贵州支教","count":12},{"name":"铜厂小学","count":9},{"name":"中南大学","count":12},{"name":"云南赶集","count":1},{"name":"HelloWorld","count":5},{"name":"我做站长","count":35},{"name":"设计模式","count":7},{"name":"Wordpress","count":18},{"name":"系统架构师","count":11},{"name":"软考","count":25},{"name":"论文","count":6},{"name":"软件0804","count":8},{"name":"Java","count":24},{"name":"J2EE","count":3},{"name":"JAVA","count":1},{"name":"考试","count":25},{"name":"SEO","count":3},{"name":"软件体系结构","count":6},{"name":"Android","count":28},{"name":"软件工程","count":2},{"name":"Windows","count":17},{"name":"软件测试","count":1},{"name":"总结","count":13},{"name":"Oracle","count":4},{"name":"存储过程","count":3},{"name":"数据库应用","count":3},{"name":"数据库","count":8},{"name":"先进班集体","count":1},{"name":"Linux","count":15},{"name":"Ubuntu","count":8},{"name":"Defy","count":3},{"name":"传感器","count":1},{"name":"访日交流","count":8},{"name":"旅游","count":22},{"name":"软件学院","count":11},{"name":"大学生科协","count":4},{"name":"玩遍中国","count":11},{"name":"计算机网络","count":5},{"name":"Eclipse","count":4},{"name":"软件度量","count":11},{"name":"软件设计师","count":4},{"name":"编译原理","count":2},{"name":"程序语言","count":2},{"name":"操作系统","count":3},{"name":"多媒体","count":2},{"name":"网络安全","count":9},{"name":"TCP/IP","count":2},{"name":"编程语言","count":1},{"name":"考点","count":1},{"name":"Google","count":5},{"name":"软件结构度量","count":1},{"name":"CMM","count":6},{"name":"项目管理","count":3},{"name":"实习","count":33},{"name":"面试","count":18},{"name":"网络营销","count":1},{"name":"百度","count":4},{"name":"笔试","count":2},{"name":"腾讯","count":31},{"name":"编程比赛","count":4},{"name":"科研","count":4},{"name":"电子商务","count":11},{"name":"虚拟主机","count":2},{"name":"网路安全","count":1},{"name":"Foxmail","count":3},{"name":"微软","count":1},{"name":"软件能力成熟度模型","count":2},{"name":"软件过程改进","count":3},{"name":"SCM复习资料","count":1},{"name":"软件配置管理","count":12},{"name":"SCM","count":6},{"name":"工具","count":19},{"name":"反模式","count":1},{"name":"玩玩手机","count":5},{"name":"程序员","count":4},{"name":"健康","count":1},{"name":"共享上网","count":2},{"name":"Bug","count":4},{"name":"coding小工具","count":1},{"name":"工作日志","count":19},{"name":"Apache","count":2},{"name":"PHP","count":13},{"name":"实习日志","count":1},{"name":"工作实习生","count":1},{"name":"Mysql","count":1},{"name":"Shell","count":3},{"name":"腾讯实习日志","count":1},{"name":"hosts","count":2},{"name":"Vim","count":3},{"name":"正则表达式","count":2},{"name":"搜索引擎","count":1},{"name":"跨域","count":1},{"name":"前端","count":2},{"name":"保研","count":15},{"name":"算法","count":9},{"name":"清华大学","count":12},{"name":"丰田助学金","count":3},{"name":"WiFi","count":1},{"name":"实习生","count":1},{"name":"wifi自动关闭","count":1},{"name":"腾讯实习","count":1},{"name":"经验技巧","count":13},{"name":"DDOS","count":2},{"name":"AOP","count":3},{"name":"租房","count":2},{"name":"Sqlite","count":2},{"name":"Python","count":11},{"name":"OOP","count":5},{"name":"数据挖掘","count":8},{"name":"GitHub","count":2},{"name":"SVM","count":3},{"name":"R语言","count":2},{"name":"足迹","count":2},{"name":"笛子","count":2},{"name":"计算机图形学","count":5},{"name":"OpenGL","count":3},{"name":"回忆录","count":1},{"name":"年终总结","count":1},{"name":"域名","count":1},{"name":"计算几何","count":2},{"name":"敲敲代码","count":9},{"name":"Latex","count":3},{"name":"C++","count":10},{"name":"Mac","count":7},{"name":"飞行模式","count":2},{"name":"性能优化","count":2},{"name":"Javascript","count":1},{"name":"工作","count":1},{"name":"玩遍世界","count":1},{"name":"Scala","count":2},{"name":"MyLife","count":1},{"name":"快捷键","count":1},{"name":"云服务","count":1},{"name":"Blog","count":1},{"name":"微信公众号","count":1}'/>
+        <div style="display: none"><a id="tag-value" class="taglink" rel="bookmark" href="/tag/#" data-target-cate="#"></a></div>
+        <div class="tag-values-container">
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+  </div>
+
+  <footer>
+  <div class="text-center">
+    © 2010-2016 All rights reserved.
+    Made with <a href="http://jekyllrb.com/" rel="nofollow" target="_blank">Jekyll</a>
+    & Modified by <a href="http://www.tanglei.name/about/" >Tanglei</a>
+    and <i class="fa fa-heart"></i> by <a rel="nofollow" href="https://github.com/guovz/jekyll-pithy" target="_blank">Pithy</a>
+  </div>
+  <div class="totop" data-toggle="totop">
+      <i class="fa fa-chevron-up"></i>
+  </div>
+</footer>
+
+
+  <!--the js include-->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="/assets/script/pithy.js"></script>
+
+<!--
+  the site comment script
+-->
+
+
+  <script>
+    
+    var disqus_config = function () {
+        this.page.url = 'https://www.tanglei.name/blog/difference-between-struct-class.html' ; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '/blog/difference-between-struct-class.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+        if($("#disqus_thread").length) {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://hexo-tanglei.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+    powered by Disqus.</a></noscript>
+
+
+
+<!--
+  the site analysis script
+-->
+
+  <!-- baidu analysis -->
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?f0117177475f54027bfcaceb8d668cee";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+  <head>
+    <title>Mac 软件推荐续(!程序猿篇)</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="keywords" content="Mac 软件推荐续(!程序猿篇), 经验技巧, 经验技巧,工具,Mac,, 唐磊, 中南大学, 清华大学, 软件工程师, 计算机, 全栈工程师" />
+    <meta name="description" content="Mac 软件推荐续(!程序猿篇), 经验技巧, 经验技巧,工具,Mac, 注意题目, “程序猿篇”前面有逻辑运算符“!”, 其实不太恰当, 这篇不是说程序猿不能用, 也不是只针对程序猿的, 总之就是针对普通大众啦~ Alfred, RescueTime, Moom, Karabiner, Manico, MacDown, Near Lock, iStat Menus, Parallel..." />
+
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+
+  <!--Font awesome-->
+  <link href="/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- The pithy main css -->
+  <link rel="stylesheet" href="/assets/stylesheet/pithy.css">
+  <link rel="stylesheet" href="/assets/stylesheet/molokai.css">
+
+
+  <!--[if lt IE 9]>
+  <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv-printshiv.js"></script>
+  <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+  <![endif]-->
+  <link rel="alternate" type="application/rss+xml" title="tanglei's blog|唐磊的个人博客" href="https://www.tanglei.name/feed.xml" />
+</head>
+
+<body>
+  <nav class="navbar navbar-pithy" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+                data-target="#pithy-navbar" aria-expanded="false">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" rel="bookmark" href="/">TangLei</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="pithy-navbar">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="bookmark" href="/">首页</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/archives.html">Archives</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/about/">关于</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+  <div class="container page-content">
+    <div>
+    <div class="col-md-9 col-content">
+        <div id="post-content" class="panel panel-pithy post">
+            <div class="panel-heading">
+                <div class="title">
+                  <i class="fa fa-bookmark-o"></i>Mac 软件推荐续(!程序猿篇)
+                </div>
+                <ul class="info">
+                    <li>
+                      作者 <span class="author"> 
+        
+            tanglei 
+        
+        </span>
+                    </li>
+                    <li>
+                      最后编辑 2016年11月23日
+                    </li>
+                    <li>
+                      Tags
+                     
+                         <a class="tag" href="/tag/#经验技巧">经验技巧</a>
+                     
+                         <a class="tag" href="/tag/#工具">工具</a>
+                     
+                         <a class="tag" href="/tag/#Mac">Mac</a>
+                     
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body content">
+                <p>注意题目, “程序猿篇”前面有逻辑运算符“!”, 其实不太恰当, 这篇不是说程序猿不能用, 也不是只针对程序猿的, 总之就是针对普通大众啦~ Alfred, RescueTime, Moom, Karabiner, Manico, MacDown, Near Lock, iStat Menus, Parallels Desktop, Squirrel 你听说过几个? 
+(<strong>update</strong>: 被这个题目给蠢哭了, 非程序员并不能看懂前面的“!”, 以为是给程序猿写的, 就不会继续看了, 程序猿看懂了“!”, 认为针对非程序猿的, 也就不会继续往下看了!!)</p>
+
+<h2 id="alfred-v2">Alfred v2</h2>
+<p>在<a href="http://www.tanglei.name/blog/app-in-mac-preface.html">前面一篇文章</a>中, 其实也已经推荐了这个神器了, 这里再强调并补充一个大家可能会用到的workflow, 即印象笔记(evernote): 可以快速搜索印象笔记/evernote 中保存的内容.</p>
+
+<p>这个得首先去 <a href="https://app.yinxiang.com/api/DeveloperToken.action">印象笔记官网</a> 生成一个 token, 然后安装 <a href="https://github.com/tl3shi/alfred-evernote">alfred-evernote</a> 并配置好(es-token 你自己的generated-token) token, 成功后即可使用. 查询支持不同的语法格式, 详情可以看 <a href="https://dev.evernote.com/doc/articles/search_grammar.php">evernote 查询语法</a>.</p>
+
+<p><img src="/resources/app-in-mac/alfred-es-search.png" alt="alfred-workflow-for-evernote" /></p>
+
+<p>如上图所示, 搜索某关键字后直接回车则是默认在应用程序中打开, 按住 cmd 后会从浏览器中打开该笔记. 由于最开始开发的作者是国际版 evernote, 中国版补丁的作者也忘记改这个链接了, 所以在浏览器中打开的跳转链接不对, 直接下载我修改后 workflow 是 OK 的, 请从<a href="https://github.com/tl3shi/alfred-evernote">github</a> 下载, 其实就是修改一下其中的 <code class="highlighter-rouge">app.js</code>中的 <code class="highlighter-rouge">get-link</code>方法(将 <code class="highlighter-rouge">https://www.evernote.com</code> 替换成 <code class="highlighter-rouge">https://app.yinxiang.com</code> ).</p>
+
+<hr />
+
+<h2 id="rescuetime">RescueTime</h2>
+<p>时间管理</p>
+
+<p>这个软件可以悄无声息的帮你记录你使用电脑的情况, 包括对各种软件用时统计, 分类统计, 并且还支持多种平台(win/mac/ubuntu/android/等), 可以定期出报告, 比如每周邮件出周报, 汇报你当周的使用情况.</p>
+
+<p>来个例子, 如下图所示为我某一周的周报:</p>
+
+<p><img src="/resources/app-in-mac/rescuetime-email.png" alt="rescuetime weekly report" /></p>
+
+<p>周报显示该周我用了电脑近47个小时, 综合生产力评分79%. 这个生产力评分是根据你使用不同软件的不同时间加权计算出来的. 一些通用的软件, RescueTime 能够自动识别, 比如可能用iTerm2 或者 VisualStudio 等软件会归属于<em>Software Development</em>大类, 属于 <code class="highlighter-rouge">very productive</code> 级别, 使用 wechat 或者 QQ, 就被判断为 <code class="highlighter-rouge">distracting</code>, 当然你可以自定义设置, 一些软件本身没有能识别出来的, 也需要你手动去设置级别. 具体浏览网页的数据需要安装相应的Chrome 插件.</p>
+
+<p><img src="/resources/app-in-mac/rescuetime-detail.png" alt="rescuetime detail report" /></p>
+
+<p>网页版本的可以看到更加详细的记录. 你还可以设置一些目标, 比如当天需要使用<em>productive</em>的软件3小时以上, RescueTime可以汇报你完成目标的情况.</p>
+
+<p><img src="/resources/app-in-mac/rescuetime.png" alt="rescuetime report" /></p>
+
+<p>免费版本的也足够用了, 付费版本的可以看到更长时间段的或更详细的年报等数据. 
+或许这个软件能够帮助你更好的管理时间, 或者它仅仅是不辞辛劳帮你记录下你使用电脑/手机情况也是极好的. 所以墙裂推荐大家用这款软件.</p>
+
+<hr />
+
+<h2 id="moom">Moom</h2>
+<p>窗口管理</p>
+
+<p><img src="/resources/app-in-mac/moom.png" alt="moom" /></p>
+
+<p>利用这个软件可以很方便快捷的对应用程序窗口进行管理, 能够让多个窗口整齐的摆放在桌面上. 设置好快捷键后, 激活然后加方向键可以让当前应用程序准确定位到并充满桌面的1/2, 1/4等, 或者移动到另外一个屏幕(程序员多屏用得较广泛). 当然还可以自己设置比如充满整个屏幕的3/4, 等等. 直接用键盘快捷键即可完成的功能, 就不需要再移动手去用鼠标/trackpad去最大/小化改变窗口大小等等了.</p>
+
+<hr />
+
+<h2 id="karabiner">Karabiner</h2>
+<p>键盘映射</p>
+
+<p>我第一次使用时, 是因为我使用了外接键盘(如下图), 我把外接键盘放到内置笔记本键盘上, 就需要禁用掉内置键盘, 每次去手动调整当然很麻烦. 于是就找到这个软件帮助我.</p>
+
+<p><img src="http://www.tanglei.name/resources/buy-in-hhkb-pro2-type-s/hhkb-pro2-mini-usb-connector.jpg" alt="hhkp pro2 type-s" /></p>
+
+<p>它可以帮助我自动切换外界键盘和内置笔记本键盘(插拔USB外接键盘自动切换), 除此之外, 它还支持很多功能. 
+举例而言因为我用的 HHKB 是没有单独方向键, 用内置的组合方向键又特别别扭, 就可以利用它帮助映射. 比如我选择启用了 <em>Vi Mode</em> , 用 <strong>s + h/l/j/k</strong>, 或者 再启用 <em>Emacs Mode</em>, 用 <strong>ctrl + p/n/b/f</strong>代表方向键. (其实 Mac 很多快捷键都跟 Emacs 中的快捷键一致的, 准备再下一篇文章中再详细介绍常用快捷键及推荐适用于开发者的应用)</p>
+
+<hr />
+
+<h2 id="manico">Manico</h2>
+<p>快速切换应用程序</p>
+
+<p>长按 <code class="highlighter-rouge">alt</code> 键盘可弹出切换菜单, + 具体的数字或者字母即可快速切换, 不需要再连续按键 <code class="highlighter-rouge">cmd+tab</code> 或者 <code class="highlighter-rouge">cmd+shift+tab</code> 来回切换了.</p>
+
+<p><img src="/resources/app-in-mac/manico1.png" alt="Manico" /></p>
+
+<hr />
+
+<h2 id="macdown">MacDown</h2>
+<p>文档编辑</p>
+
+<p>Markdown 文本编辑器, 支持 WYSIWYG(What You See Is What You Get, 所见即所得) 类似 Mou, MacDown 直接支持类似 latex 语法, 
+例如可以方便地输入数学公式用 <code class="highlighter-rouge">$$2^x + log_2y^{2+z}$$</code>, 
+因其对此类数学公式和代码高亮等支持得更好更方便, 因此我选用了 MacDown.</p>
+
+<p><img src="/resources/app-in-mac/macdown.png" alt="macdown" /></p>
+
+<p>如果你还不知道什么是 Markdown, 可以花时间学一些, 用熟悉了, 估计你都不太想再用 Office Word 了.</p>
+
+<hr />
+
+<h2 id="cheetsheet">cheetsheet</h2>
+<p>快捷键提示</p>
+
+<p>只需要长按 <em>cmd</em>, 可弹出当前 active 的软件的快捷键.</p>
+
+<p><img src="/resources/app-in-mac/cheetsheet.png" alt="cheetsheet" /></p>
+
+<hr />
+
+<h2 id="near-lock">Near Lock</h2>
+<p>装13神器</p>
+
+<p><a href="http://www.nearlock.me/">NearLock</a> 这款软件是 Mac + iPhone 结合使用, 利用蓝牙进行距离感应, 能够对 Mac 电脑进行自动锁屏/开锁.</p>
+
+<p><img src="/resources/app-in-mac/nearlock-small.png" alt="Near Lock" />
+上图我将手机和Mac的软件截图放在一块了, 内外两层分别是Mac和手机上的截图, 从中能够看到手机与Mac之间的距离, 当前解锁/锁屏状态, 可以设置锁屏/解锁的距离阈值或者修改锁定设置为休眠或屏保.</p>
+
+<p>想象一下, 正对着电脑 working 呢, 突然来电话了, 以前可能需要手动锁屏然后拿手机到外面(方便接电话的地方)接电话, (不锁屏, 让同事发现你看了不该看的东西就不好了! :) 阴险脸 ), 接完电话回来后, 再手动输入密码登入电脑.</p>
+
+<p>而自从有了这个软件, 拿着电话直接离开便是, 软件自动帮你锁屏, 回来的时候, 刚坐到电脑屏幕前, 便看见软件自动帮你输入密码登入系统(目睹这个过程相当爽啊). 节约时间不说, 这看起来多高大上啊. 所以这款软件可是装 X 的神器啊.</p>
+
+<p>(有兴趣的同学可以开发下支持Win/Android的)</p>
+
+<hr />
+
+<h2 id="istat-menus">iStat Menus</h2>
+<p>资源状态</p>
+
+<p><img src="/resources/app-in-mac/istat-menu.png" alt="iStat Menus" /></p>
+
+<p>状态栏上显示当前电脑的运行状况, CPU/内存/网络IO等等, 比如发现电脑突然变慢了, 发现 CPU 暴涨, 可以方便地抓出是哪个应用程序. 别看到CPU利用率都占满小方框了, 听到电脑风扇“呼呼”响了, 还一直操作电脑.</p>
+
+<hr />
+
+<h2 id="cleanapp">CleanApp</h2>
+<p>清理电脑</p>
+
+<p>清理电脑(删除软件)的工具, 类似 CleanMyMac 之类的工具. 其实我认为此类软件在 Mac上用处不是很大, 想要删除某个 App, 直接进 <strong>/Applications</strong> 目录直接删除那个应用程序即可. 因为 Mac 应用程序数据基本上都存在 <em>/Applications/xx.app</em> 这个目录下, 虽然表面上看 <em>xx.app</em> 是个应用程序文件, 双击即可运行. 只不过 CleanApp/CleanMyMac 能够删除更多的一些<em>.plist</em>等类似配置信息等(这个占用空间真的很小).</p>
+
+<hr />
+
+<h2 id="parallels-desktop">Parallels Desktop</h2>
+<p>虚拟机</p>
+
+<p><img src="/resources/app-in-mac/parallel-win8.png" alt="parallel-win8" /></p>
+
+<p>有的软件/网页, 我们还不得不用 Win 系统, 比如某些银行的网银啊, 再比如敝司的 OA 系统(墙裂鄙视)只支持 IE. 这个时候就不得不用一下 Win 系统. Win 下用得多的虚拟机是 VMWare, Mac 下这个软件类似. Win 系统可以跑在这个 App 下, 可以和 Mac “无缝” 连接在一起. 类似的虚拟机软件还有 VirtualBox, VMWare 等.</p>
+
+<hr />
+
+<h2 id="squirrel">Squirrel</h2>
+<p>输入法</p>
+
+<p>这是一款开源的输入法软件, 我曾经也试用过一段时间, 但最终还是因为词库同步等比较麻烦(比如不能方便的将手机输入的词库和 PC 同步), 就放弃了. 
+<img src="/resources/app-in-mac/squirrel.gif" alt="Mac 输入法Squirrel" /></p>
+
+<p>上图是”明无梦”用「小鹤双拼·语句流」输入的效果, 中英混输 + Emoji 表情哦, 我刚开始也是被这个效果所吸引尝试的 (然而后来并没驾驭得了). 
+这个输入法高端玩家可以试试. 定制性极强, 经过配置可以打造成你自己独一无二的输入法.</p>
+
+<p>想试用/体验的”玩家”可以参考这篇文章 <a href="http://www.dreamxu.com/install-config-squirrel/">安装及配置 Mac 上的 Rime 输入法——鼠鬚管 (Squirrel)</a>.</p>
+
+<hr />
+
+<p>全文完, 下一篇将介绍我认为程序员可能会用到的一些好用的软件.</p>
+
+<p>p.s 如果你觉得这文章对你有那么一点点收获, 请不要犹豫扫描下面二维码关注我的公众号, 如果你再能帮忙转发一下就更好了. 么么哒.</p>
+
+<p><img src="/resources/wechat-tangleithu.jpg" alt="tanglei 微信号" /></p>
+
+            </div>
+            <div class="post-nav">
+    
+    <a class="prev" href=/blog/app-in-mac-preface.html>&laquo; &nbsp;Mac 软件推荐(序)</a>
+    
+    
+    <a class="next" href=/blog/app-in-mac-for-dev.html>Mac 软件推荐(续)之程序猿篇&nbsp;&raquo;</a>
+    
+</div>
+
+            
+        </div>
+        <!--
+            if config set comment enable,include comment
+        -->
+        
+            <!-- comment -->
+<div id="post-comment" class="panel panel-default">
+    <div class="panel-body">
+        
+
+        
+            <div id="disqus_thread"></div>
+        
+    </div>
+</div>
+
+        
+    </div>
+    <div class="col-md-3 col-sidebar">
+        <div class="panel panel-pithy author">
+    <div class="panel-heading avastar">
+        <img src="/tx.jpg" alt="tanglei"/>
+    </div>
+    <div class="panel-body">
+        码农 @ 宜信大数据创新中心, 毕业于CSU && THU,  曾工作于<a href='http://www.tencent.com/zh-cn/index.shtml' target='_blank'>腾讯</a> && <a href='http://www.umeng.com/' target='_blank'>友盟</a>.  &nbsp; <a href='/about/'> MORE </a>
+    </div>
+    <div class="panel-footer social">
+        <ul>
+            
+            <li>
+                <a rel="nofollow" href="http://www.weibo.com/tangleithu/" target="_blank"><i class="fa fa-weibo"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://github.com/tl3shi" target="_blank"><i class="fa fa-github"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://www.facebook.com/tanglei.name" target="_blank"><i class="fa fa-facebook"></i></a>
+            </li>
+            
+            <li>
+                <a href="https://www.tanglei.name/feed.xml" target="_blank"><i class="fa fa-rss"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar:category list -->
+<div class="panel panel-default categories">
+    <div class="panel-heading title">
+        分类列表
+    </div>
+    <div class="panel-body list">
+        <ul>
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/贵州支教行/">
+                  贵州支教行&nbsp;<span class="count">[12]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/课程学习/">
+                  课程学习&nbsp;<span class="count">[88]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/MyLife/">
+                  MyLife&nbsp;<span class="count">[45]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/经验技巧/">
+                  经验技巧&nbsp;<span class="count">[93]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/社会工作/">
+                  社会工作&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/网络文摘/">
+                  网络文摘&nbsp;<span class="count">[28]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件体系结构/">
+                  软件体系结构&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/旅游/">
+                  旅游&nbsp;<span class="count">[23]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软考/">
+                  软考&nbsp;<span class="count">[2]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件度量及其应用/">
+                  软件度量及其应用&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/工作那些事儿/">
+                  工作那些事儿&nbsp;<span class="count">[42]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我做站长/">
+                  我做站长&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/coding小工具/">
+                  coding小工具&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/除臭虫/">
+                  除臭虫&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/学到老/">
+                  学到老&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我不会算法/">
+                  我不会算法&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/数据挖掘/">
+                  数据挖掘&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/计算机图形学/">
+                  计算机图形学&nbsp;<span class="count">[5]</span>
+              </a>
+          </li>
+
+          
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar: tag list -->
+<div class="panel panel-default tags">
+    <div class="panel-heading title">
+        标签云
+    </div>
+    <div class="panel-body list">
+         
+        <input type="hidden" id="tag-values" value='{"name":"丰田助学","count":16},{"name":"贵州支教","count":12},{"name":"铜厂小学","count":9},{"name":"中南大学","count":12},{"name":"云南赶集","count":1},{"name":"HelloWorld","count":5},{"name":"我做站长","count":35},{"name":"设计模式","count":7},{"name":"Wordpress","count":18},{"name":"系统架构师","count":11},{"name":"软考","count":25},{"name":"论文","count":6},{"name":"软件0804","count":8},{"name":"Java","count":24},{"name":"J2EE","count":3},{"name":"JAVA","count":1},{"name":"考试","count":25},{"name":"SEO","count":3},{"name":"软件体系结构","count":6},{"name":"Android","count":28},{"name":"软件工程","count":2},{"name":"Windows","count":17},{"name":"软件测试","count":1},{"name":"总结","count":13},{"name":"Oracle","count":4},{"name":"存储过程","count":3},{"name":"数据库应用","count":3},{"name":"数据库","count":8},{"name":"先进班集体","count":1},{"name":"Linux","count":15},{"name":"Ubuntu","count":8},{"name":"Defy","count":3},{"name":"传感器","count":1},{"name":"访日交流","count":8},{"name":"旅游","count":22},{"name":"软件学院","count":11},{"name":"大学生科协","count":4},{"name":"玩遍中国","count":11},{"name":"计算机网络","count":5},{"name":"Eclipse","count":4},{"name":"软件度量","count":11},{"name":"软件设计师","count":4},{"name":"编译原理","count":2},{"name":"程序语言","count":2},{"name":"操作系统","count":3},{"name":"多媒体","count":2},{"name":"网络安全","count":9},{"name":"TCP/IP","count":2},{"name":"编程语言","count":1},{"name":"考点","count":1},{"name":"Google","count":5},{"name":"软件结构度量","count":1},{"name":"CMM","count":6},{"name":"项目管理","count":3},{"name":"实习","count":33},{"name":"面试","count":18},{"name":"网络营销","count":1},{"name":"百度","count":4},{"name":"笔试","count":2},{"name":"腾讯","count":31},{"name":"编程比赛","count":4},{"name":"科研","count":4},{"name":"电子商务","count":11},{"name":"虚拟主机","count":2},{"name":"网路安全","count":1},{"name":"Foxmail","count":3},{"name":"微软","count":1},{"name":"软件能力成熟度模型","count":2},{"name":"软件过程改进","count":3},{"name":"SCM复习资料","count":1},{"name":"软件配置管理","count":12},{"name":"SCM","count":6},{"name":"工具","count":19},{"name":"反模式","count":1},{"name":"玩玩手机","count":5},{"name":"程序员","count":4},{"name":"健康","count":1},{"name":"共享上网","count":2},{"name":"Bug","count":4},{"name":"coding小工具","count":1},{"name":"工作日志","count":19},{"name":"Apache","count":2},{"name":"PHP","count":13},{"name":"实习日志","count":1},{"name":"工作实习生","count":1},{"name":"Mysql","count":1},{"name":"Shell","count":3},{"name":"腾讯实习日志","count":1},{"name":"hosts","count":2},{"name":"Vim","count":3},{"name":"正则表达式","count":2},{"name":"搜索引擎","count":1},{"name":"跨域","count":1},{"name":"前端","count":2},{"name":"保研","count":15},{"name":"算法","count":9},{"name":"清华大学","count":12},{"name":"丰田助学金","count":3},{"name":"WiFi","count":1},{"name":"实习生","count":1},{"name":"wifi自动关闭","count":1},{"name":"腾讯实习","count":1},{"name":"经验技巧","count":13},{"name":"DDOS","count":2},{"name":"AOP","count":3},{"name":"租房","count":2},{"name":"Sqlite","count":2},{"name":"Python","count":11},{"name":"OOP","count":5},{"name":"数据挖掘","count":8},{"name":"GitHub","count":2},{"name":"SVM","count":3},{"name":"R语言","count":2},{"name":"足迹","count":2},{"name":"笛子","count":2},{"name":"计算机图形学","count":5},{"name":"OpenGL","count":3},{"name":"回忆录","count":1},{"name":"年终总结","count":1},{"name":"域名","count":1},{"name":"计算几何","count":2},{"name":"敲敲代码","count":9},{"name":"Latex","count":3},{"name":"C++","count":10},{"name":"Mac","count":7},{"name":"飞行模式","count":2},{"name":"性能优化","count":2},{"name":"Javascript","count":1},{"name":"工作","count":1},{"name":"玩遍世界","count":1},{"name":"Scala","count":2},{"name":"MyLife","count":1},{"name":"快捷键","count":1},{"name":"云服务","count":1},{"name":"Blog","count":1},{"name":"微信公众号","count":1}'/>
+        <div style="display: none"><a id="tag-value" class="taglink" rel="bookmark" href="/tag/#" data-target-cate="#"></a></div>
+        <div class="tag-values-container">
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+  </div>
+
+  <footer>
+  <div class="text-center">
+    © 2010-2016 All rights reserved.
+    Made with <a href="http://jekyllrb.com/" rel="nofollow" target="_blank">Jekyll</a>
+    & Modified by <a href="http://www.tanglei.name/about/" >Tanglei</a>
+    and <i class="fa fa-heart"></i> by <a rel="nofollow" href="https://github.com/guovz/jekyll-pithy" target="_blank">Pithy</a>
+  </div>
+  <div class="totop" data-toggle="totop">
+      <i class="fa fa-chevron-up"></i>
+  </div>
+</footer>
+
+
+  <!--the js include-->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="/assets/script/pithy.js"></script>
+
+<!--
+  the site comment script
+-->
+
+
+  <script>
+    
+    var disqus_config = function () {
+        this.page.url = 'https://www.tanglei.name/blog/app-in-mac-for-common.html' ; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '/blog/app-in-mac-for-common.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+        if($("#disqus_thread").length) {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://hexo-tanglei.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+    powered by Disqus.</a></noscript>
+
+
+
+<!--
+  the site analysis script
+-->
+
+  <!-- baidu analysis -->
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?f0117177475f54027bfcaceb8d668cee";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+  <head>
+    <title>最终还是放弃了Wordpress</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="keywords" content="最终还是放弃了Wordpress, MyLife, Wordpress,我做站长,, 唐磊, 中南大学, 清华大学, 软件工程师, 计算机, 全栈工程师" />
+    <meta name="description" content="最终还是放弃了Wordpress, MyLife, Wordpress,我做站长, 起因" />
+
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+
+  <!--Font awesome-->
+  <link href="/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- The pithy main css -->
+  <link rel="stylesheet" href="/assets/stylesheet/pithy.css">
+  <link rel="stylesheet" href="/assets/stylesheet/molokai.css">
+
+
+  <!--[if lt IE 9]>
+  <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv-printshiv.js"></script>
+  <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+  <![endif]-->
+  <link rel="alternate" type="application/rss+xml" title="tanglei's blog|唐磊的个人博客" href="https://www.tanglei.name/feed.xml" />
+</head>
+
+<body>
+  <nav class="navbar navbar-pithy" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+                data-target="#pithy-navbar" aria-expanded="false">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" rel="bookmark" href="/">TangLei</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="pithy-navbar">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="bookmark" href="/">首页</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/archives.html">Archives</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/about/">关于</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+  <div class="container page-content">
+    <div>
+    <div class="col-md-9 col-content">
+        <div id="post-content" class="panel panel-pithy post">
+            <div class="panel-heading">
+                <div class="title">
+                  <i class="fa fa-bookmark-o"></i>最终还是放弃了Wordpress
+                </div>
+                <ul class="info">
+                    <li>
+                      作者 <span class="author"> 
+        
+            tanglei
+        
+        </span>
+                    </li>
+                    <li>
+                      最后编辑 2016年03月05日
+                    </li>
+                    <li>
+                      Tags
+                     
+                         <a class="tag" href="/tag/#Wordpress">Wordpress</a>
+                     
+                         <a class="tag" href="/tag/#我做站长">我做站长</a>
+                     
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body content">
+                <h3 id="起因">起因</h3>
+
+<p>这个Blog搭建也有好多年了, 一直用Wordpress, 累计也Po了300+文章(虽然里面包括了刚开始搭建blog时放的大量水文), 自从慢慢用markdown作为写作(暂且用这个词吧)的主要工具以来，想换掉Wordpress的愿望越来越强烈。</p>
+
+<p>曾经也写了一个<a href="/blog/codecolorer-adapted-to-highlight.html">工具</a>， 只用了Wordpress这个外壳，写作的时候用markdown书写， 这个工具一方面满足了我的要求, 技术方案是: <code class="highlighter-rouge">本地markdown+pandoc——&gt;html——&gt;wordpress-xmlrpc——&gt;wordpress server</code>, 有兴趣的同学可以试用。 也用这个工具写了几个月的blog(然而并没写多少篇, 懒). 最近突然网上看到了Hexo这个框架，并发现了一个比较简洁的<a href="https://github.com/tufu9441/maupassant-hexo">Hexo主题</a>, 就准备试用下，效果<a href="http://hexo.tanglei.name">点击这里</a>, 如下图</p>
+
+<p><img src="/resources/give-up-wordpress-to-jekyll/try-hexo.tanglei.name.png" alt="" /></p>
+
+<p>然而并不是这么顺利.</p>
+
+<h3 id="hexo尝试">Hexo尝试</h3>
+
+<ul>
+  <li>Hexo环境安装等, 直接跟着<a href="http://hexo.io">官网</a>来即可.</li>
+  <li>寻找主题，发现这两款 <code class="highlighter-rouge">jacman, maupassant</code> 不错.</li>
+  <li>
+    <p>Wordpress导出markdown格式的文件用wordpress插件<a href="https://wordpress.org/plugins/jekyll-exporter/">jekyll-exporter</a>, 本地preview一下，发现了不少问题。一个一个说下这些坑.</p>
+  </li>
+  <li>分类目录重复的问题
+    <ul>
+      <li>原因: 多级分类目录, 不能直接用wordpress导出的分类目录。 wordpress导出的分类目录多级的话, 在hexo就会显示重复（jekyll不会有这个问题）。比如 cat1 / cat2, cat3 / cat2 。 这里分类目录里就会显示两个cat2. 分别链接上cat1 / cat2, cat3 / cat2 。 如果修改category.jade种的 <code class="highlighter-rouge">(list_categories({show_count: true, depth: -1}))</code> 的话， 就会只把第一级cat列出来。 （jekyll 会把这些都列出来，没有层级概念）</li>
+      <li>Fix: <code class="highlighter-rouge">themes/maupassant/layout/_widget/category.jade</code> 中 <code class="highlighter-rouge">list_categories({show_count: false, depth: -1})</code></li>
+    </ul>
+  </li>
+  <li>上线github看看效果
+用了二级域名 <code class="highlighter-rouge">hexo.tanglei.name</code> (添加CNAME到gh-pages分支即可)</li>
+  <li>
+    <p>留言迁移</p>
+
+    <p>用wordpress中的Disqus插件，将所有评论导出到Disqus. 此时操作的先后顺序注意域名。较好的方案是如果换blog框架不换域名的话，先访问wordpress将所有评论导出到Disqus后再切换域名指向新的github pages。不过这个也没关系，Disqus操作是将每个post的url和评论关联起来，如果域名换了，或者permalink换了，评论和页面就对应不上，Disqus就找不到原来相应post的评论。 不过Disqus提供了一个urlmapping的机制可以调整。可参考<a href="https://hexo-tanglei.disqus.com/admin/discussions/migrate/">Upload a URL mapping</a>。</p>
+  </li>
+  <li>
+    <p>调整permalink</p>
+
+    <p>我之前wordpress的blog的url都是形如 <code class="highlighter-rouge">www.tanglei.name/blog-url-id/</code>, 这样 Hexo就会生成很多<code class="highlighter-rouge">blog-url-id</code>这样的目录，访问这个页面请求时实际上是到<code class="highlighter-rouge">blog-url-id/index.html</code>， 这样不爽， 于是我将所有的permalink调整了， 变成 <code class="highlighter-rouge">blog/blog-url-id.html</code>, <code class="highlighter-rouge">_config.yml</code>可直接配置，但需要对wordpress导出的permalink进行调整. 例如将 <code class="highlighter-rouge">permalink: /return-object-in-cpp-and-return-value-optimazation/</code> 调整成 <code class="highlighter-rouge">return-object-in-cpp-and-return-value-optimazation</code>， 用<code class="highlighter-rouge">sed</code>替换即可 <code class="highlighter-rouge">sed -i "" 's|^permalink: /\([^/]*\)/|permalink: \1|' `ls *.md`</code></p>
+  </li>
+  <li>pictures 迁移，改变链接，去掉host
+    <ul>
+      <li>
+        <p>去掉绝对路径， 去掉host</p>
+
+        <div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c">#去掉绝对路径</span>
+sed -i <span class="s2">""</span> <span class="s1">'s|http://www\.tanglei\.name\/wp-content|/wp-content|g'</span> <span class="sb">`</span>ls<span class="sb">`</span>
+</code></pre>
+        </div>
+      </li>
+      <li>
+        <p>修正一些图片格式因为缩进问题(例如<code class="highlighter-rouge">![](xx.pnag)</code>前面有tab符)被markdow误认为是<code class="highlighter-rouge">reference/preview block</code>错误</p>
+
+        <div class="language-bash highlighter-rouge"><pre class="highlight"><code>sed -i <span class="s2">""</span> <span class="s1">'s|[[:space:]]!\[|![|g'</span> <span class="sb">`</span>ls<span class="sb">`</span>
+</code></pre>
+        </div>
+      </li>
+    </ul>
+  </li>
+  <li>代码高亮
+    <ul>
+      <li>
+        <p>之前mardown2wordpress工具将代码插件变换后，export成md后，标签被转义了。</p>
+
+        <div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;pre&gt;</span><span class="ni">&amp;lt;</span>cc class="cpp"&gt;
+#include <span class="ni">&amp;lt;</span>iostream&gt;
+int main(int argc, char** argv)
+{
+    std::cout <span class="ni">&amp;lt;&amp;lt;</span> "Hello world." <span class="ni">&amp;lt;&amp;lt;</span> std::endl;
+    std::cout <span class="ni">&amp;lt;&amp;lt;</span> "argc: " <span class="ni">&amp;lt;&amp;lt;</span> argc <span class="ni">&amp;lt;&amp;lt;</span> std::endl;
+    for(int i = 0; i <span class="ni">&amp;lt;</span> argc; i++)
+        std::cout <span class="ni">&amp;lt;&amp;lt;</span> argv[i] <span class="ni">&amp;lt;&amp;lt;</span> std::endl;
+    int t;
+    std::cin &gt;&gt; t;
+    return 0;
+}
+<span class="ni">&amp;lt;</span>/cc&gt;<span class="nt">&lt;/pre&gt;</span>
+</code></pre>
+        </div>
+        <p>整体进行替换</p>
+
+        <div class="language-bash highlighter-rouge"><pre class="highlight"><code>sed -i <span class="s2">""</span> <span class="s1">'s|&lt;pre&gt;&amp;lt;cc class="\([a-zA-Z]*\)"&gt;|```\1|g'</span> <span class="sb">`</span>ls<span class="sb">`</span>
+sed -i <span class="s2">""</span> <span class="s1">'s|&amp;lt;/cc&gt;&lt;/pre&gt;|```|g'</span> <span class="sb">`</span>ls<span class="sb">`</span>
+sed -i <span class="s2">""</span> <span class="s1">'s|&amp;lt;|&lt;|g'</span>  <span class="sb">`</span>ls<span class="sb">`</span>
+      
+sed -i <span class="s2">""</span> <span class="s1">'s|&lt;/cc&gt;&lt;/pre&gt;|```|g'</span> <span class="sb">`</span>ls<span class="sb">`</span>
+sed -i <span class="s2">""</span> <span class="s1">'s|&lt;pre&gt;&lt;cc&gt;|```|g'</span> <span class="sb">`</span>ls<span class="sb">`</span>
+</code></pre>
+        </div>
+      </li>
+      <li>
+        <p>还有codecolorer的一些插件生产的代码。</p>
+
+        <div class="language-bash highlighter-rouge"><pre class="highlight"><code>sed -i <span class="s2">""</span> <span class="s1">'s|&lt;cc lang="\([a-zA-Z]*\)"&gt;|```\1|g'</span> <span class="sb">`</span>ls<span class="sb">`</span>
+sed -i <span class="s2">""</span> <span class="s1">'s|&lt;/cc&gt;|```|g'</span> <span class="sb">`</span>ls<span class="sb">`</span> 得新增一行
+&amp;#038; --&gt; &amp; //&amp;需要转义
+sed -i <span class="s2">""</span> <span class="s1">'s|&amp;#038;|\&amp;|g'</span> <span class="sb">`</span>ls<span class="sb">`</span>
+</code></pre>
+        </div>
+      </li>
+      <li>
+        <p>Hexo 不支持用用三个”`“进行代码高亮，也要进行调整。而这个github和jekyll都是支持的。所有Hexo官网声称的支持所有GFM也是假的。</p>
+      </li>
+    </ul>
+  </li>
+  <li>其他资源
+    <ul>
+      <li>hexo generate 的时候 会删除 public folder 重新生成里面的每个文件</li>
+      <li>这个自己写diploy脚本可以解决。</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="放弃hexo">放弃Hexo</h4>
+
+<p>最后的最后，尝试了这么多, 我最终并没有选择用hexo， 原因是~ Hexo build太慢太慢太慢了, 我build需要半个小时, 谁有空帮忙解决下啊， <a href="https://github.com/tl3shi/hexo.tanglei.name/tree/master">repo在此</a>。目前原因还不清楚， 我也尝试了各种方法都不知道(虽然官网生成Hexo用nodejs比什么Jekyll之类的都快很多)。 太慢的原因并不是因为:</p>
+
+<ul>
+  <li>文章太多, 300+文章, 然后别人也有500+文章20+秒就build出来了。<a href="https://travis-ci.org/Xuanwo/xuanwo.github.io/builds/111696580">ref</a></li>
+  <li>代码高亮问题, 我关闭代码高亮也一样</li>
+  <li>分页，分类目录太多, tag太多, 我关闭分类目录和tag也一样，并且在build的过程中，并不是到最后<code class="highlighter-rouge">generate tags/xxx</code>才慢的, 	前面post也慢。</li>
+  <li>主题的影响， 我切换主题，用默认的主题也一样慢~ (Update: 之前测试的时候可能没有clean之类的没准，应该就是主题的原因，后面有时间再研究下)</li>
+</ul>
+
+<p>没辙了~, 我不可能每次po一篇文章，发布的时候得半小时吧~ 况且后来用travis-ci，10分钟build不出来就被kill了。难道是因为wordpress 导出的markdown含有各种html标签导致hexo解析markdown很慢? maybe~</p>
+
+<p>所以最终结果就是， hexo尝试了下， 并没有使用。 <a href="http://hexo.tanglei.name">hexo.tanglei.name</a>这个域名也暂时保留并解析吧，后面哪天万一Jekyll用着不爽，Hexo升级fix了这个问题了，可能还会切过来了。</p>
+
+<h3 id="尝试jekyll">尝试Jekyll</h3>
+
+<p>最后还是用了Jekyll， 这个blog引擎之前就玩过， 切挂了我另外一个域名<a href="http://tanglei.me">tanglei.me</a>。 为啥要换成这个呢:</p>
+
+<ul>
+  <li>反正不准备用Wordpress了，折腾了下Hexo，目前对于我来说不太合适</li>
+  <li>找了个还比较简洁清晰的主题, 就是现在用的这个, 虽然还很不成熟，但也趁这个机会熟悉下前端，慢慢摸索吧。主题源自<a href="https://github.com/guovz/jekyll-pithy">guovz</a>， 本blog在基础上改了不少。</li>
+  <li>gihub能够帮忙编译，本地写好markdown，自己commit就行了。(最后发现这个不太靠谱， 自己写的插件代码之类的github禁用了，比如原来主题的国际化之类的刚开始到github上就翻译不出来等。) 所以刚开始自己写了deploy的脚本，本地生成再push到github，这个时间还可以接受，二十几秒的时间。呃~ 最后才发现原来可以用<a href="https://travis-ci.org/">travis-ci</a>这样的神器，果然我之前连这个玩意都不知道用。帮忙拉环境build代码并push。</li>
+</ul>
+
+<p><img src="/resources/give-up-wordpress-to-jekyll/try-jekyll.tanglei.name.png" alt="" />
+记录下在适配Jekyll的时候做的一些改动和Reference.</p>
+
+<ul>
+  <li>
+    <p>每个markdown中的permalink， 会覆盖全局的url设置, 将每个md中的permalink删除</p>
+
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>sed -i <span class="s2">""</span> <span class="s1">'/^permalink: /d'</span> 2015-07-06-travel-to-northwest-of-china.md
+sed -i <span class="s2">""</span> <span class="s1">'/^permalink: /d'</span> <span class="sb">`</span>ls<span class="sb">`</span>
+</code></pre>
+    </div>
+  </li>
+  <li>删掉资源文件夹中，wordpress生产的缩略图 <code class="highlighter-rouge">find . -name "*-*x*"</code></li>
+  <li>tags 过多 <code class="highlighter-rouge">for tag in site.tags limit:60</code> <a href="https://docs.shopify.com/themes/liquid/tags/iteration-tags">Ref Liquid语法</a></li>
+  <li>post中的author如果没有的话就用全局的 <a href="2c45efe74cd70c9778051763d127d9be3768eb05">commitid</a></li>
+  <li><a href="http://jekyll-china.com/2016/02/jekyll-gfm-regression-issue/?utm_source=tuicool&amp;utm_medium=referral">Jekyll 3.1.1 无法正确解析 GFM 的解决方法</a></li>
+  <li><a href="https://pages.github.com/versions/">github pages 支持的插件</a></li>
+  <li>最新的github支持rouge代码高亮<a href="http://platinhom.github.io/2016/02/04/update-github-rouge/">代码高亮</a></li>
+  <li>disqus 评论 this.page.identifier 用了其他的identifier就加载失败， wordpress导出的会用 <code class="highlighter-rouge">guid: http://www.tanglei.name/?p=2504</code>中的2504会失败, 直接改为url即可。</li>
+  <li>git 当前分支push到远程另外分支上
+<code class="highlighter-rouge">git push -u origin local_branch_name:romote_branch_name</code> 一般 remote_branch_name为空则远程会创建同名分支, local 和remote可以不一样，当使用了 -u 参数后，push local时候 默认的远程分支就是remote了</li>
+  <li>disqus 总是加载有问题， 上传url mapping后。
+    <ul>
+      <li>要么把script中的disqus_config注释掉，直接用完成的域名shortname，让disqus自己去匹配加载。</li>
+      <li>要么 script中要加上<code class="highlighter-rouge">‘’</code>， 防止 script错误。 另外，<code class="highlighter-rouge">this.page.url = 'http://example.com/article/1/';</code> siteurl加上http://与disqus完全一致。<a href="https://help.disqus.com/customer/portal/articles/472007-i-m-receiving-the-message-%22we-were-unable-to-load-disqus-%22">ref</a></li>
+    </ul>
+  </li>
+  <li>分页目录整理 之前总是 <code class="highlighter-rouge">/page1/, /page2/</code> 这样的，改成了 <code class="highlighter-rouge">/page/1/, /page/2/</code></li>
+  <li>tag权重整理
+    <ul>
+      <li>删除只有1个的tag</li>
+      <li>按照权重排序显示在首页 <del>TODO</del>(最后还是在前端解决的)</li>
+    </ul>
+  </li>
+  <li>分页太多，拆分, 可以<a href="https://github.com/levinxo/jekyll-blog/blob/master/_includes/JB/posts_paginator">ref</a></li>
+  <li>文章页面显示 前/后一篇 <a href="https://github.com/tl3shi/jekyll.tanglei.name/commit/c85194471053db8e6f782b9d29f98ca5e64d27dd">Commit</a></li>
+  <li>移动端Bug, 点击菜单不弹框 <a href="https://github.com/tl3shi/jekyll.tanglei.name/commit/b7a2bdda7d4cfef4359127c3b10a863ede56199a">commit</a></li>
+  <li>文章内链得重新修改
+    <ul>
+      <li>tag 替换 <code class="highlighter-rouge">sed -i "" 's|http://www.tanglei.name/tag/|/tag/#|g' `ls` </code></li>
+      <li>
+        <p>tag后面不能有 <code class="highlighter-rouge">/</code></p>
+
+        <div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c">#替换前 预览下</span>
+sed <span class="s1">'s|/tag/#\([^/]*\)\/|/tag/#\1|g'</span> <span class="sb">`</span>ls<span class="sb">`</span> | grep <span class="s1">'/tag/#'</span>
+sed -i <span class="s2">""</span> <span class="s1">'s|/tag/#\([^/]*\)\/|/tag/#\1|g'</span> <span class="sb">`</span>ls<span class="sb">`</span>
+</code></pre>
+        </div>
+      </li>
+      <li>其他链接 <code class="highlighter-rouge">sed -i "" 's|http://www.tanglei.name/\([^/]*\)\/|/blog/\1.html|g' `ls`</code></li>
+      <li>少数之前含有目录的链接就不对了, 其他的遇到了再改吧.</li>
+    </ul>
+  </li>
+  <li>搜索引擎收录页面跳转。可以用插件jekyll-redirect, 但这个还是会生成太多的目录就放弃了。301 太麻烦，跳转就算了, 搜索引擎的链接404后，在404页面中用一个js跳转即可。(301的话，可以在原有的机器上写<code class="highlighter-rouge">htaccess</code>将原来的url访问跳转至新的， 过一段时间搜索引擎重新搜录新url后，再完全用static的html) <a href="/404.html">404页面请戳这里</a></li>
+  <li>sitemap.xml  用插件 jekyll-sitemap.</li>
+  <li>
+    <p>图片响应式布局， wordpress导出时 自动添加了width， 在mobile端显示不友好.</p>
+
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>sed -i <span class="s2">""</span> <span class="s1">'s|width="[0-9]*" height="[0-9]*" border="0"||g'</span> <span class="sb">`</span>ls<span class="sb">`</span>
+sed -i <span class="s2">""</span> <span class="s1">'s|width="[0-9]*" height="[0-9]*"||g'</span> <span class="sb">`</span>ls<span class="sb">`</span>
+<span class="c"># 去掉所有img标签里的style</span>
+sed -i <span class="s2">""</span> <span class="s1">'s|&lt;img style="[a-z0-9 -:;]*"|&lt;img|g'</span> <span class="sb">`</span>ls<span class="sb">`</span>
+</code></pre>
+    </div>
+  </li>
+  <li>Disqus Bug
+    <ul>
+      <li>首页无评论狂, 找不到 <code class="highlighter-rouge">&lt;div id="disqus_thread"&gt;&lt;/div&gt;</code> 因此报了一下错误<code class="highlighter-rouge">"Cannot read property 'appendChild' of null" with Disqus ...</code></li>
+      <li>Fix: 添加 ` if($(“#disqus_thread”).length) `</li>
+    </ul>
+  </li>
+  <li>自动部署脚本deploy.sh 替换成 travis-ci
+    <ul>
+      <li><a href="http://stackoverflow.com/questions/23277391/how-to-publish-to-github-pages-from-travis-ci">travis添加环境变量</a></li>
+      <li><a href="https://xuanwo.org/2015/02/07/Travis-CI-Hexo-Autodeploy/">travis设置ssh</a></li>
+    </ul>
+  </li>
+</ul>
+
+<p>纪念我那逝去的Wordpress, 放截图一张如下， 暂时还可以用 <a href="http://wordpress.tanglei.name">wordpress.tanglei.name</a>访问.</p>
+
+<p><img src="/resources/give-up-wordpress-to-jekyll/wordpress.tanglei.name.png" alt="" /></p>
+
+            </div>
+            <div class="post-nav">
+    
+    <a class="prev" href=/blog/summary-of-year-2015.html>&laquo; &nbsp;2015年终总结</a>
+    
+    
+    <a class="next" href=/blog/travel-to-jiangxi-wuyuan.html>婺源之旅&nbsp;&raquo;</a>
+    
+</div>
+
+            
+        </div>
+        <!--
+            if config set comment enable,include comment
+        -->
+        
+            <!-- comment -->
+<div id="post-comment" class="panel panel-default">
+    <div class="panel-body">
+        
+
+        
+            <div id="disqus_thread"></div>
+        
+    </div>
+</div>
+
+        
+    </div>
+    <div class="col-md-3 col-sidebar">
+        <div class="panel panel-pithy author">
+    <div class="panel-heading avastar">
+        <img src="/tx.jpg" alt="tanglei"/>
+    </div>
+    <div class="panel-body">
+        码农 @ 宜信大数据创新中心, 毕业于CSU && THU,  曾工作于<a href='http://www.tencent.com/zh-cn/index.shtml' target='_blank'>腾讯</a> && <a href='http://www.umeng.com/' target='_blank'>友盟</a>.  &nbsp; <a href='/about/'> MORE </a>
+    </div>
+    <div class="panel-footer social">
+        <ul>
+            
+            <li>
+                <a rel="nofollow" href="http://www.weibo.com/tangleithu/" target="_blank"><i class="fa fa-weibo"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://github.com/tl3shi" target="_blank"><i class="fa fa-github"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://www.facebook.com/tanglei.name" target="_blank"><i class="fa fa-facebook"></i></a>
+            </li>
+            
+            <li>
+                <a href="https://www.tanglei.name/feed.xml" target="_blank"><i class="fa fa-rss"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar:category list -->
+<div class="panel panel-default categories">
+    <div class="panel-heading title">
+        分类列表
+    </div>
+    <div class="panel-body list">
+        <ul>
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/贵州支教行/">
+                  贵州支教行&nbsp;<span class="count">[12]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/课程学习/">
+                  课程学习&nbsp;<span class="count">[88]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/MyLife/">
+                  MyLife&nbsp;<span class="count">[45]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/经验技巧/">
+                  经验技巧&nbsp;<span class="count">[93]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/社会工作/">
+                  社会工作&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/网络文摘/">
+                  网络文摘&nbsp;<span class="count">[28]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件体系结构/">
+                  软件体系结构&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/旅游/">
+                  旅游&nbsp;<span class="count">[23]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软考/">
+                  软考&nbsp;<span class="count">[2]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件度量及其应用/">
+                  软件度量及其应用&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/工作那些事儿/">
+                  工作那些事儿&nbsp;<span class="count">[42]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我做站长/">
+                  我做站长&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/coding小工具/">
+                  coding小工具&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/除臭虫/">
+                  除臭虫&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/学到老/">
+                  学到老&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我不会算法/">
+                  我不会算法&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/数据挖掘/">
+                  数据挖掘&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/计算机图形学/">
+                  计算机图形学&nbsp;<span class="count">[5]</span>
+              </a>
+          </li>
+
+          
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar: tag list -->
+<div class="panel panel-default tags">
+    <div class="panel-heading title">
+        标签云
+    </div>
+    <div class="panel-body list">
+         
+        <input type="hidden" id="tag-values" value='{"name":"丰田助学","count":16},{"name":"贵州支教","count":12},{"name":"铜厂小学","count":9},{"name":"中南大学","count":12},{"name":"云南赶集","count":1},{"name":"HelloWorld","count":5},{"name":"我做站长","count":35},{"name":"设计模式","count":7},{"name":"Wordpress","count":18},{"name":"系统架构师","count":11},{"name":"软考","count":25},{"name":"论文","count":6},{"name":"软件0804","count":8},{"name":"Java","count":24},{"name":"J2EE","count":3},{"name":"JAVA","count":1},{"name":"考试","count":25},{"name":"SEO","count":3},{"name":"软件体系结构","count":6},{"name":"Android","count":28},{"name":"软件工程","count":2},{"name":"Windows","count":17},{"name":"软件测试","count":1},{"name":"总结","count":13},{"name":"Oracle","count":4},{"name":"存储过程","count":3},{"name":"数据库应用","count":3},{"name":"数据库","count":8},{"name":"先进班集体","count":1},{"name":"Linux","count":15},{"name":"Ubuntu","count":8},{"name":"Defy","count":3},{"name":"传感器","count":1},{"name":"访日交流","count":8},{"name":"旅游","count":22},{"name":"软件学院","count":11},{"name":"大学生科协","count":4},{"name":"玩遍中国","count":11},{"name":"计算机网络","count":5},{"name":"Eclipse","count":4},{"name":"软件度量","count":11},{"name":"软件设计师","count":4},{"name":"编译原理","count":2},{"name":"程序语言","count":2},{"name":"操作系统","count":3},{"name":"多媒体","count":2},{"name":"网络安全","count":9},{"name":"TCP/IP","count":2},{"name":"编程语言","count":1},{"name":"考点","count":1},{"name":"Google","count":5},{"name":"软件结构度量","count":1},{"name":"CMM","count":6},{"name":"项目管理","count":3},{"name":"实习","count":33},{"name":"面试","count":18},{"name":"网络营销","count":1},{"name":"百度","count":4},{"name":"笔试","count":2},{"name":"腾讯","count":31},{"name":"编程比赛","count":4},{"name":"科研","count":4},{"name":"电子商务","count":11},{"name":"虚拟主机","count":2},{"name":"网路安全","count":1},{"name":"Foxmail","count":3},{"name":"微软","count":1},{"name":"软件能力成熟度模型","count":2},{"name":"软件过程改进","count":3},{"name":"SCM复习资料","count":1},{"name":"软件配置管理","count":12},{"name":"SCM","count":6},{"name":"工具","count":19},{"name":"反模式","count":1},{"name":"玩玩手机","count":5},{"name":"程序员","count":4},{"name":"健康","count":1},{"name":"共享上网","count":2},{"name":"Bug","count":4},{"name":"coding小工具","count":1},{"name":"工作日志","count":19},{"name":"Apache","count":2},{"name":"PHP","count":13},{"name":"实习日志","count":1},{"name":"工作实习生","count":1},{"name":"Mysql","count":1},{"name":"Shell","count":3},{"name":"腾讯实习日志","count":1},{"name":"hosts","count":2},{"name":"Vim","count":3},{"name":"正则表达式","count":2},{"name":"搜索引擎","count":1},{"name":"跨域","count":1},{"name":"前端","count":2},{"name":"保研","count":15},{"name":"算法","count":9},{"name":"清华大学","count":12},{"name":"丰田助学金","count":3},{"name":"WiFi","count":1},{"name":"实习生","count":1},{"name":"wifi自动关闭","count":1},{"name":"腾讯实习","count":1},{"name":"经验技巧","count":13},{"name":"DDOS","count":2},{"name":"AOP","count":3},{"name":"租房","count":2},{"name":"Sqlite","count":2},{"name":"Python","count":11},{"name":"OOP","count":5},{"name":"数据挖掘","count":8},{"name":"GitHub","count":2},{"name":"SVM","count":3},{"name":"R语言","count":2},{"name":"足迹","count":2},{"name":"笛子","count":2},{"name":"计算机图形学","count":5},{"name":"OpenGL","count":3},{"name":"回忆录","count":1},{"name":"年终总结","count":1},{"name":"域名","count":1},{"name":"计算几何","count":2},{"name":"敲敲代码","count":9},{"name":"Latex","count":3},{"name":"C++","count":10},{"name":"Mac","count":7},{"name":"飞行模式","count":2},{"name":"性能优化","count":2},{"name":"Javascript","count":1},{"name":"工作","count":1},{"name":"玩遍世界","count":1},{"name":"Scala","count":2},{"name":"MyLife","count":1},{"name":"快捷键","count":1},{"name":"云服务","count":1},{"name":"Blog","count":1},{"name":"微信公众号","count":1}'/>
+        <div style="display: none"><a id="tag-value" class="taglink" rel="bookmark" href="/tag/#" data-target-cate="#"></a></div>
+        <div class="tag-values-container">
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+  </div>
+
+  <footer>
+  <div class="text-center">
+    © 2010-2016 All rights reserved.
+    Made with <a href="http://jekyllrb.com/" rel="nofollow" target="_blank">Jekyll</a>
+    & Modified by <a href="http://www.tanglei.name/about/" >Tanglei</a>
+    and <i class="fa fa-heart"></i> by <a rel="nofollow" href="https://github.com/guovz/jekyll-pithy" target="_blank">Pithy</a>
+  </div>
+  <div class="totop" data-toggle="totop">
+      <i class="fa fa-chevron-up"></i>
+  </div>
+</footer>
+
+
+  <!--the js include-->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="/assets/script/pithy.js"></script>
+
+<!--
+  the site comment script
+-->
+
+
+  <script>
+    
+    var disqus_config = function () {
+        this.page.url = 'https://www.tanglei.name/blog/give-up-wordpress-to-jekyll.html' ; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '/blog/give-up-wordpress-to-jekyll.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+        if($("#disqus_thread").length) {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://hexo-tanglei.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+    powered by Disqus.</a></noscript>
+
+
+
+<!--
+  the site analysis script
+-->
+
+  <!-- baidu analysis -->
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?f0117177475f54027bfcaceb8d668cee";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+</body>
+</html>

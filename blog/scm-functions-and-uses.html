@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+  <head>
+    <title>软件配置管理功能与作用</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="keywords" content="软件配置管理功能与作用, 课程学习, 软件配置管理,SCM,, 唐磊, 中南大学, 清华大学, 软件工程师, 计算机, 全栈工程师" />
+    <meta name="description" content="软件配置管理功能与作用, 课程学习, 软件配置管理,SCM, 软件配置管理功能" />
+
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+
+  <!--Font awesome-->
+  <link href="/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- The pithy main css -->
+  <link rel="stylesheet" href="/assets/stylesheet/pithy.css">
+  <link rel="stylesheet" href="/assets/stylesheet/molokai.css">
+
+
+  <!--[if lt IE 9]>
+  <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv-printshiv.js"></script>
+  <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+  <![endif]-->
+  <link rel="alternate" type="application/rss+xml" title="tanglei's blog|唐磊的个人博客" href="https://www.tanglei.name/feed.xml" />
+</head>
+
+<body>
+  <nav class="navbar navbar-pithy" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+                data-target="#pithy-navbar" aria-expanded="false">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" rel="bookmark" href="/">TangLei</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="pithy-navbar">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="bookmark" href="/">首页</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/archives.html">Archives</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/about/">关于</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+  <div class="container page-content">
+    <div>
+    <div class="col-md-9 col-content">
+        <div id="post-content" class="panel panel-pithy post">
+            <div class="panel-heading">
+                <div class="title">
+                  <i class="fa fa-bookmark-o"></i>软件配置管理功能与作用
+                </div>
+                <ul class="info">
+                    <li>
+                      作者 <span class="author"> 
+        
+            tanglei
+        
+        </span>
+                    </li>
+                    <li>
+                      最后编辑 2011年06月13日
+                    </li>
+                    <li>
+                      Tags
+                     
+                         <a class="tag" href="/tag/#软件配置管理">软件配置管理</a>
+                     
+                         <a class="tag" href="/tag/#SCM">SCM</a>
+                     
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body content">
+                <h3 id="软件配置管理功能">软件配置管理功能</h3>
+
+<p>SCM意义</p>
+
+<p>a) 记录软件产品的演化过程</p>
+
+<p>b) 确保软件开发者在软件生命周期中的各个阶段都能得到精确的产品配置</p>
+
+<p>c) 最终保证软件产品的完整性、一致性、追朔性、可控性</p>
+
+<p>1) 基线管理<span style="font-family: 'Times New Roman';">:</span>每个基线都将接受配置管理的严格控制，对其的修改将严格按照变更控制要求的过程进行，在一个软件开发阶段结束时，上一个基线加上增加和修改的基线内容形成下一个基线，这就是“基线管理”的过程。</p>
+
+<p>建立基线的好处：</p>
+
+<p>重现性：及时返回并重新生成软件系统给定发布版的能力，或者是在项目中的早些时候重新生成开发环境的能力。当认为更新不稳定或不可信时，基线为团队提供一种取消变更的方法。</p>
+
+<p>可追踪性：建立项目工件之间的前后继承关系。目的是确保设计满足要求、代码实施设计以及用正确代码编译可执行文件。</p>
+
+<p>版本隔离：基线为开发工件提供了一个定点和快照，新项目可以从基线提供的定点之中建立。作为一个单独分支，新项目将与随后对原始项目（在主要分支上）所进行的变更进行隔离。</p>
+
+<p>基线管理的步骤：</p>
+
+<p>(1) <span style="font-family: 宋体;">在开发前确定基线的“配置”</span></p>
+
+<p>(2) <span style="font-family: 宋体;">基线批准前，根据“配置”检查配置项是否齐备</span></p>
+
+<p>(3) <span style="font-family: 宋体;">对各个配置项，确认其版本的正确性</span></p>
+
+<p>(4) <span style="font-family: 宋体;">对每个配置项建立基线标志</span></p>
+
+<p>(5) <span style="font-family: 宋体;">基线变更管理</span></p>
+
+<p>(6) <span style="font-family: 宋体;">基线的各类报告和审计信息</span></p>
+
+<p>2) 变更管理<span style="font-family: 'Times New Roman';">:</span>如何保证它们在复杂多变的开发过程中真正处于受控的状态，并在任何情况下都能迅速的恢复到任一历史状态就要依赖变更管理。</p>
+
+<p>变更管理流程：</p>
+
+<p>a) （获得）提出变更请求；</p>
+
+<p>b) 由<span style="font-family: 'Times New Roman';">CCB</span><span style="font-family: 宋体;">审核并决定是否批准；</span></p>
+
+<p>c) 为（被接受）修改请求分配人员，提取<span style="font-family: 'Times New Roman';">SCI</span><span style="font-family: 宋体;">，进行修改；</span></p>
+
+<p>d) 提交修改后的<span style="font-family: 'Times New Roman';">SCI</span><span style="font-family: 宋体;">，并测试（或者评审）；</span></p>
+
+<p>e) 重建软件的适当版本；</p>
+
+<p>f) 复审（审计）所有<span style="font-family: 'Times New Roman';">SCI</span><span style="font-family: 宋体;">的变化；</span></p>
+
+<p>g) 发布新版本。</p>
+
+<p>为了更好的指导变更范围的影响分析，可以通过两种表格来帮助发现受到变更影响的内容，一种是《需求跟踪表》，一种是《配置项依赖关系表》</p>
+
+<p>3) 配置库管理：在实际开发活动中，为了让每个开发人员和各个开发团队能更好的分工合作，同时又互不干扰，必须规划好工作空间的管理，主要的手段是设置配置库（即文件夹设置）和设置版本的分支，用于实现对配置项权限管理。</p>
+
+<p>设置版本分支：每个配置项从建立开始就划分成3个不同的分支：私有分支、集成分支、公共（主干）分支，让它们分别对应3类工作空间。私有分支对应的是开发人员的私有开发空间。集成分支对应的是开发团队的公共空间。公共分支对应的是整个软件开发组织的公共空间。上面定义的3类工作空间（分支）由配置管理员统一管理。</p>
+
+<p>配置库的设置：决定配置库的结构是配置管理活动的重要基础，一般常用的是两种组织形式：按配置项类型分类建库和按任务建库。</p>
+
+<p>配置库的日常工作。配置库的日常工作是一些事务性的工作，主要保证配置库的安全性，包括：对配置库的定期备份、清除无用的文件和版本、检测并改进配置库的性能等。</p>
+
+<p>4) 版本管理</p>
+
+<p>5) 配置审计：主要作用是作为变更控制的补充手段，来确保某一变更需求已被切实实现。审计机制保证修改的动作被完整地记录，四个“W”（Who、When、Why、What），记录了谁修改了这个工件，什么时候做的修改，为什么原因做出这个改动，以及修改了哪些地方。</p>
+
+<p>配置审计分类：</p>
+
+<p>PCA (Physics Configuration Audit)：即物理审计，主要是检查版本是否正确一致。<span style="font-family: 'Times New Roman';">(1) </span><span style="font-family: 宋体;">配置项是否齐备；</span><span style="font-family: 'Times New Roman';">(2) </span><span style="font-family: 宋体;">版本是否齐全，由非配置管理人员来进行。</span></p>
+
+<p>FCA (Function Configuration Audit)：即功能审计，主要是检查配置项是否完整，各种过程文档是否齐备、正确、与需求是否一致，归结为两点，即完全和齐备。</p>
+
+<p>PCA一般由非配置管理人员来进行(因为审计的对象是配置管理人员)，而做FCA则可以由CMO来进行。</p>
+
+<p>What</p>
+
+<ul>
+  <li>ü FCA<span style="font-family: 宋体;">：验证配置项的功能特性与需求（原始需求、变更请求… ）的一致性</span></li>
+  <li>ü PCA<span style="font-family: 宋体;">：验证配置项的物理特性与期望（命名标准、变更流程… ）的一致性</span></li>
+</ul>
+
+<p>Why</p>
+
+<ul>
+  <li>ü 防止出现向用户提交不适合的产品，如交付了用户手册的不正确版本。</li>
+  <li>ü 发现不完善的实现，如开发出不符合初始规格说明书或未按变更请求实施变更。</li>
+  <li>ü 找出各配置项间不匹配或不相容的现象。</li>
+  <li>ü 确认配置项已在所要求的质量控制审查之后作为基线入库保存。</li>
+  <li>ü 确认记录和文档保持着可追溯性</li>
+</ul>
+
+<p>When</p>
+
+<ul>
+  <li>ü 软件交付或<span style="font-family: 'Times New Roman';">release</span><span style="font-family: 宋体;">时</span></li>
+  <li>ü 每个阶段结束时</li>
+  <li>ü 对于维护性项目，周期性地进行</li>
+</ul>
+
+<p>Who</p>
+
+<ul>
+  <li>ü 非本项目组成员</li>
+  <li>ü 其他项目中的配置控制者</li>
+  <li>ü 内部审计者</li>
+  <li>ü SCM<span style="font-family: 宋体;">小组</span></li>
+</ul>
+
+<p>How-<span style="font-family: 宋体;">审计流程：</span></p>
+
+<ul>
+  <li>ü 识别配置审计的时间<span style="font-family: 'Times New Roman';">[PM]</span></li>
+  <li>ü 指派审计者<span style="font-family: 'Times New Roman';">[QA/Audit Group]</span></li>
+  <li>ü 定义审计范围<span style="font-family: 'Times New Roman';">[PM&amp;Auditors]</span></li>
+  <li>ü 准备配置审计<span style="font-family: 'Times New Roman';">Checklist[Auditor]</span></li>
+  <li>ü 通过评审（<span style="font-family: 'Times New Roman';">Review</span><span style="font-family: 宋体;">）、文档记录进行审计</span><span style="font-family: 'Times New Roman';">[Auditor]</span></li>
+  <li>ü 识别不符合项<span style="font-family: 'Times New Roman';">[Auditor]</span></li>
+</ul>
+
+<ol>
+  <li>ü 关闭不符合项<span style="font-family: 'Times New Roman';">[PM]</span></li>
+  <li>ü 验证<span style="font-family: 'Times New Roman';">[Auditor]</span></li>
+</ol>
+
+<p>6) 配置报告：根据配置项操作的记录来向管理者报告软件开发活动的进展情况。这样的报告应该是定期进行，并尽量通过CASE工具自动生成，用数据库中的客观数据来真实的反映各配置项的情况。应着重反映当前基线配置项的状态，以作为对开发进度报告的参照。</p>
+
+<h3 id="软件配置管理作用">软件配置管理作用</h3>
+
+<p><strong>软件配置管理对需方的作用</strong></p>
+
+<p>a)         保证开发、操作和维护要求的完善；</p>
+
+<p>b)        在受控条件下能够作出改变这些要求的灵活性；</p>
+
+<p>c)        建立SCM活动和任务评价准则的基础；</p>
+
+<p>d)        完全和非完全（工程发行）项的补充。</p>
+
+<p><strong>软件配置管理对开发方的作用</strong></p>
+
+<p>a)         查找满足这些要求的项和借助控制改变；</p>
+
+<p>b)        通过提供附加在管理阶段的SCIs（这些情况中，生存周期过程中的主要软件产品）的状况，支持联合评审过程；</p>
+
+<p>c)        通过集中符合性检查中可度量的结果，支持审核过程；</p>
+
+<p>d)        支持质量保证、验证和确认过程，引伸到它们在软件生存周期中存在的范围。</p>
+
+<p><strong>软件配置管理对技术人员的作用</strong></p>
+
+<p>a)         这些基线能重建的具有保证的稳定基线；</p>
+
+<p>b)        状况的一致信息；</p>
+
+<p>c)        突出的要求的状况和相互依赖关系；</p>
+
+<p>d)        变化的通知、分析和撤消；</p>
+
+<p>e)         授权的变化机构；</p>
+
+<p>f)          处理、贮存、复制、打包和发行SCIs的一致性方法。</p>
+
+            </div>
+            <div class="post-nav">
+    
+    <a class="prev" href=/blog/scm-and-cmm.html>&laquo; &nbsp;软件配置管理与CMM-三库管理</a>
+    
+    
+    <a class="next" href=/blog/documents-of-software-configuration-management.html>软件配置管理相关文档&nbsp;&raquo;</a>
+    
+</div>
+
+            
+        </div>
+        <!--
+            if config set comment enable,include comment
+        -->
+        
+            <!-- comment -->
+<div id="post-comment" class="panel panel-default">
+    <div class="panel-body">
+        
+
+        
+            <div id="disqus_thread"></div>
+        
+    </div>
+</div>
+
+        
+    </div>
+    <div class="col-md-3 col-sidebar">
+        <div class="panel panel-pithy author">
+    <div class="panel-heading avastar">
+        <img src="/tx.jpg" alt="tanglei"/>
+    </div>
+    <div class="panel-body">
+        码农 @ 宜信大数据创新中心, 毕业于CSU && THU,  曾工作于<a href='http://www.tencent.com/zh-cn/index.shtml' target='_blank'>腾讯</a> && <a href='http://www.umeng.com/' target='_blank'>友盟</a>.  &nbsp; <a href='/about/'> MORE </a>
+    </div>
+    <div class="panel-footer social">
+        <ul>
+            
+            <li>
+                <a rel="nofollow" href="http://www.weibo.com/tangleithu/" target="_blank"><i class="fa fa-weibo"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://github.com/tl3shi" target="_blank"><i class="fa fa-github"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://www.facebook.com/tanglei.name" target="_blank"><i class="fa fa-facebook"></i></a>
+            </li>
+            
+            <li>
+                <a href="https://www.tanglei.name/feed.xml" target="_blank"><i class="fa fa-rss"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar:category list -->
+<div class="panel panel-default categories">
+    <div class="panel-heading title">
+        分类列表
+    </div>
+    <div class="panel-body list">
+        <ul>
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/贵州支教行/">
+                  贵州支教行&nbsp;<span class="count">[12]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/课程学习/">
+                  课程学习&nbsp;<span class="count">[88]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/MyLife/">
+                  MyLife&nbsp;<span class="count">[45]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/经验技巧/">
+                  经验技巧&nbsp;<span class="count">[93]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/社会工作/">
+                  社会工作&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/网络文摘/">
+                  网络文摘&nbsp;<span class="count">[28]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件体系结构/">
+                  软件体系结构&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/旅游/">
+                  旅游&nbsp;<span class="count">[23]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软考/">
+                  软考&nbsp;<span class="count">[2]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件度量及其应用/">
+                  软件度量及其应用&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/工作那些事儿/">
+                  工作那些事儿&nbsp;<span class="count">[42]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我做站长/">
+                  我做站长&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/coding小工具/">
+                  coding小工具&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/除臭虫/">
+                  除臭虫&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/学到老/">
+                  学到老&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我不会算法/">
+                  我不会算法&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/数据挖掘/">
+                  数据挖掘&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/计算机图形学/">
+                  计算机图形学&nbsp;<span class="count">[5]</span>
+              </a>
+          </li>
+
+          
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar: tag list -->
+<div class="panel panel-default tags">
+    <div class="panel-heading title">
+        标签云
+    </div>
+    <div class="panel-body list">
+         
+        <input type="hidden" id="tag-values" value='{"name":"丰田助学","count":16},{"name":"贵州支教","count":12},{"name":"铜厂小学","count":9},{"name":"中南大学","count":12},{"name":"云南赶集","count":1},{"name":"HelloWorld","count":5},{"name":"我做站长","count":35},{"name":"设计模式","count":7},{"name":"Wordpress","count":18},{"name":"系统架构师","count":11},{"name":"软考","count":25},{"name":"论文","count":6},{"name":"软件0804","count":8},{"name":"Java","count":24},{"name":"J2EE","count":3},{"name":"JAVA","count":1},{"name":"考试","count":25},{"name":"SEO","count":3},{"name":"软件体系结构","count":6},{"name":"Android","count":28},{"name":"软件工程","count":2},{"name":"Windows","count":17},{"name":"软件测试","count":1},{"name":"总结","count":13},{"name":"Oracle","count":4},{"name":"存储过程","count":3},{"name":"数据库应用","count":3},{"name":"数据库","count":8},{"name":"先进班集体","count":1},{"name":"Linux","count":15},{"name":"Ubuntu","count":8},{"name":"Defy","count":3},{"name":"传感器","count":1},{"name":"访日交流","count":8},{"name":"旅游","count":22},{"name":"软件学院","count":11},{"name":"大学生科协","count":4},{"name":"玩遍中国","count":11},{"name":"计算机网络","count":5},{"name":"Eclipse","count":4},{"name":"软件度量","count":11},{"name":"软件设计师","count":4},{"name":"编译原理","count":2},{"name":"程序语言","count":2},{"name":"操作系统","count":3},{"name":"多媒体","count":2},{"name":"网络安全","count":9},{"name":"TCP/IP","count":2},{"name":"编程语言","count":1},{"name":"考点","count":1},{"name":"Google","count":5},{"name":"软件结构度量","count":1},{"name":"CMM","count":6},{"name":"项目管理","count":3},{"name":"实习","count":33},{"name":"面试","count":18},{"name":"网络营销","count":1},{"name":"百度","count":4},{"name":"笔试","count":2},{"name":"腾讯","count":31},{"name":"编程比赛","count":4},{"name":"科研","count":4},{"name":"电子商务","count":11},{"name":"虚拟主机","count":2},{"name":"网路安全","count":1},{"name":"Foxmail","count":3},{"name":"微软","count":1},{"name":"软件能力成熟度模型","count":2},{"name":"软件过程改进","count":3},{"name":"SCM复习资料","count":1},{"name":"软件配置管理","count":12},{"name":"SCM","count":6},{"name":"工具","count":19},{"name":"反模式","count":1},{"name":"玩玩手机","count":5},{"name":"程序员","count":4},{"name":"健康","count":1},{"name":"共享上网","count":2},{"name":"Bug","count":4},{"name":"coding小工具","count":1},{"name":"工作日志","count":19},{"name":"Apache","count":2},{"name":"PHP","count":13},{"name":"实习日志","count":1},{"name":"工作实习生","count":1},{"name":"Mysql","count":1},{"name":"Shell","count":3},{"name":"腾讯实习日志","count":1},{"name":"hosts","count":2},{"name":"Vim","count":3},{"name":"正则表达式","count":2},{"name":"搜索引擎","count":1},{"name":"跨域","count":1},{"name":"前端","count":2},{"name":"保研","count":15},{"name":"算法","count":9},{"name":"清华大学","count":12},{"name":"丰田助学金","count":3},{"name":"WiFi","count":1},{"name":"实习生","count":1},{"name":"wifi自动关闭","count":1},{"name":"腾讯实习","count":1},{"name":"经验技巧","count":13},{"name":"DDOS","count":2},{"name":"AOP","count":3},{"name":"租房","count":2},{"name":"Sqlite","count":2},{"name":"Python","count":11},{"name":"OOP","count":5},{"name":"数据挖掘","count":8},{"name":"GitHub","count":2},{"name":"SVM","count":3},{"name":"R语言","count":2},{"name":"足迹","count":2},{"name":"笛子","count":2},{"name":"计算机图形学","count":5},{"name":"OpenGL","count":3},{"name":"回忆录","count":1},{"name":"年终总结","count":1},{"name":"域名","count":1},{"name":"计算几何","count":2},{"name":"敲敲代码","count":9},{"name":"Latex","count":3},{"name":"C++","count":10},{"name":"Mac","count":7},{"name":"飞行模式","count":2},{"name":"性能优化","count":2},{"name":"Javascript","count":1},{"name":"工作","count":1},{"name":"玩遍世界","count":1},{"name":"Scala","count":2},{"name":"MyLife","count":1},{"name":"快捷键","count":1},{"name":"云服务","count":1},{"name":"Blog","count":1},{"name":"微信公众号","count":1}'/>
+        <div style="display: none"><a id="tag-value" class="taglink" rel="bookmark" href="/tag/#" data-target-cate="#"></a></div>
+        <div class="tag-values-container">
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+  </div>
+
+  <footer>
+  <div class="text-center">
+    © 2010-2016 All rights reserved.
+    Made with <a href="http://jekyllrb.com/" rel="nofollow" target="_blank">Jekyll</a>
+    & Modified by <a href="http://www.tanglei.name/about/" >Tanglei</a>
+    and <i class="fa fa-heart"></i> by <a rel="nofollow" href="https://github.com/guovz/jekyll-pithy" target="_blank">Pithy</a>
+  </div>
+  <div class="totop" data-toggle="totop">
+      <i class="fa fa-chevron-up"></i>
+  </div>
+</footer>
+
+
+  <!--the js include-->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="/assets/script/pithy.js"></script>
+
+<!--
+  the site comment script
+-->
+
+
+  <script>
+    
+    var disqus_config = function () {
+        this.page.url = 'https://www.tanglei.name/blog/scm-functions-and-uses.html' ; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '/blog/scm-functions-and-uses.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+        if($("#disqus_thread").length) {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://hexo-tanglei.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+    powered by Disqus.</a></noscript>
+
+
+
+<!--
+  the site analysis script
+-->
+
+  <!-- baidu analysis -->
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?f0117177475f54027bfcaceb8d668cee";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+</body>
+</html>

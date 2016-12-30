@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+  <head>
+    <title>由一次磁盘告警引发的血案 -- du 和 ls 的区别</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="keywords" content="由一次磁盘告警引发的血案 -- du 和 ls 的区别, 除臭虫, 经验技巧,Linux,, 唐磊, 中南大学, 清华大学, 软件工程师, 计算机, 全栈工程师" />
+    <meta name="description" content="由一次磁盘告警引发的血案 -- du 和 ls 的区别, 除臭虫, 经验技巧,Linux, " />
+
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+
+  <!--Font awesome-->
+  <link href="/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- The pithy main css -->
+  <link rel="stylesheet" href="/assets/stylesheet/pithy.css">
+  <link rel="stylesheet" href="/assets/stylesheet/molokai.css">
+
+
+  <!--[if lt IE 9]>
+  <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv-printshiv.js"></script>
+  <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+  <![endif]-->
+  <link rel="alternate" type="application/rss+xml" title="tanglei's blog|唐磊的个人博客" href="https://www.tanglei.name/feed.xml" />
+</head>
+
+<body>
+  <nav class="navbar navbar-pithy" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+                data-target="#pithy-navbar" aria-expanded="false">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" rel="bookmark" href="/">TangLei</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="pithy-navbar">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="bookmark" href="/">首页</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/archives.html">Archives</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/about/">关于</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+  <div class="container page-content">
+    <div>
+    <div class="col-md-9 col-content">
+        <div id="post-content" class="panel panel-pithy post">
+            <div class="panel-heading">
+                <div class="title">
+                  <i class="fa fa-bookmark-o"></i>由一次磁盘告警引发的血案 -- du 和 ls 的区别
+                </div>
+                <ul class="info">
+                    <li>
+                      作者 <span class="author"> 
+        
+            tanglei 
+        
+        </span>
+                    </li>
+                    <li>
+                      最后编辑 2016年11月09日
+                    </li>
+                    <li>
+                      Tags
+                     
+                         <a class="tag" href="/tag/#经验技巧">经验技巧</a>
+                     
+                         <a class="tag" href="/tag/#Linux">Linux</a>
+                     
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body content">
+                <p><img src="/resources/difference-between-du-and-ls/du-ls.jpg" alt="difference-between-du-and-ls" /></p>
+
+<p>如果你完全不明白或者完全明白图片含义, 那么你不用继续往下看了. 否则, 这篇文章也许正是你需要的.</p>
+
+<h3 id="背景">背景</h3>
+
+<p>确切地说，不是收到的自动告警短信或者邮件告诉我某机器上的磁盘满了，而是某同学人肉发现该机器写不了新文件才发现该问题的.  说明我司告警服务还不太稳定 :)</p>
+
+<p>第一次出现该问题时, 我的处理方式是: 先删了 <code class="highlighter-rouge">/tmp/</code> 目录, 空闲出部分空间, 然后检查下几个常用的用户目录, 最终发现某服务A的日志文件(contentutil.log)占用了好几个大G, 询问相关开发人员后确定该日志文件不需要压缩备份, 所以可直接删除, 于是 <code class="highlighter-rouge">rm contentutil.log</code> 之后就天真地认为万事大吉了…(不懂为啥当初没 <code class="highlighter-rouge">df</code> 再看看)</p>
+
+<p>然而, 大约xx天后, 发现该机器磁盘又满了, 惊呼奇怪咋这么快又满了. 最终发现是上次 <code class="highlighter-rouge">rm contentutil.log</code> 后, 占用好几个大G的contentutil.log 一直被服务A的进程打开了, <code class="highlighter-rouge">rm</code> 后空间并没有释放. 
+<code class="highlighter-rouge">rm</code> 其实是删除该文件名到文件真正保存到磁盘位置的链接, 此时该文件句柄还被服务A打开, 因此对应的数据并没有被回收, 其实可以理解为 GC 里面的引用计数, <code class="highlighter-rouge">rm</code> 只是减少了引用计数, 并没有真正的进行释放内存, 当引用计数为0的时候, OS 内核才会释放空间, 供其他进程使用. 所以当A进程停止(文件句柄的引用计数会变为0)或者重启后, 占用的存储空间才被释放(从某种程度上讲说明该服务一直很稳定, 可以连续跑很久不出故障~ 微笑脸). 
+(tip: 如果不知道具体进程或文件名的话：<code class="highlighter-rouge">lsof | grep deleted</code>，这样会查找所有被删除的但是文件句柄没有释放的文件和相应的进程，然后再kill掉进程或者重启进程即可).</p>
+
+<p>后来, 白老板告知可以用修改文件内容的方式在不用重启进程的情况下释放空间.</p>
+
+<h3 id="du-vs-ls">du vs ls</h3>
+
+<p>前两天该问题又出现了, 该服务A的日志文件(contentutil.log)占用了约7.6G(请原谅我们没有对该服务的日志做logrotate)。这一次学聪明了, 直接用<code class="highlighter-rouge">echo 'hello' &gt; contentutil.log</code>, 然后 <code class="highlighter-rouge">df</code> 确认磁盘空间确实已经释放, 心想着这次可以 Happy 了, 突然手贱执行了下 <code class="highlighter-rouge">ls</code> 和 <code class="highlighter-rouge">du</code>, 有了以下结果:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="o">[</span>root@xxx shangtongdai-content-util]# ls -lah contentutil.log
+-rw-r--r--. 1 root root 7.6G Nov  7 19:36 contentutil.log
+<span class="o">[</span>root@xxx shangtongdai-content-util]# du -h contentutil.log
+2.3M    contentutil.log
+</code></pre>
+</div>
+
+<p>反正我看到这样的结果是百思不得其解, 如果你已经明确为什么会产生这样的结果, 那就不用继续往下看了.
+可以明确的是, 这里的 <code class="highlighter-rouge">ls</code> 和 <code class="highlighter-rouge">du</code> 结果肯定代表不同的含义, 具体原因不详, 在查阅相关资料和咨询强大的票圈后了解到, 这大概与文件空洞和稀疏文件(holes in ‘sparse’ files)相关.</p>
+
+<p><code class="highlighter-rouge">ls</code> 的结果是 apparent sizes, 我的理解是文件长度, 就类似文件系统中 file 这个数据结构中的定义文件长度的这个字段, <code class="highlighter-rouge">du</code> 的结果 disk usage, 即真正占用存储空间的大小, 且默认度量单位是 block. (apparent sizes 和 disk usage 说法摘自 <code class="highlighter-rouge">man du</code> 中的 <code class="highlighter-rouge">--apparent-size</code> 部分)</p>
+
+<p>给出一个具体的示例:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>// Mac OS 10.11.6 <span class="o">(</span>15G1004<span class="o">)</span>
+➜  _drafts git:<span class="o">(</span><span class="nb">source</span><span class="o">)</span> ✗ <span class="nb">echo</span> -n a &gt;1B.log
+➜  _drafts git:<span class="o">(</span><span class="nb">source</span><span class="o">)</span> ✗ ls -las 1B.log
+8 -rw-r--r--  1 tanglei  staff  1 11  9 00:06 1B.log
+➜  _drafts git:<span class="o">(</span><span class="nb">source</span><span class="o">)</span> ✗ du 1B.log
+8	1B.log
+➜  _drafts git:<span class="o">(</span><span class="nb">source</span><span class="o">)</span> ✗ du -h 1B.log
+4.0K	1B.log
+</code></pre>
+</div>
+
+<p>上面示例中, 文件 1B.log 内容仅仅包含一个字母”a”, 文件长度为1个字节, 前面的 8 为占用的存储空间 8 个 block, (ls -s 的结果跟 du 的结果等价, 都是实际占用磁盘的空间), 为什么1个字节的文件需要占用8个 block 呢, 可以这样理解, <em>block</em> 为磁盘存储的基本的单位, 方便磁盘寻址等(这里说的基本单位应该是磁盘物理结构单位例如一个扇区/柱面等, 对应一个物理单位), 而此处的block可以理解为一个逻辑单位, 且一个文件除了包括数据外, 还需要存储描述此文件的其他信息, 因此包含1个字节的文件实际在磁盘中占用的存储空间不止1个字节. 默认情况下, Mac中1个逻辑block中是 512 字节, 因此 <code class="highlighter-rouge">du -h</code> 结果是 <code class="highlighter-rouge">8 * 512 = 4096 = 4.0K</code>.</p>
+
+<blockquote>
+  <p>If the environment variable BLOCKSIZE is set, and the -k option is not specified, the block counts will be displayed in units of that size block.  If BLOCKSIZE is not set, and the -k option is not specified, the block counts will be displayed in 512-byte blocks. (<code class="highlighter-rouge">man du</code>)</p>
+</blockquote>
+
+<p>因此, 通常情况下, <code class="highlighter-rouge">ls</code> 的结果应该比 <code class="highlighter-rouge">du</code>的结果更小(都指用默认的参数执行, 调整参数可使其表达含义相同), 然而上面跑服务 A 的机器上 contentutil.log 的对比结果是 <code class="highlighter-rouge">7.6G vs. 2.3M</code>, 仍然无法理解了. 
+沿着 <a href="https://linux.die.net/man/1/du">man du</a> 可以看到:</p>
+
+<blockquote>
+  <p>although the apparent size is usually smaller, it may be larger due to holes in (‘sparse’) files, internal fragmentation, indirect blocks, and the like</p>
+</blockquote>
+
+<p>即因contentutil.log是一个稀疏文件, 虽然其文件长度很大, 到7.6G了, 然而其中包含大量的<code class="highlighter-rouge">holes</code>并不占用实际的存储空间.</p>
+
+<p>下面用一个具体的例子来复现以上遇到的问题. 注意以下例子为 Linux version 2.6.32 (Red Hat 4.4.7)中运行结果, 且在 Mac 中并不能复现(后文有指出为什么我的Mac不能复现).</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>// 从标准输入中读取 <span class="nv">count</span><span class="o">=</span>0 个block, 输出到 sparse-file 中, 
+// 一个 block 的大小为1k<span class="o">(</span><span class="nv">bs</span><span class="o">=</span>1k<span class="o">)</span>, 输出时先将写指针移动到 seek 位置的地方
+<span class="o">[</span>root@localhost ~]# dd <span class="nv">of</span><span class="o">=</span>sparse-file <span class="nv">bs</span><span class="o">=</span>1k <span class="nv">seek</span><span class="o">=</span>5120 <span class="nv">count</span><span class="o">=</span>0
+0+0 records <span class="k">in
+</span>0+0 records out
+0 bytes <span class="o">(</span>0 B<span class="o">)</span> copied, 1.6329e-05 s, 0.0 kB/s
+// 所以此时的文件长度为: 5M <span class="o">=</span> 5120<span class="k">*</span>1k<span class="o">(</span>1024<span class="o">)</span> <span class="o">=</span> 5242880
+<span class="o">[</span>root@localhost ~]# ls -l sparse-file
+-rw-r--r--. 1 root root 5242880 Nov  8 11:32 sparse-file
+<span class="o">[</span>root@localhost ~]# ls -ls sparse-file
+0 -rw-r--r--. 1 root root 5242880 Nov  8 11:32 sparse-file
+// 而 sparse-file 占用的存储空间为 0 个 block
+<span class="o">[</span>root@localhost ~]# du sparse-file
+0	sparse-file
+<span class="o">[</span>root@localhost ~]# du -h sparse-file
+0	sparse-file
+</code></pre>
+</div>
+
+<p>此时若用 vim 打开该文件, 用二进制形式查看 (tip <code class="highlighter-rouge">:%!xxd</code> 可以更改当前文件显示为2进制形式), 能看到里面的内容全是<code class="highlighter-rouge">0</code>. 或者直接用<code class="highlighter-rouge">od</code>命令查看2进制.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>// vim 二进制查看
+0000000: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+0000010: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+....
+//od -b sparse-file
+0000000   000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000
+<span class="k">*</span>
+24000000
+</code></pre>
+</div>
+
+<p>实际上, Sparse 文件是并不占用磁盘存储空间的, 那为什么能看到文件里面包含很多0? 因为当在读取稀疏文件的时候, 文件系统根据文件的 metadata(就是前面所指描述文件的这个数据结构)自动用<code class="highlighter-rouge">0</code>填充[ref Wiki]; Wiki上还说, 现代的不少文件系统都支持 Sparse 文件, 包括 Unix 及其变种和 NTFS, 然而Apple File System(APFS)不支持, 因此我在我的 Mac 上用 <code class="highlighter-rouge">du</code> 查看占用空间与 <code class="highlighter-rouge">ls</code> 的结果一致. 传闻指出 Apple 在今年6月的 WWWC 上宣称支持 Sparse 文件. (貌似目前我的系统版本还不支持)</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>// In Mac
+➜  ~ dd <span class="nv">of</span><span class="o">=</span>sparse-file <span class="nv">bs</span><span class="o">=</span>1k <span class="nv">seek</span><span class="o">=</span>5120 <span class="nv">count</span><span class="o">=</span>0
+0+0 records <span class="k">in
+</span>0+0 records out
+0 bytes transferred <span class="k">in </span>0.000024 secs <span class="o">(</span>0 bytes/sec<span class="o">)</span>
+➜  ~ ls -ls sparse-file
+10240 -rw-r--r--  1 tanglei  staff  5242880 11  9 09:44 sparse-file
+➜  ~ du sparse-file
+10240	sparse-file
+</code></pre>
+</div>
+
+<p>以上是用 <code class="highlighter-rouge">dd</code> 等命令创建稀疏文件, 也有同学用 c 代码实现了相同的功能. 其实就是写文件的时候, 改变下当前文件写指针. 前面遇到的问题就应该类似.</p>
+
+<div class="language-c highlighter-rouge"><pre class="highlight"><code><span class="cp">#include &lt;stdio.h&gt;
+#include &lt;fcntl.h&gt;
+#include &lt;string.h&gt;
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">fd</span><span class="p">,</span> <span class="n">result</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">wbuf</span><span class="p">[]</span> <span class="o">=</span> <span class="s">"hello"</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">((</span><span class="n">fd</span> <span class="o">=</span> <span class="n">open</span><span class="p">(</span><span class="s">"./filetest.log"</span><span class="p">,</span> <span class="n">O_RDWR</span><span class="o">|</span><span class="n">O_CREAT</span><span class="o">|</span><span class="n">O_EXCL</span><span class="p">,</span> <span class="n">S_IRUSR</span><span class="o">|</span><span class="n">S_IWUSR</span><span class="p">))</span>
+<span class="p">)</span>  <span class="p">{</span>
+            <span class="n">perror</span><span class="p">(</span><span class="s">"open"</span><span class="p">);</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">((</span><span class="n">result</span> <span class="o">=</span> <span class="n">write</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span> <span class="n">wbuf</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">wbuf</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">perror</span><span class="p">(</span><span class="s">"write"</span><span class="p">);</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">((</span><span class="n">result</span> <span class="o">=</span> <span class="n">lseek</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span> <span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="o">*</span><span class="mi">10</span><span class="p">,</span> <span class="n">SEEK_END</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">perror</span><span class="p">(</span><span class="s">"lseek"</span><span class="p">);</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">((</span><span class="n">result</span> <span class="o">=</span> <span class="n">write</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span> <span class="n">wbuf</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">wbuf</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">perror</span><span class="p">(</span><span class="s">"write"</span><span class="p">);</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">close</span><span class="p">(</span><span class="n">fd</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>以上先将”hello”写入filetest.log, 然后改变文件指针到<code class="highlighter-rouge">1024*1024*10</code>(相当于文件长度这个字段变大了), gcc 编译后运行结果文件详情如下:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="o">[</span>root@localhost ~]# ls -ls filetest.log
+8 -rw-------. 1 root root 10485772 Nov  9 17:45 filetest.log
+<span class="o">[</span>root@localhost ~]# du  filetest.log
+8	filetest.log
+<span class="o">[</span>root@localhost ~]# du -h filetest.log
+8.0K	filetest.log
+<span class="o">[</span>root@localhost ~]# ls -lh filetest.log
+-rw-------. 1 root root 11M Nov  9 17:45 filetest.log
+<span class="o">[</span>root@localhost ~]# od -c filetest.log
+0000000   h   e   l   l   o  <span class="se">\0</span>  <span class="se">\0</span>  <span class="se">\0</span>  <span class="se">\0</span>  <span class="se">\0</span>  <span class="se">\0</span>  <span class="se">\0</span>  <span class="se">\0</span>  <span class="se">\0</span>  <span class="se">\0</span>  <span class="se">\0</span>
+0000020  <span class="se">\0</span>  <span class="se">\0</span>  <span class="se">\0</span>  <span class="se">\0</span>  <span class="se">\0</span>  <span class="se">\0</span>  <span class="se">\0</span>  <span class="se">\0</span>  <span class="se">\0</span>  <span class="se">\0</span>  <span class="se">\0</span>  <span class="se">\0</span>  <span class="se">\0</span>  <span class="se">\0</span>  <span class="se">\0</span>  <span class="se">\0</span>
+<span class="k">*</span>
+50000000  <span class="se">\0</span>  <span class="se">\0</span>  <span class="se">\0</span>  <span class="se">\0</span>  <span class="se">\0</span>  <span class="se">\0</span>   h   e   l   l   o  <span class="se">\0</span>
+50000014
+</code></pre>
+</div>
+
+<p>解释下结果: 文件长度应该是 “hello” 加上 “\n” 共6个字节<code class="highlighter-rouge">*2 = 12</code>, 再加上<code class="highlighter-rouge">1024*1024*10</code>个字节, 即为<code class="highlighter-rouge">ls</code>产生的结果10485772个字节约11M, 而<code class="highlighter-rouge">du</code>的结果为8个block也为8k(这台机器上的block大小与前面的Mac不一样, 这里是1024).</p>
+
+<blockquote>
+  <p>Display values are in units of the first available SIZE from –block-size, and the DU_BLOCK_SIZE, BLOCK_SIZE and BLOCKSIZE environment variables.  Otherwise, units default to 1024 bytes (or 512 if POSIXLY_CORRECT is set. (<code class="highlighter-rouge">du --help</code>)</p>
+</blockquote>
+
+<h3 id="总结">总结</h3>
+
+<p>总结一下: 出现以上问题说明自己对一些基础掌握得尚不牢固, 比如</p>
+
+<ol>
+  <li>rm 某文件后, 文件占用的磁盘空间并不是立即释放, 而是其句柄没有被任意一个进程引用时才回收;</li>
+  <li>ls/du 命令结果的具体含义;</li>
+  <li>稀疏文件.</li>
+</ol>
+
+<p>然而这些知识点都在《UNIX环境高级编程》这本书中有讲 (之前走马观花看过不少, 咋对稀疏文件等一点印象都木有!)</p>
+
+<p>以上内容若有不清楚或不正确的地方, 还望大家指出, 感谢.</p>
+
+<p>另外, 我最终也开通了一个微信公众号, 欢迎有兴趣的同学扫码关注, 谢谢.
+<img src="/resources/wechat-tangleithu.jpg" alt="微信公众号" /></p>
+
+<p>参考资料:</p>
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Sparse_file">wiki Sparse_file</a></li>
+  <li><a href="https://linux.die.net/man/1/du">man du</a></li>
+  <li><a href="http://blog.csdn.net/todd911/article/details/11237627">《UNIX环境高级编程》笔记–read函数，write函数，lseek函数</a></li>
+  <li><a href="http://www.cnblogs.com/coldplayerest/archive/2012/02/19/2358098.html">为什么用ls和du显示出来的文件大小有差别？</a></li>
+  <li><a href="http://blog.qiusuo.im/blog/2014/08/18/rm-daemon-log/">删除守护进程的日志</a></li>
+  <li>UNIX环境高级编程 第2版, 第3章 文件 I/O, 第4章 文件和目录</li>
+</ul>
+
+
+            </div>
+            <div class="post-nav">
+    
+    <a class="prev" href=/blog/travel-to-changbai-mountain.html>&laquo; &nbsp;长白山旅游</a>
+    
+    
+    <a class="next" href=/blog/app-in-mac-preface.html>Mac 软件推荐(序)&nbsp;&raquo;</a>
+    
+</div>
+
+            
+        </div>
+        <!--
+            if config set comment enable,include comment
+        -->
+        
+            <!-- comment -->
+<div id="post-comment" class="panel panel-default">
+    <div class="panel-body">
+        
+
+        
+            <div id="disqus_thread"></div>
+        
+    </div>
+</div>
+
+        
+    </div>
+    <div class="col-md-3 col-sidebar">
+        <div class="panel panel-pithy author">
+    <div class="panel-heading avastar">
+        <img src="/tx.jpg" alt="tanglei"/>
+    </div>
+    <div class="panel-body">
+        码农 @ 宜信大数据创新中心, 毕业于CSU && THU,  曾工作于<a href='http://www.tencent.com/zh-cn/index.shtml' target='_blank'>腾讯</a> && <a href='http://www.umeng.com/' target='_blank'>友盟</a>.  &nbsp; <a href='/about/'> MORE </a>
+    </div>
+    <div class="panel-footer social">
+        <ul>
+            
+            <li>
+                <a rel="nofollow" href="http://www.weibo.com/tangleithu/" target="_blank"><i class="fa fa-weibo"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://github.com/tl3shi" target="_blank"><i class="fa fa-github"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://www.facebook.com/tanglei.name" target="_blank"><i class="fa fa-facebook"></i></a>
+            </li>
+            
+            <li>
+                <a href="https://www.tanglei.name/feed.xml" target="_blank"><i class="fa fa-rss"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar:category list -->
+<div class="panel panel-default categories">
+    <div class="panel-heading title">
+        分类列表
+    </div>
+    <div class="panel-body list">
+        <ul>
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/贵州支教行/">
+                  贵州支教行&nbsp;<span class="count">[12]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/课程学习/">
+                  课程学习&nbsp;<span class="count">[88]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/MyLife/">
+                  MyLife&nbsp;<span class="count">[45]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/经验技巧/">
+                  经验技巧&nbsp;<span class="count">[93]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/社会工作/">
+                  社会工作&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/网络文摘/">
+                  网络文摘&nbsp;<span class="count">[28]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件体系结构/">
+                  软件体系结构&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/旅游/">
+                  旅游&nbsp;<span class="count">[23]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软考/">
+                  软考&nbsp;<span class="count">[2]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件度量及其应用/">
+                  软件度量及其应用&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/工作那些事儿/">
+                  工作那些事儿&nbsp;<span class="count">[42]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我做站长/">
+                  我做站长&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/coding小工具/">
+                  coding小工具&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/除臭虫/">
+                  除臭虫&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/学到老/">
+                  学到老&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我不会算法/">
+                  我不会算法&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/数据挖掘/">
+                  数据挖掘&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/计算机图形学/">
+                  计算机图形学&nbsp;<span class="count">[5]</span>
+              </a>
+          </li>
+
+          
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar: tag list -->
+<div class="panel panel-default tags">
+    <div class="panel-heading title">
+        标签云
+    </div>
+    <div class="panel-body list">
+         
+        <input type="hidden" id="tag-values" value='{"name":"丰田助学","count":16},{"name":"贵州支教","count":12},{"name":"铜厂小学","count":9},{"name":"中南大学","count":12},{"name":"云南赶集","count":1},{"name":"HelloWorld","count":5},{"name":"我做站长","count":35},{"name":"设计模式","count":7},{"name":"Wordpress","count":18},{"name":"系统架构师","count":11},{"name":"软考","count":25},{"name":"论文","count":6},{"name":"软件0804","count":8},{"name":"Java","count":24},{"name":"J2EE","count":3},{"name":"JAVA","count":1},{"name":"考试","count":25},{"name":"SEO","count":3},{"name":"软件体系结构","count":6},{"name":"Android","count":28},{"name":"软件工程","count":2},{"name":"Windows","count":17},{"name":"软件测试","count":1},{"name":"总结","count":13},{"name":"Oracle","count":4},{"name":"存储过程","count":3},{"name":"数据库应用","count":3},{"name":"数据库","count":8},{"name":"先进班集体","count":1},{"name":"Linux","count":15},{"name":"Ubuntu","count":8},{"name":"Defy","count":3},{"name":"传感器","count":1},{"name":"访日交流","count":8},{"name":"旅游","count":22},{"name":"软件学院","count":11},{"name":"大学生科协","count":4},{"name":"玩遍中国","count":11},{"name":"计算机网络","count":5},{"name":"Eclipse","count":4},{"name":"软件度量","count":11},{"name":"软件设计师","count":4},{"name":"编译原理","count":2},{"name":"程序语言","count":2},{"name":"操作系统","count":3},{"name":"多媒体","count":2},{"name":"网络安全","count":9},{"name":"TCP/IP","count":2},{"name":"编程语言","count":1},{"name":"考点","count":1},{"name":"Google","count":5},{"name":"软件结构度量","count":1},{"name":"CMM","count":6},{"name":"项目管理","count":3},{"name":"实习","count":33},{"name":"面试","count":18},{"name":"网络营销","count":1},{"name":"百度","count":4},{"name":"笔试","count":2},{"name":"腾讯","count":31},{"name":"编程比赛","count":4},{"name":"科研","count":4},{"name":"电子商务","count":11},{"name":"虚拟主机","count":2},{"name":"网路安全","count":1},{"name":"Foxmail","count":3},{"name":"微软","count":1},{"name":"软件能力成熟度模型","count":2},{"name":"软件过程改进","count":3},{"name":"SCM复习资料","count":1},{"name":"软件配置管理","count":12},{"name":"SCM","count":6},{"name":"工具","count":19},{"name":"反模式","count":1},{"name":"玩玩手机","count":5},{"name":"程序员","count":4},{"name":"健康","count":1},{"name":"共享上网","count":2},{"name":"Bug","count":4},{"name":"coding小工具","count":1},{"name":"工作日志","count":19},{"name":"Apache","count":2},{"name":"PHP","count":13},{"name":"实习日志","count":1},{"name":"工作实习生","count":1},{"name":"Mysql","count":1},{"name":"Shell","count":3},{"name":"腾讯实习日志","count":1},{"name":"hosts","count":2},{"name":"Vim","count":3},{"name":"正则表达式","count":2},{"name":"搜索引擎","count":1},{"name":"跨域","count":1},{"name":"前端","count":2},{"name":"保研","count":15},{"name":"算法","count":9},{"name":"清华大学","count":12},{"name":"丰田助学金","count":3},{"name":"WiFi","count":1},{"name":"实习生","count":1},{"name":"wifi自动关闭","count":1},{"name":"腾讯实习","count":1},{"name":"经验技巧","count":13},{"name":"DDOS","count":2},{"name":"AOP","count":3},{"name":"租房","count":2},{"name":"Sqlite","count":2},{"name":"Python","count":11},{"name":"OOP","count":5},{"name":"数据挖掘","count":8},{"name":"GitHub","count":2},{"name":"SVM","count":3},{"name":"R语言","count":2},{"name":"足迹","count":2},{"name":"笛子","count":2},{"name":"计算机图形学","count":5},{"name":"OpenGL","count":3},{"name":"回忆录","count":1},{"name":"年终总结","count":1},{"name":"域名","count":1},{"name":"计算几何","count":2},{"name":"敲敲代码","count":9},{"name":"Latex","count":3},{"name":"C++","count":10},{"name":"Mac","count":7},{"name":"飞行模式","count":2},{"name":"性能优化","count":2},{"name":"Javascript","count":1},{"name":"工作","count":1},{"name":"玩遍世界","count":1},{"name":"Scala","count":2},{"name":"MyLife","count":1},{"name":"快捷键","count":1},{"name":"云服务","count":1},{"name":"Blog","count":1},{"name":"微信公众号","count":1}'/>
+        <div style="display: none"><a id="tag-value" class="taglink" rel="bookmark" href="/tag/#" data-target-cate="#"></a></div>
+        <div class="tag-values-container">
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+  </div>
+
+  <footer>
+  <div class="text-center">
+    © 2010-2016 All rights reserved.
+    Made with <a href="http://jekyllrb.com/" rel="nofollow" target="_blank">Jekyll</a>
+    & Modified by <a href="http://www.tanglei.name/about/" >Tanglei</a>
+    and <i class="fa fa-heart"></i> by <a rel="nofollow" href="https://github.com/guovz/jekyll-pithy" target="_blank">Pithy</a>
+  </div>
+  <div class="totop" data-toggle="totop">
+      <i class="fa fa-chevron-up"></i>
+  </div>
+</footer>
+
+
+  <!--the js include-->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="/assets/script/pithy.js"></script>
+
+<!--
+  the site comment script
+-->
+
+
+  <script>
+    
+    var disqus_config = function () {
+        this.page.url = 'https://www.tanglei.name/blog/difference-between-du-and-ls.html' ; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '/blog/difference-between-du-and-ls.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+        if($("#disqus_thread").length) {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://hexo-tanglei.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+    powered by Disqus.</a></noscript>
+
+
+
+<!--
+  the site analysis script
+-->
+
+  <!-- baidu analysis -->
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?f0117177475f54027bfcaceb8d668cee";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+</body>
+</html>

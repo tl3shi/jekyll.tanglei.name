@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+  <head>
+    <title>分享一个清华主题的beamer模版</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="keywords" content="分享一个清华主题的beamer模版, 经验技巧, Latex,清华大学,, 唐磊, 中南大学, 清华大学, 软件工程师, 计算机, 全栈工程师" />
+    <meta name="description" content="分享一个清华主题的beamer模版, 经验技巧, Latex,清华大学, 在这里分享一个清华主题的latex beamer模版，我硕士学位论文答辩就是用的这个，我从这里改编的，感谢原作者。这还有另外一个中文beamer模版供参考。" />
+
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+
+  <!--Font awesome-->
+  <link href="/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- The pithy main css -->
+  <link rel="stylesheet" href="/assets/stylesheet/pithy.css">
+  <link rel="stylesheet" href="/assets/stylesheet/molokai.css">
+
+
+  <!--[if lt IE 9]>
+  <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv-printshiv.js"></script>
+  <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+  <![endif]-->
+  <link rel="alternate" type="application/rss+xml" title="tanglei's blog|唐磊的个人博客" href="https://www.tanglei.name/feed.xml" />
+</head>
+
+<body>
+  <nav class="navbar navbar-pithy" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+                data-target="#pithy-navbar" aria-expanded="false">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" rel="bookmark" href="/">TangLei</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="pithy-navbar">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="bookmark" href="/">首页</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/archives.html">Archives</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/about/">关于</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+  <div class="container page-content">
+    <div>
+    <div class="col-md-9 col-content">
+        <div id="post-content" class="panel panel-pithy post">
+            <div class="panel-heading">
+                <div class="title">
+                  <i class="fa fa-bookmark-o"></i>分享一个清华主题的beamer模版
+                </div>
+                <ul class="info">
+                    <li>
+                      作者 <span class="author"> 
+        
+            tanglei 
+        
+        </span>
+                    </li>
+                    <li>
+                      最后编辑 2015年06月25日
+                    </li>
+                    <li>
+                      Tags
+                     
+                         <a class="tag" href="/tag/#Latex">Latex</a>
+                     
+                         <a class="tag" href="/tag/#清华大学">清华大学</a>
+                     
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body content">
+                <p>在这里分享一个清华主题的latex beamer模版，我硕士学位论文答辩就是用的这个，我从<a href="http://far.tooold.cn/post/latex/beamertsinghua">这里</a>改编的，感谢原作者。这还有<a href="https://github.com/forhappy/aliyun-pk-report-2012">另外一个中文beamer模版</a>供参考。</p>
+
+<p>我在原文“一个清华的beamer主题<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>”的基础上添加了中文支持，修改了封面，下图封面的是效果图。完整的效果可以看<a href="https://github.com/tl3shi/THUBeamer/blob/master/tanglei_thesis_report.pdf">这里</a>。</p>
+
+<p><img src="/resources/share-beamer-with-tsinghua-theme/tanglei_thesis_report-0.png" alt="Tisnghua-beamer学位论文答辩PPT封面" /></p>
+
+<p>此外，我修改后的这个latex beamer模版还集成了一些常用的功能，跟原文相比增加了比如：(1) 页码显示，这是答辩过程中常用的；(2) 参考文献的引用方式引用页脚注和尾页集中同步展示；(3) 示例中还包括也些算法的引用等。CS等相关专业可以直接copy改改就用，省得自己再去查。</p>
+
+<p><img src="/resources/share-beamer-with-tsinghua-theme/tanglei_thesis_report-1.png" alt="" />
+<img src="/resources/share-beamer-with-tsinghua-theme/tanglei_thesis_report-2.png" alt="" /></p>
+
+<p>感兴趣的同学可以从 <a href="https://github.com/tl3shi/THUBeamer">这里fork或者下载：THUBeamer</a>，其中 <a href="https://github.com/tl3shi/THUBeamer/blob/master/tanglei_thesis_report.tex">tanglei_thesis_report.tex</a> 为我自己学位论文答辩用到的PPT的精简版，<a href="https://github.com/tl3shi/THUBeamer/blob/master/tsinghua_test.tex">tsinghua_test.tex</a>为原来版本的简单修改，你可以根据兴趣选择参考的模版。</p>
+
+<p>这里也分享下我在写这个ppt时遇到的一些关于latex、beamer等问题。</p>
+
+<ul>
+  <li>改变footnote大小 <code class="highlighter-rouge">\setbeamerfont{footnote}{size=\tiny}</code></li>
+  <li>改变caption大小 <code class="highlighter-rouge">\setbeamerfont{caption}{size=\scriptsize}</code></li>
+  <li>设置caption自动标号 <code class="highlighter-rouge">\setbeamertemplate{caption}[numbered]</code></li>
+  <li>设置subfig的label大小 <code class="highlighter-rouge">\usepackage[caption=false,font=scriptsize]{subfig}</code></li>
+  <li>目录文字大小 <code class="highlighter-rouge">\setbeamerfont{subsection in toc}{size=\footnotesize}</code></li>
+  <li>目录章节控制  <code class="highlighter-rouge">\tableofcontents[sections={&lt;1-5&gt;}]</code></li>
+  <li>是否显示note \setbeameroption{show notes} %un-comment to see the notes</li>
+  <li>公式中的粗体斜体问题 <code class="highlighter-rouge">\usepackage[BoldFont,SlantFont]{xeCJK}</code></li>
+  <li>参考文献的图标改成文字<sup id="fnref:3"><a href="#fn:3" class="footnote">2</a></sup> <code class="highlighter-rouge">\setbeamertemplate{bibliography item}[text]</code> <a href="http://tex.stackexchange.com/questions/68080/beamer-bibliography-icon">ref</a></li>
+  <li>参考文献字体大小 <code class="highlighter-rouge">\renewcommand*{\bibfont}{\footnotesize}</code></li>
+  <li>参考文献格式 <code class="highlighter-rouge">\usepackage[backend=bibtex,sorting=none]{biblatex}</code></li>
+  <li>beamer单页上要引用多次reference：
+    <ul>
+      <li>避免重复的的footnote<sup id="fnref:4"><a href="#fn:4" class="footnote">3</a></sup><a href="http://tex.stackexchange.com/questions/35043/reference-different-places-to-the-same-footnote">ref</a></li>
+    </ul>
+  </li>
+  <li>xelatex 编译提示 <code class="highlighter-rouge">** WARNING ** Version of PDF file (1.5) is newer than version limit specification</code>，需要编译时加参数选项 <code class="highlighter-rouge">xelatex -output-driver="xdvipdfmx -V 5"  source.tex</code>, 具体根据 version版本改相应参数；</li>
+  <li>xelatex mac下中文乱码，
+两种方法：
+    <ul>
+      <li>编译不过， 提示<em>SIMKAI.TTF</em>找不到, 可以按照<a href="http://albertcn.blog.163.com/blog/static/2094201452013521105128316/">此文</a><sup id="fnref:5"><a href="#fn:5" class="footnote">4</a></sup>修改<code class="highlighter-rouge">/usr/local/texlive/2014/texmf-dist/tex/latex/ctex/fontset/ctex-xecjk-winfonts.def</code> 文件即可;</li>
+      <li>不修改全局的上面那个文件，当前文件使用nofonts选项，如 	<code class="highlighter-rouge"><span class="k">\documentclass</span><span class="na">[a4paper,nofonts]</span><span class="p">{</span>article<span class="p">}</span></code>， 然后自定义类型如<code class="highlighter-rouge">\setCJKmainfont[BoldFont={Adobe Heiti Std},ItalicFont={Adobe Kaiti Std}]{SimSun}</code> 再编译即可，或者<code class="highlighter-rouge">\setCJKmainfont[BoldFont={SimHei},ItalicFont={KaiTi_GB2312}]{SimSun}</code> 改成本机有的;</li>
+      <li>若编译过了，还是乱码，记得看你tex源文件的编码，是不是UTF-8。<code class="highlighter-rouge">set fileencoding=utf-8</code></li>
+    </ul>
+  </li>
+  <li>PPT章节切换时添加目录</li>
+</ul>
+
+<div class="language-latex highlighter-rouge"><pre class="highlight"><code><span class="k">\AtBeginSubsection</span><span class="na">[]</span> <span class="p">{</span>
+  <span class="k">\frame</span>&lt;handout:0&gt; <span class="p">{</span>
+  <span class="k">\frametitle</span><span class="p">{</span>目录<span class="p">}</span>
+  <span class="c">%  \begin{multicols}{2}</span>
+  <span class="k">\tableofcontents</span><span class="na">[current,currentsubsection,sections={&lt;1-5&gt;}]</span>
+  <span class="c">%\end{multicols}</span>
+    <span class="p">}</span>
+    <span class="k">\addtocounter</span><span class="p">{</span>framenumber<span class="p">}{</span>-1<span class="p">}</span>  <span class="c">%目录页不计算页码</span>
+  <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>答辩时用beamer有不好的方式就是:</p>
+
+<ul>
+  <li>beamer 动画不好做，我答辩时准备嵌入动画，复杂也不太容易，另一个可选的方案是简单的动画做成gif动图，外部浏览器打开等；所以如果你希望自己的PPT足够绚丽多姿，那还是用MS的Office更好;</li>
+  <li>beamer 排练计时不太方便，演讲时看备注也不那么方便，这里有一个用<code class="highlighter-rouge">\note</code>做双屏注释的教程，还不是那么容易;<sup id="fnref:2"><a href="#fn:2" class="footnote">5</a></sup></li>
+  <li>beamer 制作过程中也没PPT那么简单，不满足<em>WYSIWYG</em>, 时不时还报错什么的难得debug;</li>
+</ul>
+
+<p>总之在选latex做PPT时还是要好好考虑一下，当然写论文排版什么的力推latex。就酱。</p>
+
+<p>参考文献：</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p><a href="http://far.tooold.cn/post/latex/beamertsinghua">一个清华的beamer主题</a> <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:3">
+      <p><a href="http://tex.stackexchange.com/questions/68080/beamer-bibliography-icon">Beamer Bibliography Icon</a> <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:4">
+      <p><a href="http://tex.stackexchange.com/questions/35043/reference-different-places-to-the-same-footnote">Reference different places to the same footnote</a> <a href="#fnref:4" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:5">
+      <p><a href="http://albertcn.blog.163.com/blog/static/2094201452013521105128316/">texlive的中文问题</a> <a href="#fnref:5" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+      <p><a href="http://bbs.ctex.org/forum.php?mod=viewthread&amp;tid=71817">beamer+xelatex使用\note做双屏注释</a> <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+            </div>
+            <div class="post-nav">
+    
+    <a class="prev" href=/blog/install-vim-latex-suite-in-mac-osx.html>&laquo; &nbsp;Mac下安装使用vim插件latex-suite</a>
+    
+    
+    <a class="next" href=/blog/binding-domain-to-plugin-of-mobile-theme.html>给手机主题插件Wptouch绑定单独的域名&nbsp;&raquo;</a>
+    
+</div>
+
+            
+        </div>
+        <!--
+            if config set comment enable,include comment
+        -->
+        
+            <!-- comment -->
+<div id="post-comment" class="panel panel-default">
+    <div class="panel-body">
+        
+
+        
+            <div id="disqus_thread"></div>
+        
+    </div>
+</div>
+
+        
+    </div>
+    <div class="col-md-3 col-sidebar">
+        <div class="panel panel-pithy author">
+    <div class="panel-heading avastar">
+        <img src="/tx.jpg" alt="tanglei"/>
+    </div>
+    <div class="panel-body">
+        码农 @ 宜信大数据创新中心, 毕业于CSU && THU,  曾工作于<a href='http://www.tencent.com/zh-cn/index.shtml' target='_blank'>腾讯</a> && <a href='http://www.umeng.com/' target='_blank'>友盟</a>.  &nbsp; <a href='/about/'> MORE </a>
+    </div>
+    <div class="panel-footer social">
+        <ul>
+            
+            <li>
+                <a rel="nofollow" href="http://www.weibo.com/tangleithu/" target="_blank"><i class="fa fa-weibo"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://github.com/tl3shi" target="_blank"><i class="fa fa-github"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://www.facebook.com/tanglei.name" target="_blank"><i class="fa fa-facebook"></i></a>
+            </li>
+            
+            <li>
+                <a href="https://www.tanglei.name/feed.xml" target="_blank"><i class="fa fa-rss"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar:category list -->
+<div class="panel panel-default categories">
+    <div class="panel-heading title">
+        分类列表
+    </div>
+    <div class="panel-body list">
+        <ul>
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/贵州支教行/">
+                  贵州支教行&nbsp;<span class="count">[12]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/课程学习/">
+                  课程学习&nbsp;<span class="count">[88]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/MyLife/">
+                  MyLife&nbsp;<span class="count">[45]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/经验技巧/">
+                  经验技巧&nbsp;<span class="count">[93]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/社会工作/">
+                  社会工作&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/网络文摘/">
+                  网络文摘&nbsp;<span class="count">[28]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件体系结构/">
+                  软件体系结构&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/旅游/">
+                  旅游&nbsp;<span class="count">[23]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软考/">
+                  软考&nbsp;<span class="count">[2]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件度量及其应用/">
+                  软件度量及其应用&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/工作那些事儿/">
+                  工作那些事儿&nbsp;<span class="count">[42]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我做站长/">
+                  我做站长&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/coding小工具/">
+                  coding小工具&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/除臭虫/">
+                  除臭虫&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/学到老/">
+                  学到老&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我不会算法/">
+                  我不会算法&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/数据挖掘/">
+                  数据挖掘&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/计算机图形学/">
+                  计算机图形学&nbsp;<span class="count">[5]</span>
+              </a>
+          </li>
+
+          
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar: tag list -->
+<div class="panel panel-default tags">
+    <div class="panel-heading title">
+        标签云
+    </div>
+    <div class="panel-body list">
+         
+        <input type="hidden" id="tag-values" value='{"name":"丰田助学","count":16},{"name":"贵州支教","count":12},{"name":"铜厂小学","count":9},{"name":"中南大学","count":12},{"name":"云南赶集","count":1},{"name":"HelloWorld","count":5},{"name":"我做站长","count":35},{"name":"设计模式","count":7},{"name":"Wordpress","count":18},{"name":"系统架构师","count":11},{"name":"软考","count":25},{"name":"论文","count":6},{"name":"软件0804","count":8},{"name":"Java","count":24},{"name":"J2EE","count":3},{"name":"JAVA","count":1},{"name":"考试","count":25},{"name":"SEO","count":3},{"name":"软件体系结构","count":6},{"name":"Android","count":28},{"name":"软件工程","count":2},{"name":"Windows","count":17},{"name":"软件测试","count":1},{"name":"总结","count":13},{"name":"Oracle","count":4},{"name":"存储过程","count":3},{"name":"数据库应用","count":3},{"name":"数据库","count":8},{"name":"先进班集体","count":1},{"name":"Linux","count":15},{"name":"Ubuntu","count":8},{"name":"Defy","count":3},{"name":"传感器","count":1},{"name":"访日交流","count":8},{"name":"旅游","count":22},{"name":"软件学院","count":11},{"name":"大学生科协","count":4},{"name":"玩遍中国","count":11},{"name":"计算机网络","count":5},{"name":"Eclipse","count":4},{"name":"软件度量","count":11},{"name":"软件设计师","count":4},{"name":"编译原理","count":2},{"name":"程序语言","count":2},{"name":"操作系统","count":3},{"name":"多媒体","count":2},{"name":"网络安全","count":9},{"name":"TCP/IP","count":2},{"name":"编程语言","count":1},{"name":"考点","count":1},{"name":"Google","count":5},{"name":"软件结构度量","count":1},{"name":"CMM","count":6},{"name":"项目管理","count":3},{"name":"实习","count":33},{"name":"面试","count":18},{"name":"网络营销","count":1},{"name":"百度","count":4},{"name":"笔试","count":2},{"name":"腾讯","count":31},{"name":"编程比赛","count":4},{"name":"科研","count":4},{"name":"电子商务","count":11},{"name":"虚拟主机","count":2},{"name":"网路安全","count":1},{"name":"Foxmail","count":3},{"name":"微软","count":1},{"name":"软件能力成熟度模型","count":2},{"name":"软件过程改进","count":3},{"name":"SCM复习资料","count":1},{"name":"软件配置管理","count":12},{"name":"SCM","count":6},{"name":"工具","count":19},{"name":"反模式","count":1},{"name":"玩玩手机","count":5},{"name":"程序员","count":4},{"name":"健康","count":1},{"name":"共享上网","count":2},{"name":"Bug","count":4},{"name":"coding小工具","count":1},{"name":"工作日志","count":19},{"name":"Apache","count":2},{"name":"PHP","count":13},{"name":"实习日志","count":1},{"name":"工作实习生","count":1},{"name":"Mysql","count":1},{"name":"Shell","count":3},{"name":"腾讯实习日志","count":1},{"name":"hosts","count":2},{"name":"Vim","count":3},{"name":"正则表达式","count":2},{"name":"搜索引擎","count":1},{"name":"跨域","count":1},{"name":"前端","count":2},{"name":"保研","count":15},{"name":"算法","count":9},{"name":"清华大学","count":12},{"name":"丰田助学金","count":3},{"name":"WiFi","count":1},{"name":"实习生","count":1},{"name":"wifi自动关闭","count":1},{"name":"腾讯实习","count":1},{"name":"经验技巧","count":13},{"name":"DDOS","count":2},{"name":"AOP","count":3},{"name":"租房","count":2},{"name":"Sqlite","count":2},{"name":"Python","count":11},{"name":"OOP","count":5},{"name":"数据挖掘","count":8},{"name":"GitHub","count":2},{"name":"SVM","count":3},{"name":"R语言","count":2},{"name":"足迹","count":2},{"name":"笛子","count":2},{"name":"计算机图形学","count":5},{"name":"OpenGL","count":3},{"name":"回忆录","count":1},{"name":"年终总结","count":1},{"name":"域名","count":1},{"name":"计算几何","count":2},{"name":"敲敲代码","count":9},{"name":"Latex","count":3},{"name":"C++","count":10},{"name":"Mac","count":7},{"name":"飞行模式","count":2},{"name":"性能优化","count":2},{"name":"Javascript","count":1},{"name":"工作","count":1},{"name":"玩遍世界","count":1},{"name":"Scala","count":2},{"name":"MyLife","count":1},{"name":"快捷键","count":1},{"name":"云服务","count":1},{"name":"Blog","count":1},{"name":"微信公众号","count":1}'/>
+        <div style="display: none"><a id="tag-value" class="taglink" rel="bookmark" href="/tag/#" data-target-cate="#"></a></div>
+        <div class="tag-values-container">
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+  </div>
+
+  <footer>
+  <div class="text-center">
+    © 2010-2016 All rights reserved.
+    Made with <a href="http://jekyllrb.com/" rel="nofollow" target="_blank">Jekyll</a>
+    & Modified by <a href="http://www.tanglei.name/about/" >Tanglei</a>
+    and <i class="fa fa-heart"></i> by <a rel="nofollow" href="https://github.com/guovz/jekyll-pithy" target="_blank">Pithy</a>
+  </div>
+  <div class="totop" data-toggle="totop">
+      <i class="fa fa-chevron-up"></i>
+  </div>
+</footer>
+
+
+  <!--the js include-->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="/assets/script/pithy.js"></script>
+
+<!--
+  the site comment script
+-->
+
+
+  <script>
+    
+    var disqus_config = function () {
+        this.page.url = 'https://www.tanglei.name/blog/share-beamer-with-tsinghua-theme.html' ; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '/blog/share-beamer-with-tsinghua-theme.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+        if($("#disqus_thread").length) {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://hexo-tanglei.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+    powered by Disqus.</a></noscript>
+
+
+
+<!--
+  the site analysis script
+-->
+
+  <!-- baidu analysis -->
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?f0117177475f54027bfcaceb8d668cee";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+</body>
+</html>

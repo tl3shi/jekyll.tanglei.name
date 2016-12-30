@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+  <head>
+    <title>JDBC的4种驱动类型</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="keywords" content="JDBC的4种驱动类型, 课程学习, Java,J2EE,, 唐磊, 中南大学, 清华大学, 软件工程师, 计算机, 全栈工程师" />
+    <meta name="description" content="JDBC的4种驱动类型, 课程学习, Java,J2EE,    今天看金杰的课件，JDBC的4种驱动类型，啥，不懂。google了下。明白真相了： Java中的JDBC驱动可以分为四种类型，包括JDBC-ODBC桥、本地API驱动、网络协议驱动和本地协议驱动。(课件上如是说：JDBC-ODBC桥驱动+纯Java驱动+本地API部分Java驱动+JDBC网络纯Java驱动)。" />
+
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+
+  <!--Font awesome-->
+  <link href="/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- The pithy main css -->
+  <link rel="stylesheet" href="/assets/stylesheet/pithy.css">
+  <link rel="stylesheet" href="/assets/stylesheet/molokai.css">
+
+
+  <!--[if lt IE 9]>
+  <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv-printshiv.js"></script>
+  <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+  <![endif]-->
+  <link rel="alternate" type="application/rss+xml" title="tanglei's blog|唐磊的个人博客" href="https://www.tanglei.name/feed.xml" />
+</head>
+
+<body>
+  <nav class="navbar navbar-pithy" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+                data-target="#pithy-navbar" aria-expanded="false">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" rel="bookmark" href="/">TangLei</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="pithy-navbar">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="bookmark" href="/">首页</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/archives.html">Archives</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/about/">关于</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+  <div class="container page-content">
+    <div>
+    <div class="col-md-9 col-content">
+        <div id="post-content" class="panel panel-pithy post">
+            <div class="panel-heading">
+                <div class="title">
+                  <i class="fa fa-bookmark-o"></i>JDBC的4种驱动类型
+                </div>
+                <ul class="info">
+                    <li>
+                      作者 <span class="author"> 
+        
+            tanglei
+        
+        </span>
+                    </li>
+                    <li>
+                      最后编辑 2010年12月19日
+                    </li>
+                    <li>
+                      Tags
+                     
+                         <a class="tag" href="/tag/#Java">Java</a>
+                     
+                         <a class="tag" href="/tag/#J2EE">J2EE</a>
+                     
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body content">
+                <address>
+  <span style="font-style: normal;"> 今天看金杰的课件，JDBC的4种驱动类型，啥，不懂。google了下。明白真相了：<br /> Java中的JDBC驱动可以分为四种类型，包括JDBC-ODBC桥、本地API驱动、网络协议驱动和本地协议驱动。(课件上如是说：JDBC-ODBC桥驱动+纯Java驱动+本地API部分Java驱动+JDBC网络纯Java驱动)。</span>
+</address>
+
+<p>下面内容整理自网络：</p>
+
+<p><strong>1、JDBC-ODBC bridge plus ODBC driver（JDBC-ODBC桥）：</strong>JDBC-ODBC 桥 是sun公司提供的，是jdk提供的的标准API.</p>
+
+<p><em>This combination provides JDBC access via ODBC drivers. ODBC binary code–and in many cases, database client code– must be loaded on each client machine that uses a JDBC-ODBC Bridge. Sun provides a JDBC-ODBC Bridge driver, which is appropriate for experimental use and for situations in which no other driver is available.</em></p>
+
+<p style="padding-left: 30px;">
+  这种类型的驱动实际是把所有 JDBC的调用传递给ODBC ,再由ODBC调用本地数据库驱动代码.( 本地数据库驱动代码是指 由数据库厂商提供的数据库操作二进制代码库,例如在oracle for windows中就是oci dll 文 件)。只要本地机装有相关的ODBC驱动那么采用JDBC-ODBC桥几乎可以访问所有的数据库,JDBC- ODBC方法对于客户端已经具备ODBC driver的应用还是可行的.但是,由于JDBC-ODBC先调用 ODBC再由ODBC去调用本地数据库接口访问数据库.所以,执行效率比较低,对于那些大数据量 存取的应用是不适合的.而且,这种方法要求客户端必须安装ODBC 驱动,所以对于基于 internet ,intranet的应用也是不合适的.因为,你不可能要求所有客户都能找到ODBC driver.
+</p>
+
+<ol style="padding-left: 30px;">
+  <li style="display: inline !important;">
+    <span style="font-weight: normal;"><strong>2、Native-API partly-Java driver（本地API部分JAVA驱动）</strong>：本地API驱动直接把JDBC调用转变为数据库的标准调用再去访问数据库.</span>
+  </li>
+</ol>
+
+<ol style="padding-left: 30px;">
+  <li style="display: inline !important;">
+    <span style="font-weight: normal;"><em>A native-API partly Java technology-enabled driver: This type of driver converts JDBC calls into calls on the client API for Oracle, Sybase, Informix, DB2, or other DBMS. Note that, like the bridge driver, this style of driver requires that some binary code be loaded on each client machine.</em></span>
+  </li>
+</ol>
+
+<ol style="padding-left: 30px;">
+  <li style="display: inline !important;">
+    <span style="font-weight: normal;"> </span>
+  </li>
+  <p>
+    这种方法需要本地 数据库驱动代码. 本地API驱动 | 厂商DB代码&#8212;&#8212;&#8212;&#8212;&#8212;数据库Server 这种驱动比起JDBC-ODBC桥执行效率大大提高了.但是,它仍然需要在客户端加载数据库厂商 提供的代码库.这样就不适合基于internet的应用.并且,他的执行效率比起3,4型的JDBC驱动 还是不够高.&lt;/ol&gt; 
+    
+    <ol style="padding-left: 30px;">
+      <div id="_mcePaste">
+        <strong>3、Pure Java Driver for Database Middleware（纯JAVA网络协议驱动）：</strong>有中间件的参与
+      </div>
+    </ol>
+    
+    <div>
+      <em> net-protocol fully Java technology-enabled driver ，This style of driver translates JDBC calls into the middleware vendor&#8217;s protocol, which is then translated to a DBMS protocol by a middleware server. The middleware provides connectivity to many different databases.</em>
+    </div>
+    
+    <ol style="padding-left: 30px;">
+      <div id="_mcePaste">
+        <div id="_mcePaste">
+          这种驱动实际上是根据我们熟悉的三层结构建立的. JDBC先把对数局库的访问请求传递给网 络上的中间件服务器. 中间件服务器再把请求翻译为符合数据库规范的调用,再把这种调用 传给数据库服务器.如果中间件服务器也是用java开法的,那么在在中间层也可以使用1,2型 JDBC驱动程序作为访问数据库的方法. 网络协议驱动&#8212;&#8212;&#8212;中间件服务器&#8212;&#8212;&#8212;&#8212;数据库Server。由于这种驱动是基于server的.所以,它不需要在客户端加载数据库厂商提供的代码库.而且 他在执行效率和可升级性方面是比较好的.因为大部分功能实现都在server端,所以这种驱动 可以设计的很小,可以非常快速的加载到内存中. 但是,这种驱动在中间件层仍然需要有配置 其它数据库驱动程序,并且由于多了一个中间层传递。
+        </div>
+        
+        <div id="_mcePaste">
+          <strong>4、Direct-to-Database Pure Java Driver（本地纯JAVA协议驱动）：</strong>直接把JDBC调用转换为符合相关数据库系统规范的请求
+        </div>
+        
+        <p>
+          <em>native-protocol fully Java technology-enabled driver。This style of driver converts JDBC calls into the network protocol used directly by DBMSs, allowing a direct call from the client machine to the DBMS server and providing a practical solution for intranet access.</em>
+        </p>
+        
+        <div id="_mcePaste">
+          <div id="_mcePaste">
+            由于4型驱动写的应用可 以直接和数据库服务器通讯.这种类型的驱动完全由java实现,因此实现了平台独立性. 本地协议驱动&#8212;&#8212;&#8212;数据库Server。由于这种驱动不需要先把JDBC的调用传给ODBC或本地数据库接口或者是中间层服务器.所 以它的执行效率是非常高的.而且,它根本不需要在客户端或服务器端装载任何的软件或驱动. 这种驱动程序可以动态的被下载.但是对于不同的数据库需要下载不同的驱动程序.
+          </div>
+          
+          <div id="_mcePaste">
+            <div id="_mcePaste">
+              <strong>总结：</strong>
+            </div>
+            
+            <div id="_mcePaste">
+              以上对四种类型的JDBC驱动做了一个说明.那么它们适合那种类型的应用开发呢?
+            </div>
+            
+            <div id="_mcePaste">
+              JDBC-ODBC桥由于它的执行效率不高,更适合做为开发应用时的一种过度方案,或着对于初学 者了解JDBC编程也较适用. 对于那些需要大数据量操作的应用程序则应该考虑2,3,4型驱动.在intranet方面的应用可以 考虑2型驱动,但是由于3,4型驱动在执行效率上比2型驱动有着明显的优势,而且目前开发 的趋势是使用纯java.所以3,4型驱动也可以作为考虑对象. 至于基于internet方面的应用就只有考虑3,4型驱动了. 因为3型驱动可以把多种数据库驱 动都配置在中间层服务器.所以3型驱动最适合那种需要同时连接多个不同种类的数据库, 并且对并发连接要求高的应用. 4型驱动则适合那些连接单一数据库的工作组应用。
+            </div>
+          </div>
+        </div>
+      </div>
+    </ol>
+</p></ol>
+
+            </div>
+            <div class="post-nav">
+    
+    <a class="prev" href=/blog/google_my_source.html>&laquo; &nbsp;google收录本机搭建环境的web资源</a>
+    
+    
+    <a class="next" href=/blog/wodpress_youhua.html>为Wordpress添加评论表情和显示评论头像&nbsp;&raquo;</a>
+    
+</div>
+
+            
+        </div>
+        <!--
+            if config set comment enable,include comment
+        -->
+        
+            <!-- comment -->
+<div id="post-comment" class="panel panel-default">
+    <div class="panel-body">
+        
+
+        
+            <div id="disqus_thread"></div>
+        
+    </div>
+</div>
+
+        
+    </div>
+    <div class="col-md-3 col-sidebar">
+        <div class="panel panel-pithy author">
+    <div class="panel-heading avastar">
+        <img src="/tx.jpg" alt="tanglei"/>
+    </div>
+    <div class="panel-body">
+        码农 @ 宜信大数据创新中心, 毕业于CSU && THU,  曾工作于<a href='http://www.tencent.com/zh-cn/index.shtml' target='_blank'>腾讯</a> && <a href='http://www.umeng.com/' target='_blank'>友盟</a>.  &nbsp; <a href='/about/'> MORE </a>
+    </div>
+    <div class="panel-footer social">
+        <ul>
+            
+            <li>
+                <a rel="nofollow" href="http://www.weibo.com/tangleithu/" target="_blank"><i class="fa fa-weibo"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://github.com/tl3shi" target="_blank"><i class="fa fa-github"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://www.facebook.com/tanglei.name" target="_blank"><i class="fa fa-facebook"></i></a>
+            </li>
+            
+            <li>
+                <a href="https://www.tanglei.name/feed.xml" target="_blank"><i class="fa fa-rss"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar:category list -->
+<div class="panel panel-default categories">
+    <div class="panel-heading title">
+        分类列表
+    </div>
+    <div class="panel-body list">
+        <ul>
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/贵州支教行/">
+                  贵州支教行&nbsp;<span class="count">[12]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/课程学习/">
+                  课程学习&nbsp;<span class="count">[88]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/MyLife/">
+                  MyLife&nbsp;<span class="count">[45]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/经验技巧/">
+                  经验技巧&nbsp;<span class="count">[93]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/社会工作/">
+                  社会工作&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/网络文摘/">
+                  网络文摘&nbsp;<span class="count">[28]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件体系结构/">
+                  软件体系结构&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/旅游/">
+                  旅游&nbsp;<span class="count">[23]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软考/">
+                  软考&nbsp;<span class="count">[2]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件度量及其应用/">
+                  软件度量及其应用&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/工作那些事儿/">
+                  工作那些事儿&nbsp;<span class="count">[42]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我做站长/">
+                  我做站长&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/coding小工具/">
+                  coding小工具&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/除臭虫/">
+                  除臭虫&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/学到老/">
+                  学到老&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我不会算法/">
+                  我不会算法&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/数据挖掘/">
+                  数据挖掘&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/计算机图形学/">
+                  计算机图形学&nbsp;<span class="count">[5]</span>
+              </a>
+          </li>
+
+          
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar: tag list -->
+<div class="panel panel-default tags">
+    <div class="panel-heading title">
+        标签云
+    </div>
+    <div class="panel-body list">
+         
+        <input type="hidden" id="tag-values" value='{"name":"丰田助学","count":16},{"name":"贵州支教","count":12},{"name":"铜厂小学","count":9},{"name":"中南大学","count":12},{"name":"云南赶集","count":1},{"name":"HelloWorld","count":5},{"name":"我做站长","count":35},{"name":"设计模式","count":7},{"name":"Wordpress","count":18},{"name":"系统架构师","count":11},{"name":"软考","count":25},{"name":"论文","count":6},{"name":"软件0804","count":8},{"name":"Java","count":24},{"name":"J2EE","count":3},{"name":"JAVA","count":1},{"name":"考试","count":25},{"name":"SEO","count":3},{"name":"软件体系结构","count":6},{"name":"Android","count":28},{"name":"软件工程","count":2},{"name":"Windows","count":17},{"name":"软件测试","count":1},{"name":"总结","count":13},{"name":"Oracle","count":4},{"name":"存储过程","count":3},{"name":"数据库应用","count":3},{"name":"数据库","count":8},{"name":"先进班集体","count":1},{"name":"Linux","count":15},{"name":"Ubuntu","count":8},{"name":"Defy","count":3},{"name":"传感器","count":1},{"name":"访日交流","count":8},{"name":"旅游","count":22},{"name":"软件学院","count":11},{"name":"大学生科协","count":4},{"name":"玩遍中国","count":11},{"name":"计算机网络","count":5},{"name":"Eclipse","count":4},{"name":"软件度量","count":11},{"name":"软件设计师","count":4},{"name":"编译原理","count":2},{"name":"程序语言","count":2},{"name":"操作系统","count":3},{"name":"多媒体","count":2},{"name":"网络安全","count":9},{"name":"TCP/IP","count":2},{"name":"编程语言","count":1},{"name":"考点","count":1},{"name":"Google","count":5},{"name":"软件结构度量","count":1},{"name":"CMM","count":6},{"name":"项目管理","count":3},{"name":"实习","count":33},{"name":"面试","count":18},{"name":"网络营销","count":1},{"name":"百度","count":4},{"name":"笔试","count":2},{"name":"腾讯","count":31},{"name":"编程比赛","count":4},{"name":"科研","count":4},{"name":"电子商务","count":11},{"name":"虚拟主机","count":2},{"name":"网路安全","count":1},{"name":"Foxmail","count":3},{"name":"微软","count":1},{"name":"软件能力成熟度模型","count":2},{"name":"软件过程改进","count":3},{"name":"SCM复习资料","count":1},{"name":"软件配置管理","count":12},{"name":"SCM","count":6},{"name":"工具","count":19},{"name":"反模式","count":1},{"name":"玩玩手机","count":5},{"name":"程序员","count":4},{"name":"健康","count":1},{"name":"共享上网","count":2},{"name":"Bug","count":4},{"name":"coding小工具","count":1},{"name":"工作日志","count":19},{"name":"Apache","count":2},{"name":"PHP","count":13},{"name":"实习日志","count":1},{"name":"工作实习生","count":1},{"name":"Mysql","count":1},{"name":"Shell","count":3},{"name":"腾讯实习日志","count":1},{"name":"hosts","count":2},{"name":"Vim","count":3},{"name":"正则表达式","count":2},{"name":"搜索引擎","count":1},{"name":"跨域","count":1},{"name":"前端","count":2},{"name":"保研","count":15},{"name":"算法","count":9},{"name":"清华大学","count":12},{"name":"丰田助学金","count":3},{"name":"WiFi","count":1},{"name":"实习生","count":1},{"name":"wifi自动关闭","count":1},{"name":"腾讯实习","count":1},{"name":"经验技巧","count":13},{"name":"DDOS","count":2},{"name":"AOP","count":3},{"name":"租房","count":2},{"name":"Sqlite","count":2},{"name":"Python","count":11},{"name":"OOP","count":5},{"name":"数据挖掘","count":8},{"name":"GitHub","count":2},{"name":"SVM","count":3},{"name":"R语言","count":2},{"name":"足迹","count":2},{"name":"笛子","count":2},{"name":"计算机图形学","count":5},{"name":"OpenGL","count":3},{"name":"回忆录","count":1},{"name":"年终总结","count":1},{"name":"域名","count":1},{"name":"计算几何","count":2},{"name":"敲敲代码","count":9},{"name":"Latex","count":3},{"name":"C++","count":10},{"name":"Mac","count":7},{"name":"飞行模式","count":2},{"name":"性能优化","count":2},{"name":"Javascript","count":1},{"name":"工作","count":1},{"name":"玩遍世界","count":1},{"name":"Scala","count":2},{"name":"MyLife","count":1},{"name":"快捷键","count":1},{"name":"云服务","count":1},{"name":"Blog","count":1},{"name":"微信公众号","count":1}'/>
+        <div style="display: none"><a id="tag-value" class="taglink" rel="bookmark" href="/tag/#" data-target-cate="#"></a></div>
+        <div class="tag-values-container">
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+  </div>
+
+  <footer>
+  <div class="text-center">
+    © 2010-2016 All rights reserved.
+    Made with <a href="http://jekyllrb.com/" rel="nofollow" target="_blank">Jekyll</a>
+    & Modified by <a href="http://www.tanglei.name/about/" >Tanglei</a>
+    and <i class="fa fa-heart"></i> by <a rel="nofollow" href="https://github.com/guovz/jekyll-pithy" target="_blank">Pithy</a>
+  </div>
+  <div class="totop" data-toggle="totop">
+      <i class="fa fa-chevron-up"></i>
+  </div>
+</footer>
+
+
+  <!--the js include-->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="/assets/script/pithy.js"></script>
+
+<!--
+  the site comment script
+-->
+
+
+  <script>
+    
+    var disqus_config = function () {
+        this.page.url = 'https://www.tanglei.name/blog/jdbc_4types.html' ; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '/blog/jdbc_4types.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+        if($("#disqus_thread").length) {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://hexo-tanglei.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+    powered by Disqus.</a></noscript>
+
+
+
+<!--
+  the site analysis script
+-->
+
+  <!-- baidu analysis -->
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?f0117177475f54027bfcaceb8d668cee";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+</body>
+</html>

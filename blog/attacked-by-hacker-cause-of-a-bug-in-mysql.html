@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+  <head>
+    <title>电脑因mysql漏洞被人攻击</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="keywords" content="电脑因mysql漏洞被人攻击, 经验技巧, 网络安全,Windows,清华大学,, 唐磊, 中南大学, 清华大学, 软件工程师, 计算机, 全栈工程师" />
+    <meta name="description" content="电脑因mysql漏洞被人攻击, 经验技巧, 网络安全,Windows,清华大学, 今天早上来实验室突然就上不网，换ip能上网，实验室网管告诉我之前的IP有问题，已经被校网络中心给被封调。其实昨晚就被封了，难怪昨晚在寝室连不上我实验室电脑的。" />
+
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+
+  <!--Font awesome-->
+  <link href="/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- The pithy main css -->
+  <link rel="stylesheet" href="/assets/stylesheet/pithy.css">
+  <link rel="stylesheet" href="/assets/stylesheet/molokai.css">
+
+
+  <!--[if lt IE 9]>
+  <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv-printshiv.js"></script>
+  <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+  <![endif]-->
+  <link rel="alternate" type="application/rss+xml" title="tanglei's blog|唐磊的个人博客" href="https://www.tanglei.name/feed.xml" />
+</head>
+
+<body>
+  <nav class="navbar navbar-pithy" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+                data-target="#pithy-navbar" aria-expanded="false">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" rel="bookmark" href="/">TangLei</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="pithy-navbar">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="bookmark" href="/">首页</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/archives.html">Archives</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/about/">关于</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+  <div class="container page-content">
+    <div>
+    <div class="col-md-9 col-content">
+        <div id="post-content" class="panel panel-pithy post">
+            <div class="panel-heading">
+                <div class="title">
+                  <i class="fa fa-bookmark-o"></i>电脑因mysql漏洞被人攻击
+                </div>
+                <ul class="info">
+                    <li>
+                      作者 <span class="author"> 
+        
+            tanglei
+        
+        </span>
+                    </li>
+                    <li>
+                      最后编辑 2013年04月01日
+                    </li>
+                    <li>
+                      Tags
+                     
+                         <a class="tag" href="/tag/#网络安全">网络安全</a>
+                     
+                         <a class="tag" href="/tag/#Windows">Windows</a>
+                     
+                         <a class="tag" href="/tag/#清华大学">清华大学</a>
+                     
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body content">
+                <p>今天早上来实验室突然就上不网，换ip能上网，实验室网管告诉我之前的IP有问题，已经被校网络中心给被封调。其实昨晚就被封了，难怪昨晚在寝室连不上我实验室电脑的。</p>
+
+<p><a href="/wp-content/uploads/2013/04/clip_image002.jpg"><img title="clip_image002" style="border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px; display: inline" border="0" alt="clip_image002" src="/wp-content/uploads/2013/04/clip_image002_thumb.jpg" /></a></p>
+
+<p>查看Windows日志，看有没有异常情况，结果发现这个mysql貌似比较可疑。如下图示：</p>
+
+<p><a href="/wp-content/uploads/2013/04/clip_image004.jpg"><img title="clip_image004" style="border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px; display: inline" border="0" alt="clip_image004" src="/wp-content/uploads/2013/04/clip_image004_thumb.jpg" /></a></p>
+
+<p>查了下这个IP贵州省遵义市等莫名其妙的地方，还有其他的一些IP也是莫名其妙的其他地方。然后google了下mysql有啥漏洞</p>
+
+<p><a href="/wp-content/uploads/2013/04/clip_image006.jpg"><img title="clip_image006" style="border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px; display: inline" border="0" alt="clip_image006" src="/wp-content/uploads/2013/04/clip_image006_thumb.jpg" /></a></p>
+
+<p>猜测，是由于mysql的bug引起的。上图有一个bug描述如下：</p>
+
+<p>Security vulnerability in MySQL/MariaDB 在知道用户名的情况下（如root），直接反复重试（平均大约256次）即可登入。</p>
+
+<p>受影响的版本：</p>
+
+<p>All MariaDB and MySQL versions up to 5.1.61, 5.2.11, 5.3.5, 5.5.22 are vulnerable.</p>
+
+<p>MariaDB versions from 5.1.62, 5.2.12, 5.3.6, 5.5.23 are not.</p>
+
+<p>MySQL versions from 5.1.63, 5.5.24, 5.6.6 are not.</p>
+
+<p>详情请点击<a href="http://seclists.org/oss-sec/2012/q2/493">这里</a></p>
+
+<p>之前本来都是关掉mysql远程登陆的，只允许本地登陆。看来还是有风险啊。果断关闭远程登陆了。还有再一次发现windows的不安全。得转移到linux下.</p>
+
+<p>确认下是mysql的问题，从网上的一篇文章得以确定。文章说<strong>由MySql漏洞导致电脑被入侵，特征为新增加名为piress的帐户，打开控制面板，果然有一个piress的帐号，果断先删除再说。</strong></p>
+
+<p>然后查看下注册表有没有被自动启动的异常程序，发现一个。</p>
+
+<p><a href="/wp-content/uploads/2013/04/clip_image008.jpg"><img title="clip_image008" style="border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px; display: inline" border="0" alt="clip_image008" src="/wp-content/uploads/2013/04/clip_image008_thumb.jpg" /></a></p>
+
+<p>暂且用用QQ的杀毒功能全盘扫描下，发现一些风险，管不了那么多了删了再说。</p>
+
+<p><a href="/wp-content/uploads/2013/04/clip_image010.jpg"><img title="clip_image010" style="border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px; display: inline" border="0" alt="clip_image010" src="/wp-content/uploads/2013/04/clip_image010_thumb.jpg" /></a></p>
+
+<p><a href="/wp-content/uploads/2013/04/clip_image012.jpg"><img title="clip_image012" style="border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px; display: inline" border="0" alt="clip_image012" src="/wp-content/uploads/2013/04/clip_image012_thumb.jpg" /></a></p>
+
+<p>后来网管告诉我这个IP出口流量过大，很大很异常，才被学校网络中心工作人员给封了。上面的日志看到貌似尝试从我的PC去扫描同网段的其他电脑。</p>
+
+<p>然后查看了下我的上网记录，对比下平时的出流量和这两天的。</p>
+
+<p><a href="/wp-content/uploads/2013/04/clip_image014.jpg"><img title="clip_image014" style="border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px; display: inline" border="0" alt="clip_image014" src="/wp-content/uploads/2013/04/clip_image014_thumb.jpg" /></a></p>
+
+<p><a href="/wp-content/uploads/2013/04/clip_image016.jpg"><img title="clip_image016" style="border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px; display: inline" border="0" alt="clip_image016" src="/wp-content/uploads/2013/04/clip_image016_thumb.jpg" /></a></p>
+
+<p><a href="/wp-content/uploads/2013/04/clip_image018.jpg"><img title="clip_image018" style="border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px; display: inline" border="0" alt="clip_image018" src="/wp-content/uploads/2013/04/clip_image018_thumb.jpg" /></a></p>
+
+<p>攻击者我机器作为跳板在扫描校内各个网段。发了大量数据包，校网络中心的工作人员前来查看问题。也无非就是说说中毒了，让勤杀病毒。</p>
+
+<p>网上仔细看了下这个mysql漏洞以及如何被占领，还被建了一个管理帐户。原因是在windows上安装了mysql，如安装套件XAMPP，且mysql默认密码没有更改，且允许网络其他host连接此mysql server(因为诸如phpmyadmin等产品默认需要通过网络访问)。此问题引起的明显特征表现在除了piress帐户外，还有其他木马蠕虫等，例如上面扫描到的cna12.dll，开机自动运行的lib32waqv.exe等。</p>
+
+<p>攻击者通过扫描到mysql弱口令等取得mysql的root后，可以运行mysql client的任何command，进而就可以读取mysql server所在电脑的文件，然后上传木马病毒等然后运行开始干坏事，比如建一个名叫piress的账号且给了admin的权限啊等。再比如利用此电脑再去扫描其他同网段IP的电脑啊等。</p>
+
+<p>首先攻击者能access the mysql server, 然后因为若口令被暴力破解了，再因为拥有了对mysql server的plugin文件夹和bin文件夹具有write权限进而被写进了病毒，就这样中招了……这篇文章还详细分析了<a href="http://malwaremusings.com/2012/11/30/increase-in-mysql-attacks-analysing-the-binary-files/">cna12.dll文件解析</a>的过程，有兴趣可以了解下，有时间还可以研究研究能够把这个攻击者的一些信息找出来。可惜之前的mysql log等没开。这个攻击者应该很菜很菜，拿一些扫描工具瞎玩玩罢，因为攻击下来，留了这么多痕迹，高手应该不留痕迹的，且不会把动作搞得这么明显(比如扫描的时候别太快啊)，连校网络中心都发现不正常了。</p>
+
+<p>以防后患，除了删除piress帐号，禁止/删除开机自启的可疑程序外，我还将mysql切换到了换到linux下并只允许本机能连mysql，并删除默认的一些帐户给了较强的密码，且linux、windows系统的远程连接也仅仅只允许指定IP可连。</p>
+
+<p>参考资料：</p>
+
+<p>[1]由MySql漏洞导致电脑被入侵(特征为新增加名为piress的帐户)所想到的<a href="http://blog.csdn.net/whuslei/article/details/7893754">http://blog.csdn.net/whuslei/article/details/7893754</a></p>
+
+<p>[2] MySQL 严重 Bug – 用户登陆漏洞 <a href="http://www.oschina.net/news/29899/mysql-root-bug">http://www.oschina.net/news/29899/mysql-root-bug</a></p>
+
+<p>[3] What is cna12.dll and the piress user? <a href="http://malwaremusings.com/2013/01/31/what-is-cna12-dll-and-the-piress-user/">http://malwaremusings.com/2013/01/31/what-is-cna12-dll-and-the-piress-user/</a></p>
+
+            </div>
+            <div class="post-nav">
+    
+    <a class="prev" href=/blog/change-ubuntuserver-to-support-wordpress.html>&laquo; &nbsp;换主机风波-ubuntu配置Wordpress</a>
+    
+    
+    <a class="next" href=/blog/update-my-album-and-map-in-2013-apri.html>更新了下相册和地图&nbsp;&raquo;</a>
+    
+</div>
+
+            
+        </div>
+        <!--
+            if config set comment enable,include comment
+        -->
+        
+            <!-- comment -->
+<div id="post-comment" class="panel panel-default">
+    <div class="panel-body">
+        
+
+        
+            <div id="disqus_thread"></div>
+        
+    </div>
+</div>
+
+        
+    </div>
+    <div class="col-md-3 col-sidebar">
+        <div class="panel panel-pithy author">
+    <div class="panel-heading avastar">
+        <img src="/tx.jpg" alt="tanglei"/>
+    </div>
+    <div class="panel-body">
+        码农 @ 宜信大数据创新中心, 毕业于CSU && THU,  曾工作于<a href='http://www.tencent.com/zh-cn/index.shtml' target='_blank'>腾讯</a> && <a href='http://www.umeng.com/' target='_blank'>友盟</a>.  &nbsp; <a href='/about/'> MORE </a>
+    </div>
+    <div class="panel-footer social">
+        <ul>
+            
+            <li>
+                <a rel="nofollow" href="http://www.weibo.com/tangleithu/" target="_blank"><i class="fa fa-weibo"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://github.com/tl3shi" target="_blank"><i class="fa fa-github"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://www.facebook.com/tanglei.name" target="_blank"><i class="fa fa-facebook"></i></a>
+            </li>
+            
+            <li>
+                <a href="https://www.tanglei.name/feed.xml" target="_blank"><i class="fa fa-rss"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar:category list -->
+<div class="panel panel-default categories">
+    <div class="panel-heading title">
+        分类列表
+    </div>
+    <div class="panel-body list">
+        <ul>
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/贵州支教行/">
+                  贵州支教行&nbsp;<span class="count">[12]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/课程学习/">
+                  课程学习&nbsp;<span class="count">[88]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/MyLife/">
+                  MyLife&nbsp;<span class="count">[45]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/经验技巧/">
+                  经验技巧&nbsp;<span class="count">[93]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/社会工作/">
+                  社会工作&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/网络文摘/">
+                  网络文摘&nbsp;<span class="count">[28]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件体系结构/">
+                  软件体系结构&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/旅游/">
+                  旅游&nbsp;<span class="count">[23]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软考/">
+                  软考&nbsp;<span class="count">[2]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件度量及其应用/">
+                  软件度量及其应用&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/工作那些事儿/">
+                  工作那些事儿&nbsp;<span class="count">[42]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我做站长/">
+                  我做站长&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/coding小工具/">
+                  coding小工具&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/除臭虫/">
+                  除臭虫&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/学到老/">
+                  学到老&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我不会算法/">
+                  我不会算法&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/数据挖掘/">
+                  数据挖掘&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/计算机图形学/">
+                  计算机图形学&nbsp;<span class="count">[5]</span>
+              </a>
+          </li>
+
+          
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar: tag list -->
+<div class="panel panel-default tags">
+    <div class="panel-heading title">
+        标签云
+    </div>
+    <div class="panel-body list">
+         
+        <input type="hidden" id="tag-values" value='{"name":"丰田助学","count":16},{"name":"贵州支教","count":12},{"name":"铜厂小学","count":9},{"name":"中南大学","count":12},{"name":"云南赶集","count":1},{"name":"HelloWorld","count":5},{"name":"我做站长","count":35},{"name":"设计模式","count":7},{"name":"Wordpress","count":18},{"name":"系统架构师","count":11},{"name":"软考","count":25},{"name":"论文","count":6},{"name":"软件0804","count":8},{"name":"Java","count":24},{"name":"J2EE","count":3},{"name":"JAVA","count":1},{"name":"考试","count":25},{"name":"SEO","count":3},{"name":"软件体系结构","count":6},{"name":"Android","count":28},{"name":"软件工程","count":2},{"name":"Windows","count":17},{"name":"软件测试","count":1},{"name":"总结","count":13},{"name":"Oracle","count":4},{"name":"存储过程","count":3},{"name":"数据库应用","count":3},{"name":"数据库","count":8},{"name":"先进班集体","count":1},{"name":"Linux","count":15},{"name":"Ubuntu","count":8},{"name":"Defy","count":3},{"name":"传感器","count":1},{"name":"访日交流","count":8},{"name":"旅游","count":22},{"name":"软件学院","count":11},{"name":"大学生科协","count":4},{"name":"玩遍中国","count":11},{"name":"计算机网络","count":5},{"name":"Eclipse","count":4},{"name":"软件度量","count":11},{"name":"软件设计师","count":4},{"name":"编译原理","count":2},{"name":"程序语言","count":2},{"name":"操作系统","count":3},{"name":"多媒体","count":2},{"name":"网络安全","count":9},{"name":"TCP/IP","count":2},{"name":"编程语言","count":1},{"name":"考点","count":1},{"name":"Google","count":5},{"name":"软件结构度量","count":1},{"name":"CMM","count":6},{"name":"项目管理","count":3},{"name":"实习","count":33},{"name":"面试","count":18},{"name":"网络营销","count":1},{"name":"百度","count":4},{"name":"笔试","count":2},{"name":"腾讯","count":31},{"name":"编程比赛","count":4},{"name":"科研","count":4},{"name":"电子商务","count":11},{"name":"虚拟主机","count":2},{"name":"网路安全","count":1},{"name":"Foxmail","count":3},{"name":"微软","count":1},{"name":"软件能力成熟度模型","count":2},{"name":"软件过程改进","count":3},{"name":"SCM复习资料","count":1},{"name":"软件配置管理","count":12},{"name":"SCM","count":6},{"name":"工具","count":19},{"name":"反模式","count":1},{"name":"玩玩手机","count":5},{"name":"程序员","count":4},{"name":"健康","count":1},{"name":"共享上网","count":2},{"name":"Bug","count":4},{"name":"coding小工具","count":1},{"name":"工作日志","count":19},{"name":"Apache","count":2},{"name":"PHP","count":13},{"name":"实习日志","count":1},{"name":"工作实习生","count":1},{"name":"Mysql","count":1},{"name":"Shell","count":3},{"name":"腾讯实习日志","count":1},{"name":"hosts","count":2},{"name":"Vim","count":3},{"name":"正则表达式","count":2},{"name":"搜索引擎","count":1},{"name":"跨域","count":1},{"name":"前端","count":2},{"name":"保研","count":15},{"name":"算法","count":9},{"name":"清华大学","count":12},{"name":"丰田助学金","count":3},{"name":"WiFi","count":1},{"name":"实习生","count":1},{"name":"wifi自动关闭","count":1},{"name":"腾讯实习","count":1},{"name":"经验技巧","count":13},{"name":"DDOS","count":2},{"name":"AOP","count":3},{"name":"租房","count":2},{"name":"Sqlite","count":2},{"name":"Python","count":11},{"name":"OOP","count":5},{"name":"数据挖掘","count":8},{"name":"GitHub","count":2},{"name":"SVM","count":3},{"name":"R语言","count":2},{"name":"足迹","count":2},{"name":"笛子","count":2},{"name":"计算机图形学","count":5},{"name":"OpenGL","count":3},{"name":"回忆录","count":1},{"name":"年终总结","count":1},{"name":"域名","count":1},{"name":"计算几何","count":2},{"name":"敲敲代码","count":9},{"name":"Latex","count":3},{"name":"C++","count":10},{"name":"Mac","count":7},{"name":"飞行模式","count":2},{"name":"性能优化","count":2},{"name":"Javascript","count":1},{"name":"工作","count":1},{"name":"玩遍世界","count":1},{"name":"Scala","count":2},{"name":"MyLife","count":1},{"name":"快捷键","count":1},{"name":"云服务","count":1},{"name":"Blog","count":1},{"name":"微信公众号","count":1}'/>
+        <div style="display: none"><a id="tag-value" class="taglink" rel="bookmark" href="/tag/#" data-target-cate="#"></a></div>
+        <div class="tag-values-container">
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+  </div>
+
+  <footer>
+  <div class="text-center">
+    © 2010-2016 All rights reserved.
+    Made with <a href="http://jekyllrb.com/" rel="nofollow" target="_blank">Jekyll</a>
+    & Modified by <a href="http://www.tanglei.name/about/" >Tanglei</a>
+    and <i class="fa fa-heart"></i> by <a rel="nofollow" href="https://github.com/guovz/jekyll-pithy" target="_blank">Pithy</a>
+  </div>
+  <div class="totop" data-toggle="totop">
+      <i class="fa fa-chevron-up"></i>
+  </div>
+</footer>
+
+
+  <!--the js include-->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="/assets/script/pithy.js"></script>
+
+<!--
+  the site comment script
+-->
+
+
+  <script>
+    
+    var disqus_config = function () {
+        this.page.url = 'https://www.tanglei.name/blog/attacked-by-hacker-cause-of-a-bug-in-mysql.html' ; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '/blog/attacked-by-hacker-cause-of-a-bug-in-mysql.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+        if($("#disqus_thread").length) {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://hexo-tanglei.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+    powered by Disqus.</a></noscript>
+
+
+
+<!--
+  the site analysis script
+-->
+
+  <!-- baidu analysis -->
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?f0117177475f54027bfcaceb8d668cee";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+</body>
+</html>

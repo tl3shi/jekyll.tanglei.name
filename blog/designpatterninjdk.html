@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+  <head>
+    <title>JDK里的设计模式</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="keywords" content="JDK里的设计模式, 课程学习, Java,设计模式,, 唐磊, 中南大学, 清华大学, 软件工程师, 计算机, 全栈工程师" />
+    <meta name="description" content="JDK里的设计模式, 课程学习, Java,设计模式, 关于本文的说明：本文是本来从网上收集进过自己细心整理而得。参考文章来自：http://stackoverflow.com/questions/1673841/examples-of-gof-design-patterns，本人不保证内容的正确性。仅供参考，因用word排版，因此贴到Wordpress格式比较乱，时..." />
+
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+
+  <!--Font awesome-->
+  <link href="/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- The pithy main css -->
+  <link rel="stylesheet" href="/assets/stylesheet/pithy.css">
+  <link rel="stylesheet" href="/assets/stylesheet/molokai.css">
+
+
+  <!--[if lt IE 9]>
+  <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv-printshiv.js"></script>
+  <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+  <![endif]-->
+  <link rel="alternate" type="application/rss+xml" title="tanglei's blog|唐磊的个人博客" href="https://www.tanglei.name/feed.xml" />
+</head>
+
+<body>
+  <nav class="navbar navbar-pithy" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+                data-target="#pithy-navbar" aria-expanded="false">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" rel="bookmark" href="/">TangLei</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="pithy-navbar">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="bookmark" href="/">首页</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/archives.html">Archives</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/about/">关于</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+  <div class="container page-content">
+    <div>
+    <div class="col-md-9 col-content">
+        <div id="post-content" class="panel panel-pithy post">
+            <div class="panel-heading">
+                <div class="title">
+                  <i class="fa fa-bookmark-o"></i>JDK里的设计模式
+                </div>
+                <ul class="info">
+                    <li>
+                      作者 <span class="author"> 
+        
+            tanglei
+        
+        </span>
+                    </li>
+                    <li>
+                      最后编辑 2010年12月23日
+                    </li>
+                    <li>
+                      Tags
+                     
+                         <a class="tag" href="/tag/#Java">Java</a>
+                     
+                         <a class="tag" href="/tag/#设计模式">设计模式</a>
+                     
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body content">
+                <p>关于本文的说明：本文是本来从网上收集进过自己细心<strong>整理</strong>而得。参考文章来自：<a href="http://stackoverflow.com/questions/1673841/examples-of-gof-design-patterns">http://stackoverflow.com/questions/1673841/examples-of-gof-design-patterns</a>，本人不保证内容的正确性。仅供参考，因用word排版，因此贴到Wordpress格式比较乱，时间关系，不作调整，还请谅解。</p>
+
+<p>Creational patterns 1</p>
+
+<ol>
+  <li>
+    <p>Abstract factory 1</p>
+  </li>
+  <li>
+    <p>Builder 2</p>
+  </li>
+  <li>
+    <p>Factory method 2</p>
+  </li>
+  <li>
+    <p>Prototype 2</p>
+  </li>
+  <li>
+    <p>Singleton 3</p>
+  </li>
+</ol>
+
+<p>Structural patterns 3</p>
+
+<ol>
+  <li>
+    <p>Adapter 3</p>
+  </li>
+  <li>
+    <p>Bridge 3</p>
+  </li>
+  <li>
+    <p>Composite 3</p>
+  </li>
+  <li>
+    <p>Decorator 4</p>
+  </li>
+  <li>
+    <p>Façade 4</p>
+  </li>
+  <li>
+    <p>Flyweight 4</p>
+  </li>
+  <li>
+    <p>Proxy 5</p>
+  </li>
+</ol>
+
+<p>Behavioral patterns 5</p>
+
+<ol>
+  <li>
+    <p>Chain of responsibility 5</p>
+  </li>
+  <li>
+    <p>Command 5</p>
+  </li>
+  <li>
+    <p>Interpreter 6</p>
+  </li>
+  <li>
+    <p>Iterator 6</p>
+  </li>
+  <li>
+    <p>Mediator 6</p>
+  </li>
+  <li>
+    <p>Memento 6</p>
+  </li>
+  <li>
+    <p>Observer 7</p>
+  </li>
+  <li>
+    <p>State 7</p>
+  </li>
+  <li>
+    <p>Strategy 7</p>
+  </li>
+  <li>
+    <p>Template method 8</p>
+  </li>
+  <li>
+    <p>Visitor 8</p>
+  </li>
+</ol>
+
+<p>————————————————————————————————————————————————————————</p>
+
+<p><strong>Creational patterns创建性模式</strong></p>
+
+<p><strong>1. Abstract factory创建一组有关联的对象，在JDK中比较常见，还有很多的框架也用了这个模式，例如spring等。</strong></p>
+
+<p>——recognizeable by creational methods returning an abstract/interface type</p>
+
+<p>**</p>
+
+<p>**  java.util.Calendar#getInstance()</p>
+
+<p> java.util.Arrays#asList()</p>
+
+<p> java.util.ResourceBundle#getBundle()</p>
+
+<p> java.net.URL#openConnection()</p>
+
+<p> java.sql.DriverManager#getConnection()</p>
+
+<p> java.sql.Connection#createStatement()</p>
+
+<p> java.sql.Statement#executeQuery()</p>
+
+<p> java.text.NumberFormat#getInstance()</p>
+
+<p> java.lang.management.ManagementFactory (all getXXX() methods)</p>
+
+<p> java.nio.charset.Charset#forName()</p>
+
+<p> javax.xml.parsers.DocumentBuilderFactory#newInstance()</p>
+
+<p> javax.xml.transform.TransformerFactory#newInstance()</p>
+
+<p> javax.xml.xpath.XPathFactory#newInstance()</p>
+
+<p><strong>2. Builder用来简化一个复杂的对象的创建。</strong></p>
+
+<p>——(recognizeable by creational methods returning the instance itself)</p>
+
+<p> java.lang.StringBuilder#append() (unsynchronized)</p>
+
+<p> java.lang.StringBuffer#append() (synchronized)</p>
+
+<p> java.nio.ByteBuffer#put() (also on CharBuffer, ShortBuffer, IntBuffer, LongBuffer, FloatBuffer and DoubleBuffer)</p>
+
+<p> javax.swing.GroupLayout.Group#addComponent()</p>
+
+<p> All implementations of java.lang.Appendable</p>
+
+<p><strong>3. Factory method按照需求返回一个类型的实例</strong></p>
+
+<p>—— (recognizeable by creational methods returning a concrete type)</p>
+
+<p> java.lang.Object#toString() (overrideable in all subclasses)</p>
+
+<p> java.lang.Class#newInstance()</p>
+
+<p> java.lang.Integer#valueOf(String) (also on Boolean, Byte, Character, Short, Long, Float and Double)</p>
+
+<p> java.lang.Class#forName()</p>
+
+<p> java.lang.reflect.Array#newInstance()</p>
+
+<p> java.lang.reflect.Constructor#newInstance()</p>
+
+<p><strong>4. Prototype使用自己的实例创建另一个实例</strong></p>
+
+<p>——recognizeable by creational methods returning a different instance of itself with the same properties)</p>
+
+<p> java.lang.Object#clone() (the class has to implement java.lang.Cloneable)</p>
+
+<p><strong>5. Singleton单例就不说了</strong></p>
+
+<p>——(recognizeable by creational methods returning the same instance (usually of itself) everytime)</p>
+
+<p> java.lang.Runtime#getRuntime()</p>
+
+<p> java.awt.Desktop#getDesktop()</p>
+
+<p>————————————————————————————————————————————————————————</p>
+
+<p><strong>Structural patterns结构性模式</strong></p>
+
+<p>**</p>
+
+<ol>
+  <li>Adapter把一个接口或者类变成另一个**</li>
+</ol>
+
+<p>——(recognizeable by creational methods taking an instance of different abstract/interface type and returning an implementation of own/another abstract/interface type which decorates/overrides the given instance)</p>
+
+<p> java.io.InputStreamReader(InputStream) (returns a Reader)</p>
+
+<p> java.io.OutputStreamWriter(OutputStream) (returns a Writer)</p>
+
+<p> javax.xml.bind.annotation.adapters.XmlAdapter#marshal() and #unmarshal()</p>
+
+<p><strong>7. Bridge抽象和实现解耦，使接口和实现独立出来</strong></p>
+
+<p>——(recognizeable by creational methods taking an instance of different abstract/interface type and returning an implementation of own abstract/interface type which delegates/uses the given instance)</p>
+
+<p> A fictive example would be new LinkedHashMap(LinkedHashSet, List) which returns an unmodifiable linked map which doesn’t clone the items, but uses them. The java.util.Collections#newSetFromMap() and singletonXXX() methods however comes close.</p>
+
+<p><strong>8. Composite把单独的对象和组合的对象混合使用</strong></p>
+
+<p>——( recognizeable by behavioral methods taking an instance of same abstract/interface type)</p>
+
+<p> java.util.Map#putAll(Map)</p>
+
+<p> java.util.List#addAll(Collection)</p>
+
+<p> java.util.Set#addAll(Collection)</p>
+
+<p> java.nio.ByteBuffer#put(ByteBuffer) (also on CharBuffer, ShortBuffer, IntBuffer, LongBuffer, FloatBuffer and DoubleBuffer)</p>
+
+<p> java.awt.Container#add(Component) (practically all over Swing thus)</p>
+
+<p><strong>9. Decorator为一个对象动态的创建不同的动作而不需要因为创建不同的动作而产生很多集成类</strong></p>
+
+<p>—— (recognizeable by creational methods taking an instance of same abstract/interface type) .All subclasses of java.io.InputStream, OutputStream, Reader and Writer have a constructor taking an instance of same type.</p>
+
+<p> Almost all implementations of java.util.List, Set and Map have a constructor taking an instance of same type.</p>
+
+<p> java.util.Collections, the checkedXXX(), synchronizedXXX() and unmodifiableXXX() methods.</p>
+
+<p> javax.servlet.http.HttpServletRequestWrapper and HttpServletResponseWrapper</p>
+
+<p><strong>10. Façade用一个简单的接口去调用其他的接口</strong></p>
+
+<p>—— (recognizeable by behavioral methods which internally uses instances of different independent abstract/interface types)</p>
+
+<p> javax.faces.webapp.FacesServlet, it internally uses under each the abstract/interface types ServletContext, LifeCycle, ViewHandler,</p>
+
+<p> NavigationHandler and many more without that the enduser has to worry about it (which are however overrideable by injection).</p>
+
+<p><strong>11. Flyweight有效率的存储大量的小对象</strong></p>
+
+<p>—— (recognizeable by creational methods returning a cached instance, a bit the “multiton” idea)</p>
+
+<p> java.lang.Integer#valueOf(int) (also on Boolean, Byte, Character, Short, Long, Float and Double)</p>
+
+<p><strong>12. Proxy用一个简单的对象代替复杂的对象，或者代替其他特殊动作的对象</strong></p>
+
+<p>—— (recognizeable by creational methods which returns an implementation of given abstract/interface type which in turn delegates/uses a different implementation of given abstract/interface type)</p>
+
+<p> java.lang.reflect.Proxy</p>
+
+<p> java.rmi.*, the whole API actually.</p>
+
+<p>——————————————————————————–</p>
+
+<p><strong>Behavioral patterns行为型模式</strong></p>
+
+<p><strong>13. Chain of responsibility把一个对象在链接中传值一直到被处理，刘伟常举的例子就是请假的例子。</strong></p>
+
+<p>—— (recognizeable by behavioral methods which (indirectly) invokes the same method in another implementation of same abstract/interface type in a queue)</p>
+
+<p> java.util.logging.Logger#log()</p>
+
+<p> javax.servlet.Filter#doFilter()</p>
+
+<p><strong>14. Command把一个或者一组命令封装在一个对象当中</strong></p>
+
+<p>——(recognizeable by behavioral methods in an abstract/interface type which invokes a method in an implementation of a different abstract/interface type which has been encapsulated by the command implementation during its creation)</p>
+
+<p> All implementations of java.lang.Runnable</p>
+
+<p> All implementations of javax.swing.Action</p>
+
+<p><strong>15. Interpreter语法解释器</strong></p>
+
+<p>——( (recognizeable by behavioral methods returning a structurally different instance/type of the given instance/type; note that parsing/formatting is not part of the pattern, determining the pattern and how to apply it is)</p>
+
+<p> java.util.Pattern</p>
+
+<p> java.text.Normalizer</p>
+
+<p> All subclasses of java.text.Format</p>
+
+<p> All subclasses of javax.el.ELResolver</p>
+
+<p><strong>16. Iterator提供一个一致的方法来顺序遍历一个容器的所有元素</strong></p>
+
+<p>——(recognizeable by behavioral methods sequentially returning instances of a different type from a queue)</p>
+
+<p> All implementations of java.util.Iterator (thus under each also java.util.Scanner!).</p>
+
+<p> All implementations of java.util.Enumeration</p>
+
+<p><strong>17. Mediator减少对象间的直接依赖，用一个中介来管理消息的通讯</strong></p>
+
+<p>—— (recognizeable by behavioral methods taking an instance of different abstract/interface type (usually using the command pattern) which delegates/uses the given instance)</p>
+
+<p> java.util.Timer (all scheduleXXX() methods)</p>
+
+<p> java.util.concurrent.Executor#execute()</p>
+
+<p> java.util.concurrent.ExecutorService (the invokeXXX() and submit() methods)</p>
+
+<p> java.util.concurrent.ScheduledExecutorService (all scheduleXXX() methods)</p>
+
+<p> java.lang.reflect.Method#invoke()</p>
+
+<p><strong>18. Memento给一个对象做一个快照</strong></p>
+
+<p>——(recognizeable by behavioral methods which internally changes the state of the whole instance)</p>
+
+<p> java.util.Date (the setter methods do that, Date is internally represented by a long value)</p>
+
+<p> All implementations of java.io.Serializable</p>
+
+<p> All implementations of javax.faces.component.StateHolder</p>
+
+<p><strong>19. Observer让一个对象向所有侦听自己的所有对象广播自己的消息或者事件。</strong></p>
+
+<p>—— (or Publish/Subscribe) (recognizeable by behavioral methods which invokes a method on an instance of another abstract/interface type, depending on own state)</p>
+
+<p> java.util.Observer/java.util.Observable (rarely used in real world though)</p>
+
+<p> All implementations of java.util.EventListener (practically all over Swing thus)</p>
+
+<p> javax.servlet.http.HttpSessionBindingListener</p>
+
+<p> javax.servlet.http.HttpSessionAttributeListener</p>
+
+<p> javax.faces.event.PhaseListener</p>
+
+<p><strong>20. State根据自身的状态改变对象的行为</strong></p>
+
+<ol>
+  <li>——(recognizeable by behavioral methods which changes its behaviour depending on the instance’s state which can be controlled externally)</li>
+</ol>
+
+<p> All implementations of java.util.Iterator</p>
+
+<p> javax.faces.lifecycle.LifeCycle#execute() (controlled by FacesServlet, the behaviour is dependent on current phase (state) of JSF lifecycle)</p>
+
+<p><strong>21. Strategy在一个对象中封装一组算法，运行时可以灵活运用</strong></p>
+
+<p>——(recognizeable by behavioral methods in an abstract/interface type which invokes a method in an implementation of a different abstract/interface type which has been passed-in as method argument into the strategy implementation)</p>
+
+<p> java.util.Comparator#compare(), executed by under each Collections#sort().</p>
+
+<p> javax.servlet.http.HttpServlet, the service() and all doXXX() methods take HttpServletRequest and HttpServletResponse and the implementor</p>
+
+<p> has to process them (and not to get hold of them as instance variables!).</p>
+
+<p> javax.servlet.Filter#doFilter()</p>
+
+<p><strong>22. Template method让子类重载部分而不需要全部重写。</strong></p>
+
+<p>—— (recognizeable by behavioral methods which already have a “default” behaviour definied by an abstract type)</p>
+
+<p> All non-abstract methods of java.io.InputStream, java.io.OutputStream, java.io.Reader and java.io.Writer.</p>
+
+<p> All non-abstract methods of java.util.AbstractList, java.util.AbstractSet and java.util.AbstractMap.</p>
+
+<p> javax.servlet.http.HttpServlet, all the doXXX() methods by default sends a HTTP 405 “Method Not Allowed” error to the response. You’re free to implement none or any of them.</p>
+
+<p><strong>23. Visitor不改变对象本身的情况下改变作用于该对象的新操作。</strong></p>
+
+<p>——(recognizeable by two different abstract/interface types which has methods definied which takes each the other abstract/interface type; the one actually calls the method of the other and the other executes the desired strategy on it)</p>
+
+<p> javax.lang.model.element.AnnotationValue and javax.lang.model.element.AnnotationValueVisitor</p>
+
+<p> javax.lang.model.element.Element and javax.lang.model.element.ElementVisitor</p>
+
+<p> javax.lang.model.type.TypeMirror and javax.lang.model.type.TypeVisitor</p>
+
+            </div>
+            <div class="post-nav">
+    
+    <a class="prev" href=/blog/8-useful-wordpress-sql-hacks.html>&laquo; &nbsp;8 Useful WordPress SQL Hacks</a>
+    
+    
+    <a class="next" href=/blog/goodse10.html>明星软件工程师的10种特质&nbsp;&raquo;</a>
+    
+</div>
+
+            
+        </div>
+        <!--
+            if config set comment enable,include comment
+        -->
+        
+            <!-- comment -->
+<div id="post-comment" class="panel panel-default">
+    <div class="panel-body">
+        
+
+        
+            <div id="disqus_thread"></div>
+        
+    </div>
+</div>
+
+        
+    </div>
+    <div class="col-md-3 col-sidebar">
+        <div class="panel panel-pithy author">
+    <div class="panel-heading avastar">
+        <img src="/tx.jpg" alt="tanglei"/>
+    </div>
+    <div class="panel-body">
+        码农 @ 宜信大数据创新中心, 毕业于CSU && THU,  曾工作于<a href='http://www.tencent.com/zh-cn/index.shtml' target='_blank'>腾讯</a> && <a href='http://www.umeng.com/' target='_blank'>友盟</a>.  &nbsp; <a href='/about/'> MORE </a>
+    </div>
+    <div class="panel-footer social">
+        <ul>
+            
+            <li>
+                <a rel="nofollow" href="http://www.weibo.com/tangleithu/" target="_blank"><i class="fa fa-weibo"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://github.com/tl3shi" target="_blank"><i class="fa fa-github"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://www.facebook.com/tanglei.name" target="_blank"><i class="fa fa-facebook"></i></a>
+            </li>
+            
+            <li>
+                <a href="https://www.tanglei.name/feed.xml" target="_blank"><i class="fa fa-rss"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar:category list -->
+<div class="panel panel-default categories">
+    <div class="panel-heading title">
+        分类列表
+    </div>
+    <div class="panel-body list">
+        <ul>
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/贵州支教行/">
+                  贵州支教行&nbsp;<span class="count">[12]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/课程学习/">
+                  课程学习&nbsp;<span class="count">[88]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/MyLife/">
+                  MyLife&nbsp;<span class="count">[45]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/经验技巧/">
+                  经验技巧&nbsp;<span class="count">[93]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/社会工作/">
+                  社会工作&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/网络文摘/">
+                  网络文摘&nbsp;<span class="count">[28]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件体系结构/">
+                  软件体系结构&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/旅游/">
+                  旅游&nbsp;<span class="count">[23]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软考/">
+                  软考&nbsp;<span class="count">[2]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件度量及其应用/">
+                  软件度量及其应用&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/工作那些事儿/">
+                  工作那些事儿&nbsp;<span class="count">[42]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我做站长/">
+                  我做站长&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/coding小工具/">
+                  coding小工具&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/除臭虫/">
+                  除臭虫&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/学到老/">
+                  学到老&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我不会算法/">
+                  我不会算法&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/数据挖掘/">
+                  数据挖掘&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/计算机图形学/">
+                  计算机图形学&nbsp;<span class="count">[5]</span>
+              </a>
+          </li>
+
+          
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar: tag list -->
+<div class="panel panel-default tags">
+    <div class="panel-heading title">
+        标签云
+    </div>
+    <div class="panel-body list">
+         
+        <input type="hidden" id="tag-values" value='{"name":"丰田助学","count":16},{"name":"贵州支教","count":12},{"name":"铜厂小学","count":9},{"name":"中南大学","count":12},{"name":"云南赶集","count":1},{"name":"HelloWorld","count":5},{"name":"我做站长","count":35},{"name":"设计模式","count":7},{"name":"Wordpress","count":18},{"name":"系统架构师","count":11},{"name":"软考","count":25},{"name":"论文","count":6},{"name":"软件0804","count":8},{"name":"Java","count":24},{"name":"J2EE","count":3},{"name":"JAVA","count":1},{"name":"考试","count":25},{"name":"SEO","count":3},{"name":"软件体系结构","count":6},{"name":"Android","count":28},{"name":"软件工程","count":2},{"name":"Windows","count":17},{"name":"软件测试","count":1},{"name":"总结","count":13},{"name":"Oracle","count":4},{"name":"存储过程","count":3},{"name":"数据库应用","count":3},{"name":"数据库","count":8},{"name":"先进班集体","count":1},{"name":"Linux","count":15},{"name":"Ubuntu","count":8},{"name":"Defy","count":3},{"name":"传感器","count":1},{"name":"访日交流","count":8},{"name":"旅游","count":22},{"name":"软件学院","count":11},{"name":"大学生科协","count":4},{"name":"玩遍中国","count":11},{"name":"计算机网络","count":5},{"name":"Eclipse","count":4},{"name":"软件度量","count":11},{"name":"软件设计师","count":4},{"name":"编译原理","count":2},{"name":"程序语言","count":2},{"name":"操作系统","count":3},{"name":"多媒体","count":2},{"name":"网络安全","count":9},{"name":"TCP/IP","count":2},{"name":"编程语言","count":1},{"name":"考点","count":1},{"name":"Google","count":5},{"name":"软件结构度量","count":1},{"name":"CMM","count":6},{"name":"项目管理","count":3},{"name":"实习","count":33},{"name":"面试","count":18},{"name":"网络营销","count":1},{"name":"百度","count":4},{"name":"笔试","count":2},{"name":"腾讯","count":31},{"name":"编程比赛","count":4},{"name":"科研","count":4},{"name":"电子商务","count":11},{"name":"虚拟主机","count":2},{"name":"网路安全","count":1},{"name":"Foxmail","count":3},{"name":"微软","count":1},{"name":"软件能力成熟度模型","count":2},{"name":"软件过程改进","count":3},{"name":"SCM复习资料","count":1},{"name":"软件配置管理","count":12},{"name":"SCM","count":6},{"name":"工具","count":19},{"name":"反模式","count":1},{"name":"玩玩手机","count":5},{"name":"程序员","count":4},{"name":"健康","count":1},{"name":"共享上网","count":2},{"name":"Bug","count":4},{"name":"coding小工具","count":1},{"name":"工作日志","count":19},{"name":"Apache","count":2},{"name":"PHP","count":13},{"name":"实习日志","count":1},{"name":"工作实习生","count":1},{"name":"Mysql","count":1},{"name":"Shell","count":3},{"name":"腾讯实习日志","count":1},{"name":"hosts","count":2},{"name":"Vim","count":3},{"name":"正则表达式","count":2},{"name":"搜索引擎","count":1},{"name":"跨域","count":1},{"name":"前端","count":2},{"name":"保研","count":15},{"name":"算法","count":9},{"name":"清华大学","count":12},{"name":"丰田助学金","count":3},{"name":"WiFi","count":1},{"name":"实习生","count":1},{"name":"wifi自动关闭","count":1},{"name":"腾讯实习","count":1},{"name":"经验技巧","count":13},{"name":"DDOS","count":2},{"name":"AOP","count":3},{"name":"租房","count":2},{"name":"Sqlite","count":2},{"name":"Python","count":11},{"name":"OOP","count":5},{"name":"数据挖掘","count":8},{"name":"GitHub","count":2},{"name":"SVM","count":3},{"name":"R语言","count":2},{"name":"足迹","count":2},{"name":"笛子","count":2},{"name":"计算机图形学","count":5},{"name":"OpenGL","count":3},{"name":"回忆录","count":1},{"name":"年终总结","count":1},{"name":"域名","count":1},{"name":"计算几何","count":2},{"name":"敲敲代码","count":9},{"name":"Latex","count":3},{"name":"C++","count":10},{"name":"Mac","count":7},{"name":"飞行模式","count":2},{"name":"性能优化","count":2},{"name":"Javascript","count":1},{"name":"工作","count":1},{"name":"玩遍世界","count":1},{"name":"Scala","count":2},{"name":"MyLife","count":1},{"name":"快捷键","count":1},{"name":"云服务","count":1},{"name":"Blog","count":1},{"name":"微信公众号","count":1}'/>
+        <div style="display: none"><a id="tag-value" class="taglink" rel="bookmark" href="/tag/#" data-target-cate="#"></a></div>
+        <div class="tag-values-container">
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+  </div>
+
+  <footer>
+  <div class="text-center">
+    © 2010-2016 All rights reserved.
+    Made with <a href="http://jekyllrb.com/" rel="nofollow" target="_blank">Jekyll</a>
+    & Modified by <a href="http://www.tanglei.name/about/" >Tanglei</a>
+    and <i class="fa fa-heart"></i> by <a rel="nofollow" href="https://github.com/guovz/jekyll-pithy" target="_blank">Pithy</a>
+  </div>
+  <div class="totop" data-toggle="totop">
+      <i class="fa fa-chevron-up"></i>
+  </div>
+</footer>
+
+
+  <!--the js include-->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="/assets/script/pithy.js"></script>
+
+<!--
+  the site comment script
+-->
+
+
+  <script>
+    
+    var disqus_config = function () {
+        this.page.url = 'https://www.tanglei.name/blog/designpatterninjdk.html' ; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '/blog/designpatterninjdk.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+        if($("#disqus_thread").length) {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://hexo-tanglei.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+    powered by Disqus.</a></noscript>
+
+
+
+<!--
+  the site analysis script
+-->
+
+  <!-- baidu analysis -->
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?f0117177475f54027bfcaceb8d668cee";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+</body>
+</html>

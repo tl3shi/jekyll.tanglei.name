@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+  <head>
+    <title>Mac/Windows Wireshark/tcpdump抓包TCP 3次握手,4次挥手实例</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="keywords" content="Mac/Windows Wireshark/tcpdump抓包TCP 3次握手,4次挥手实例, 经验技巧, TCP/IP,计算机网络,Mac,, 唐磊, 中南大学, 清华大学, 软件工程师, 计算机, 全栈工程师" />
+    <meta name="description" content="Mac/Windows Wireshark/tcpdump抓包TCP 3次握手,4次挥手实例, 经验技巧, TCP/IP,计算机网络,Mac, Mac OS系统10.9.1，安装Wireshark，后不能跑，提示安装X11，到这里安装XQuartz即可。" />
+
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+
+  <!--Font awesome-->
+  <link href="/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- The pithy main css -->
+  <link rel="stylesheet" href="/assets/stylesheet/pithy.css">
+  <link rel="stylesheet" href="/assets/stylesheet/molokai.css">
+
+
+  <!--[if lt IE 9]>
+  <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv-printshiv.js"></script>
+  <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+  <![endif]-->
+  <link rel="alternate" type="application/rss+xml" title="tanglei's blog|唐磊的个人博客" href="https://www.tanglei.name/feed.xml" />
+</head>
+
+<body>
+  <nav class="navbar navbar-pithy" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+                data-target="#pithy-navbar" aria-expanded="false">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" rel="bookmark" href="/">TangLei</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="pithy-navbar">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="bookmark" href="/">首页</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/archives.html">Archives</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/about/">关于</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+  <div class="container page-content">
+    <div>
+    <div class="col-md-9 col-content">
+        <div id="post-content" class="panel panel-pithy post">
+            <div class="panel-heading">
+                <div class="title">
+                  <i class="fa fa-bookmark-o"></i>Mac/Windows Wireshark/tcpdump抓包TCP 3次握手,4次挥手实例
+                </div>
+                <ul class="info">
+                    <li>
+                      作者 <span class="author"> 
+        
+            tanglei
+        
+        </span>
+                    </li>
+                    <li>
+                      最后编辑 2014年03月11日
+                    </li>
+                    <li>
+                      Tags
+                     
+                         <a class="tag" href="/tag/#TCP/IP">TCP/IP</a>
+                     
+                         <a class="tag" href="/tag/#计算机网络">计算机网络</a>
+                     
+                         <a class="tag" href="/tag/#Mac">Mac</a>
+                     
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body content">
+                <p>Mac OS系统10.9.1，安装<a href="http://www.wireshark.org/download.html">Wireshark</a>，后不能跑，提示安装X11，到这里安装<a href="http://xquartz.macosforge.org/landing/">XQuartz</a>即可。</p>
+
+<p>TIPS：安装XQuartz 后，重新启动Wireshark，让选择X11，这是去选/Applications/Utilities/XQuartz.app（默认位置），启动得比较久，得有点耐心，若不懂可参考这里<a href="http://blog.israeltorres.org/home/write-ups/installingwiresharkonmacosx108mountainlion">installing wireshark on mac osx10.8 mountainlion</a> 和 <a href="http://ask.wireshark.org/questions/12140/cant-run-wireshark-in-mac-os-x-mountain-lion">cannot run wireshark in mac os x moutain-loin</a>.</p>
+
+<p>然后抓包～跟windows一样了。下图是访问<a href="http://tanglei.me/">tanglei.me</a>抓包，用的github pages搭建的博客，访问IP是192.30.252.153(or 154)，看到这个IP，为了看得更清楚，可以利用下Filter。Wireshark功能很强大的说。</p>
+
+<p><a href="/wp-content/uploads/2014/03/Image.png"><img title="Image" src="/wp-content/uploads/2014/03/Image_thumb.png" alt="Image" /></a></p>
+
+<p>如下图是建立连接时的3次握手～其中,SYN=Synchronize Sequence Numbers, ACK=Acknowledgement Number</p>
+
+<p><a href="/wp-content/uploads/2014/03/Image1.png"><img title="Image(1)" src="/wp-content/uploads/2014/03/Image1_thumb.png" alt="Image(1)" /></a></p>
+
+<ol>
+  <li>Client(本机192.168.1.100)发起TCP请求, 发送序号为x(=0)的SYN包;  ——SYN(x)</li>
+  <li>Server(Github 192.30.252.153)收到连接请求，给出响应ACK(x+1=1),同时携带一个序号Seq,y(=0);  —— SYN(y)+ACK(x+1)</li>
+  <li>Client(本机192.168.1.100)对响应做出回复，返回Ack(y+1=1),同时自己序号自增Seq＝1;  ——ACK(y+1)</li>
+</ol>
+
+<p>文后画了下3次/4次握手的示意图。</p>
+
+<p>3次握手完成，TCP连接建立起来了～随后就直接通信，上图可以看到Client就直接去Get请求了(注意http是应用层的协议，底层传输还是走TCP哦~). 安全的连接就是这样建立起来滴，通过检验序号是否合法，Client端/Server端分别做出相应的机制，比如自己序号y包发出去了，没有收到y+1的响应，对方可能没有收到，然后可能一定时间后 ，会重发这个y包～</p>
+
+<p>再来看看断开连接的4次握手(挥手)。</p>
+
+<p><a href="/wp-content/uploads/2014/03/Image3.png"><img title="Image(3)" src="/wp-content/uploads/2014/03/Image3_thumb.png" alt="Image(3)" /></a></p>
+
+<p>这里是Github作为Client主动发起关闭连接的请求，这里的FIN=FINish</p>
+
+<ol>
+  <li>Github 发Fin(x=6831)包;  ——FIN(X)</li>
+  <li>本机收到上面的包后，做出ACK(x+1=6832)响应,跟Github说我收到了～，你别再发了;  ——ACK(X+1)</li>
+  <li>你要关了，那我也准备关吧～ 于是发Fin(y=1054)包,你准备好了么？;  ——FIN(Y)</li>
+  <li>Github准备好了，给出响应ACK(y+1=1055)，告诉本机准备好了;  ——ACK(Y+1)</li>
+</ol>
+
+<p>双方确认都要关闭了，然后断开TCP连接。</p>
+
+<p>此过程用tcpdump也是可以清晰的看到滴~下面以windows情况为例,windows上的<strong>tcpdump</strong>叫<strong>windump</strong>,用法跟tcpdump一样~详细的可以<a href="http://www.tcpdump.org/manpages/tcpdump.1.html">查看下其文档</a></p>
+
+<p>本机IP打下码~ 如下166.111.X.X是本机IP.查看同样的例子~</p>
+
+<p>TIPS：用tcpdump/windump时注意选指定的网卡，若安装虚拟机等可能默认的选不到正确的那块，就抓不到包。(windump -D 查看网卡) 下面命令是-i 2 (选择监控第2块网卡)， -n (不转换名字，以实际IP地址显示结果), -S (大写的S，打印绝对的序号号，如果没有这个选项的话，非SYN包如ack就是相对的，不方便查看，如果没有这个选项下面第3行ack可能就是1)， host通信的地址为192.30.252.153，后面的就不用解释了分别是tcp协议，80端口，然后结果输出到文件。</p>
+
+<p>另外，不同的浏览器可能会对你访问页面发起多次请求，为了更好的看结果，你得注意看某一个端口，如下是与57245端口的请求。实际过程中可能还有其他端口的请求，下面的例子把其他端口的请求给去掉了滴。</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="nl">C:</span><span class="err">\</span><span class="n">Users</span><span class="err">\</span><span class="n">tanglei</span><span class="o">&gt;</span><span class="n">windump</span> <span class="o">-</span><span class="n">i</span> <span class="mi">2</span> <span class="o">-</span><span class="n">n</span> <span class="o">-</span><span class="n">S</span> <span class="n">host</span> <span class="mf">192.30.252.153</span> <span class="n">and</span> <span class="n">tcp</span> <span class="n">port</span> <span class="mi">80</span><span class="o">&gt;</span><span class="n">tcpdump</span><span class="p">.</span><span class="n">log</span>
+<span class="n">windump</span><span class="o">:</span> <span class="n">listening</span> <span class="n">on</span> <span class="err">\</span><span class="n">Device</span><span class="err">\</span><span class="n">NPF_</span><span class="p">{</span><span class="mf">84E79</span><span class="n">A70</span><span class="o">-</span><span class="mi">5025</span><span class="o">-</span><span class="mi">44</span><span class="n">D2</span><span class="o">-</span><span class="n">AB45</span><span class="o">-</span><span class="mi">24</span><span class="n">F3203D00D6</span><span class="p">}</span>
+<span class="mi">16</span><span class="o">:</span><span class="mi">17</span><span class="o">:</span><span class="mf">58.813323</span> <span class="n">IP</span> <span class="mf">166.111</span><span class="p">.</span><span class="n">X</span><span class="p">.</span><span class="n">X</span><span class="mf">.57245</span> <span class="o">&gt;</span> <span class="mf">192.30.252.153.80</span><span class="o">:</span> <span class="n">S</span> <span class="mi">1337949936</span><span class="o">:</span><span class="mi">1337949936</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="n">win</span> <span class="mi">65535</span> 
+<span class="mi">16</span><span class="o">:</span><span class="mi">17</span><span class="o">:</span><span class="mf">59.103384</span> <span class="n">IP</span> <span class="mf">192.30.252.153.80</span> <span class="o">&gt;</span> <span class="mf">166.111</span><span class="p">.</span><span class="n">X</span><span class="p">.</span><span class="n">X</span><span class="mf">.57245</span><span class="o">:</span> <span class="n">S</span> <span class="mi">3859825850</span><span class="o">:</span><span class="mi">3859825850</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="n">ack</span> <span class="mi">1337949937</span> <span class="n">win</span> <span class="mi">14360</span> 
+<span class="mi">16</span><span class="o">:</span><span class="mi">17</span><span class="o">:</span><span class="mf">59.103465</span> <span class="n">IP</span> <span class="mf">166.111</span><span class="p">.</span><span class="n">X</span><span class="p">.</span><span class="n">X</span><span class="mf">.57245</span> <span class="o">&gt;</span> <span class="mf">192.30.252.153.80</span><span class="o">:</span> <span class="p">.</span> <span class="n">ack</span> <span class="mi">3859825851</span> <span class="n">win</span> <span class="mi">1024</span>
+<span class="mi">16</span><span class="o">:</span><span class="mi">17</span><span class="o">:</span><span class="mf">59.103634</span> <span class="n">IP</span> <span class="mf">166.111</span><span class="p">.</span><span class="n">X</span><span class="p">.</span><span class="n">X</span><span class="mf">.57245</span> <span class="o">&gt;</span> <span class="mf">192.30.252.153.80</span><span class="o">:</span> <span class="n">P</span> <span class="mi">1337949937</span><span class="o">:</span><span class="mi">1337950298</span><span class="p">(</span><span class="mi">361</span><span class="p">)</span> <span class="n">ack</span> <span class="mi">3859825851</span> <span class="n">win</span> <span class="mi">1024</span>
+<span class="mi">16</span><span class="o">:</span><span class="mi">17</span><span class="o">:</span><span class="mf">59.393901</span> <span class="n">IP</span> <span class="mf">192.30.252.153.80</span> <span class="o">&gt;</span> <span class="mf">166.111</span><span class="p">.</span><span class="n">X</span><span class="p">.</span><span class="n">X</span><span class="mf">.57245</span><span class="o">:</span> <span class="n">P</span> <span class="mi">3859825851</span><span class="o">:</span><span class="mi">3859826074</span><span class="p">(</span><span class="mi">223</span><span class="p">)</span> <span class="n">ack</span> <span class="mi">1337950298</span> <span class="n">win</span> <span class="mi">16</span>
+<span class="mi">16</span><span class="o">:</span><span class="mi">17</span><span class="o">:</span><span class="mf">59.444259</span> <span class="n">IP</span> <span class="mf">166.111</span><span class="p">.</span><span class="n">X</span><span class="p">.</span><span class="n">X</span><span class="mf">.57245</span> <span class="o">&gt;</span> <span class="mf">192.30.252.153.80</span><span class="o">:</span> <span class="p">.</span> <span class="n">ack</span> <span class="mi">3859826074</span> <span class="n">win</span> <span class="mi">1023</span>
+<span class="mi">16</span><span class="o">:</span><span class="mi">18</span><span class="o">:</span><span class="mf">09.393241</span> <span class="n">IP</span> <span class="mf">192.30.252.153.80</span> <span class="o">&gt;</span> <span class="mf">166.111</span><span class="p">.</span><span class="n">X</span><span class="p">.</span><span class="n">X</span><span class="mf">.57245</span><span class="o">:</span> <span class="n">F</span> <span class="mi">3859826074</span><span class="o">:</span><span class="mi">3859826074</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="n">ack</span> <span class="mi">1337950298</span> <span class="n">win</span> <span class="mi">16</span>
+<span class="mi">16</span><span class="o">:</span><span class="mi">18</span><span class="o">:</span><span class="mf">09.393290</span> <span class="n">IP</span> <span class="mf">166.111</span><span class="p">.</span><span class="n">X</span><span class="p">.</span><span class="n">X</span><span class="mf">.57245</span> <span class="o">&gt;</span> <span class="mf">192.30.252.153.80</span><span class="o">:</span> <span class="p">.</span> <span class="n">ack</span> <span class="mi">3859826075</span> <span class="n">win</span> <span class="mi">1023</span>
+<span class="mi">16</span><span class="o">:</span><span class="mi">18</span><span class="o">:</span><span class="mf">32.768012</span> <span class="n">IP</span> <span class="mf">166.111</span><span class="p">.</span><span class="n">X</span><span class="p">.</span><span class="n">X</span><span class="mf">.57245</span> <span class="o">&gt;</span> <span class="mf">192.30.252.153.80</span><span class="o">:</span> <span class="n">F</span> <span class="mi">1337950298</span><span class="o">:</span><span class="mi">1337950298</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="n">ack</span> <span class="mi">3859826075</span> <span class="n">win</span> <span class="mi">1023</span>
+<span class="mi">16</span><span class="o">:</span><span class="mi">18</span><span class="o">:</span><span class="mf">33.057948</span> <span class="n">IP</span> <span class="mf">192.30.252.153.80</span> <span class="o">&gt;</span> <span class="mf">166.111</span><span class="p">.</span><span class="n">X</span><span class="p">.</span><span class="n">X</span><span class="mf">.57245</span><span class="o">:</span> <span class="p">.</span> <span class="n">ack</span> <span class="mi">1337950299</span> <span class="n">win</span> <span class="mi">16</span>
+</code></pre>
+</div>
+
+<p>前面3行，正是连tanglei.me时发起的TCP请求的3次握手，末尾4行是要断开的4次握手(挥手).&lt;/span&gt;</p>
+
+<p>下面的解释用C代表最先主动发起请求的1方，S代表接受到请求的方.</p>
+
+<ul>
+  <li>第1行：(C —&gt;S) SYN包，序号1337949936</li>
+  <li>第2行：(S —&gt;C) SYN+ACK，ACK为1337949936+1=1337949937，序号为3859825850</li>
+  <li>第3行：(C —&gt;S) ACK，ACK为3859825850+1=3859825851</li>
+</ul>
+
+<p>再看末尾四行的4次握手。</p>
+
+<ul>
+  <li>末4行：(C —&gt;S) FIN包，序号3859826074</li>
+  <li>末3行：(S —&gt;C) ACK包，序号3859826074+1=3859826075</li>
+  <li>末2行：(S —&gt;C) FIN包，序号1337950298</li>
+  <li>末1行：(C —&gt;S) ACK包，序号1337950298+1=1337950299</li>
+</ul>
+
+<p>画个图描述下3/4次握手是什么样的.</p>
+
+<p><a href="/wp-content/uploads/2014/03/image.png"><img title="image" src="/wp-content/uploads/2014/03/image.png" alt="image" /></a></p>
+
+<p>以前计算机网络课还详细学了下TCP/UDP的协议，这些数据包是怎么组织放在某个位之类的，时间久了都忘了啊～</p>
+
+            </div>
+            <div class="post-nav">
+    
+    <a class="prev" href=/blog/how-to-generate-magic-picture-in-qzone.html>&laquo; &nbsp;所谓QQ空间神奇的日志、图片~原来是酱紫&#8230;</a>
+    
+    
+    <a class="next" href=/blog/a-bug-relate-with-float-point-between-x86-and-x64-in-csharp.html>C#因x86-x64环境不同引发的浮点&#8221;bug&#8221;~&nbsp;&raquo;</a>
+    
+</div>
+
+            
+        </div>
+        <!--
+            if config set comment enable,include comment
+        -->
+        
+            <!-- comment -->
+<div id="post-comment" class="panel panel-default">
+    <div class="panel-body">
+        
+
+        
+            <div id="disqus_thread"></div>
+        
+    </div>
+</div>
+
+        
+    </div>
+    <div class="col-md-3 col-sidebar">
+        <div class="panel panel-pithy author">
+    <div class="panel-heading avastar">
+        <img src="/tx.jpg" alt="tanglei"/>
+    </div>
+    <div class="panel-body">
+        码农 @ 宜信大数据创新中心, 毕业于CSU && THU,  曾工作于<a href='http://www.tencent.com/zh-cn/index.shtml' target='_blank'>腾讯</a> && <a href='http://www.umeng.com/' target='_blank'>友盟</a>.  &nbsp; <a href='/about/'> MORE </a>
+    </div>
+    <div class="panel-footer social">
+        <ul>
+            
+            <li>
+                <a rel="nofollow" href="http://www.weibo.com/tangleithu/" target="_blank"><i class="fa fa-weibo"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://github.com/tl3shi" target="_blank"><i class="fa fa-github"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://www.facebook.com/tanglei.name" target="_blank"><i class="fa fa-facebook"></i></a>
+            </li>
+            
+            <li>
+                <a href="https://www.tanglei.name/feed.xml" target="_blank"><i class="fa fa-rss"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar:category list -->
+<div class="panel panel-default categories">
+    <div class="panel-heading title">
+        分类列表
+    </div>
+    <div class="panel-body list">
+        <ul>
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/贵州支教行/">
+                  贵州支教行&nbsp;<span class="count">[12]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/课程学习/">
+                  课程学习&nbsp;<span class="count">[88]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/MyLife/">
+                  MyLife&nbsp;<span class="count">[45]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/经验技巧/">
+                  经验技巧&nbsp;<span class="count">[93]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/社会工作/">
+                  社会工作&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/网络文摘/">
+                  网络文摘&nbsp;<span class="count">[28]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件体系结构/">
+                  软件体系结构&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/旅游/">
+                  旅游&nbsp;<span class="count">[23]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软考/">
+                  软考&nbsp;<span class="count">[2]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件度量及其应用/">
+                  软件度量及其应用&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/工作那些事儿/">
+                  工作那些事儿&nbsp;<span class="count">[42]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我做站长/">
+                  我做站长&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/coding小工具/">
+                  coding小工具&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/除臭虫/">
+                  除臭虫&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/学到老/">
+                  学到老&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我不会算法/">
+                  我不会算法&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/数据挖掘/">
+                  数据挖掘&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/计算机图形学/">
+                  计算机图形学&nbsp;<span class="count">[5]</span>
+              </a>
+          </li>
+
+          
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar: tag list -->
+<div class="panel panel-default tags">
+    <div class="panel-heading title">
+        标签云
+    </div>
+    <div class="panel-body list">
+         
+        <input type="hidden" id="tag-values" value='{"name":"丰田助学","count":16},{"name":"贵州支教","count":12},{"name":"铜厂小学","count":9},{"name":"中南大学","count":12},{"name":"云南赶集","count":1},{"name":"HelloWorld","count":5},{"name":"我做站长","count":35},{"name":"设计模式","count":7},{"name":"Wordpress","count":18},{"name":"系统架构师","count":11},{"name":"软考","count":25},{"name":"论文","count":6},{"name":"软件0804","count":8},{"name":"Java","count":24},{"name":"J2EE","count":3},{"name":"JAVA","count":1},{"name":"考试","count":25},{"name":"SEO","count":3},{"name":"软件体系结构","count":6},{"name":"Android","count":28},{"name":"软件工程","count":2},{"name":"Windows","count":17},{"name":"软件测试","count":1},{"name":"总结","count":13},{"name":"Oracle","count":4},{"name":"存储过程","count":3},{"name":"数据库应用","count":3},{"name":"数据库","count":8},{"name":"先进班集体","count":1},{"name":"Linux","count":15},{"name":"Ubuntu","count":8},{"name":"Defy","count":3},{"name":"传感器","count":1},{"name":"访日交流","count":8},{"name":"旅游","count":22},{"name":"软件学院","count":11},{"name":"大学生科协","count":4},{"name":"玩遍中国","count":11},{"name":"计算机网络","count":5},{"name":"Eclipse","count":4},{"name":"软件度量","count":11},{"name":"软件设计师","count":4},{"name":"编译原理","count":2},{"name":"程序语言","count":2},{"name":"操作系统","count":3},{"name":"多媒体","count":2},{"name":"网络安全","count":9},{"name":"TCP/IP","count":2},{"name":"编程语言","count":1},{"name":"考点","count":1},{"name":"Google","count":5},{"name":"软件结构度量","count":1},{"name":"CMM","count":6},{"name":"项目管理","count":3},{"name":"实习","count":33},{"name":"面试","count":18},{"name":"网络营销","count":1},{"name":"百度","count":4},{"name":"笔试","count":2},{"name":"腾讯","count":31},{"name":"编程比赛","count":4},{"name":"科研","count":4},{"name":"电子商务","count":11},{"name":"虚拟主机","count":2},{"name":"网路安全","count":1},{"name":"Foxmail","count":3},{"name":"微软","count":1},{"name":"软件能力成熟度模型","count":2},{"name":"软件过程改进","count":3},{"name":"SCM复习资料","count":1},{"name":"软件配置管理","count":12},{"name":"SCM","count":6},{"name":"工具","count":19},{"name":"反模式","count":1},{"name":"玩玩手机","count":5},{"name":"程序员","count":4},{"name":"健康","count":1},{"name":"共享上网","count":2},{"name":"Bug","count":4},{"name":"coding小工具","count":1},{"name":"工作日志","count":19},{"name":"Apache","count":2},{"name":"PHP","count":13},{"name":"实习日志","count":1},{"name":"工作实习生","count":1},{"name":"Mysql","count":1},{"name":"Shell","count":3},{"name":"腾讯实习日志","count":1},{"name":"hosts","count":2},{"name":"Vim","count":3},{"name":"正则表达式","count":2},{"name":"搜索引擎","count":1},{"name":"跨域","count":1},{"name":"前端","count":2},{"name":"保研","count":15},{"name":"算法","count":9},{"name":"清华大学","count":12},{"name":"丰田助学金","count":3},{"name":"WiFi","count":1},{"name":"实习生","count":1},{"name":"wifi自动关闭","count":1},{"name":"腾讯实习","count":1},{"name":"经验技巧","count":13},{"name":"DDOS","count":2},{"name":"AOP","count":3},{"name":"租房","count":2},{"name":"Sqlite","count":2},{"name":"Python","count":11},{"name":"OOP","count":5},{"name":"数据挖掘","count":8},{"name":"GitHub","count":2},{"name":"SVM","count":3},{"name":"R语言","count":2},{"name":"足迹","count":2},{"name":"笛子","count":2},{"name":"计算机图形学","count":5},{"name":"OpenGL","count":3},{"name":"回忆录","count":1},{"name":"年终总结","count":1},{"name":"域名","count":1},{"name":"计算几何","count":2},{"name":"敲敲代码","count":9},{"name":"Latex","count":3},{"name":"C++","count":10},{"name":"Mac","count":7},{"name":"飞行模式","count":2},{"name":"性能优化","count":2},{"name":"Javascript","count":1},{"name":"工作","count":1},{"name":"玩遍世界","count":1},{"name":"Scala","count":2},{"name":"MyLife","count":1},{"name":"快捷键","count":1},{"name":"云服务","count":1},{"name":"Blog","count":1},{"name":"微信公众号","count":1}'/>
+        <div style="display: none"><a id="tag-value" class="taglink" rel="bookmark" href="/tag/#" data-target-cate="#"></a></div>
+        <div class="tag-values-container">
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+  </div>
+
+  <footer>
+  <div class="text-center">
+    © 2010-2016 All rights reserved.
+    Made with <a href="http://jekyllrb.com/" rel="nofollow" target="_blank">Jekyll</a>
+    & Modified by <a href="http://www.tanglei.name/about/" >Tanglei</a>
+    and <i class="fa fa-heart"></i> by <a rel="nofollow" href="https://github.com/guovz/jekyll-pithy" target="_blank">Pithy</a>
+  </div>
+  <div class="totop" data-toggle="totop">
+      <i class="fa fa-chevron-up"></i>
+  </div>
+</footer>
+
+
+  <!--the js include-->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="/assets/script/pithy.js"></script>
+
+<!--
+  the site comment script
+-->
+
+
+  <script>
+    
+    var disqus_config = function () {
+        this.page.url = 'https://www.tanglei.name/blog/example-show-3-times-handshaking-of-tcp-in-mac-or-windows.html' ; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '/blog/example-show-3-times-handshaking-of-tcp-in-mac-or-windows.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+        if($("#disqus_thread").length) {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://hexo-tanglei.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+    powered by Disqus.</a></noscript>
+
+
+
+<!--
+  the site analysis script
+-->
+
+  <!-- baidu analysis -->
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?f0117177475f54027bfcaceb8d668cee";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+</body>
+</html>

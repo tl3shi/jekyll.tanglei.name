@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+  <head>
+    <title>python中decorator详解</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="keywords" content="python中decorator详解, 学到老, AOP,设计模式,Python,, 唐磊, 中南大学, 清华大学, 软件工程师, 计算机, 全栈工程师" />
+    <meta name="description" content="python中decorator详解, 学到老, AOP,设计模式,Python, 前面写python的AOP解决方案时提到了decorator，这篇文章就详细的来整理下python的装饰器——decorator。" />
+
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+
+  <!--Font awesome-->
+  <link href="/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- The pithy main css -->
+  <link rel="stylesheet" href="/assets/stylesheet/pithy.css">
+  <link rel="stylesheet" href="/assets/stylesheet/molokai.css">
+
+
+  <!--[if lt IE 9]>
+  <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv-printshiv.js"></script>
+  <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+  <![endif]-->
+  <link rel="alternate" type="application/rss+xml" title="tanglei's blog|唐磊的个人博客" href="https://www.tanglei.name/feed.xml" />
+</head>
+
+<body>
+  <nav class="navbar navbar-pithy" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+                data-target="#pithy-navbar" aria-expanded="false">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" rel="bookmark" href="/">TangLei</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="pithy-navbar">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="bookmark" href="/">首页</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/archives.html">Archives</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/about/">关于</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+  <div class="container page-content">
+    <div>
+    <div class="col-md-9 col-content">
+        <div id="post-content" class="panel panel-pithy post">
+            <div class="panel-heading">
+                <div class="title">
+                  <i class="fa fa-bookmark-o"></i>python中decorator详解
+                </div>
+                <ul class="info">
+                    <li>
+                      作者 <span class="author"> 
+        
+            tanglei
+        
+        </span>
+                    </li>
+                    <li>
+                      最后编辑 2012年07月24日
+                    </li>
+                    <li>
+                      Tags
+                     
+                         <a class="tag" href="/tag/#AOP">AOP</a>
+                     
+                         <a class="tag" href="/tag/#设计模式">设计模式</a>
+                     
+                         <a class="tag" href="/tag/#Python">Python</a>
+                     
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body content">
+                <p>前面写python的AOP解决方案时提到了decorator，这篇文章就详细的来整理下python的装饰器——decorator。</p>
+
+<h3 id="python中的函数即objects">python中的函数即objects</h3>
+
+<p>一步一步来，先了解下python中的函数。</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">shout</span><span class="p">(</span><span class="n">word</span><span class="o">=</span><span class="s">'hello,world'</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">word</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span> <span class="o">+</span> <span class="s">'!'</span>
+
+<span class="k">print</span> <span class="n">shout</span><span class="p">()</span>
+<span class="c">#输出：Hello,world!</span>
+<span class="c">#跟其他对象一样，你同样可以将函数对象赋值给其他变量</span>
+<span class="n">scream</span> <span class="o">=</span> <span class="n">shout</span>
+<span class="c">#注意，shout后面没有用括号()，用括号就是调用了shout方法，这里仅仅是将shout的函数对象复制给scream。</span>
+<span class="c">#意味着，你可以通过scream调用shout方法。</span>
+<span class="k">print</span> <span class="n">scream</span><span class="p">()</span>
+<span class="c">#同样输出：Hello,world!</span>
+<span class="c">#此外，你将代表函数变量的shout删除，shout现在失效，但scream同样可以调用</span>
+
+<span class="k">del</span> <span class="n">shout</span>
+<span class="k">print</span> <span class="n">shout</span><span class="p">()</span>
+<span class="c">#会抛异常</span>
+<span class="c">#Traceback (most recent call last):</span>
+<span class="c">#  File "S:\decorator.py", line 18, in &lt;module&gt;</span>
+<span class="c">#    print shout()</span>
+<span class="c">#NameError: name 'shout' is not defined</span>
+
+<span class="c">#（当然得注释掉前面的两句代码，或者try catch一下）</span>
+<span class="k">print</span> <span class="n">scream</span><span class="p">()</span>
+<span class="c">#同样输出：Hello,world!</span>
+</code></pre>
+</div>
+
+<p>python中函数还可以嵌套，即将函数定义在另一个函数里面。例如</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">talk</span><span class="p">():</span>
+    
+    <span class="k">def</span> <span class="nf">whisper</span><span class="p">(</span><span class="n">word</span><span class="o">=</span><span class="s">'hello'</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">word</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">+</span> <span class="s">'...'</span>
+
+    <span class="c">#在函数talk里面定义whisper函数，马上就可以用了</span>
+    <span class="k">print</span> <span class="n">whisper</span><span class="p">()</span>
+<span class="c">#调用talk，里面的whisper()也被调用了</span>
+<span class="n">talk</span><span class="p">()</span>
+<span class="c">#输出：hello...</span>
+<span class="c">#直接调用whisper可不行。</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">whisper</span><span class="p">()</span>
+<span class="k">except</span> <span class="nb">Exception</span> <span class="p">,</span><span class="n">e</span> <span class="p">:</span>
+    <span class="k">print</span> <span class="n">e</span>
+<span class="c">#输出：name 'whisper' is not defined</span>
+</code></pre>
+</div>
+
+<p>从上面的例子我们已经可以得到，函数可以被赋值给另外的变量，也能在另一个函数里面定义函数。可以推断函数也能返回给另外的函数或者作为参数传递给其他函数。看下面的代码：</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">getTalk</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s">'shout'</span><span class="p">):</span>
+    <span class="c">#函数里面定义另外两个函数</span>
+    <span class="k">def</span> <span class="nf">shout</span><span class="p">(</span><span class="n">word</span><span class="o">=</span><span class="s">'hello,world'</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">word</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span> <span class="o">+</span> <span class="s">'!'</span>
+    <span class="k">def</span> <span class="nf">whisper</span><span class="p">(</span><span class="n">word</span><span class="o">=</span><span class="s">'hello'</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">word</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">+</span> <span class="s">'...'</span>
+
+    <span class="c">#根据传入的参数，返回相应的函数对象</span>
+    <span class="c">#注意，没用(),仅仅返回函数对象，并没有调用</span>
+    <span class="k">if</span> <span class="nb">type</span> <span class="o">==</span> <span class="s">'shout'</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">shout</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">whisper</span>
+
+<span class="n">talk</span> <span class="o">=</span> <span class="n">getTalk</span><span class="p">()</span>
+<span class="k">print</span> <span class="n">talk</span>
+<span class="c">#输出：&lt;function shout at 0x011FCA70&gt;</span>
+<span class="k">print</span> <span class="n">talk</span><span class="p">()</span> <span class="c">#调用函数</span>
+<span class="c">#输出：Hello,world!</span>
+<span class="c">#同样可以这样直接调用</span>
+<span class="k">print</span> <span class="n">getTalk</span><span class="p">(</span><span class="s">'whisper'</span><span class="p">)()</span>
+<span class="c">#输出：hello...</span>
+
+<span class="c">#既然能return一个函数，当然也可以将函数作为参数传递给其他的函数</span>
+<span class="k">def</span> <span class="nf">doBefore</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s">'before calling the func'</span>
+    <span class="k">print</span> <span class="n">func</span><span class="p">()</span><span class="c">#调用</span>
+
+<span class="n">doBefore</span><span class="p">(</span><span class="n">talk</span><span class="p">)</span><span class="c">#将前面通过getTalk()得到的函数对象传递给doBefore</span>
+<span class="c">#输出：</span>
+<span class="c">#before calling the func</span>
+<span class="c">#Hello,world!</span>
+</code></pre>
+</div>
+
+<p> </p>
+
+<h3 id="初识decorator">初识decorator</h3>
+
+<p>明白以上的这些，将有助于理解装饰器decorator，其实装饰器decorator就是在不改变函数的本身情况下在函数执行的前后包装另外的代码来改变函数的具体表现行为。有点儿AOP的味道。继续从代码来解释。</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># 装饰器就是一个将其他函数(也就是被装饰的函数)作为参数的一个function</span>
+<span class="k">def</span> <span class="nf">my_shiny_new_decorator</span><span class="p">(</span><span class="n">a_function_to_decorate</span><span class="p">):</span>
+
+    <span class="c"># 在这个装饰器函数里面用另外一个函数来包装原函数，</span>
+    <span class="c"># 即在调用原来的函数前后分别执行其他的操作.</span>
+    <span class="k">def</span> <span class="nf">the_wrapper_around_the_original_function</span><span class="p">():</span>
+
+        <span class="c"># 这里放一些你希望在原来的函数执行之前的代码，例如log、身份验证等</span>
+        <span class="k">print</span> <span class="s">"Before the function runs"</span>
+
+        <span class="c"># 调用原函数本身，注意有()</span>
+        <span class="n">a_function_to_decorate</span><span class="p">()</span>
+
+        <span class="c">#同理，这里放一些你希望在原来的函数执行之后的代码，例如释放资源等</span>
+        <span class="k">print</span> <span class="s">"After the function runs"</span>
+
+    <span class="c"># 注意，此时，函数 "a_function_to_decorate"并没有被执行.</span>
+    <span class="c"># 此时将刚刚创建的用来包装原函数的函数返回</span>
+    <span class="k">return</span> <span class="n">the_wrapper_around_the_original_function</span>
+
+<span class="c"># 假设你定义了一个函数，并良好实现，也觉得perfect了。且发誓以后并不准备改动这段代码</span>
+<span class="k">def</span> <span class="nf">a_stand_alone_function</span><span class="p">():</span>
+    <span class="k">print</span> <span class="s">"I am a stand alone function, don't you dare modify me"</span>
+
+<span class="n">a_stand_alone_function</span><span class="p">()</span> 
+<span class="c">#输出: I am a stand alone function, don't you dare modify me</span>
+
+<span class="c"># 有时候，作为coder，并不是你不动代码就能不动的。PM此时另外又来了个需求，让你在之前</span>
+<span class="c">#的基础上再加点XX功能，苦逼的程序猿乖乖的改吧。不过有了装饰器，你能满足PM的需求，又能不违背</span>
+<span class="c">#当初许下的不改变原有代码的誓言。仅仅需要将此函数拿去重新装饰一下即可。如下：</span>
+<span class="n">a_stand_alone_function_decorated</span> <span class="o">=</span> <span class="n">my_shiny_new_decorator</span><span class="p">(</span><span class="n">a_stand_alone_function</span><span class="p">)</span>
+<span class="n">a_stand_alone_function_decorated</span><span class="p">()</span>
+<span class="c">#输出:</span>
+<span class="c">#Before the function runs</span>
+<span class="c">#I am a stand alone function, don't you dare modify me</span>
+<span class="c">#After the function runs</span>
+</code></pre>
+</div>
+
+<p>如果不想调用a_stand_alone_function_decorated()这个方法，还是钟情于以前的那个名字，方法也简单。重写下a_stand_alone_function方法即可。即：</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">a_stand_alone_function</span> <span class="o">=</span> <span class="n">my_shiny_new_decorator</span><span class="p">(</span><span class="n">a_stand_alone_function</span><span class="p">)</span>
+<span class="n">a_stand_alone_function</span><span class="p">()</span>
+<span class="c">#输出还是一样样</span>
+</code></pre>
+</div>
+
+<h3 id="decorator揭秘">decorator揭秘</h3>
+
+<p>上面的代码就是装饰器的体现。现在用python中专门的decorator语法就是酱紫滴：</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="nd">@my_shiny_new_decorator</span>
+<span class="k">def</span> <span class="nf">another_stand_alone_function</span><span class="p">():</span>
+    <span class="k">print</span> <span class="s">"Leave me alone"</span>
+
+<span class="n">another_stand_alone_function</span><span class="p">()</span>
+<span class="c">#Before the function runs</span>
+<span class="c">#Leave me alone</span>
+<span class="c">#After the function runs</span>
+</code></pre>
+</div>
+
+<p>简单来说，@my_shiny_new_decorator就是another_stand_alone_function = my_shiny_new_decorator(another_stand_alone_function)的缩写。</p>
+
+<p>python中的装饰器其实是GoF中的装饰模式的一个变种。像迭代器iterators也是一种设计模式。</p>
+
+<p>装饰器还可以同时使用多个。</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">bread</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">():</span>
+        <span class="k">print</span> <span class="s">"&lt;/''''''</span><span class="err">\</span><span class="s">&gt;"</span>
+        <span class="n">func</span><span class="p">()</span>
+        <span class="k">print</span> <span class="s">"&lt;</span><span class="err">\</span><span class="s">______/&gt;"</span>
+    <span class="k">return</span> <span class="n">wrapper</span>
+
+<span class="k">def</span> <span class="nf">ingredients</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">():</span>
+        <span class="k">print</span> <span class="s">"#tomatoes#"</span>
+        <span class="n">func</span><span class="p">()</span>
+        <span class="k">print</span> <span class="s">"~salad~"</span>
+    <span class="k">return</span> <span class="n">wrapper</span>
+
+<span class="k">def</span> <span class="nf">sandwich</span><span class="p">(</span><span class="n">food</span><span class="o">=</span><span class="s">"--ham--"</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">food</span>
+
+<span class="n">sandwich</span><span class="p">()</span>
+<span class="c">#输出: --ham--</span>
+<span class="n">sandwich</span> <span class="o">=</span> <span class="n">bread</span><span class="p">(</span><span class="n">ingredients</span><span class="p">(</span><span class="n">sandwich</span><span class="p">))</span>
+<span class="n">sandwich</span><span class="p">()</span>
+<span class="c">#输出:</span>
+<span class="c">#&lt;/''''''\&gt;</span>
+<span class="c"># #tomatoes#</span>
+<span class="c"># --ham--</span>
+<span class="c"># ~salad~</span>
+<span class="c">#&lt;\______/&gt;</span>
+
+<span class="c">#用python中的decorator语法就是：</span>
+<span class="nd">@bread</span>
+<span class="nd">@ingredients</span>
+<span class="k">def</span> <span class="nf">sandwich</span><span class="p">(</span><span class="n">food</span><span class="o">=</span><span class="s">"--ham--"</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">food</span>
+
+<span class="n">sandwich</span><span class="p">()</span>
+<span class="c">#输出:</span>
+<span class="c">#&lt;/''''''\&gt;</span>
+<span class="c"># #tomatoes#</span>
+<span class="c"># --ham--</span>
+<span class="c"># ~salad~</span>
+<span class="c">#&lt;\______/&gt;</span>
+<span class="c">#注意@的顺序。谁在最下面，睡最先被调用。</span>
+<span class="c">#下面的sandwich就奇怪了哈，把salad等放在盘子底下</span>
+<span class="nd">@ingredients</span>
+<span class="nd">@bread</span>
+<span class="k">def</span> <span class="nf">strange_sandwich</span><span class="p">(</span><span class="n">food</span><span class="o">=</span><span class="s">"--ham--"</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">food</span>
+
+<span class="n">strange_sandwich</span><span class="p">()</span>
+<span class="c">#输出:</span>
+<span class="c">##tomatoes#</span>
+<span class="c">#&lt;/''''''\&gt;</span>
+<span class="c"># --ham--</span>
+<span class="c">#&lt;\______/&gt;</span>
+<span class="c"># ~salad~</span>
+</code></pre>
+</div>
+
+<h3 id="被装饰的函数传参">被装饰的函数传参</h3>
+
+<p>仅仅在包装的函数上将参数传递过来即可。</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">a_decorator_passing_arguments</span><span class="p">(</span><span class="n">function_to_decorate</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">a_wrapper_accepting_arguments</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">"传进来的参数是："</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span>
+        <span class="n">function_to_decorate</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">a_wrapper_accepting_arguments</span>
+
+<span class="c"># 既然你调用了装饰过后的函数，你也就调用了包装器，函数也就自然传递到了包装器。</span>
+
+<span class="nd">@a_decorator_passing_arguments</span>
+<span class="k">def</span> <span class="nf">print_full_name</span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span> <span class="n">last_name</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s">"My name is"</span><span class="p">,</span> <span class="n">first_name</span><span class="p">,</span> <span class="n">last_name</span>
+
+<span class="n">print_full_name</span><span class="p">(</span><span class="s">"lei"</span><span class="p">,</span> <span class="s">"tang"</span><span class="p">)</span>
+<span class="c"># 输出:</span>
+<span class="c">#传进来的参数是： lei tang</span>
+<span class="c">#My name is lei tang</span>
+</code></pre>
+</div>
+
+<h3 id="装饰类中的方法">装饰类中的方法</h3>
+
+<p>python中的方法和函数差不多，只不过类中的方法的第一个参数是当前对象的引用self。</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">method_friendly_decorator</span><span class="p">(</span><span class="n">method_to_decorate</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lie</span><span class="p">):</span>
+        <span class="n">lie</span> <span class="o">=</span> <span class="n">lie</span> <span class="o">-</span> <span class="mi">3</span> <span class="c">#减少3</span>
+        <span class="k">return</span> <span class="n">method_to_decorate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lie</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">wrapper</span>
+
+
+<span class="k">class</span> <span class="nc">Lucy</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="mi">32</span>
+
+    <span class="nd">@method_friendly_decorator</span>
+    <span class="k">def</span> <span class="nf">sayYourAge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lie</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">"I am </span><span class="si">%</span><span class="s">s, what did you think?"</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">+</span> <span class="n">lie</span><span class="p">)</span>
+
+<span class="n">l</span> <span class="o">=</span> <span class="n">Lucy</span><span class="p">()</span>
+<span class="n">l</span><span class="o">.</span><span class="n">sayYourAge</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span><span class="c">#32-3  -3(wrapper中还减了3岁)=26</span>
+<span class="c">#输出: I am 26, what did you think?</span>
+</code></pre>
+</div>
+
+<p>在不知道参数个数的情况下有一种更加通用的传参方法，就是用*args, **kwargs。*args代表没有给定默认值的参数列表(arg1,arg2,……)，**kwwars代表有给定默认值(arg1=val1,arg2=val2,……)</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">a_decorator_passing_arbitrary_arguments</span><span class="p">(</span><span class="n">function_to_decorate</span><span class="p">):</span>
+    <span class="c"># 包装器接受任意参数</span>
+    <span class="k">def</span> <span class="nf">a_wrapper_accepting_arbitrary_arguments</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">"Do I have args?:"</span>
+        <span class="k">print</span> <span class="n">args</span>
+        <span class="k">print</span> <span class="n">kwargs</span>
+        <span class="c">#*args代表没有给定默认值的参数列表(arg1,arg2,……)，**kwwars代表有给定默认值(arg1=val1,arg2=val2,……)</span>
+        <span class="n">function_to_decorate</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">a_wrapper_accepting_arbitrary_arguments</span>
+
+<span class="nd">@a_decorator_passing_arbitrary_arguments</span>
+<span class="k">def</span> <span class="nf">function_with_no_argument</span><span class="p">():</span>
+    <span class="k">print</span> <span class="s">"Python is cool, no argument here."</span>
+
+<span class="n">function_with_no_argument</span><span class="p">()</span>
+<span class="c">#输出</span>
+<span class="c">#Do I have args?:</span>
+<span class="c">#()</span>
+<span class="c">#{}</span>
+<span class="c">#Python is cool, no argument here.</span>
+
+<span class="nd">@a_decorator_passing_arbitrary_arguments</span>
+<span class="k">def</span> <span class="nf">function_with_arguments</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span>
+
+<span class="n">function_with_arguments</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="c">#输出</span>
+<span class="c">#Do I have args?:</span>
+<span class="c">#(1, 2, 3)</span>
+<span class="c">#{}</span>
+<span class="c">#1 2 3 </span>
+
+<span class="nd">@a_decorator_passing_arbitrary_arguments</span>
+<span class="k">def</span> <span class="nf">function_with_named_arguments</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">platypus</span><span class="o">=</span><span class="s">"Why not ?"</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s">"Do </span><span class="si">%</span><span class="s">s, </span><span class="si">%</span><span class="s">s and </span><span class="si">%</span><span class="s">s like platypus? </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">platypus</span><span class="p">)</span>
+
+<span class="n">function_with_named_arguments</span><span class="p">(</span><span class="s">"Bill"</span><span class="p">,</span> <span class="s">"Linus"</span><span class="p">,</span> <span class="s">"Steve"</span><span class="p">,</span> <span class="n">platypus</span><span class="o">=</span><span class="s">"Indeed!"</span><span class="p">)</span>
+<span class="c">#输出</span>
+<span class="c">#Do I have args ? :</span>
+<span class="c">#('Bill', 'Linus', 'Steve')</span>
+<span class="c">#{'platypus': 'Indeed!'}</span>
+<span class="c">#Do Bill, Linus and Steve like platypus? Indeed!</span>
+
+<span class="k">class</span> <span class="nc">Mary</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="mi">31</span>
+
+    <span class="nd">@a_decorator_passing_arbitrary_arguments</span>
+    <span class="k">def</span> <span class="nf">sayYourAge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lie</span><span class="o">=-</span><span class="mi">3</span><span class="p">):</span> <span class="c"># You can now add a default value</span>
+        <span class="k">print</span> <span class="s">"I am </span><span class="si">%</span><span class="s">s, what did you think ?"</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">+</span> <span class="n">lie</span><span class="p">)</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">Mary</span><span class="p">()</span>
+<span class="n">m</span><span class="o">.</span><span class="n">sayYourAge</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">sayYourAge</span><span class="p">(</span><span class="n">lie</span><span class="o">=-</span><span class="mi">8</span><span class="p">)</span><span class="c">#注意看下面print出的**kwargs区别</span>
+<span class="c">#输出</span>
+<span class="c">#Do I have args?:</span>
+<span class="c">#(&lt;__main__.Mary object at 0x01228430&gt;, 8)</span>
+<span class="c">#{}</span>
+<span class="c">#I am 39, what did you think ?</span>
+<span class="c">#Do I have args?:</span>
+<span class="c">#(&lt;__main__.Mary object at 0x01228430&gt;,)</span>
+<span class="c">#{'lie': -8}</span>
+<span class="c">#I am 23, what did you think ?</span>
+
+</code></pre>
+</div>
+
+<h3 id="将参数传给装饰函数">将参数传给装饰函数</h3>
+
+<p>因为装饰函数本身要将一个函数作为参数传递进来，那怎么把参数传给装饰函数呢？其实不能直接将函数传递给装饰函数。但也有解决方案，先看下面的例子</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># 装饰器函数也是function</span>
+<span class="k">def</span> <span class="nf">my_decorator</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s">"I am a ordinary function"</span>
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">():</span>
+        <span class="k">print</span> <span class="s">"I am function returned by the decorator"</span>
+        <span class="n">func</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">wrapper</span>
+
+<span class="k">def</span> <span class="nf">lazy_function</span><span class="p">():</span>
+    <span class="k">print</span> <span class="s">"zzzzzzzz"</span>
+
+<span class="n">decorated_function</span> <span class="o">=</span> <span class="n">my_decorator</span><span class="p">(</span><span class="n">lazy_function</span><span class="p">)</span>
+<span class="c">#输出: I am a ordinary function</span>
+<span class="c">#注意此时，被装饰的函数并没有调用。</span>
+
+<span class="c">#同样，用@的方式也得到相同的结果</span>
+<span class="nd">@my_decorator</span>
+<span class="k">def</span> <span class="nf">lazy_function</span><span class="p">():</span>
+    <span class="k">print</span> <span class="s">"zzzzzzzz"</span>
+
+<span class="c">#输出:  I am a ordinary function</span>
+<span class="c">#当@的时候，就告诉python去调用装饰器函数。这个@后的标签很重要，直接指向装饰器</span>
+</code></pre>
+</div>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">decorator_maker</span><span class="p">():</span>
+
+    <span class="k">print</span> <span class="s">"我是构造装饰器的工人，当你让我构造装饰器时，我被执行一次 "</span>
+
+    <span class="k">def</span> <span class="nf">my_decorator</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+
+        <span class="k">print</span> <span class="s">"我是装饰器，当你装饰一个函数式，我就被执行"</span>
+
+        <span class="k">def</span> <span class="nf">wrapped</span><span class="p">():</span>
+            <span class="k">print</span> <span class="p">(</span><span class="s">"我是包装被装饰函数的包装器，当被装饰函数调用时，我也被执行，"</span>
+                  <span class="s">"作为包装器，我的职责是将被装饰的函数结果返回"</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">func</span><span class="p">()</span>
+
+        <span class="k">print</span> <span class="s">"作为装饰器，我将返回包装器函数"</span>
+
+        <span class="k">return</span> <span class="n">wrapped</span>
+
+    <span class="k">print</span> <span class="s">"作为构造装饰器的工人，我得返回装饰器"</span>
+    <span class="k">return</span> <span class="n">my_decorator</span>
+
+<span class="c"># 构造装饰器,赋值给new_decorator</span>
+<span class="n">new_decorator</span> <span class="o">=</span> <span class="n">decorator_maker</span><span class="p">()</span>       
+<span class="c">#输出:</span>
+<span class="c">#我是构造装饰器的工人，当你让我构造装饰器时，我被执行一次 </span>
+<span class="c">#作为构造装饰器的工人，我得返回装饰器</span>
+<span class="k">print</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c"># 被装饰的函数</span>
+<span class="k">def</span> <span class="nf">decorated_function</span><span class="p">():</span>
+    <span class="k">print</span> <span class="s">"我是被装饰的函数"</span>
+
+<span class="n">decorated_function</span> <span class="o">=</span> <span class="n">new_decorator</span><span class="p">(</span><span class="n">decorated_function</span><span class="p">)</span>
+<span class="c">#输出:</span>
+<span class="c">#我是装饰器，当你装饰一个函数式，我就被执行</span>
+<span class="c">#作为装饰器，我将返回包装器函数</span>
+<span class="k">print</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="c">#调用被装饰的函数</span>
+<span class="n">decorated_function</span><span class="p">()</span>
+<span class="c">#输出:</span>
+<span class="c">#我是包装被装饰函数的包装器，当被装饰函数调用时，我也被执行作为包装器，我的职责是将被装饰的函数结果返回</span>
+<span class="c">#我是被装饰的函数</span>
+</code></pre>
+</div>
+
+<p>用标记间隔下，整个输出如下：</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="err">我是构造装饰器的工人，当你让我构造装饰器时，我被执行一次</span>
+<span class="err">作为构造装饰器的工人，我得返回装饰器</span>
+<span class="mi">0</span>
+<span class="err">我是装饰器，当你装饰一个函数式，我就被执行</span>
+<span class="err">作为装饰器，我将返回包装器函数</span>
+<span class="mi">1</span>
+<span class="err">我是包装被装饰函数的包装器，当被装饰函数调用时，我也被执行，作为包装器，我的职责是将被装饰的函数结果返回</span>
+<span class="err">我是被装饰的函数</span>
+</code></pre>
+</div>
+
+<p>省略中间步骤，如下</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c">#省略中间步骤，如下</span>
+<span class="k">def</span> <span class="nf">decorated_function</span><span class="p">():</span>
+    <span class="k">print</span> <span class="s">"我是被装饰的函数"</span>
+<span class="n">decorated_function</span> <span class="o">=</span> <span class="n">decorator_maker</span><span class="p">()(</span><span class="n">decorated_function</span><span class="p">)</span>
+<span class="c">#我是构造装饰器的工人，当你让我构造装饰器时，我被执行一次 </span>
+<span class="c">#作为构造装饰器的工人，我得返回装饰器</span>
+<span class="c">#我是装饰器，当你装饰一个函数式，我就被执行</span>
+<span class="c">#作为装饰器，我将返回包装器函数</span>
+
+<span class="c"># 最后调用:</span>
+<span class="n">decorated_function</span><span class="p">()</span>    
+<span class="c">#输出:</span>
+<span class="c">#我是包装被装饰函数的包装器，当被装饰函数调用时，我也被执行，作为包装器，我的职责是将被装饰的函数结果返回</span>
+<span class="c">#我是被装饰的函数</span>
+</code></pre>
+</div>
+
+<p>可以更短</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="nd">@decorator_maker</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">decorated_function</span><span class="p">():</span>
+    <span class="k">print</span> <span class="s">"我是被装饰的函数"</span>
+<span class="c">#输出:</span>
+<span class="c">#我是构造装饰器的工人，当你让我构造装饰器时，我被执行一次 </span>
+<span class="c">#我是装饰器，当你装饰一个函数式，我就被执行</span>
+<span class="c">#作为装饰器，我将返回包装器函数</span>
+
+<span class="c">#最终: </span>
+<span class="n">decorated_function</span><span class="p">()</span>    
+<span class="c">#输出:</span>
+<span class="c">#我是包装被装饰函数的包装器，当被装饰函数调用时，我也被执行，作为包装器，我的职责是将被装饰的函数结果返回</span>
+<span class="c">#我是被装饰的函数</span>
+</code></pre>
+</div>
+
+<p>上面@后面是一个函数调用，调用函数当然可以传递参数。就是在上面的@decorator_maker()括号里面加上参数而已。</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># -*- coding: utf-8 -*-</span>
+<span class="k">def</span> <span class="nf">decorator_maker_with_arguments</span><span class="p">(</span><span class="n">decorator_arg1</span><span class="p">,</span> <span class="n">decorator_arg2</span><span class="p">):</span>
+
+    <span class="k">print</span> <span class="s">"我构造装饰器，并接受参数:"</span><span class="p">,</span> <span class="n">decorator_arg1</span><span class="p">,</span> <span class="n">decorator_arg2</span>
+
+    <span class="k">def</span> <span class="nf">my_decorator</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+        
+        <span class="k">print</span> <span class="s">"我是装饰器，我接收到了参数:"</span><span class="p">,</span> <span class="n">decorator_arg1</span><span class="p">,</span> <span class="n">decorator_arg2</span>
+
+        <span class="c"># 别混淆了，装饰器参数和函数参数</span>
+        <span class="k">def</span> <span class="nf">wrapped</span><span class="p">(</span><span class="n">function_arg1</span><span class="p">,</span> <span class="n">function_arg2</span><span class="p">)</span> <span class="p">:</span>
+            <span class="k">print</span> <span class="p">(</span><span class="s">"我是包装器,我能看到所有的变量.</span><span class="se">\n</span><span class="s">"</span>
+                  <span class="s">"</span><span class="se">\t</span><span class="s">- 来自装饰器: {0} {1}</span><span class="se">\n</span><span class="s">"</span>
+                  <span class="s">"</span><span class="se">\t</span><span class="s">- 来自函数调用: {2} {3}</span><span class="se">\n</span><span class="s">"</span>
+                  <span class="s">"我可以传递给被装饰的函数"</span>
+                  <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">decorator_arg1</span><span class="p">,</span> <span class="n">decorator_arg2</span><span class="p">,</span>
+                          <span class="n">function_arg1</span><span class="p">,</span> <span class="n">function_arg2</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="n">function_arg1</span><span class="p">,</span> <span class="n">function_arg2</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">wrapped</span>
+
+    <span class="k">return</span> <span class="n">my_decorator</span>
+
+<span class="nd">@decorator_maker_with_arguments</span><span class="p">(</span><span class="s">"Leonard"</span><span class="p">,</span> <span class="s">"Sheldon"</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">decorated_function_with_arguments</span><span class="p">(</span><span class="n">function_arg1</span><span class="p">,</span> <span class="n">function_arg2</span><span class="p">):</span>
+    <span class="k">print</span> <span class="p">(</span><span class="s">"被装饰的函数，我只能看到自己的参数: {0}"</span>
+           <span class="s">" {1}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">function_arg1</span><span class="p">,</span> <span class="n">function_arg2</span><span class="p">))</span>
+
+<span class="n">decorated_function_with_arguments</span><span class="p">(</span><span class="s">"Lily"</span><span class="p">,</span> <span class="s">"Lucy"</span><span class="p">)</span>
+
+<span class="c">#输出</span>
+<span class="c">#我构造装饰器，并接受参数: Leonard Sheldon</span>
+<span class="c">#我是装饰器，我接收到了参数: Leonard Sheldon</span>
+<span class="c">#我是包装器,我能看到所有的变量.</span>
+<span class="c">#	- 来自装饰器: Leonard Sheldon</span>
+<span class="c">#	- 来自函数调用: Lily Lucy</span>
+<span class="c">#我可以传递给被装饰的函数</span>
+<span class="c">#被装饰的函数，我只能看到自己的参数: Lily Lucy</span>
+
+
+<span class="n">c1</span> <span class="o">=</span> <span class="s">"Penny"</span>
+<span class="n">c2</span> <span class="o">=</span> <span class="s">"Pony"</span>
+
+<span class="nd">@decorator_maker_with_arguments</span><span class="p">(</span><span class="s">"Leonard"</span><span class="p">,</span> <span class="n">c1</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">decorated_function_with_arguments</span><span class="p">(</span><span class="n">function_arg1</span><span class="p">,</span> <span class="n">function_arg2</span><span class="p">):</span>
+    <span class="k">print</span> <span class="p">(</span><span class="s">"被装饰的函数，我只能看到自己的参数: {0} {1}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">function_arg1</span><span class="p">,</span> <span class="n">function_arg2</span><span class="p">))</span>
+
+<span class="n">decorated_function_with_arguments</span><span class="p">(</span><span class="n">c2</span><span class="p">,</span> <span class="s">"Lucy"</span><span class="p">)</span>
+<span class="c">#我构造装饰器，并接受参数: Leonard Penny</span>
+<span class="c">#我是装饰器，我接收到了参数: Leonard Penny</span>
+<span class="c">#我是包装器,我能看到所有的变量.</span>
+<span class="c">#	- 来自装饰器: Leonard Penny</span>
+<span class="c">#	- 来自函数调用: Pony Lucy</span>
+<span class="c">#我可以传递给被装饰的函数</span>
+<span class="c">#被装饰的函数，我只能看到自己的参数: Pony Lucy</span>
+</code></pre>
+</div>
+
+<p>通过这种方案就可以实现往装饰器里面传递参数了，甚至可以用上面的*args, **kwargs来传递任意参数。值得注意的是<strong>装饰器只被调用了一次，当python在import当前脚本的时候调用。</strong>不能在后面再动态的设置传递的参数，当import xx的时候，被decorated的函数已经被装饰好了，不能再变了。</p>
+
+<h3 id="decorator注意事项">decorator注意事项</h3>
+
+<ul>
+  <li>python2.4及其以上版本有此功能</li>
+  <li>装饰器使代码执行的效率变低了</li>
+  <li>一旦一个函数已经被装饰好了，就定下来了，不能变了</li>
+  <li>装饰器decorator在函数之间包装起来了，比较难debug</li>
+</ul>
+
+<p>python自己也提供了几个装饰器，property，staticmethod等。Django用装饰器来管理缓存和视图权限，能够把python的decorator玩透，将会帮你解决很多事情。</p>
+
+<p> </p>
+
+<p>参考资料(其实就是翻译了下)：<a href="http://stackoverflow.com/questions/739654/understanding-python-decorators" target="_blank">stackoverflow</a></p>
+
+            </div>
+            <div class="post-nav">
+    
+    <a class="prev" href=/blog/aop-in-python.html>&laquo; &nbsp;python中的AOP</a>
+    
+    
+    <a class="next" href=/blog/github-with-octopress.html>也试试github+octopress&nbsp;&raquo;</a>
+    
+</div>
+
+            
+        </div>
+        <!--
+            if config set comment enable,include comment
+        -->
+        
+            <!-- comment -->
+<div id="post-comment" class="panel panel-default">
+    <div class="panel-body">
+        
+
+        
+            <div id="disqus_thread"></div>
+        
+    </div>
+</div>
+
+        
+    </div>
+    <div class="col-md-3 col-sidebar">
+        <div class="panel panel-pithy author">
+    <div class="panel-heading avastar">
+        <img src="/tx.jpg" alt="tanglei"/>
+    </div>
+    <div class="panel-body">
+        码农 @ 宜信大数据创新中心, 毕业于CSU && THU,  曾工作于<a href='http://www.tencent.com/zh-cn/index.shtml' target='_blank'>腾讯</a> && <a href='http://www.umeng.com/' target='_blank'>友盟</a>.  &nbsp; <a href='/about/'> MORE </a>
+    </div>
+    <div class="panel-footer social">
+        <ul>
+            
+            <li>
+                <a rel="nofollow" href="http://www.weibo.com/tangleithu/" target="_blank"><i class="fa fa-weibo"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://github.com/tl3shi" target="_blank"><i class="fa fa-github"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://www.facebook.com/tanglei.name" target="_blank"><i class="fa fa-facebook"></i></a>
+            </li>
+            
+            <li>
+                <a href="https://www.tanglei.name/feed.xml" target="_blank"><i class="fa fa-rss"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar:category list -->
+<div class="panel panel-default categories">
+    <div class="panel-heading title">
+        分类列表
+    </div>
+    <div class="panel-body list">
+        <ul>
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/贵州支教行/">
+                  贵州支教行&nbsp;<span class="count">[12]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/课程学习/">
+                  课程学习&nbsp;<span class="count">[88]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/MyLife/">
+                  MyLife&nbsp;<span class="count">[45]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/经验技巧/">
+                  经验技巧&nbsp;<span class="count">[93]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/社会工作/">
+                  社会工作&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/网络文摘/">
+                  网络文摘&nbsp;<span class="count">[28]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件体系结构/">
+                  软件体系结构&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/旅游/">
+                  旅游&nbsp;<span class="count">[23]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软考/">
+                  软考&nbsp;<span class="count">[2]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件度量及其应用/">
+                  软件度量及其应用&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/工作那些事儿/">
+                  工作那些事儿&nbsp;<span class="count">[42]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我做站长/">
+                  我做站长&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/coding小工具/">
+                  coding小工具&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/除臭虫/">
+                  除臭虫&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/学到老/">
+                  学到老&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我不会算法/">
+                  我不会算法&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/数据挖掘/">
+                  数据挖掘&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/计算机图形学/">
+                  计算机图形学&nbsp;<span class="count">[5]</span>
+              </a>
+          </li>
+
+          
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar: tag list -->
+<div class="panel panel-default tags">
+    <div class="panel-heading title">
+        标签云
+    </div>
+    <div class="panel-body list">
+         
+        <input type="hidden" id="tag-values" value='{"name":"丰田助学","count":16},{"name":"贵州支教","count":12},{"name":"铜厂小学","count":9},{"name":"中南大学","count":12},{"name":"云南赶集","count":1},{"name":"HelloWorld","count":5},{"name":"我做站长","count":35},{"name":"设计模式","count":7},{"name":"Wordpress","count":18},{"name":"系统架构师","count":11},{"name":"软考","count":25},{"name":"论文","count":6},{"name":"软件0804","count":8},{"name":"Java","count":24},{"name":"J2EE","count":3},{"name":"JAVA","count":1},{"name":"考试","count":25},{"name":"SEO","count":3},{"name":"软件体系结构","count":6},{"name":"Android","count":28},{"name":"软件工程","count":2},{"name":"Windows","count":17},{"name":"软件测试","count":1},{"name":"总结","count":13},{"name":"Oracle","count":4},{"name":"存储过程","count":3},{"name":"数据库应用","count":3},{"name":"数据库","count":8},{"name":"先进班集体","count":1},{"name":"Linux","count":15},{"name":"Ubuntu","count":8},{"name":"Defy","count":3},{"name":"传感器","count":1},{"name":"访日交流","count":8},{"name":"旅游","count":22},{"name":"软件学院","count":11},{"name":"大学生科协","count":4},{"name":"玩遍中国","count":11},{"name":"计算机网络","count":5},{"name":"Eclipse","count":4},{"name":"软件度量","count":11},{"name":"软件设计师","count":4},{"name":"编译原理","count":2},{"name":"程序语言","count":2},{"name":"操作系统","count":3},{"name":"多媒体","count":2},{"name":"网络安全","count":9},{"name":"TCP/IP","count":2},{"name":"编程语言","count":1},{"name":"考点","count":1},{"name":"Google","count":5},{"name":"软件结构度量","count":1},{"name":"CMM","count":6},{"name":"项目管理","count":3},{"name":"实习","count":33},{"name":"面试","count":18},{"name":"网络营销","count":1},{"name":"百度","count":4},{"name":"笔试","count":2},{"name":"腾讯","count":31},{"name":"编程比赛","count":4},{"name":"科研","count":4},{"name":"电子商务","count":11},{"name":"虚拟主机","count":2},{"name":"网路安全","count":1},{"name":"Foxmail","count":3},{"name":"微软","count":1},{"name":"软件能力成熟度模型","count":2},{"name":"软件过程改进","count":3},{"name":"SCM复习资料","count":1},{"name":"软件配置管理","count":12},{"name":"SCM","count":6},{"name":"工具","count":19},{"name":"反模式","count":1},{"name":"玩玩手机","count":5},{"name":"程序员","count":4},{"name":"健康","count":1},{"name":"共享上网","count":2},{"name":"Bug","count":4},{"name":"coding小工具","count":1},{"name":"工作日志","count":19},{"name":"Apache","count":2},{"name":"PHP","count":13},{"name":"实习日志","count":1},{"name":"工作实习生","count":1},{"name":"Mysql","count":1},{"name":"Shell","count":3},{"name":"腾讯实习日志","count":1},{"name":"hosts","count":2},{"name":"Vim","count":3},{"name":"正则表达式","count":2},{"name":"搜索引擎","count":1},{"name":"跨域","count":1},{"name":"前端","count":2},{"name":"保研","count":15},{"name":"算法","count":9},{"name":"清华大学","count":12},{"name":"丰田助学金","count":3},{"name":"WiFi","count":1},{"name":"实习生","count":1},{"name":"wifi自动关闭","count":1},{"name":"腾讯实习","count":1},{"name":"经验技巧","count":13},{"name":"DDOS","count":2},{"name":"AOP","count":3},{"name":"租房","count":2},{"name":"Sqlite","count":2},{"name":"Python","count":11},{"name":"OOP","count":5},{"name":"数据挖掘","count":8},{"name":"GitHub","count":2},{"name":"SVM","count":3},{"name":"R语言","count":2},{"name":"足迹","count":2},{"name":"笛子","count":2},{"name":"计算机图形学","count":5},{"name":"OpenGL","count":3},{"name":"回忆录","count":1},{"name":"年终总结","count":1},{"name":"域名","count":1},{"name":"计算几何","count":2},{"name":"敲敲代码","count":9},{"name":"Latex","count":3},{"name":"C++","count":10},{"name":"Mac","count":7},{"name":"飞行模式","count":2},{"name":"性能优化","count":2},{"name":"Javascript","count":1},{"name":"工作","count":1},{"name":"玩遍世界","count":1},{"name":"Scala","count":2},{"name":"MyLife","count":1},{"name":"快捷键","count":1},{"name":"云服务","count":1},{"name":"Blog","count":1},{"name":"微信公众号","count":1}'/>
+        <div style="display: none"><a id="tag-value" class="taglink" rel="bookmark" href="/tag/#" data-target-cate="#"></a></div>
+        <div class="tag-values-container">
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+  </div>
+
+  <footer>
+  <div class="text-center">
+    © 2010-2016 All rights reserved.
+    Made with <a href="http://jekyllrb.com/" rel="nofollow" target="_blank">Jekyll</a>
+    & Modified by <a href="http://www.tanglei.name/about/" >Tanglei</a>
+    and <i class="fa fa-heart"></i> by <a rel="nofollow" href="https://github.com/guovz/jekyll-pithy" target="_blank">Pithy</a>
+  </div>
+  <div class="totop" data-toggle="totop">
+      <i class="fa fa-chevron-up"></i>
+  </div>
+</footer>
+
+
+  <!--the js include-->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="/assets/script/pithy.js"></script>
+
+<!--
+  the site comment script
+-->
+
+
+  <script>
+    
+    var disqus_config = function () {
+        this.page.url = 'https://www.tanglei.name/blog/decorator-in-python.html' ; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '/blog/decorator-in-python.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+        if($("#disqus_thread").length) {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://hexo-tanglei.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+    powered by Disqus.</a></noscript>
+
+
+
+<!--
+  the site analysis script
+-->
+
+  <!-- baidu analysis -->
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?f0117177475f54027bfcaceb8d668cee";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+</body>
+</html>

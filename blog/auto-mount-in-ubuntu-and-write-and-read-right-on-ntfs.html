@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+  <head>
+    <title>ubuntu自动挂载Windows分区以及对NTFS分区写和执行权限</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="keywords" content="ubuntu自动挂载Windows分区以及对NTFS分区写和执行权限, 经验技巧, Linux,Ubuntu,, 唐磊, 中南大学, 清华大学, 软件工程师, 计算机, 全栈工程师" />
+    <meta name="description" content="ubuntu自动挂载Windows分区以及对NTFS分区写和执行权限, 经验技巧, Linux,Ubuntu, 这两天都用了下ubuntu写代码，记得以前好像不是那么容易使eclipse和windows下的workspace同步的，得需要一些配置才可以。现在把它写下来备份一下。" />
+
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+
+  <!--Font awesome-->
+  <link href="/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- The pithy main css -->
+  <link rel="stylesheet" href="/assets/stylesheet/pithy.css">
+  <link rel="stylesheet" href="/assets/stylesheet/molokai.css">
+
+
+  <!--[if lt IE 9]>
+  <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv-printshiv.js"></script>
+  <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+  <![endif]-->
+  <link rel="alternate" type="application/rss+xml" title="tanglei's blog|唐磊的个人博客" href="https://www.tanglei.name/feed.xml" />
+</head>
+
+<body>
+  <nav class="navbar navbar-pithy" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+                data-target="#pithy-navbar" aria-expanded="false">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" rel="bookmark" href="/">TangLei</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="pithy-navbar">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="bookmark" href="/">首页</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/archives.html">Archives</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/about/">关于</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+  <div class="container page-content">
+    <div>
+    <div class="col-md-9 col-content">
+        <div id="post-content" class="panel panel-pithy post">
+            <div class="panel-heading">
+                <div class="title">
+                  <i class="fa fa-bookmark-o"></i>ubuntu自动挂载Windows分区以及对NTFS分区写和执行权限
+                </div>
+                <ul class="info">
+                    <li>
+                      作者 <span class="author"> 
+        
+            tanglei
+        
+        </span>
+                    </li>
+                    <li>
+                      最后编辑 2012年03月25日
+                    </li>
+                    <li>
+                      Tags
+                     
+                         <a class="tag" href="/tag/#Linux">Linux</a>
+                     
+                         <a class="tag" href="/tag/#Ubuntu">Ubuntu</a>
+                     
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body content">
+                <p>这两天都用了下ubuntu写代码，记得以前好像不是那么容易使eclipse和windows下的workspace同步的，得需要一些配置才可以。现在把它写下来备份一下。</p>
+
+<p>首先，有一个自动挂载Windows分区(NTFS)的工具,而不用每次开机都去通过命令mount之类的。可以通过修改/etc/fstab这个文件，也可以通过这个软件可以实现自动挂载，还可以使ubuntu对ntfs的分区进行写和可执行的权限，叫：<strong>NTFS写入支持配置程序</strong>。ntfs-config的安装与设置方法： 安装输入</p>
+
+<p><code class="highlighter-rouge">sudo apt-get install ntfs-config</code></p>
+
+<p>打开软件设置：</p>
+
+<p><code class="highlighter-rouge">sudo ntfs-config</code></p>
+
+<p>或者直接通过图形化菜单直接打开。会自动打开图形化界面进行设置,如图，一目了然。(内部设备写支持是硬盘，外部是移动硬盘啊U盘之类的吧。) 注意这个ntfs-config软件在ubuntu10.10下可能会出现问题，反正我之前是出现了这个问题才在网上找到解决方案的。需要改一个python文件。<strong>修改/usr/lib/pymodules/python2.6/NtfsConfig/NtfsConfig.py文件，将第56行的”os.mkdir“改为”os.makedirs“</strong> 。 &lt;/div&gt;</p>
+
+<p><a href="/wp-content/uploads/2012/03/NTFS_011.jpg"><img title="NTFS 写入支持配置程序_011" src="/wp-content/uploads/2012/03/NTFS_011_thumb.jpg" alt="NTFS 写入支持配置程序_011" data-pinit="registered" /></a></p>
+
+<p>其实这个软件也是通过对/etc/fstab这个文件进行设置的吧。这样的设置方式貌似不爽。如果进/media下，ls一下，全绿的，意思就是全部777权限吧，一是看起来不爽，第二是万一一个不小心，对图中的什么winxp、win7之类的rm * 了就悲剧了。所以还是需要对/etc/fstab进行修改下。首先是权限的设置，可以利用添加<a href="http://en.wikipedia.org/wiki/Umask" target="_blank">umask参数</a>(或者fmask，dmask 分别是代表file，directory对文件和目录设置相应的权限)，umask具体怎么算，可以<a href="http://baike.baidu.com/view/1867757.htm" target="_blank">参考这里</a>。设置之后，有可能会出现这样的情况，就是比如想在平常windows下的分区进行相关的python或者java的程序编写，就算以root身份进行chmod操作，也不会生效</p>
+
+<p><a href="/wp-content/uploads/2012/03/image5.png"><img title="image" src="/wp-content/uploads/2012/03/image_thumb5.png" alt="image" /></a></p>
+
+<p>这样的话，javac就编译不会通过(并不是编译语法错误之类的，copy到ubuntu下的分区绝对可以正常执行)。或者还会出现想把ubuntu下的一个文件copy到windows下的ntfs分区，也提示没有权限(设置的是755权限)，需得用“管理员身份”打开资源管理器：sodu nautilus，进行操作。还需要对fstab配置进行修改，因为前面的copy等操作设置的755，普通user操作不了，得root身份可以，整个挂载的分区是以root身份挂载的，而普通登陆用户非root，所以进行不了copy操作。在fstab添加参数user，意思就是以user的身份挂载，普通user就可以(前面对应的umask权限)copy啊之类的。下面是我的fstab文件的配置，其实也就是增加了user参数和fmask/dmask参数:普通分区跟系统分区还是有区别对待的.fstab相应的具体参数可以到<a href="http://blog.csdn.net/liuyuan_jq/article/details/1826131" target="_blank">这里</a>看看。以上如果不生效，可能是命令之间有冲突。我开始就没有生效，后来用了uid参数才达到的效果了。以下是我的配置：</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># /etc/fstab: static file system information.</span>
+<span class="c">#</span>
+<span class="c"># &lt;file system&gt; &lt;mount point&gt;   &lt;type&gt;  &lt;options&gt;       &lt;dump&gt;  &lt;pass&gt;</span>
+
+proc	/proc	proc	nodev,noexec,nosuid	0	0
+<span class="c">#Entry for /dev/sda10 :</span>
+<span class="nv">UUID</span><span class="o">=</span>7ce6538a-7554-46e5-a566-d1bcadbd10dd	/	ext4	<span class="nv">errors</span><span class="o">=</span>remount-ro	0	1
+<span class="c">#Entry for /dev/sda6 :</span>
+<span class="nv">UUID</span><span class="o">=</span>12DAE060DAE04199	/media/WIN-7	ntfs 	<span class="nv">dmask</span><span class="o">=</span>022,fmask<span class="o">=</span>022,locale<span class="o">=</span>zh_CN.utf8	0	0
+<span class="c">#Entry for /dev/sda8 :</span>
+<span class="nv">UUID</span><span class="o">=</span>77AC005CA3AD01EA	/media/life	ntfs 	<span class="nv">dmask</span><span class="o">=</span>022,fmask<span class="o">=</span>022,locale<span class="o">=</span>zh_CN.utf8	0	0
+<span class="c">#Entry for /dev/sda7 :</span>
+<span class="nv">UUID</span><span class="o">=</span>662E6D3FBC51DC33	/media/study	ntfs 	<span class="nv">dmask</span><span class="o">=</span>022,fmask<span class="o">=</span>022,locale<span class="o">=</span>zh_CN.utf8,uid<span class="o">=</span>tl3shi 	0	0
+<span class="c">#Entry for /dev/sda5 :</span>
+<span class="nv">UUID</span><span class="o">=</span>D0C46945C4692EC2	/media/tools	ntfs 	<span class="nv">dmask</span><span class="o">=</span>022,fmask<span class="o">=</span>022,locale<span class="o">=</span>zh_CN.utf8	0	0
+<span class="c">#Entry for /dev/sda1 :</span>
+<span class="nv">UUID</span><span class="o">=</span>7438F85038F8133A	/media/winxp	ntfs 	<span class="nv">dmask</span><span class="o">=</span>022,fmask<span class="o">=</span>022,nosuid,nodev,locale<span class="o">=</span>zh_CN.utf8	0	0
+<span class="c">#Entry for /dev/sda9 :</span>
+<span class="nv">UUID</span><span class="o">=</span>a9e889bd-87cc-4468-913d-98c22a05add0	none	swap	sw	0	0
+</code></pre>
+</div>
+
+<p>注意看13行，我要study盘以普通用户(tl3shi)身份挂载，方便开发时可以直接运行。效果如下:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">tl3shi@tanglei3shi:~$ </span>ls -l /media
+总计 96
+drwxr-xr-x 1 root   root 20480 2012-04-04 11:27 life
+drwxr-xr-x 1 tl3shi root 28672 2012-04-06 14:13 study
+drwxr-xr-x 1 root   root 16384 2012-04-04 11:27 tools
+drwxr-xr-x 1 root   root  8192 2012-04-04 11:27 WIN-7
+drwxr-xr-x 1 root   root 24576 2012-04-04 11:27 winxp
+<span class="gp">tl3shi@tanglei3shi:~$ </span>
+</code></pre>
+</div>
+
+<p>另外,还有一个软件,就是在<strong>windows下读取ubuntu下ext分区</strong>的工具:<a href="http://sourceforge.net/projects/ext2fsd/files/" target="_blank">ext2fsd</a>.Ext2 File System Driver for Windows,<a href="http://sourceforge.net/projects/ext2fsd/files/latest/download?source=files" target="_blank">这个链接</a>是sourceforge下载。</p>
+
+            </div>
+            <div class="post-nav">
+    
+    <a class="prev" href=/blog/delete-the-reductant-start-menu-in-ubuntu.html>&laquo; &nbsp;删除ubuntu下多余的启动项</a>
+    
+    
+    <a class="next" href=/blog/an-example-for-beginning-to-learn-libsvm.html>LibSVM入门实例&nbsp;&raquo;</a>
+    
+</div>
+
+            
+        </div>
+        <!--
+            if config set comment enable,include comment
+        -->
+        
+            <!-- comment -->
+<div id="post-comment" class="panel panel-default">
+    <div class="panel-body">
+        
+
+        
+            <div id="disqus_thread"></div>
+        
+    </div>
+</div>
+
+        
+    </div>
+    <div class="col-md-3 col-sidebar">
+        <div class="panel panel-pithy author">
+    <div class="panel-heading avastar">
+        <img src="/tx.jpg" alt="tanglei"/>
+    </div>
+    <div class="panel-body">
+        码农 @ 宜信大数据创新中心, 毕业于CSU && THU,  曾工作于<a href='http://www.tencent.com/zh-cn/index.shtml' target='_blank'>腾讯</a> && <a href='http://www.umeng.com/' target='_blank'>友盟</a>.  &nbsp; <a href='/about/'> MORE </a>
+    </div>
+    <div class="panel-footer social">
+        <ul>
+            
+            <li>
+                <a rel="nofollow" href="http://www.weibo.com/tangleithu/" target="_blank"><i class="fa fa-weibo"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://github.com/tl3shi" target="_blank"><i class="fa fa-github"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://www.facebook.com/tanglei.name" target="_blank"><i class="fa fa-facebook"></i></a>
+            </li>
+            
+            <li>
+                <a href="https://www.tanglei.name/feed.xml" target="_blank"><i class="fa fa-rss"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar:category list -->
+<div class="panel panel-default categories">
+    <div class="panel-heading title">
+        分类列表
+    </div>
+    <div class="panel-body list">
+        <ul>
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/贵州支教行/">
+                  贵州支教行&nbsp;<span class="count">[12]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/课程学习/">
+                  课程学习&nbsp;<span class="count">[88]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/MyLife/">
+                  MyLife&nbsp;<span class="count">[45]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/经验技巧/">
+                  经验技巧&nbsp;<span class="count">[93]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/社会工作/">
+                  社会工作&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/网络文摘/">
+                  网络文摘&nbsp;<span class="count">[28]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件体系结构/">
+                  软件体系结构&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/旅游/">
+                  旅游&nbsp;<span class="count">[23]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软考/">
+                  软考&nbsp;<span class="count">[2]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件度量及其应用/">
+                  软件度量及其应用&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/工作那些事儿/">
+                  工作那些事儿&nbsp;<span class="count">[42]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我做站长/">
+                  我做站长&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/coding小工具/">
+                  coding小工具&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/除臭虫/">
+                  除臭虫&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/学到老/">
+                  学到老&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我不会算法/">
+                  我不会算法&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/数据挖掘/">
+                  数据挖掘&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/计算机图形学/">
+                  计算机图形学&nbsp;<span class="count">[5]</span>
+              </a>
+          </li>
+
+          
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar: tag list -->
+<div class="panel panel-default tags">
+    <div class="panel-heading title">
+        标签云
+    </div>
+    <div class="panel-body list">
+         
+        <input type="hidden" id="tag-values" value='{"name":"丰田助学","count":16},{"name":"贵州支教","count":12},{"name":"铜厂小学","count":9},{"name":"中南大学","count":12},{"name":"云南赶集","count":1},{"name":"HelloWorld","count":5},{"name":"我做站长","count":35},{"name":"设计模式","count":7},{"name":"Wordpress","count":18},{"name":"系统架构师","count":11},{"name":"软考","count":25},{"name":"论文","count":6},{"name":"软件0804","count":8},{"name":"Java","count":24},{"name":"J2EE","count":3},{"name":"JAVA","count":1},{"name":"考试","count":25},{"name":"SEO","count":3},{"name":"软件体系结构","count":6},{"name":"Android","count":28},{"name":"软件工程","count":2},{"name":"Windows","count":17},{"name":"软件测试","count":1},{"name":"总结","count":13},{"name":"Oracle","count":4},{"name":"存储过程","count":3},{"name":"数据库应用","count":3},{"name":"数据库","count":8},{"name":"先进班集体","count":1},{"name":"Linux","count":15},{"name":"Ubuntu","count":8},{"name":"Defy","count":3},{"name":"传感器","count":1},{"name":"访日交流","count":8},{"name":"旅游","count":22},{"name":"软件学院","count":11},{"name":"大学生科协","count":4},{"name":"玩遍中国","count":11},{"name":"计算机网络","count":5},{"name":"Eclipse","count":4},{"name":"软件度量","count":11},{"name":"软件设计师","count":4},{"name":"编译原理","count":2},{"name":"程序语言","count":2},{"name":"操作系统","count":3},{"name":"多媒体","count":2},{"name":"网络安全","count":9},{"name":"TCP/IP","count":2},{"name":"编程语言","count":1},{"name":"考点","count":1},{"name":"Google","count":5},{"name":"软件结构度量","count":1},{"name":"CMM","count":6},{"name":"项目管理","count":3},{"name":"实习","count":33},{"name":"面试","count":18},{"name":"网络营销","count":1},{"name":"百度","count":4},{"name":"笔试","count":2},{"name":"腾讯","count":31},{"name":"编程比赛","count":4},{"name":"科研","count":4},{"name":"电子商务","count":11},{"name":"虚拟主机","count":2},{"name":"网路安全","count":1},{"name":"Foxmail","count":3},{"name":"微软","count":1},{"name":"软件能力成熟度模型","count":2},{"name":"软件过程改进","count":3},{"name":"SCM复习资料","count":1},{"name":"软件配置管理","count":12},{"name":"SCM","count":6},{"name":"工具","count":19},{"name":"反模式","count":1},{"name":"玩玩手机","count":5},{"name":"程序员","count":4},{"name":"健康","count":1},{"name":"共享上网","count":2},{"name":"Bug","count":4},{"name":"coding小工具","count":1},{"name":"工作日志","count":19},{"name":"Apache","count":2},{"name":"PHP","count":13},{"name":"实习日志","count":1},{"name":"工作实习生","count":1},{"name":"Mysql","count":1},{"name":"Shell","count":3},{"name":"腾讯实习日志","count":1},{"name":"hosts","count":2},{"name":"Vim","count":3},{"name":"正则表达式","count":2},{"name":"搜索引擎","count":1},{"name":"跨域","count":1},{"name":"前端","count":2},{"name":"保研","count":15},{"name":"算法","count":9},{"name":"清华大学","count":12},{"name":"丰田助学金","count":3},{"name":"WiFi","count":1},{"name":"实习生","count":1},{"name":"wifi自动关闭","count":1},{"name":"腾讯实习","count":1},{"name":"经验技巧","count":13},{"name":"DDOS","count":2},{"name":"AOP","count":3},{"name":"租房","count":2},{"name":"Sqlite","count":2},{"name":"Python","count":11},{"name":"OOP","count":5},{"name":"数据挖掘","count":8},{"name":"GitHub","count":2},{"name":"SVM","count":3},{"name":"R语言","count":2},{"name":"足迹","count":2},{"name":"笛子","count":2},{"name":"计算机图形学","count":5},{"name":"OpenGL","count":3},{"name":"回忆录","count":1},{"name":"年终总结","count":1},{"name":"域名","count":1},{"name":"计算几何","count":2},{"name":"敲敲代码","count":9},{"name":"Latex","count":3},{"name":"C++","count":10},{"name":"Mac","count":7},{"name":"飞行模式","count":2},{"name":"性能优化","count":2},{"name":"Javascript","count":1},{"name":"工作","count":1},{"name":"玩遍世界","count":1},{"name":"Scala","count":2},{"name":"MyLife","count":1},{"name":"快捷键","count":1},{"name":"云服务","count":1},{"name":"Blog","count":1},{"name":"微信公众号","count":1}'/>
+        <div style="display: none"><a id="tag-value" class="taglink" rel="bookmark" href="/tag/#" data-target-cate="#"></a></div>
+        <div class="tag-values-container">
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+  </div>
+
+  <footer>
+  <div class="text-center">
+    © 2010-2016 All rights reserved.
+    Made with <a href="http://jekyllrb.com/" rel="nofollow" target="_blank">Jekyll</a>
+    & Modified by <a href="http://www.tanglei.name/about/" >Tanglei</a>
+    and <i class="fa fa-heart"></i> by <a rel="nofollow" href="https://github.com/guovz/jekyll-pithy" target="_blank">Pithy</a>
+  </div>
+  <div class="totop" data-toggle="totop">
+      <i class="fa fa-chevron-up"></i>
+  </div>
+</footer>
+
+
+  <!--the js include-->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="/assets/script/pithy.js"></script>
+
+<!--
+  the site comment script
+-->
+
+
+  <script>
+    
+    var disqus_config = function () {
+        this.page.url = 'https://www.tanglei.name/blog/auto-mount-in-ubuntu-and-write-and-read-right-on-ntfs.html' ; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '/blog/auto-mount-in-ubuntu-and-write-and-read-right-on-ntfs.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+        if($("#disqus_thread").length) {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://hexo-tanglei.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+    powered by Disqus.</a></noscript>
+
+
+
+<!--
+  the site analysis script
+-->
+
+  <!-- baidu analysis -->
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?f0117177475f54027bfcaceb8d668cee";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+  <head>
+    <title>软件度量复习整理-Software Metrics[四]</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="keywords" content="软件度量复习整理-Software Metrics[四], 软件度量及其应用, 软件度量,, 唐磊, 中南大学, 清华大学, 软件工程师, 计算机, 全栈工程师" />
+    <meta name="description" content="软件度量复习整理-Software Metrics[四], 软件度量及其应用, 软件度量,   上接：/blog/metrics_softwaremetrics3.html" />
+
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+
+  <!--Font awesome-->
+  <link href="/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- The pithy main css -->
+  <link rel="stylesheet" href="/assets/stylesheet/pithy.css">
+  <link rel="stylesheet" href="/assets/stylesheet/molokai.css">
+
+
+  <!--[if lt IE 9]>
+  <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv-printshiv.js"></script>
+  <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+  <![endif]-->
+  <link rel="alternate" type="application/rss+xml" title="tanglei's blog|唐磊的个人博客" href="https://www.tanglei.name/feed.xml" />
+</head>
+
+<body>
+  <nav class="navbar navbar-pithy" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+                data-target="#pithy-navbar" aria-expanded="false">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" rel="bookmark" href="/">TangLei</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="pithy-navbar">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="bookmark" href="/">首页</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/archives.html">Archives</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/about/">关于</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+  <div class="container page-content">
+    <div>
+    <div class="col-md-9 col-content">
+        <div id="post-content" class="panel panel-pithy post">
+            <div class="panel-heading">
+                <div class="title">
+                  <i class="fa fa-bookmark-o"></i>软件度量复习整理-Software Metrics[四]
+                </div>
+                <ul class="info">
+                    <li>
+                      作者 <span class="author"> 
+        
+            tanglei
+        
+        </span>
+                    </li>
+                    <li>
+                      最后编辑 2011年04月25日
+                    </li>
+                    <li>
+                      Tags
+                     
+                         <a class="tag" href="/tag/#软件度量">软件度量</a>
+                     
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body content">
+                <address>
+  上接：<a href="/blog/metrics_softwaremetrics3.html">/blog/metrics_softwaremetrics3.html</a>
+</address>
+
+<h2 id="modularity-and-information-flow-attributes">Modularity and Information Flow Attributes</h2>
+
+<p>Module: a contiguous sequence of program statements, bounded by boundary elements, having an aggregate identifier (Yourdon and Constantine 1979).模块的定义：程序当中连续的代码序列，以分解元素界定，有一系列标识符。</p>
+
+<p>– A module can be any object.一个模块可以是任意的对象。</p>
+
+<p>– A program, unit, procedure, or function.一个程序，单元，过程或者函数。</p>
+
+<h3 id="coupling">Coupling</h3>
+
+<p>Coupling is the degree of interdependence between mouldes.耦合说的是模块之间的互相依赖度。</p>
+
+<p>Ri &gt; Rj for i &gt; j</p>
+
+<p>No coupling relation R0: module x and module y have no communication.没有耦合，模块X和Y之间没有通信。</p>
+
+<p>Data coupling relation R1 : x and y communicate by parameters, where each parameter is either a single data element or a homogeneous set of data items (no control element).数据耦合，X，Y之间通过参数进行通讯，每个参数是单一的数据元素，或者是同种数据集合（不含有控制元素）；</p>
+
+<p>Stamp coupling relation R2 : x and y accept the same record type as a parameter.特征耦合：X和Y接受同种记录类型的参数。</p>
+
+<p>Control coupling relation R3 : x passes a parameter (flag) to y with the intention of controlling its behavior.控制耦合：X传递一个标志参数去控制了Y的行为。</p>
+
+<p>Common coupling relation R4 : x and y refer to the same global data.公共耦合：X和Y引用了相同的全局变量。</p>
+
+<p>Content coupling relation R5 : x refers to the inside of y.内容耦合：X引用了Y的内部内容。</p>
+
+<p>Loosely coupling: R1, R2. R1, R2.属于松散耦合。</p>
+
+<p>Tightly coupling: R4, R5. R4, R5属于紧耦合。</p>
+
+<p><strong>Coupling Measurement (1)</strong></p>
+
+<p>Coupling between x and y:</p>
+
+<p>c(x, y) = i + n/(n+1).</p>
+
+<p>where i is the number corresponding to the worst coupling relation Ri between x and y, and n is the number of interconnections between x and y.(Fenton and Melton 1990)。X,Y的耦合度 = 最大级别耦合数i + n/(n+1) n是连接次数。</p>
+
+<p><strong>Coupling Measurement (2)</strong></p>
+
+<p>A measure of global coupling C of a system S consisting of modules D1, …, Dn, is defined in the following way:</p>
+
+<p>C(S) is the median value of the set  {c(Di, Dj):1&lt;=i&lt;j&lt;=n}</p>
+
+<p>系统S的全局耦合度可以这样定义：其中S包含模块Di,集合的平均值就是系统S的全局耦合度。</p>
+
+<h3 id="cohesion">Cohesion</h3>
+
+<p>The cohesion of a module is the extent to which its individual components are needed to perform the same task.模块的内聚说的是它为了完成某个相同的任务，内部组件联合的强度。</p>
+
+<p><img class="alignnone" title="内聚" src="/wp-content/uploads/2011/04/Software%20Metrics.files//image010.gif" alt="" /></p>
+
+<p>功能内聚：模块完成独立良好定义的功能。(这是最强的内聚，指模块内所有元素共同完成一个功能，缺一不可)</p>
+
+<p>顺序内聚：模块完成对于一个功能。（指一个模块中各个处理元素都密切相关于同一功能且必须顺序执行，前一功能元素输出就是下一功能元素的输入。）；</p>
+
+<p>通信内聚：模块完成多个功能，但是是不同的数据。（指模块内所有处理元素都在同一个数据结构上操作（有时称之为信息内聚），或者指各处理使用相同的输入数据或者产生相同的输出数据。）</p>
+
+<p>过程内聚：模块完成多个功能，他们都只跟一个总体过程相关。（构件或者操作的组合方式是，允许在调用前面的构件或操作之后，马上调用后面的构件或操作，即使两者之间没有数据进行传递）</p>
+
+<p>时间内聚：在同一时间戳内完成了多个功能。（把需要同时执行的动作组合在一起形成的模块为时间内聚模块。）</p>
+
+<p>偶然内聚：模块完成多个功能，它们不相关。（模块中的代码无法定义其不同功能的调用。但它使该模块能执行不同的功能，这种模块称为巧合强度模块。）</p>
+
+<p>PPT上翻译出来不咋懂，后面参考百度百科。</p>
+
+<p>Cohesion Ratio= no. of modules having functional cohesion / totoal no. of modules</p>
+
+<p>内聚率=功能内聚模块个数/总共的模块数。</p>
+
+<h3 id="information-flow">Information Flow</h3>
+
+<p>Researchers have tried to examine elements information flow like the follow of information:</p>
+
+<p>Total level of information flow through the system.</p>
+
+<p>Total level of information flow between the individual modules and the rest of the system.</p>
+
+<p>研究者试图从下面两个方面来测出信息流元素。系统的总过信息流级别；个别模块和系统剩余模块的信息流级别。</p>
+
+<p>Information flow is based on fan-in and fan-out. 信息流基于扇入和扇出。</p>
+
+<p>Fan-in of a module M is the number of local flows that terminate at M, plus the number of data structures from which information is retrieved by M.模块M的扇入是本地流终止于M加上重新返回M的数据流。[PPT有错，PPT上说的都是Fan-out]</p>
+
+<p>Fan-out of a module M is the number of local flows that emanate from M, plus the number of data structures that are updated by M。模块M的扇出是从M散出的，加上被M更新的数据结构。</p>
+
+<p>a local direct flow occurs if either:</p>
+
+<p>A module invokes a second module and passes information to it; or</p>
+
+<p>The invoked module returns an outcome to the calling module.</p>
+
+<p>局部直接流出现的情况：一个模块调用另一个模块，将信息传递给它。或者，被调用的模块返回结果给调用它的模块。</p>
+
+<p><strong>Henry and Kafura’s Metrics</strong></p>
+
+<p>Information flow complexity(M)= length(M)*((fan-in(M)*(fan-out(M))<sup>2</sup></p>
+
+<p><strong>Shepperd’s Metric</strong></p>
+
+<p>Shepperd complexity (M)= ((fan-in(M)*(fan-out(M))<sup>2</sup></p>
+
+<p><img class="alignnone" title="shepperd" src="/wp-content/uploads/2011/04/Software%20Metrics.files//image014.gif" alt="" /></p>
+
+<p>Shepperd宣称他的方法是在原有的基础上有改进滴：我们的度量特征是它们消除信息和控制流的模糊性，集中在信息流的度量上，而henry和kafura度量是不能做到的</p>
+
+<p><strong>Information flow Advantages</strong> <strong>优点</strong></p>
+
+<p>Measures total level of information flow between the modules of a system.测量了系统的总体信息流级别。</p>
+
+<p>Evaluates potential design changes.评估了潜在的设计改变。</p>
+
+<p>Allows the identification of design problems such as modules with a large amount of fan-in and fan-out.能够鉴别设计错误比如一个模块含有大量的扇入扇出。</p>
+
+<p>Can be produced in the design stage。在设计阶段能够出结果。</p>
+
+<p>Takes into account data-driven programs. 将数据驱动的程序纳入了考虑范围。</p>
+
+<p>Address issues such as complexity and cohesion.说名了复杂度和内聚性。</p>
+
+<p>Suitable for identifying software that exhibits maintenance problems and may be error prone and unreliable. 适于鉴定软件有维护性问题，易于发现错误和不可靠。</p>
+
+<p>Appropriate for identifying lack of cohesion, stress points and missing levels of design abstraction.适于发现缺少内聚度，敏感点，和抽象设计缺失。</p>
+
+<p>Provides motivation for their use in the prediction of cohesion.推动了内聚性的预测。</p>
+
+<p><strong>Information flow disadvantages</strong> <strong>缺点</strong></p>
+
+<p>All the flows have equal weighting.所有的流有相同的权重。</p>
+
+<p>If there is no external interactions can give misleading values.如果没有外部交互可能引起误判。</p>
+
+<p>Underestimates local and global information flows.低估了局部和全局信息流。</p>
+
+            </div>
+            <div class="post-nav">
+    
+    <a class="prev" href=/blog/metrics_softwaremetrics3.html>&laquo; &nbsp;软件度量复习整理-Software Metrics[三]</a>
+    
+    
+    <a class="next" href=/blog/metrics_softwaremetrics5.html>软件度量复习整理-Software Metrics[五]&nbsp;&raquo;</a>
+    
+</div>
+
+            
+        </div>
+        <!--
+            if config set comment enable,include comment
+        -->
+        
+            <!-- comment -->
+<div id="post-comment" class="panel panel-default">
+    <div class="panel-body">
+        
+
+        
+            <div id="disqus_thread"></div>
+        
+    </div>
+</div>
+
+        
+    </div>
+    <div class="col-md-3 col-sidebar">
+        <div class="panel panel-pithy author">
+    <div class="panel-heading avastar">
+        <img src="/tx.jpg" alt="tanglei"/>
+    </div>
+    <div class="panel-body">
+        码农 @ 宜信大数据创新中心, 毕业于CSU && THU,  曾工作于<a href='http://www.tencent.com/zh-cn/index.shtml' target='_blank'>腾讯</a> && <a href='http://www.umeng.com/' target='_blank'>友盟</a>.  &nbsp; <a href='/about/'> MORE </a>
+    </div>
+    <div class="panel-footer social">
+        <ul>
+            
+            <li>
+                <a rel="nofollow" href="http://www.weibo.com/tangleithu/" target="_blank"><i class="fa fa-weibo"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://github.com/tl3shi" target="_blank"><i class="fa fa-github"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://www.facebook.com/tanglei.name" target="_blank"><i class="fa fa-facebook"></i></a>
+            </li>
+            
+            <li>
+                <a href="https://www.tanglei.name/feed.xml" target="_blank"><i class="fa fa-rss"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar:category list -->
+<div class="panel panel-default categories">
+    <div class="panel-heading title">
+        分类列表
+    </div>
+    <div class="panel-body list">
+        <ul>
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/贵州支教行/">
+                  贵州支教行&nbsp;<span class="count">[12]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/课程学习/">
+                  课程学习&nbsp;<span class="count">[88]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/MyLife/">
+                  MyLife&nbsp;<span class="count">[45]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/经验技巧/">
+                  经验技巧&nbsp;<span class="count">[93]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/社会工作/">
+                  社会工作&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/网络文摘/">
+                  网络文摘&nbsp;<span class="count">[28]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件体系结构/">
+                  软件体系结构&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/旅游/">
+                  旅游&nbsp;<span class="count">[23]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软考/">
+                  软考&nbsp;<span class="count">[2]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件度量及其应用/">
+                  软件度量及其应用&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/工作那些事儿/">
+                  工作那些事儿&nbsp;<span class="count">[42]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我做站长/">
+                  我做站长&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/coding小工具/">
+                  coding小工具&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/除臭虫/">
+                  除臭虫&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/学到老/">
+                  学到老&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我不会算法/">
+                  我不会算法&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/数据挖掘/">
+                  数据挖掘&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/计算机图形学/">
+                  计算机图形学&nbsp;<span class="count">[5]</span>
+              </a>
+          </li>
+
+          
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar: tag list -->
+<div class="panel panel-default tags">
+    <div class="panel-heading title">
+        标签云
+    </div>
+    <div class="panel-body list">
+         
+        <input type="hidden" id="tag-values" value='{"name":"丰田助学","count":16},{"name":"贵州支教","count":12},{"name":"铜厂小学","count":9},{"name":"中南大学","count":12},{"name":"云南赶集","count":1},{"name":"HelloWorld","count":5},{"name":"我做站长","count":35},{"name":"设计模式","count":7},{"name":"Wordpress","count":18},{"name":"系统架构师","count":11},{"name":"软考","count":25},{"name":"论文","count":6},{"name":"软件0804","count":8},{"name":"Java","count":24},{"name":"J2EE","count":3},{"name":"JAVA","count":1},{"name":"考试","count":25},{"name":"SEO","count":3},{"name":"软件体系结构","count":6},{"name":"Android","count":28},{"name":"软件工程","count":2},{"name":"Windows","count":17},{"name":"软件测试","count":1},{"name":"总结","count":13},{"name":"Oracle","count":4},{"name":"存储过程","count":3},{"name":"数据库应用","count":3},{"name":"数据库","count":8},{"name":"先进班集体","count":1},{"name":"Linux","count":15},{"name":"Ubuntu","count":8},{"name":"Defy","count":3},{"name":"传感器","count":1},{"name":"访日交流","count":8},{"name":"旅游","count":22},{"name":"软件学院","count":11},{"name":"大学生科协","count":4},{"name":"玩遍中国","count":11},{"name":"计算机网络","count":5},{"name":"Eclipse","count":4},{"name":"软件度量","count":11},{"name":"软件设计师","count":4},{"name":"编译原理","count":2},{"name":"程序语言","count":2},{"name":"操作系统","count":3},{"name":"多媒体","count":2},{"name":"网络安全","count":9},{"name":"TCP/IP","count":2},{"name":"编程语言","count":1},{"name":"考点","count":1},{"name":"Google","count":5},{"name":"软件结构度量","count":1},{"name":"CMM","count":6},{"name":"项目管理","count":3},{"name":"实习","count":33},{"name":"面试","count":18},{"name":"网络营销","count":1},{"name":"百度","count":4},{"name":"笔试","count":2},{"name":"腾讯","count":31},{"name":"编程比赛","count":4},{"name":"科研","count":4},{"name":"电子商务","count":11},{"name":"虚拟主机","count":2},{"name":"网路安全","count":1},{"name":"Foxmail","count":3},{"name":"微软","count":1},{"name":"软件能力成熟度模型","count":2},{"name":"软件过程改进","count":3},{"name":"SCM复习资料","count":1},{"name":"软件配置管理","count":12},{"name":"SCM","count":6},{"name":"工具","count":19},{"name":"反模式","count":1},{"name":"玩玩手机","count":5},{"name":"程序员","count":4},{"name":"健康","count":1},{"name":"共享上网","count":2},{"name":"Bug","count":4},{"name":"coding小工具","count":1},{"name":"工作日志","count":19},{"name":"Apache","count":2},{"name":"PHP","count":13},{"name":"实习日志","count":1},{"name":"工作实习生","count":1},{"name":"Mysql","count":1},{"name":"Shell","count":3},{"name":"腾讯实习日志","count":1},{"name":"hosts","count":2},{"name":"Vim","count":3},{"name":"正则表达式","count":2},{"name":"搜索引擎","count":1},{"name":"跨域","count":1},{"name":"前端","count":2},{"name":"保研","count":15},{"name":"算法","count":9},{"name":"清华大学","count":12},{"name":"丰田助学金","count":3},{"name":"WiFi","count":1},{"name":"实习生","count":1},{"name":"wifi自动关闭","count":1},{"name":"腾讯实习","count":1},{"name":"经验技巧","count":13},{"name":"DDOS","count":2},{"name":"AOP","count":3},{"name":"租房","count":2},{"name":"Sqlite","count":2},{"name":"Python","count":11},{"name":"OOP","count":5},{"name":"数据挖掘","count":8},{"name":"GitHub","count":2},{"name":"SVM","count":3},{"name":"R语言","count":2},{"name":"足迹","count":2},{"name":"笛子","count":2},{"name":"计算机图形学","count":5},{"name":"OpenGL","count":3},{"name":"回忆录","count":1},{"name":"年终总结","count":1},{"name":"域名","count":1},{"name":"计算几何","count":2},{"name":"敲敲代码","count":9},{"name":"Latex","count":3},{"name":"C++","count":10},{"name":"Mac","count":7},{"name":"飞行模式","count":2},{"name":"性能优化","count":2},{"name":"Javascript","count":1},{"name":"工作","count":1},{"name":"玩遍世界","count":1},{"name":"Scala","count":2},{"name":"MyLife","count":1},{"name":"快捷键","count":1},{"name":"云服务","count":1},{"name":"Blog","count":1},{"name":"微信公众号","count":1}'/>
+        <div style="display: none"><a id="tag-value" class="taglink" rel="bookmark" href="/tag/#" data-target-cate="#"></a></div>
+        <div class="tag-values-container">
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+  </div>
+
+  <footer>
+  <div class="text-center">
+    © 2010-2016 All rights reserved.
+    Made with <a href="http://jekyllrb.com/" rel="nofollow" target="_blank">Jekyll</a>
+    & Modified by <a href="http://www.tanglei.name/about/" >Tanglei</a>
+    and <i class="fa fa-heart"></i> by <a rel="nofollow" href="https://github.com/guovz/jekyll-pithy" target="_blank">Pithy</a>
+  </div>
+  <div class="totop" data-toggle="totop">
+      <i class="fa fa-chevron-up"></i>
+  </div>
+</footer>
+
+
+  <!--the js include-->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="/assets/script/pithy.js"></script>
+
+<!--
+  the site comment script
+-->
+
+
+  <script>
+    
+    var disqus_config = function () {
+        this.page.url = 'https://www.tanglei.name/blog/metrics_softwaremetrics4.html' ; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '/blog/metrics_softwaremetrics4.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+        if($("#disqus_thread").length) {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://hexo-tanglei.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+    powered by Disqus.</a></noscript>
+
+
+
+<!--
+  the site analysis script
+-->
+
+  <!-- baidu analysis -->
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?f0117177475f54027bfcaceb8d668cee";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+</body>
+</html>

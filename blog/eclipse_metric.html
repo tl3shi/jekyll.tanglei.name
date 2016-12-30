@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+  <head>
+    <title>eclipse插件Metrics结果分析</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="keywords" content="eclipse插件Metrics结果分析, 课程学习, Eclipse,软件度量,, 唐磊, 中南大学, 清华大学, 软件工程师, 计算机, 全栈工程师" />
+    <meta name="description" content="eclipse插件Metrics结果分析, 课程学习, Eclipse,软件度量, 软件度量的课就要这么完了，都还没有感觉呀。要检查项目，用了eclipse的插件，metrics感觉还不错。不过有的结果不知道啥意思，网上查了下，结合自己的理解，在这里记下来了，分享了。刚开始准备就在图片里面写写了事，不过有的太长了。还是另外再加些内容吧。" />
+
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+
+  <!--Font awesome-->
+  <link href="/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- The pithy main css -->
+  <link rel="stylesheet" href="/assets/stylesheet/pithy.css">
+  <link rel="stylesheet" href="/assets/stylesheet/molokai.css">
+
+
+  <!--[if lt IE 9]>
+  <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv-printshiv.js"></script>
+  <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+  <![endif]-->
+  <link rel="alternate" type="application/rss+xml" title="tanglei's blog|唐磊的个人博客" href="https://www.tanglei.name/feed.xml" />
+</head>
+
+<body>
+  <nav class="navbar navbar-pithy" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+                data-target="#pithy-navbar" aria-expanded="false">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" rel="bookmark" href="/">TangLei</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="pithy-navbar">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="bookmark" href="/">首页</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/archives.html">Archives</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/about/">关于</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+  <div class="container page-content">
+    <div>
+    <div class="col-md-9 col-content">
+        <div id="post-content" class="panel panel-pithy post">
+            <div class="panel-heading">
+                <div class="title">
+                  <i class="fa fa-bookmark-o"></i>eclipse插件Metrics结果分析
+                </div>
+                <ul class="info">
+                    <li>
+                      作者 <span class="author"> 
+        
+            tanglei
+        
+        </span>
+                    </li>
+                    <li>
+                      最后编辑 2011年04月13日
+                    </li>
+                    <li>
+                      Tags
+                     
+                         <a class="tag" href="/tag/#Eclipse">Eclipse</a>
+                     
+                         <a class="tag" href="/tag/#软件度量">软件度量</a>
+                     
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body content">
+                <p>软件度量的课就要这么完了，都还没有感觉呀。要检查项目，用了eclipse的插件，metrics感觉还不错。不过有的结果不知道啥意思，网上查了下，结合自己的理解，在这里记下来了，分享了。刚开始准备就在图片里面写写了事，不过有的太长了。还是另外再加些内容吧。</p>
+
+<p style="text-align: center;">
+  <a href="/wp-content/uploads/2011/04/eclipse_metrics.jpg" target="_blank"><img class="aligncenter size-medium wp-image-432" title="eclipse_metrics" src="/wp-content/uploads/2011/04/eclipse_metrics.jpg" alt="" /></a>
+</p>
+
+<p>主要参考内容来自：<a href="http://metrics.sourceforge.net/">http://metrics.sourceforge.net/</a></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Normalized Distance</strong><strong>:</strong> 在eclipse插件的官网上也没详细说明。</td>
+      <td>A + I – 1</td>
+      <td>, this number should be small, close to zero for good packaging design.就说了计算方法，然后值越小越好，越接近0越能说明包设计好。至于A是啥I是啥也没说。网上查了下才搞明白了。 <em>**</em></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>也是Distance from the Main Sequence (DMS).The <em>Distance from the Main Sequence</em> metric measures the balance between the abstraction and instability rates of the package.衡量抽象性和不稳定率之间的平衡率.</p>
+
+<p>According to what function a package has to perform, it must be able to be unstable, in other words, often significantly or abstractly modified.  It must be sufficiently general to be adaptable to widely diverse situations, either without being modified or with only minimal modifications.  It is preferable to have a balance between these contradictory criteria.根据一个包功能的定义，包应该是不稳定的，换句话说，就是要在没有修改或者修改量很笑的情况下适应不同环境的变化，要有一个较好的平衡与这两个冲突的标准。</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Computation计算For a package, the balance between abstraction and instability is obtained through the following expression:</td>
+      <td>A + I – 1</td>
+      <td>是Abstraction+Instablity-1的绝对值，Abstraction抽率，Instablity不稳定率。一般范围在50%到100%之间。I和A后面会讲。</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Number of Classes</strong><strong>：</strong>类数量<strong>。</strong></p>
+
+<p><strong>Specialization Index</strong><strong>：</strong>Average of the specialization index, defined as NORM * DIT / NOM. This is a class level metric 覆盖方法的数量*继承深度/方法数。是一个类级别的度量。</p>
+
+<p><strong>Instability (I)</strong>: The Instability metric measures the rate of instability of a package.  A package is unstable if it depends more on other packages than they depend on it.说的是包的不稳定性。一个包不稳定当它依赖的包多余其他包依赖它的时就说一个包不稳定。 The ratio of efferent coupling (Ce) to total coupling. I = Ce / (Ce + Ca). This metric is an indicator of the package’s resilience to change. The range for this metric is 0 to 1, with I=0 indicating a completely stable package and I=1 indicating a completely instable package.</p>
+
+<p><strong>Abstractness</strong> (A): The number of abstract classes (and interfaces) divided by the total number of types in a package。measure<strong>s a</strong> package’s abstraction rate度量一个包的抽象性。The package’s abstraction level corresponds to its stability level.是跟它稳定性级别是相符的。</p>
+
+<p><strong>Number of Attributes</strong><strong>：</strong>属性数量 <em>**</em></p>
+
+<p><strong>Number of Packages</strong>：包数量</p>
+
+<p><strong>Method Lines of Code</strong><strong>：</strong>方法代码行<em>**</em></p>
+
+<p><strong>Weighted methods per Class</strong><strong>：</strong>Sum of the McCabe Cyclomatic Complexity for all methods in a class.每个方法的圈复杂度和。</p>
+
+<p>每个类的加权方法WMC (weighed Methods per Class)</p>
+
+<p>WMC=∑Ci (i=1～n)</p>
+
+<p>其中，Ci为一个类的各个方法（或操作或服务）的复杂性，相当于传统方法中的环路复杂性，Ci可相加。方法的数量和它们的复杂性是用来实现和测试一个类工作量总量的指示器。方法的数量越大，继承树（所有子类都继承父类的方法）就越复杂。对一个给定的类，随着方法的数量增大，其应用很可能变得越来越专门化，由此将限制其可能的重用。所以，WMC的值应当合理。</p>
+
+<p><strong>Number of Overridden Methods</strong><strong>：</strong>覆盖方法数</p>
+
+<p><strong>Number of Static Attributes</strong><strong>：</strong>static属性数量<em>**</em></p>
+
+<p><strong>Nested Block Depth</strong><strong>：</strong>The depth of nested blocks of code.代码块的嵌套深度</p>
+
+<p><strong>Number of Methods;</strong>方法数量<em>**</em></p>
+
+<p><strong>Lack of Cohesion of Methods:</strong> A measure for the Cohesiveness of a class. Calculated with the Henderson-Sellers method: If m(A) is the number of methods accessing an attribute A, calculate the average of m(A) for all attributes, subtract the number of methods m and divide the result by (1-m). A low value indicates a cohesive class and a value close to 1 indicates a lack of cohesion and suggests the class might better be split into a number of (sub)classes.缺少的方法内聚。如果m(A)是方法中访问属性A的次数，计算所有属性的访问次数的平均值，再减去方法数量，除以1-m。这个值越小说明内聚性越好，如果大了接近1则按时缺少内聚，建议把它分成几个子类。</p>
+
+<p>一个类内的每种方法访问一个或多个属性（也称实例变量）。LCOM是访问一个或多个相同属性方法的数量。 如果LCOM很大，则说明方法可以通过属性与其他方法耦合，这就增加了类设计的复杂性。通常，对LCOM值很大的类，可以把它分为两个或多个单独的类，这样每个类能的设计更方便。这里讲的耦合和聚合与传统软件中所讲的是一样的。我们希望高聚合和低耦合，即保持低的LCOM。但在某些情况下，LCOM值很大也是合理的。</p>
+
+<p><strong>McCabe Cyclomatic Complexity</strong>：圈复杂度。我还记得有3种计算方法，圈数量=边-节点+2=判断+1 ，网上讲得很多，在此不说了。</p>
+
+<p><strong>Number of Parameters</strong><strong>：</strong>参数数量<em>**</em></p>
+
+<p><strong>Abstractness</strong><strong>：</strong>The number of abstract classes (and interfaces) divided by the total number of types in a package</p>
+
+<p><strong>Number of Interfaces</strong><strong>：</strong>接口数量<em>**</em></p>
+
+<p><strong>Number of Children</strong><strong>：</strong>子类数量<strong>，</strong>子类在类的层次内，子类可以最直接地从属于一类。随着子类数量的增大，重用也增加了。但父类抽象的表示可能减少，即一些子类可能不是父类真正的成员，同时，测试数量（用来检查每个子类在操作前后的要求）也将增加。</p>
+
+<p><strong>Depth of Inheritance Tree</strong><strong>：</strong>继承树深度，DIT的值越大，复杂性就越高。因为随着DIT的增大，层次的类可能会继承许多方法。当试图预测一个类行为时，困难不仅会增大，而且会增加设计的复杂性。当然DIT较大时，则表示有许多方法被重用，这是其好的一方面。</p>
+
+<hr />
+
+            </div>
+            <div class="post-nav">
+    
+    <a class="prev" href=/blog/words-after-bug.html>&laquo; &nbsp;[转]程序出错后，程序员给测试人员的20条高频回复</a>
+    
+    
+    <a class="next" href=/blog/donot_cancel_gprs.html>流量包不能取消掉&nbsp;&raquo;</a>
+    
+</div>
+
+            
+        </div>
+        <!--
+            if config set comment enable,include comment
+        -->
+        
+            <!-- comment -->
+<div id="post-comment" class="panel panel-default">
+    <div class="panel-body">
+        
+
+        
+            <div id="disqus_thread"></div>
+        
+    </div>
+</div>
+
+        
+    </div>
+    <div class="col-md-3 col-sidebar">
+        <div class="panel panel-pithy author">
+    <div class="panel-heading avastar">
+        <img src="/tx.jpg" alt="tanglei"/>
+    </div>
+    <div class="panel-body">
+        码农 @ 宜信大数据创新中心, 毕业于CSU && THU,  曾工作于<a href='http://www.tencent.com/zh-cn/index.shtml' target='_blank'>腾讯</a> && <a href='http://www.umeng.com/' target='_blank'>友盟</a>.  &nbsp; <a href='/about/'> MORE </a>
+    </div>
+    <div class="panel-footer social">
+        <ul>
+            
+            <li>
+                <a rel="nofollow" href="http://www.weibo.com/tangleithu/" target="_blank"><i class="fa fa-weibo"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://github.com/tl3shi" target="_blank"><i class="fa fa-github"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://www.facebook.com/tanglei.name" target="_blank"><i class="fa fa-facebook"></i></a>
+            </li>
+            
+            <li>
+                <a href="https://www.tanglei.name/feed.xml" target="_blank"><i class="fa fa-rss"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar:category list -->
+<div class="panel panel-default categories">
+    <div class="panel-heading title">
+        分类列表
+    </div>
+    <div class="panel-body list">
+        <ul>
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/贵州支教行/">
+                  贵州支教行&nbsp;<span class="count">[12]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/课程学习/">
+                  课程学习&nbsp;<span class="count">[88]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/MyLife/">
+                  MyLife&nbsp;<span class="count">[45]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/经验技巧/">
+                  经验技巧&nbsp;<span class="count">[93]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/社会工作/">
+                  社会工作&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/网络文摘/">
+                  网络文摘&nbsp;<span class="count">[28]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件体系结构/">
+                  软件体系结构&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/旅游/">
+                  旅游&nbsp;<span class="count">[23]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软考/">
+                  软考&nbsp;<span class="count">[2]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件度量及其应用/">
+                  软件度量及其应用&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/工作那些事儿/">
+                  工作那些事儿&nbsp;<span class="count">[42]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我做站长/">
+                  我做站长&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/coding小工具/">
+                  coding小工具&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/除臭虫/">
+                  除臭虫&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/学到老/">
+                  学到老&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我不会算法/">
+                  我不会算法&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/数据挖掘/">
+                  数据挖掘&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/计算机图形学/">
+                  计算机图形学&nbsp;<span class="count">[5]</span>
+              </a>
+          </li>
+
+          
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar: tag list -->
+<div class="panel panel-default tags">
+    <div class="panel-heading title">
+        标签云
+    </div>
+    <div class="panel-body list">
+         
+        <input type="hidden" id="tag-values" value='{"name":"丰田助学","count":16},{"name":"贵州支教","count":12},{"name":"铜厂小学","count":9},{"name":"中南大学","count":12},{"name":"云南赶集","count":1},{"name":"HelloWorld","count":5},{"name":"我做站长","count":35},{"name":"设计模式","count":7},{"name":"Wordpress","count":18},{"name":"系统架构师","count":11},{"name":"软考","count":25},{"name":"论文","count":6},{"name":"软件0804","count":8},{"name":"Java","count":24},{"name":"J2EE","count":3},{"name":"JAVA","count":1},{"name":"考试","count":25},{"name":"SEO","count":3},{"name":"软件体系结构","count":6},{"name":"Android","count":28},{"name":"软件工程","count":2},{"name":"Windows","count":17},{"name":"软件测试","count":1},{"name":"总结","count":13},{"name":"Oracle","count":4},{"name":"存储过程","count":3},{"name":"数据库应用","count":3},{"name":"数据库","count":8},{"name":"先进班集体","count":1},{"name":"Linux","count":15},{"name":"Ubuntu","count":8},{"name":"Defy","count":3},{"name":"传感器","count":1},{"name":"访日交流","count":8},{"name":"旅游","count":22},{"name":"软件学院","count":11},{"name":"大学生科协","count":4},{"name":"玩遍中国","count":11},{"name":"计算机网络","count":5},{"name":"Eclipse","count":4},{"name":"软件度量","count":11},{"name":"软件设计师","count":4},{"name":"编译原理","count":2},{"name":"程序语言","count":2},{"name":"操作系统","count":3},{"name":"多媒体","count":2},{"name":"网络安全","count":9},{"name":"TCP/IP","count":2},{"name":"编程语言","count":1},{"name":"考点","count":1},{"name":"Google","count":5},{"name":"软件结构度量","count":1},{"name":"CMM","count":6},{"name":"项目管理","count":3},{"name":"实习","count":33},{"name":"面试","count":18},{"name":"网络营销","count":1},{"name":"百度","count":4},{"name":"笔试","count":2},{"name":"腾讯","count":31},{"name":"编程比赛","count":4},{"name":"科研","count":4},{"name":"电子商务","count":11},{"name":"虚拟主机","count":2},{"name":"网路安全","count":1},{"name":"Foxmail","count":3},{"name":"微软","count":1},{"name":"软件能力成熟度模型","count":2},{"name":"软件过程改进","count":3},{"name":"SCM复习资料","count":1},{"name":"软件配置管理","count":12},{"name":"SCM","count":6},{"name":"工具","count":19},{"name":"反模式","count":1},{"name":"玩玩手机","count":5},{"name":"程序员","count":4},{"name":"健康","count":1},{"name":"共享上网","count":2},{"name":"Bug","count":4},{"name":"coding小工具","count":1},{"name":"工作日志","count":19},{"name":"Apache","count":2},{"name":"PHP","count":13},{"name":"实习日志","count":1},{"name":"工作实习生","count":1},{"name":"Mysql","count":1},{"name":"Shell","count":3},{"name":"腾讯实习日志","count":1},{"name":"hosts","count":2},{"name":"Vim","count":3},{"name":"正则表达式","count":2},{"name":"搜索引擎","count":1},{"name":"跨域","count":1},{"name":"前端","count":2},{"name":"保研","count":15},{"name":"算法","count":9},{"name":"清华大学","count":12},{"name":"丰田助学金","count":3},{"name":"WiFi","count":1},{"name":"实习生","count":1},{"name":"wifi自动关闭","count":1},{"name":"腾讯实习","count":1},{"name":"经验技巧","count":13},{"name":"DDOS","count":2},{"name":"AOP","count":3},{"name":"租房","count":2},{"name":"Sqlite","count":2},{"name":"Python","count":11},{"name":"OOP","count":5},{"name":"数据挖掘","count":8},{"name":"GitHub","count":2},{"name":"SVM","count":3},{"name":"R语言","count":2},{"name":"足迹","count":2},{"name":"笛子","count":2},{"name":"计算机图形学","count":5},{"name":"OpenGL","count":3},{"name":"回忆录","count":1},{"name":"年终总结","count":1},{"name":"域名","count":1},{"name":"计算几何","count":2},{"name":"敲敲代码","count":9},{"name":"Latex","count":3},{"name":"C++","count":10},{"name":"Mac","count":7},{"name":"飞行模式","count":2},{"name":"性能优化","count":2},{"name":"Javascript","count":1},{"name":"工作","count":1},{"name":"玩遍世界","count":1},{"name":"Scala","count":2},{"name":"MyLife","count":1},{"name":"快捷键","count":1},{"name":"云服务","count":1},{"name":"Blog","count":1},{"name":"微信公众号","count":1}'/>
+        <div style="display: none"><a id="tag-value" class="taglink" rel="bookmark" href="/tag/#" data-target-cate="#"></a></div>
+        <div class="tag-values-container">
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+  </div>
+
+  <footer>
+  <div class="text-center">
+    © 2010-2016 All rights reserved.
+    Made with <a href="http://jekyllrb.com/" rel="nofollow" target="_blank">Jekyll</a>
+    & Modified by <a href="http://www.tanglei.name/about/" >Tanglei</a>
+    and <i class="fa fa-heart"></i> by <a rel="nofollow" href="https://github.com/guovz/jekyll-pithy" target="_blank">Pithy</a>
+  </div>
+  <div class="totop" data-toggle="totop">
+      <i class="fa fa-chevron-up"></i>
+  </div>
+</footer>
+
+
+  <!--the js include-->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="/assets/script/pithy.js"></script>
+
+<!--
+  the site comment script
+-->
+
+
+  <script>
+    
+    var disqus_config = function () {
+        this.page.url = 'https://www.tanglei.name/blog/eclipse_metric.html' ; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '/blog/eclipse_metric.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+        if($("#disqus_thread").length) {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://hexo-tanglei.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+    powered by Disqus.</a></noscript>
+
+
+
+<!--
+  the site analysis script
+-->
+
+  <!-- baidu analysis -->
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?f0117177475f54027bfcaceb8d668cee";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+</body>
+</html>

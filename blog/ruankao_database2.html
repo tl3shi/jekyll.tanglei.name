@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+  <head>
+    <title>软考：数据库知识(二)</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="keywords" content="软考：数据库知识(二), 课程学习, 软考,数据库,, 唐磊, 中南大学, 清华大学, 软件工程师, 计算机, 全栈工程师" />
+    <meta name="description" content="软考：数据库知识(二), 课程学习, 软考,数据库, 1.4关系模型和关系运算 **" />
+
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+
+  <!--Font awesome-->
+  <link href="/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- The pithy main css -->
+  <link rel="stylesheet" href="/assets/stylesheet/pithy.css">
+  <link rel="stylesheet" href="/assets/stylesheet/molokai.css">
+
+
+  <!--[if lt IE 9]>
+  <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv-printshiv.js"></script>
+  <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+  <![endif]-->
+  <link rel="alternate" type="application/rss+xml" title="tanglei's blog|唐磊的个人博客" href="https://www.tanglei.name/feed.xml" />
+</head>
+
+<body>
+  <nav class="navbar navbar-pithy" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+                data-target="#pithy-navbar" aria-expanded="false">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" rel="bookmark" href="/">TangLei</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="pithy-navbar">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="bookmark" href="/">首页</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/archives.html">Archives</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/about/">关于</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+  <div class="container page-content">
+    <div>
+    <div class="col-md-9 col-content">
+        <div id="post-content" class="panel panel-pithy post">
+            <div class="panel-heading">
+                <div class="title">
+                  <i class="fa fa-bookmark-o"></i>软考：数据库知识(二)
+                </div>
+                <ul class="info">
+                    <li>
+                      作者 <span class="author"> 
+        
+            tanglei
+        
+        </span>
+                    </li>
+                    <li>
+                      最后编辑 2011年04月19日
+                    </li>
+                    <li>
+                      Tags
+                     
+                         <a class="tag" href="/tag/#软考">软考</a>
+                     
+                         <a class="tag" href="/tag/#数据库">数据库</a>
+                     
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body content">
+                <p><strong>1.4</strong><strong>关系模型和关系运算</strong> <em>**</em></p>
+
+<p>n     基本概述</p>
+
+<p>关系数据库是应用关系数据模型来建立和处理数据库中的数据。这其中主要涉及几个重要的概念。</p>
+
+<p>u     关系</p>
+
+<p>关系实际上就可以看作是一个二维表。其中，表的每一列称为属性，并用属性名来标识。每个属性的取值范围，就是该属性所对应的值域。表的每一行称为元组。约定该表的行、列的次序的改变，不改变关系的语义性质。</p>
+
+<p>对于一个关系，应该具备下列性质：</p>
+
+<p>Ø          关系中每一个属性值都是不可分解的；</p>
+
+<p>Ø          关系中不允许出现相同的元组；不让用户考虑元组的顺序；</p>
+
+<p>Ø          用户在使用时应考虑列的顺序。</p>
+
+<p>u      关系模型</p>
+
+<p>关系模型是目前最流行的一种数据模型，它是用二维表格结构表示实体集，关键码表示实体间的联系。</p>
+
+<p>u      关键字（键）</p>
+
+<p>I.     候选键</p>
+
+<p>关系中的某一属性或属性组，若它的值可以唯一标识关系中的一个元组而又不含有多余的属性，则称该属性或属性组为候选关键字。</p>
+
+<p>II.   主键</p>
+
+<p>关系模式中用户正使用的候选关键字称为主关键字。</p>
+
+<p>III. 外关键字</p>
+
+<p>若模式R中某属性集是其他模式的候选键，那么该属性集对模式R而言就是外关键字。</p>
+
+<p>IV.   超键</p>
+
+<p>关系模式中，为唯一标识元组的属性集称为超键。</p>
+
+<p>u      关系模型</p>
+
+<p>关系模型遵循数据库的3级体系结构。</p>
+
+<p>u     关系模式</p>
+
+<p>数据库的概念模式定义为关系模式的集合。每个关系模式就是记录类型。</p>
+
+<p>u     关系子模式</p>
+
+<p>这是对用户所用到的那部分数据的描述。除了指出用户用到的数据外，还应指出数据与模式中相应数据的联系，即指出子模式与模式之间的对应性。</p>
+
+<p>u     关系存储模式（关系内模式）</p>
+
+<p>这是作为文件看待的，每个元组就是一个记录。</p>
+
+<p>关系模型有3个部分构成：</p>
+
+<p>u     数据结构</p>
+
+<p>关系模型采用的数据结构是关系。</p>
+
+<p>u     关系操作</p>
+
+<p>关系模型提供一组完备的关系运算，以支持对数据库的各种操作。关系运算的理论是关系代数和关系演算。</p>
+
+<p>u      关系的完整性</p>
+
+<p>在关系模型中，数据的约束条件通过三类完整性约束条件来描述。即：</p>
+
+<p>I.     实体完整性</p>
+
+<p>要求关系中的元组的主键值不能是空值。</p>
+
+<p>II.   参照完整性</p>
+
+<p>要求在关系中不允许引用不存在的实体。</p>
+
+<p>III. 用户定义的完整性</p>
+
+<p>这是针对某一具体数据的约束条件，由应用环境决定，例如属性的值限制。</p>
+
+<p>n       关系代数</p>
+
+<p>关系查询语言根据其理论基础的不同分成两大类：</p>
+
+<p>u       关系代数语言：查询操作是以集合操作为基础的运算。</p>
+
+<p>u       关系演算语言：查询操作是以谓词演算为基础的运算。</p>
+
+<p>其中，关系代数是以集合代数为基础发展起来的，它是以关系为运算对象的一组高级运算的集合。关系代数的运算可分为两类：</p>
+
+<p>基本运算操作：并、差、笛卡尔积、投影和选择。</p>
+
+<p>组合运算操作：交、联接、自然联接和除。</p>
+
+<p>另外，还有几种扩充的关系代数操作：外联接（左外联接和右外联接）、外部并和半联接。</p>
+
+<p>以下对几种常用的关系运算作一个简单的介绍。</p>
+
+<p>u       基本运算</p>
+
+<p>1.      并</p>
+
+<p>设有两个关系R和S具有相同的关系模式，关系R和S的并是由属于R或属于S的元组组成的集合，记为R∪S。形式定义如下：R∪S≡｛t│t∈R∨t∈S｝</p>
+
+<p>2.      差</p>
+
+<p>设有两个关系R和S具有相同的关系模式，关系R和S的差是由属于R但不属于S的元组组成的集合，记为R－S。形式定义如下：R－S≡｛t│t∈R∧t￣∈S｝</p>
+
+<p>3.     笛卡儿积</p>
+
+<p>设关系R和S元数分别为r和s。定义R和S的笛卡儿积是一个(r+s)元的元组集合，每个元组的前r个分量来自R的一个元组，后s个分量来自S的一个元组，记为R×S形式定义如下：R×S≡｛t│t＝＜tr,ts＞tr∈R∧ts∈S｝</p>
+
+<p>若R有m个元组，S有n个元组，则R×S有（mn）个元组。</p>
+
+<p>4.     投影</p>
+
+<p>该操作是对关系进行垂直分割，消去某些列，并重新安排列的顺序，再删去重复元组。</p>
+
+<p>5.      选择</p>
+
+<p>这个操作是根据某些条件对关系作水平分割，即选择符合条件的元组。条件可用命题公式F表示，F中的运算对象是常数（用引号括起来）或元组分量（属性名或列的序号）。运算符有算术比较运算符（≤，＜，≥，＞，＝，≠）和逻辑运算符（∧，∨，┐）。</p>
+
+<p>δ<sub>F</sub>(R)≡{t│t∈R∧F(t)＝ true}</p>
+
+<p>δ为选择运算符，δ<sub>F</sub>(R)表示从R中挑选满足公式F的元组所构成的集合。常量用引号括起来，而属性号或属性名不要用引号括起来。</p>
+
+<p>u       组合运算</p>
+
+<p>1.      交</p>
+
+<p>设有两个关系R和S具有相同的关系模式，关系R和S的交是由属于R又属于S的元组组成的集合，记为R∩S。形式定义如下：R∩S≡{t│t∈R∧t∈S}</p>
+
+<p>2.      联接（又称θ联接）</p>
+
+<p>从关系R和S的笛卡尔积中选取属性值之间满足一定条件的元组 ，记为：</p>
+
+<p>R│×│S≡δiθ(i+j)(R×S) ijθ</p>
+
+<p>这里R的元数是r，θ是算术比较运算符。R│×│S操作是在R和S ijθ的笛卡尔积中挑选第i个分量和第（r+j）个分量满足θ运算的元组组成的新的关系。</p>
+
+<p>3.     自然联接</p>
+
+<p>两个关系R和S的自然联接用R│×│S表示，具体计算过程如下：</p>
+
+<p>A)       计算R×S</p>
+
+<p>B)        设R和S的公共属性是A1,A2,A3,..Ak.，挑选R×S中满足R.A1=S.A1,R.A2,…,R.Ak=S.Ak的那些元组</p>
+
+<p>C)       去掉S.A1,S.A2,..S.Ak</p>
+
+<p>R│×│S可用下列形式定义：</p>
+
+<p>R│×│S≡πi1i2,…,im(δR.A1=S.A1∧…∧R.Ak=S.Ak(R×S)。</p>
+
+<p>4.      除法</p>
+
+<p>设两个关系R和S的元数分别为r和s（r&gt;s&gt;0），那么R÷S是一个（r－s）元的元组的集合。（R÷S）是满足下列条件的最大关系，其中每个元组t与S中每个元组u组成的新元组&lt;t，u&gt;必在关系R中。</p>
+
+<p>R÷S的具体计算过程如下：</p>
+
+<p>A)       T=π1,2,..r-s(R)</p>
+
+<p>B)        W=(T×S)-R求出T×S中不在R的元组</p>
+
+<p>C)       V=π1,2,…r-s(W)</p>
+
+<p>D)       R÷S=T-V</p>
+
+<p>因此R÷S≡π1,2,..r-s (R)- π1,2,..r-s ((π1,2,..r-s (R) ×S) -R )。</p>
+
+            </div>
+            <div class="post-nav">
+    
+    <a class="prev" href=/blog/ruankao_database1.html>&laquo; &nbsp;软考：数据库知识(一)</a>
+    
+    
+    <a class="next" href=/blog/ruankao_database.html>软考：数据库知识(三)&nbsp;&raquo;</a>
+    
+</div>
+
+            
+        </div>
+        <!--
+            if config set comment enable,include comment
+        -->
+        
+            <!-- comment -->
+<div id="post-comment" class="panel panel-default">
+    <div class="panel-body">
+        
+
+        
+            <div id="disqus_thread"></div>
+        
+    </div>
+</div>
+
+        
+    </div>
+    <div class="col-md-3 col-sidebar">
+        <div class="panel panel-pithy author">
+    <div class="panel-heading avastar">
+        <img src="/tx.jpg" alt="tanglei"/>
+    </div>
+    <div class="panel-body">
+        码农 @ 宜信大数据创新中心, 毕业于CSU && THU,  曾工作于<a href='http://www.tencent.com/zh-cn/index.shtml' target='_blank'>腾讯</a> && <a href='http://www.umeng.com/' target='_blank'>友盟</a>.  &nbsp; <a href='/about/'> MORE </a>
+    </div>
+    <div class="panel-footer social">
+        <ul>
+            
+            <li>
+                <a rel="nofollow" href="http://www.weibo.com/tangleithu/" target="_blank"><i class="fa fa-weibo"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://github.com/tl3shi" target="_blank"><i class="fa fa-github"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://www.facebook.com/tanglei.name" target="_blank"><i class="fa fa-facebook"></i></a>
+            </li>
+            
+            <li>
+                <a href="https://www.tanglei.name/feed.xml" target="_blank"><i class="fa fa-rss"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar:category list -->
+<div class="panel panel-default categories">
+    <div class="panel-heading title">
+        分类列表
+    </div>
+    <div class="panel-body list">
+        <ul>
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/贵州支教行/">
+                  贵州支教行&nbsp;<span class="count">[12]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/课程学习/">
+                  课程学习&nbsp;<span class="count">[88]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/MyLife/">
+                  MyLife&nbsp;<span class="count">[45]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/经验技巧/">
+                  经验技巧&nbsp;<span class="count">[93]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/社会工作/">
+                  社会工作&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/网络文摘/">
+                  网络文摘&nbsp;<span class="count">[28]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件体系结构/">
+                  软件体系结构&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/旅游/">
+                  旅游&nbsp;<span class="count">[23]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软考/">
+                  软考&nbsp;<span class="count">[2]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件度量及其应用/">
+                  软件度量及其应用&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/工作那些事儿/">
+                  工作那些事儿&nbsp;<span class="count">[42]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我做站长/">
+                  我做站长&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/coding小工具/">
+                  coding小工具&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/除臭虫/">
+                  除臭虫&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/学到老/">
+                  学到老&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我不会算法/">
+                  我不会算法&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/数据挖掘/">
+                  数据挖掘&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/计算机图形学/">
+                  计算机图形学&nbsp;<span class="count">[5]</span>
+              </a>
+          </li>
+
+          
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar: tag list -->
+<div class="panel panel-default tags">
+    <div class="panel-heading title">
+        标签云
+    </div>
+    <div class="panel-body list">
+         
+        <input type="hidden" id="tag-values" value='{"name":"丰田助学","count":16},{"name":"贵州支教","count":12},{"name":"铜厂小学","count":9},{"name":"中南大学","count":12},{"name":"云南赶集","count":1},{"name":"HelloWorld","count":5},{"name":"我做站长","count":35},{"name":"设计模式","count":7},{"name":"Wordpress","count":18},{"name":"系统架构师","count":11},{"name":"软考","count":25},{"name":"论文","count":6},{"name":"软件0804","count":8},{"name":"Java","count":24},{"name":"J2EE","count":3},{"name":"JAVA","count":1},{"name":"考试","count":25},{"name":"SEO","count":3},{"name":"软件体系结构","count":6},{"name":"Android","count":28},{"name":"软件工程","count":2},{"name":"Windows","count":17},{"name":"软件测试","count":1},{"name":"总结","count":13},{"name":"Oracle","count":4},{"name":"存储过程","count":3},{"name":"数据库应用","count":3},{"name":"数据库","count":8},{"name":"先进班集体","count":1},{"name":"Linux","count":15},{"name":"Ubuntu","count":8},{"name":"Defy","count":3},{"name":"传感器","count":1},{"name":"访日交流","count":8},{"name":"旅游","count":22},{"name":"软件学院","count":11},{"name":"大学生科协","count":4},{"name":"玩遍中国","count":11},{"name":"计算机网络","count":5},{"name":"Eclipse","count":4},{"name":"软件度量","count":11},{"name":"软件设计师","count":4},{"name":"编译原理","count":2},{"name":"程序语言","count":2},{"name":"操作系统","count":3},{"name":"多媒体","count":2},{"name":"网络安全","count":9},{"name":"TCP/IP","count":2},{"name":"编程语言","count":1},{"name":"考点","count":1},{"name":"Google","count":5},{"name":"软件结构度量","count":1},{"name":"CMM","count":6},{"name":"项目管理","count":3},{"name":"实习","count":33},{"name":"面试","count":18},{"name":"网络营销","count":1},{"name":"百度","count":4},{"name":"笔试","count":2},{"name":"腾讯","count":31},{"name":"编程比赛","count":4},{"name":"科研","count":4},{"name":"电子商务","count":11},{"name":"虚拟主机","count":2},{"name":"网路安全","count":1},{"name":"Foxmail","count":3},{"name":"微软","count":1},{"name":"软件能力成熟度模型","count":2},{"name":"软件过程改进","count":3},{"name":"SCM复习资料","count":1},{"name":"软件配置管理","count":12},{"name":"SCM","count":6},{"name":"工具","count":19},{"name":"反模式","count":1},{"name":"玩玩手机","count":5},{"name":"程序员","count":4},{"name":"健康","count":1},{"name":"共享上网","count":2},{"name":"Bug","count":4},{"name":"coding小工具","count":1},{"name":"工作日志","count":19},{"name":"Apache","count":2},{"name":"PHP","count":13},{"name":"实习日志","count":1},{"name":"工作实习生","count":1},{"name":"Mysql","count":1},{"name":"Shell","count":3},{"name":"腾讯实习日志","count":1},{"name":"hosts","count":2},{"name":"Vim","count":3},{"name":"正则表达式","count":2},{"name":"搜索引擎","count":1},{"name":"跨域","count":1},{"name":"前端","count":2},{"name":"保研","count":15},{"name":"算法","count":9},{"name":"清华大学","count":12},{"name":"丰田助学金","count":3},{"name":"WiFi","count":1},{"name":"实习生","count":1},{"name":"wifi自动关闭","count":1},{"name":"腾讯实习","count":1},{"name":"经验技巧","count":13},{"name":"DDOS","count":2},{"name":"AOP","count":3},{"name":"租房","count":2},{"name":"Sqlite","count":2},{"name":"Python","count":11},{"name":"OOP","count":5},{"name":"数据挖掘","count":8},{"name":"GitHub","count":2},{"name":"SVM","count":3},{"name":"R语言","count":2},{"name":"足迹","count":2},{"name":"笛子","count":2},{"name":"计算机图形学","count":5},{"name":"OpenGL","count":3},{"name":"回忆录","count":1},{"name":"年终总结","count":1},{"name":"域名","count":1},{"name":"计算几何","count":2},{"name":"敲敲代码","count":9},{"name":"Latex","count":3},{"name":"C++","count":10},{"name":"Mac","count":7},{"name":"飞行模式","count":2},{"name":"性能优化","count":2},{"name":"Javascript","count":1},{"name":"工作","count":1},{"name":"玩遍世界","count":1},{"name":"Scala","count":2},{"name":"MyLife","count":1},{"name":"快捷键","count":1},{"name":"云服务","count":1},{"name":"Blog","count":1},{"name":"微信公众号","count":1}'/>
+        <div style="display: none"><a id="tag-value" class="taglink" rel="bookmark" href="/tag/#" data-target-cate="#"></a></div>
+        <div class="tag-values-container">
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+  </div>
+
+  <footer>
+  <div class="text-center">
+    © 2010-2016 All rights reserved.
+    Made with <a href="http://jekyllrb.com/" rel="nofollow" target="_blank">Jekyll</a>
+    & Modified by <a href="http://www.tanglei.name/about/" >Tanglei</a>
+    and <i class="fa fa-heart"></i> by <a rel="nofollow" href="https://github.com/guovz/jekyll-pithy" target="_blank">Pithy</a>
+  </div>
+  <div class="totop" data-toggle="totop">
+      <i class="fa fa-chevron-up"></i>
+  </div>
+</footer>
+
+
+  <!--the js include-->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="/assets/script/pithy.js"></script>
+
+<!--
+  the site comment script
+-->
+
+
+  <script>
+    
+    var disqus_config = function () {
+        this.page.url = 'https://www.tanglei.name/blog/ruankao_database2.html' ; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '/blog/ruankao_database2.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+        if($("#disqus_thread").length) {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://hexo-tanglei.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+    powered by Disqus.</a></noscript>
+
+
+
+<!--
+  the site analysis script
+-->
+
+  <!-- baidu analysis -->
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?f0117177475f54027bfcaceb8d668cee";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+</body>
+</html>

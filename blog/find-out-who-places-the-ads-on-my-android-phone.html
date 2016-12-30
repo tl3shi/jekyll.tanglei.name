@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+  <head>
+    <title>揪出这个android手机下乱弹广告的坏蛋</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="keywords" content="揪出这个android手机下乱弹广告的坏蛋, 经验技巧, Android,玩玩手机,, 唐磊, 中南大学, 清华大学, 软件工程师, 计算机, 全栈工程师" />
+    <meta name="description" content="揪出这个android手机下乱弹广告的坏蛋, 经验技巧, Android,玩玩手机, 前几天，我的android手机升级了几个软件，这两天手机突然莫名其妙的弹广告，并且根本不知道是哪个应用程序弹出来的。一般地弹广告也是运行某个app，就算是后台弹出，也有地方标志着是这个app弹的广告。而这次这个app也太狠了，自己想赚钱也就算了，还不让用户知道是谁。就想到一定得把它揪出来。 (之前以为是appch..." />
+
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+
+  <!--Font awesome-->
+  <link href="/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- The pithy main css -->
+  <link rel="stylesheet" href="/assets/stylesheet/pithy.css">
+  <link rel="stylesheet" href="/assets/stylesheet/molokai.css">
+
+
+  <!--[if lt IE 9]>
+  <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv-printshiv.js"></script>
+  <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+  <![endif]-->
+  <link rel="alternate" type="application/rss+xml" title="tanglei's blog|唐磊的个人博客" href="https://www.tanglei.name/feed.xml" />
+</head>
+
+<body>
+  <nav class="navbar navbar-pithy" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+                data-target="#pithy-navbar" aria-expanded="false">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" rel="bookmark" href="/">TangLei</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="pithy-navbar">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="bookmark" href="/">首页</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/archives.html">Archives</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/about/">关于</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+  <div class="container page-content">
+    <div>
+    <div class="col-md-9 col-content">
+        <div id="post-content" class="panel panel-pithy post">
+            <div class="panel-heading">
+                <div class="title">
+                  <i class="fa fa-bookmark-o"></i>揪出这个android手机下乱弹广告的坏蛋
+                </div>
+                <ul class="info">
+                    <li>
+                      作者 <span class="author"> 
+        
+            tanglei
+        
+        </span>
+                    </li>
+                    <li>
+                      最后编辑 2012年04月19日
+                    </li>
+                    <li>
+                      Tags
+                     
+                         <a class="tag" href="/tag/#Android">Android</a>
+                     
+                         <a class="tag" href="/tag/#玩玩手机">玩玩手机</a>
+                     
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body content">
+                <p>前几天，我的android手机升级了几个软件，这两天手机突然莫名其妙的弹广告，并且根本不知道是哪个应用程序弹出来的。一般地弹广告也是运行某个app，就算是后台弹出，也有地方标志着是这个app弹的广告。而这次这个app也太狠了，自己想赚钱也就算了，还不让用户知道是谁。就想到一定得把它揪出来。 (之前以为是appchina应用汇，就卸载了，结果还弹……然后就是怀疑之前更新的豌豆荚，水果忍者……，不能老用排除法试了) 我能想到的解决方案就是看android运行的系统log日志了。</p>
+
+<p>一种方法是连接电脑，用adb调试工具查看log，另一种方法是直接在android手机看log日志记录：<a href="http://code.google.com/p/alogcat/">alogcat</a>，还是上次在腾讯实习时反映一个<a href="/blog/qq-mobile-secure-manager-feedback.html">QQ手机管家的bug</a>，知道这个软件的。</p>
+
+<p>等手机再弹出广告时，打开alogcat，为了方便查找，清除下刚刚产生的log，然后去通知栏那里点点那个广告，再返回alogcat先暂停记录log，然后慢慢看。TMD，是一个叫com.halfbriakin.utils..之类的activity再放广告，然后关键字*fruitninjaseasons*，居然是水果忍者。</p>
+
+<p>再想水果忍者的开发者应该不会无耻到这个地步吧？用这样的方式弹广告。就想弄个究竟。查了下，我这个水果忍者是从豌豆荚下的，说的开发商是<strong>halfbriakin</strong>，而切水果这样的火，他应该不敢这么做吧，查了下，切水果的官网是<strong>halfbrick.com</strong>。得看看halfbrick跟<strong>halfbriakin</strong>的关系。是否<strong>halfbriakin</strong>山寨了了<strong>halfbrick</strong><strong>，</strong>在其之上包装了一层<strong>。</strong>看样子好像是的,<strong>纯属个人猜测</strong>。</p>
+
+<p>继续探个究竟。看源代码，希望试图从中找出其与广告相关的代码跟<strong>halfbriakin</strong>的关系。从官网下载的com.halfbrick.fruitninjafree进行对比。</p>
+
+<p>android的apk文件反编译用到的工具：</p>
+
+<ul>
+  <li>android代码反编译工具：<a href="http://code.google.com/p/dex2jar/" target="_blank">dex2jar</a>;</li>
+  <li>java源代码查看工具：<a href="http://java.decompiler.free.fr/jd-gui/downloads/jd-gui-0.3.3.windows.zip">jd-gui</a>;</li>
+  <li>android资源文件查看工具，(那些xml文件，打包成apk时被编码过一次，直接看有乱码看不清楚) <a href="http://code.google.com/p/android-apktool/" target="_blank">apktool</a>或者<a href="http://ishare.iask.sina.com.cn/f/19218022.html" target="_blank">AXMLPrinter2</a>.</li>
+</ul>
+
+<p>下面看看过程：</p>
+
+<ol>
+  <li>反编译得到源代码，直接将apk文件后缀改成rar,用winrar解压即可得到classes.dex，然后通过dex2jar工具就能得到java的源代码。<a href="/wp-content/uploads/2012/04/dex2jar.jpg"><img title="apk反编译dex2jar" src="/wp-content/uploads/2012/04/dex2jar_thumb.jpg" alt="apk反编译dex2jar" /></a></li>
+  <li>然后用jd-gui查看编译后的源代码。看样子好像确实是山寨的，不过可能因为二者版本不一致导致的？我想可能不大。下图左边为网上能下载到的开发商是<strong>halfbriakin</strong>发布的软件，在什么豌豆荚啊应用汇啊等等能下到，其介绍敢说哦什么Android官方无广告版本正式发布，只能说在放P了。下图右是我到google play下的，官网的免费版本。能看出来开发商是<strong>halfbriakin</strong>这个版本多了个上面那个包。<a href="/wp-content/uploads/2012/04/fruitninjafree.jpg"><img title="fruitninjafree广告" src="/wp-content/uploads/2012/04/fruitninjafree_thumb.jpg" alt="fruitninjafree广告" data-pinit="registered" /></a></li>
+  <li>怀疑类似一些请求广告的url写在资源xml文件中，因此得解码资源文件。android的xml资源文件解码有两种方法</li>
+</ol>
+
+<ul>
+  <li>用<a href="http://ishare.iask.sina.com.cn/f/19218022.html" target="_blank">AXMLPrinter2</a>.如下图命令后,打开t.xml文件可以看到AdnroidManifest的内容。<img title="android反编译资源xml文件" src="/wp-content/uploads/2012/04/androidxml_thumb.jpg" alt="android反编译资源xml文件" /></li>
+  <li>用apktool,如图。直接打开各个目录下的xml文件即可看到</li>
+</ul>
+
+<p><a href="/wp-content/uploads/2012/04/androidapktool.jpg"><img title="android资源文件反编译apktool" src="/wp-content/uploads/2012/04/androidapktool_thumb.jpg" alt="android资源文件反编译apktool" data-pinit="registered" /></a></p>
+
+<p>结果找了下，好像什么请求广告的url之类没写在string.xml等文件里面。还是看源代码吧。</p>
+
+<p>查了下，’山寨’版本(暂且这么叫吧)的切水果，除了官方版本的广告外(google ads,意大利的游戏广告企业<a href="http://www.beintoo.com" target="_blank">beintoo</a>，移动广告服务商<a href="www.admob.com/A" target="_blank">admob</a>和<a href="www.mobclix.com" target="_blank">moblix</a>)，还有多余的那个包<a href="www.domob.cn/" target="_blank">domob</a>(国内的手机广告服务商多盟)，找了下没有找到相关的绑定的ID(也不深究了)。感到奇怪的是，水果忍者发布出来的源码里面出现了好多这种废弃的代码，不知道是程序员懒还是怎么着。自我感觉发布的时候还是把废弃代码给删掉吧，能减轻体重呢。<span style="color: #ff0000;">【更新：感谢网友的指出，之前根本没想到这些代码有可能是反编译失败/出错产生的，让大家见笑了】</span></p>
+
+<p><a href="/wp-content/uploads/2012/04/4acb83313de3.jpg"><img title="切水果程序员废弃代码" src="/wp-content/uploads/2012/04/thumb.jpg" alt="切水果程序员废弃代码" data-pinit="registered" /></a>另外看“山寨”的源码也有这种废弃的代码：</p>
+
+<p><a href="/wp-content/uploads/2012/04/image1.png"><img title="水果忍着恶心代码恶心广告" src="/wp-content/uploads/2012/04/image_thumb1.png" alt="水果忍着恶心代码恶心广告" data-pinit="registered" /></a>现在就不知道是到底是出自原来的程序员之手呢还是说山寨的过程中，copy了这些代码。</p>
+
+<p>不管怎么说，如果这个开发商<strong>halfbriakin</strong>是来自官网也好，不是也罢，你这个广告也弹得太恶心了。  看了这么久也没什么确切的结论，反正我是卸载了这个app。</p>
+
+            </div>
+            <div class="post-nav">
+    
+    <a class="prev" href=/blog/rent-a-single-room-near-the-east-gate-of-yuanmingyuan-park.html>&laquo; &nbsp;圆明园东门单间转租[已租]</a>
+    
+    
+    <a class="next" href=/blog/how-to-use-eclipse-to-program-in-r.html>R语言开发的eclipse插件安装教程&nbsp;&raquo;</a>
+    
+</div>
+
+            
+        </div>
+        <!--
+            if config set comment enable,include comment
+        -->
+        
+            <!-- comment -->
+<div id="post-comment" class="panel panel-default">
+    <div class="panel-body">
+        
+
+        
+            <div id="disqus_thread"></div>
+        
+    </div>
+</div>
+
+        
+    </div>
+    <div class="col-md-3 col-sidebar">
+        <div class="panel panel-pithy author">
+    <div class="panel-heading avastar">
+        <img src="/tx.jpg" alt="tanglei"/>
+    </div>
+    <div class="panel-body">
+        码农 @ 宜信大数据创新中心, 毕业于CSU && THU,  曾工作于<a href='http://www.tencent.com/zh-cn/index.shtml' target='_blank'>腾讯</a> && <a href='http://www.umeng.com/' target='_blank'>友盟</a>.  &nbsp; <a href='/about/'> MORE </a>
+    </div>
+    <div class="panel-footer social">
+        <ul>
+            
+            <li>
+                <a rel="nofollow" href="http://www.weibo.com/tangleithu/" target="_blank"><i class="fa fa-weibo"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://github.com/tl3shi" target="_blank"><i class="fa fa-github"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://www.facebook.com/tanglei.name" target="_blank"><i class="fa fa-facebook"></i></a>
+            </li>
+            
+            <li>
+                <a href="https://www.tanglei.name/feed.xml" target="_blank"><i class="fa fa-rss"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar:category list -->
+<div class="panel panel-default categories">
+    <div class="panel-heading title">
+        分类列表
+    </div>
+    <div class="panel-body list">
+        <ul>
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/贵州支教行/">
+                  贵州支教行&nbsp;<span class="count">[12]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/课程学习/">
+                  课程学习&nbsp;<span class="count">[88]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/MyLife/">
+                  MyLife&nbsp;<span class="count">[45]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/经验技巧/">
+                  经验技巧&nbsp;<span class="count">[93]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/社会工作/">
+                  社会工作&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/网络文摘/">
+                  网络文摘&nbsp;<span class="count">[28]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件体系结构/">
+                  软件体系结构&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/旅游/">
+                  旅游&nbsp;<span class="count">[23]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软考/">
+                  软考&nbsp;<span class="count">[2]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件度量及其应用/">
+                  软件度量及其应用&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/工作那些事儿/">
+                  工作那些事儿&nbsp;<span class="count">[42]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我做站长/">
+                  我做站长&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/coding小工具/">
+                  coding小工具&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/除臭虫/">
+                  除臭虫&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/学到老/">
+                  学到老&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我不会算法/">
+                  我不会算法&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/数据挖掘/">
+                  数据挖掘&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/计算机图形学/">
+                  计算机图形学&nbsp;<span class="count">[5]</span>
+              </a>
+          </li>
+
+          
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar: tag list -->
+<div class="panel panel-default tags">
+    <div class="panel-heading title">
+        标签云
+    </div>
+    <div class="panel-body list">
+         
+        <input type="hidden" id="tag-values" value='{"name":"丰田助学","count":16},{"name":"贵州支教","count":12},{"name":"铜厂小学","count":9},{"name":"中南大学","count":12},{"name":"云南赶集","count":1},{"name":"HelloWorld","count":5},{"name":"我做站长","count":35},{"name":"设计模式","count":7},{"name":"Wordpress","count":18},{"name":"系统架构师","count":11},{"name":"软考","count":25},{"name":"论文","count":6},{"name":"软件0804","count":8},{"name":"Java","count":24},{"name":"J2EE","count":3},{"name":"JAVA","count":1},{"name":"考试","count":25},{"name":"SEO","count":3},{"name":"软件体系结构","count":6},{"name":"Android","count":28},{"name":"软件工程","count":2},{"name":"Windows","count":17},{"name":"软件测试","count":1},{"name":"总结","count":13},{"name":"Oracle","count":4},{"name":"存储过程","count":3},{"name":"数据库应用","count":3},{"name":"数据库","count":8},{"name":"先进班集体","count":1},{"name":"Linux","count":15},{"name":"Ubuntu","count":8},{"name":"Defy","count":3},{"name":"传感器","count":1},{"name":"访日交流","count":8},{"name":"旅游","count":22},{"name":"软件学院","count":11},{"name":"大学生科协","count":4},{"name":"玩遍中国","count":11},{"name":"计算机网络","count":5},{"name":"Eclipse","count":4},{"name":"软件度量","count":11},{"name":"软件设计师","count":4},{"name":"编译原理","count":2},{"name":"程序语言","count":2},{"name":"操作系统","count":3},{"name":"多媒体","count":2},{"name":"网络安全","count":9},{"name":"TCP/IP","count":2},{"name":"编程语言","count":1},{"name":"考点","count":1},{"name":"Google","count":5},{"name":"软件结构度量","count":1},{"name":"CMM","count":6},{"name":"项目管理","count":3},{"name":"实习","count":33},{"name":"面试","count":18},{"name":"网络营销","count":1},{"name":"百度","count":4},{"name":"笔试","count":2},{"name":"腾讯","count":31},{"name":"编程比赛","count":4},{"name":"科研","count":4},{"name":"电子商务","count":11},{"name":"虚拟主机","count":2},{"name":"网路安全","count":1},{"name":"Foxmail","count":3},{"name":"微软","count":1},{"name":"软件能力成熟度模型","count":2},{"name":"软件过程改进","count":3},{"name":"SCM复习资料","count":1},{"name":"软件配置管理","count":12},{"name":"SCM","count":6},{"name":"工具","count":19},{"name":"反模式","count":1},{"name":"玩玩手机","count":5},{"name":"程序员","count":4},{"name":"健康","count":1},{"name":"共享上网","count":2},{"name":"Bug","count":4},{"name":"coding小工具","count":1},{"name":"工作日志","count":19},{"name":"Apache","count":2},{"name":"PHP","count":13},{"name":"实习日志","count":1},{"name":"工作实习生","count":1},{"name":"Mysql","count":1},{"name":"Shell","count":3},{"name":"腾讯实习日志","count":1},{"name":"hosts","count":2},{"name":"Vim","count":3},{"name":"正则表达式","count":2},{"name":"搜索引擎","count":1},{"name":"跨域","count":1},{"name":"前端","count":2},{"name":"保研","count":15},{"name":"算法","count":9},{"name":"清华大学","count":12},{"name":"丰田助学金","count":3},{"name":"WiFi","count":1},{"name":"实习生","count":1},{"name":"wifi自动关闭","count":1},{"name":"腾讯实习","count":1},{"name":"经验技巧","count":13},{"name":"DDOS","count":2},{"name":"AOP","count":3},{"name":"租房","count":2},{"name":"Sqlite","count":2},{"name":"Python","count":11},{"name":"OOP","count":5},{"name":"数据挖掘","count":8},{"name":"GitHub","count":2},{"name":"SVM","count":3},{"name":"R语言","count":2},{"name":"足迹","count":2},{"name":"笛子","count":2},{"name":"计算机图形学","count":5},{"name":"OpenGL","count":3},{"name":"回忆录","count":1},{"name":"年终总结","count":1},{"name":"域名","count":1},{"name":"计算几何","count":2},{"name":"敲敲代码","count":9},{"name":"Latex","count":3},{"name":"C++","count":10},{"name":"Mac","count":7},{"name":"飞行模式","count":2},{"name":"性能优化","count":2},{"name":"Javascript","count":1},{"name":"工作","count":1},{"name":"玩遍世界","count":1},{"name":"Scala","count":2},{"name":"MyLife","count":1},{"name":"快捷键","count":1},{"name":"云服务","count":1},{"name":"Blog","count":1},{"name":"微信公众号","count":1}'/>
+        <div style="display: none"><a id="tag-value" class="taglink" rel="bookmark" href="/tag/#" data-target-cate="#"></a></div>
+        <div class="tag-values-container">
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+  </div>
+
+  <footer>
+  <div class="text-center">
+    © 2010-2016 All rights reserved.
+    Made with <a href="http://jekyllrb.com/" rel="nofollow" target="_blank">Jekyll</a>
+    & Modified by <a href="http://www.tanglei.name/about/" >Tanglei</a>
+    and <i class="fa fa-heart"></i> by <a rel="nofollow" href="https://github.com/guovz/jekyll-pithy" target="_blank">Pithy</a>
+  </div>
+  <div class="totop" data-toggle="totop">
+      <i class="fa fa-chevron-up"></i>
+  </div>
+</footer>
+
+
+  <!--the js include-->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="/assets/script/pithy.js"></script>
+
+<!--
+  the site comment script
+-->
+
+
+  <script>
+    
+    var disqus_config = function () {
+        this.page.url = 'https://www.tanglei.name/blog/find-out-who-places-the-ads-on-my-android-phone.html' ; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '/blog/find-out-who-places-the-ads-on-my-android-phone.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+        if($("#disqus_thread").length) {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://hexo-tanglei.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+    powered by Disqus.</a></noscript>
+
+
+
+<!--
+  the site analysis script
+-->
+
+  <!-- baidu analysis -->
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?f0117177475f54027bfcaceb8d668cee";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+</body>
+</html>

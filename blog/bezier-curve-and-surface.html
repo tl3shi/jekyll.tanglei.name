@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+  <head>
+    <title>Bezier曲线曲面算法</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="keywords" content="Bezier曲线曲面算法, 计算机图形学, OpenGL,计算机图形学,, 唐磊, 中南大学, 清华大学, 软件工程师, 计算机, 全栈工程师" />
+    <meta name="description" content="Bezier曲线曲面算法, 计算机图形学, OpenGL,计算机图形学, 将按照如下目录记录在学习bezier曲线曲面的相关知识." />
+
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+
+  <!--Font awesome-->
+  <link href="/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- The pithy main css -->
+  <link rel="stylesheet" href="/assets/stylesheet/pithy.css">
+  <link rel="stylesheet" href="/assets/stylesheet/molokai.css">
+
+
+  <!--[if lt IE 9]>
+  <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv-printshiv.js"></script>
+  <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+  <![endif]-->
+  <link rel="alternate" type="application/rss+xml" title="tanglei's blog|唐磊的个人博客" href="https://www.tanglei.name/feed.xml" />
+</head>
+
+<body>
+  <nav class="navbar navbar-pithy" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+                data-target="#pithy-navbar" aria-expanded="false">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" rel="bookmark" href="/">TangLei</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="pithy-navbar">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="bookmark" href="/">首页</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/archives.html">Archives</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/about/">关于</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+  <div class="container page-content">
+    <div>
+    <div class="col-md-9 col-content">
+        <div id="post-content" class="panel panel-pithy post">
+            <div class="panel-heading">
+                <div class="title">
+                  <i class="fa fa-bookmark-o"></i>Bezier曲线曲面算法
+                </div>
+                <ul class="info">
+                    <li>
+                      作者 <span class="author"> 
+        
+            tanglei
+        
+        </span>
+                    </li>
+                    <li>
+                      最后编辑 2012年10月24日
+                    </li>
+                    <li>
+                      Tags
+                     
+                         <a class="tag" href="/tag/#OpenGL">OpenGL</a>
+                     
+                         <a class="tag" href="/tag/#计算机图形学">计算机图形学</a>
+                     
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body content">
+                <p>将按照如下目录记录在学习bezier曲线曲面的相关知识.</p>
+
+<ol>
+  <li>Bezier曲线
+    <ul>
+      <li>定义</li>
+      <li>Bernstein基函数的性质</li>
+      <li>Bezier曲线性质</li>
+      <li>de Casteljau算法</li>
+      <li>直接法</li>
+    </ul>
+  </li>
+  <li>Bezier曲面
+    <ul>
+      <li>定义</li>
+      <li>Bezier曲面性质</li>
+      <li>算法</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="一-bezier曲线">一. Bezier曲线</h3>
+
+<h4 id="1-定义">1. 定义</h4>
+
+<p><a href="/wp-content/uploads/2012/10/clip_image002.png"><img title="clip_image002" src="/wp-content/uploads/2012/10/clip_image002_thumb.png" alt="clip_image002" /></a></p>
+
+<p><a href="/wp-content/uploads/2012/10/clip_image004.png"><img title="clip_image004" src="/wp-content/uploads/2012/10/clip_image004_thumb.png" alt="clip_image004" /></a>其中<strong>,C__(<em>t</em>)</strong> 称为Bezier曲线,<strong><em>B<sub>i</sub></em><sub>,<em>n</em></sub>(<em>t</em>)</strong> 称为Bernstein基函数,<strong>P_<sub>i</sub>_</strong> 称为控制顶点;</p>
+
+<h4 id="2--bernstein基函数的性质">2 . Bernstein基函数的性质</h4>
+
+<p>1) <strong>非负性</strong></p>
+
+<p><a href="/wp-content/uploads/2012/10/clip_image0025.png"><img title="clip_image002[5]" src="/wp-content/uploads/2012/10/clip_image0025_thumb.png" alt="clip_image002[5]" /></a></p>
+
+<p>2) <strong>权性(1</strong><strong>的1</strong><strong>个划分)</strong></p>
+
+<p><a href="/wp-content/uploads/2012/10/clip_image0028.png"><img title="clip_image002[8]" src="/wp-content/uploads/2012/10/clip_image0028_thumb.png" alt="clip_image002[8]" /></a></p>
+
+<p><a href="/wp-content/uploads/2012/10/clip_image00210.png"><img title="clip_image002[10]" src="/wp-content/uploads/2012/10/clip_image00210_thumb.png" alt="clip_image002[10]" /></a>(<strong>根据二项式定理</strong>)</p>
+
+<p>3) <strong>对称性</strong></p>
+
+<p><a href="/wp-content/uploads/2012/10/clip_image00212.png"><img title="clip_image002[12]" src="/wp-content/uploads/2012/10/clip_image00212_thumb.png" alt="clip_image002[12]" /></a></p>
+
+<p>4) <strong>最大值</strong></p>
+
+<p>对于i=1,2,…, (n-1), B<sub>i,n</sub>(t)在区间[0, 1]上的最大值只能在一点处取得, 即: <a href="/wp-content/uploads/2012/10/clip_image00214.png"><img title="clip_image002[14]" src="/wp-content/uploads/2012/10/clip_image00214_thumb.png" alt="clip_image002[14]" /></a></p>
+
+<p>5) <strong>收敛性 (Weierstrass</strong><strong>第一定理, 1885)</strong></p>
+
+<p>对于任意的函数f(t) ∈C1[0,1],</p>
+
+<p><a href="/wp-content/uploads/2012/10/clip_image00216.png"><img title="clip_image002[16]" src="/wp-content/uploads/2012/10/clip_image00216_thumb.png" alt="clip_image002[16]" /></a></p>
+
+<p>6) <strong>递推性</strong></p>
+
+<p><em>B<sub>i</sub></em><sub>,<em>n</em></sub>(<em>t</em>)=(1-_t_)<em>B<sub>i</sub></em><sub>,<em>n</em>-1</sub>(<em>t</em>)+<em>tB<sub>i</sub></em><sub>-1,<em>n</em>-1</sub>(<em>t</em>)</p>
+
+<p>即高一次的Bernstein基函数可由两个低一次的Bernstein调和函数线性组合而成。</p>
+
+<h4 id="3-bezier曲线性质">3. Bezier曲线性质</h4>
+
+<p>1) <strong>端点插值性</strong></p>
+
+<p><a href="/wp-content/uploads/2012/10/clip_image00218.png"><img title="clip_image002[18]" src="/wp-content/uploads/2012/10/clip_image00218_thumb.png" alt="clip_image002[18]" /></a><em>**</em></p>
+
+<p>2) <strong>端点切向量</strong></p>
+
+<p><a href="/wp-content/uploads/2012/10/clip_image0045.png"><img title="clip_image004[5]" src="/wp-content/uploads/2012/10/clip_image0045_thumb.png" alt="clip_image004[5]" /></a></p>
+
+<p>Bezier曲线在起点处的切线位于前两个控制点的连线上，而终点处的切线位于最后两个控制点的连线上，即曲线起点和终点处的切线方向与起始折线段和终止折线段的切线方向一致.</p>
+
+<p>3) <strong>导数性质</strong></p>
+
+<p><a href="/wp-content/uploads/2012/10/clip_image006.png"><img title="clip_image006" src="/wp-content/uploads/2012/10/clip_image006_thumb.png" alt="clip_image006" /></a> 其中: ΔP_<sub>i</sub><em>=P</em><sub>i</sub><em><sub>+1</sub>-P</em><sub>i</sub>_</p>
+
+<p>导数可以通过差分表示</p>
+
+<p>4) <strong>对称性</strong></p>
+
+<p>Bernstein基函数的对称性</p>
+
+<p>5) <strong>凸包性</strong></p>
+
+<p>Bezier曲线各点均落在控制多边形各顶点构成的凸包之中，这里的凸包指的是包含所有顶点的最小凸多边形。Bezier曲线的凸包性保证了曲线随控制点平稳前进而不会振荡。<em>**</em></p>
+
+<p>6) <strong>几何不变性</strong></p>
+
+<p>Bezier曲线的形状仅与控制多边形各顶点的相对位置有关，而与坐标系的选择无关，即具有几何不变性。</p>
+
+<p>7) <strong>变差缩减性</strong></p>
+
+<p>Bezier曲线的变差减少性是指如果控制多边形是一个平面图形，则该平面内的任意直线与该Bezier曲线的交点个数不多于该直线与控制多边形的交点个数；如果控制多边形不是平面图形，则任意平面与Bezier曲线的交点个数不会超过它与控制多边形的交点个数。变差减少性反映了Bezier曲线比控制多边形波动得少，即比控制多边形更加光滑。</p>
+
+<h4 id="4-de-casteljau算法">4. de Casteljau算法</h4>
+
+<p>计算Bezier曲线上一点C(t<sub></sub>)</p>
+
+<p><a href="/wp-content/uploads/2012/10/clip_image002.jpg"><img title="decasteljau算法" src="/wp-content/uploads/2012/10/clip_image002_thumb.jpg" alt="decasteljau算法" /></a></p>
+
+<p>具体而言，实现可以用递归如下：</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="n">CP_Vector2D</span> <span class="nf">getBezierPoint</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">CP_Vector2D</span><span class="o">&gt;</span> <span class="n">controlPoints</span><span class="p">,</span> <span class="kt">double</span> <span class="n">t</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="k">return</span> <span class="n">controlPoints</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="n">getBezierPoint</span><span class="p">(</span><span class="n">controlPoints</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">t</span><span class="p">)</span><span class="o">+</span> <span class="n">getBezierPoint</span><span class="p">(</span><span class="n">controlPoints</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">t</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>后来实验发现，递归算法太慢，换成非递归，效果明显好转。</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="n">CP_Vector2D</span> <span class="nf">getBezierPointNotRecurrent</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">CP_Vector2D</span><span class="o">&gt;</span> <span class="n">controlPoints</span><span class="p">,</span> <span class="kt">double</span> <span class="n">t</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">vector</span><span class="o">&lt;</span><span class="n">CP_Vector2D</span><span class="o">&gt;</span> <span class="n">tempPoints</span><span class="p">(</span><span class="n">controlPoints</span><span class="p">);</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">tempPoints</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">tempPoints</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="n">i</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+			<span class="n">tempPoints</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">tempPoints</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="n">tempPoints</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">t</span><span class="p">;</span> 
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="n">tempPoints</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>代码见<a href="https://github.com/tl3shi/cagd/tree/master/task3">https://github.com/tl3shi/cagd/tree/master/task3</a>(说明，配图为当前代码演示结果，你现在看到的代码运行结果不是下面展示得到图片)效果如图.</p>
+
+<p><a href="/wp-content/uploads/2012/10/clip_image0026.jpg"><img title="bezier曲线,控制点" src="/wp-content/uploads/2012/10/clip_image0026_thumb.jpg" alt="bezier曲线,控制点" /></a></p>
+
+<h4 id="5-直接法">5. 直接法</h4>
+
+<p>直接通过上面的定义计算出每个点，然后再画出来。如下所示：</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="k">const</span> <span class="kt">int</span> <span class="n">maxControlPoint</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+	<span class="n">CP_Vector2D</span> <span class="n">controlPoints</span><span class="p">[</span><span class="n">maxControlPoint</span><span class="p">];</span>
+	<span class="n">controlPoints</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">CP_Vector2D</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">);</span>
+	<span class="n">controlPoints</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">CP_Vector2D</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">);</span>
+	<span class="n">controlPoints</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">CP_Vector2D</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">);</span>
+	<span class="n">controlPoints</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">CP_Vector2D</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">);</span>
+	
+	<span class="n">glColor3d</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+	<span class="n">glBegin</span><span class="p">(</span><span class="n">GL_LINE_STRIP</span><span class="p">);</span>
+	<span class="kt">double</span> <span class="n">t</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">besierSegment</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">t</span> <span class="o">+=</span> <span class="mf">1.0</span><span class="o">/</span><span class="n">besierSegment</span><span class="p">;</span>
+		<span class="n">CP_Vector2D</span> <span class="n">p</span> <span class="o">=</span> <span class="n">getBezierPoint</span><span class="p">(</span><span class="n">controlPoints</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+		<span class="n">glVertex2d</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">m_x</span> <span class="o">/</span> <span class="mi">10</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">m_y</span> <span class="o">/</span> <span class="mi">10</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="n">glEnd</span><span class="p">();</span>
+	
+	<span class="n">glLoadIdentity</span><span class="p">();</span>
+	<span class="n">glTranslated</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">);</span>   
+	<span class="n">glColor3d</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">);</span>
+	<span class="n">glBegin</span><span class="p">(</span><span class="n">GL_LINE_STRIP</span><span class="p">);</span>
+	<span class="n">t</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">besierSegment</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">t</span> <span class="o">+=</span> <span class="mf">1.0</span><span class="o">/</span><span class="n">besierSegment</span><span class="p">;</span>
+		<span class="n">CP_Vector2D</span> <span class="n">p</span><span class="p">;</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">kk</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">kk</span> <span class="o">&lt;</span> <span class="n">maxControlPoint</span><span class="p">;</span> <span class="n">kk</span><span class="o">++</span><span class="p">)</span> 
+		<span class="p">{</span>
+			<span class="n">p</span> <span class="o">+=</span> <span class="n">controlPoints</span><span class="p">[</span><span class="n">kk</span><span class="p">]</span> <span class="o">*</span> <span class="n">B</span><span class="p">(</span><span class="n">kk</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">t</span><span class="p">);</span>
+		<span class="p">}</span>
+
+		<span class="n">glVertex2d</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">m_x</span> <span class="o">/</span> <span class="mi">10</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">m_y</span> <span class="o">/</span> <span class="mi">10</span><span class="p">);</span>
+	<span class="p">}</span>
+
+	<span class="n">glEnd</span><span class="p">();</span>
+	<span class="n">glFlush</span><span class="p">();</span>
+</code></pre>
+</div>
+
+<p>结果如图：</p>
+
+<p><a href="/wp-content/uploads/2012/10/clip_image001.png"><img title="bezier curve" src="/wp-content/uploads/2012/10/clip_image001_thumb.png" alt="bezier curve" /></a></p>
+
+<h3 id="二bezier曲面">二、Bezier曲面</h3>
+
+<h4 id="1定义">1、定义</h4>
+
+<p><a href="/wp-content/uploads/2012/10/clip_image00220.png"><img title="clip_image002[20]" src="/wp-content/uploads/2012/10/clip_image00220_thumb.png" alt="clip_image002[20]" /></a></p>
+
+<p>其中，<a href="/wp-content/uploads/2012/10/clip_image0047.png"><img title="clip_image004[7]" src="/wp-content/uploads/2012/10/clip_image0047_thumb.png" alt="clip_image004[7]" /></a> <em>**</em>,S(<em>u</em>,<em>v</em>)称为Bezier曲面，<em>B<sub>i</sub></em><sub>,<em>n</em></sub>(<em>t</em>)称为Bernstein基函数，P_<sub>i</sub>_<sub>,<em>j</em></sub>称为控制顶点。</p>
+
+<h4 id="2-bezier曲面性质">2. bezier曲面性质</h4>
+
+<p>1) <strong>角点性质</strong></p>
+
+<p>Bezier曲面特征网格的四个角点正好是Bezier曲面的四个角点。S(0,0)=P<sub>0,0,</sub>S(0,1)=P<sub>0,<em>n,</em></sub>S(1,0)=P_<sub>m</sub><em><sub>,0,</sub>S(1,1)=P</em><sub>m</sub>_<sub>,<em>n.</em></sub></p>
+
+<p>2) <strong>边界线</strong></p>
+
+<p>Bezier曲面特征网格最外一圈顶点定义Bezier曲面的四条边界：S(0,v),S(1,v),S(u,0)S(u,1)</p>
+
+<p>3) <strong>凸包性、对称性、几何不变性等</strong></p>
+
+<h4 id="3-bezier曲面算法"><strong>3. Bezier曲面算法</strong></h4>
+
+<p>可以对定义的公式进行如下的变化</p>
+
+<p><a href="/wp-content/uploads/2012/10/clip_image00222.png"><img title="Bezier曲面算法" src="/wp-content/uploads/2012/10/clip_image00222_thumb.png" alt="Bezier曲面算法" /></a></p>
+
+<p><a href="/wp-content/uploads/2012/10/clip_image0049.png"><img title="clip_image004[9]" src="/wp-content/uploads/2012/10/clip_image0049_thumb.png" alt="clip_image004[9]" /></a></p>
+
+<p><a href="/wp-content/uploads/2012/10/clip_image0066.png"><img title="Bezier曲面算法" src="/wp-content/uploads/2012/10/clip_image0066_thumb.png" alt="Bezier曲面算法" /></a></p>
+
+<p><a href="/wp-content/uploads/2012/10/clip_image008.png"><img title="Bezier曲面算法" src="/wp-content/uploads/2012/10/clip_image008_thumb.png" alt="Bezier曲面算法" /></a></p>
+
+<p>de Casteljau算法：参考<a href="http://www.cs.mtu.edu/~shene/COURSES/cs3621/NOTES/surface/bezier-de-casteljau.html">http://www.cs.mtu.edu/~shene/COURSES/cs3621/NOTES/surface/bezier-de-casteljau.html</a></p>
+
+<div class="language-pascal highlighter-rouge"><pre class="highlight"><code><span class="n">Input</span><span class="p">:</span> <span class="n">a</span> <span class="n">m</span><span class="p">+</span><span class="m">1</span> <span class="n">rows</span> <span class="k">and</span> <span class="n">n</span><span class="p">+</span><span class="m">1</span> <span class="n">columns</span> <span class="k">of</span> <span class="n">control</span> <span class="n">points</span> <span class="k">and</span> <span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">).</span> 
+<span class="n">Output</span><span class="p">:</span> <span class="n">point</span> <span class="k">on</span> <span class="n">surface</span> <span class="n">p</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> 
+<span class="n">Algorithm</span><span class="p">:</span> 
+<span class="k">for</span> <span class="n">i</span> <span class="p">:=</span> <span class="m">0</span> <span class="k">to</span> <span class="n">m</span> <span class="k">do</span> 
+<span class="k">begin</span> 
+    <span class="n">Apply</span> <span class="n">de</span> <span class="n">Casteljau</span><span class="s">'s algorithm to the i-th row of control points with v; 
+    Let the point obtained be qi(v); 
+end
+Apply de Casteljau'</span><span class="n">s</span> <span class="n">algorithm</span> <span class="k">to</span> <span class="n">q0</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="n">q1</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="p">...,</span> <span class="n">qm</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">with</span> <span class="n">u</span><span class="p">;</span> 
+<span class="n">The</span> <span class="n">point</span> <span class="n">obtained</span> <span class="k">is</span> <span class="n">p</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>想像Bezier曲面由bezier曲线拼接而成，可以先把点给求出来。</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="n">besierSegment</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span>
+	<span class="k">const</span> <span class="kt">int</span> <span class="n">uNum</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span> <span class="n">vNum</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span>
+	<span class="n">CP_Vector3D</span> <span class="n">bezierPoints</span> <span class="p">[</span><span class="n">uNum</span><span class="p">][</span><span class="n">vNum</span><span class="p">];</span>
+
+	<span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">u</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">u</span> <span class="o">&lt;</span> <span class="n">uNum</span><span class="p">;</span> <span class="n">u</span><span class="o">++</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">t</span> <span class="o">=</span> <span class="n">u</span> <span class="o">*</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">besierSegment</span><span class="p">;</span>
+		<span class="n">vector</span><span class="o">&lt;</span><span class="n">CP_Vector3D</span><span class="o">&gt;</span> <span class="n">newControl</span><span class="p">;</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="n">CP_Vector3D</span> <span class="n">p</span> <span class="o">=</span> <span class="n">getBezierPointNotRecurrent</span><span class="p">(</span><span class="n">controlPoints</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">t</span><span class="p">);</span>
+			<span class="n">newControl</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+		<span class="p">}</span>
+		
+		<span class="n">glBegin</span><span class="p">(</span><span class="n">GL_LINE_STRIP</span><span class="p">);</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="n">vNum</span><span class="p">;</span> <span class="n">v</span><span class="o">++</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="n">t</span> <span class="o">=</span> <span class="n">v</span> <span class="o">*</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">besierSegment</span><span class="p">;</span>
+			<span class="n">CP_Vector3D</span> <span class="n">p</span> <span class="o">=</span> <span class="n">getBezierPointNotRecurrent</span><span class="p">(</span><span class="n">newControl</span><span class="p">,</span> <span class="n">t</span><span class="p">);</span>
+			<span class="n">glVertex3d</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">m_x</span> <span class="o">/</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">m_y</span> <span class="o">/</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">m_z</span> <span class="o">/</span> <span class="mf">1.0</span><span class="p">);</span>
+			<span class="n">bezierPoints</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="n">glEnd</span><span class="p">();</span>
+	<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>上面把一条条bezier曲线给画出来了，并求出bezier曲面上的点。然后通过<strong>四边形</strong>(三角形也可以)拼接出来即可，如下图：</p>
+
+<p><a href="/wp-content/uploads/2012/10/clip_image0016.png"><img title="bezier曲面拼接" src="/wp-content/uploads/2012/10/clip_image0016_thumb.png" alt="bezier曲面拼接" /></a></p>
+
+<p>相邻的4个点构成四边形，分别是bezierPoints[u][v]，[u+1][v]，[u+1][v+1]，[u][v+1]，遍历即可得到。</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">u</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">u</span> <span class="o">&lt;</span> <span class="n">uNum</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">u</span><span class="o">++</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">unsigned</span> <span class="n">v</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="n">vNum</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">v</span><span class="o">++</span> <span class="p">)</span>
+		<span class="p">{</span>  
+			<span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">);</span>
+			<span class="n">CP_Vector3D</span> <span class="n">p</span> <span class="o">=</span> <span class="n">bezierPoints</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">v</span><span class="p">];</span>
+			<span class="n">glVertex3d</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">m_x</span> <span class="o">/</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">m_y</span> <span class="o">/</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">m_z</span> <span class="o">/</span> <span class="mf">1.0</span><span class="p">);</span>
+			<span class="n">p</span> <span class="o">=</span> <span class="n">bezierPoints</span><span class="p">[</span><span class="n">u</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">v</span><span class="p">];</span>
+			<span class="n">glVertex3d</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">m_x</span> <span class="o">/</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">m_y</span> <span class="o">/</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">m_z</span> <span class="o">/</span> <span class="mf">1.0</span><span class="p">);</span>
+			<span class="n">p</span> <span class="o">=</span> <span class="n">bezierPoints</span><span class="p">[</span><span class="n">u</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">v</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
+			<span class="n">glVertex3d</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">m_x</span> <span class="o">/</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">m_y</span> <span class="o">/</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">m_z</span> <span class="o">/</span> <span class="mf">1.0</span><span class="p">);</span>
+			<span class="n">p</span> <span class="o">=</span> <span class="n">bezierPoints</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">v</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
+			<span class="n">glVertex3d</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">m_x</span> <span class="o">/</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">m_y</span> <span class="o">/</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">m_z</span> <span class="o">/</span> <span class="mf">1.0</span><span class="p">);</span>
+			<span class="n">glEnd</span><span class="p">();</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>优化的话，求法向量，加点颜色之类的可以更好看。</p>
+
+<p><a href="/wp-content/uploads/2012/10/clip_image0028.jpg"><img title="bezier曲面" src="/wp-content/uploads/2012/10/clip_image0028_thumb.jpg" alt="bezier曲面" /></a></p>
+
+<p>本例结果如上图所示，左边是最后画出的bezier曲面，右边红色的是由控制顶点连线构成的，灰色的是多条bezier曲线构成。参考程序见<a href="https://github.com/tl3shi/cagd/tree/master/task4">https://github.com/tl3shi/cagd/tree/master/task4</a> (说明，程序可能会修改，记录本文时结果如上图所示)。</p>
+
+            </div>
+            <div class="post-nav">
+    
+    <a class="prev" href=/blog/opengl-with-vim.html>&laquo; &nbsp;VIM编写OpenGL环境配置(MinGW)</a>
+    
+    
+    <a class="next" href=/blog/points-in-plane-with-delaunay-triangulation.html>平面点集的Delaunay三角剖分&nbsp;&raquo;</a>
+    
+</div>
+
+            
+        </div>
+        <!--
+            if config set comment enable,include comment
+        -->
+        
+            <!-- comment -->
+<div id="post-comment" class="panel panel-default">
+    <div class="panel-body">
+        
+
+        
+            <div id="disqus_thread"></div>
+        
+    </div>
+</div>
+
+        
+    </div>
+    <div class="col-md-3 col-sidebar">
+        <div class="panel panel-pithy author">
+    <div class="panel-heading avastar">
+        <img src="/tx.jpg" alt="tanglei"/>
+    </div>
+    <div class="panel-body">
+        码农 @ 宜信大数据创新中心, 毕业于CSU && THU,  曾工作于<a href='http://www.tencent.com/zh-cn/index.shtml' target='_blank'>腾讯</a> && <a href='http://www.umeng.com/' target='_blank'>友盟</a>.  &nbsp; <a href='/about/'> MORE </a>
+    </div>
+    <div class="panel-footer social">
+        <ul>
+            
+            <li>
+                <a rel="nofollow" href="http://www.weibo.com/tangleithu/" target="_blank"><i class="fa fa-weibo"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://github.com/tl3shi" target="_blank"><i class="fa fa-github"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://www.facebook.com/tanglei.name" target="_blank"><i class="fa fa-facebook"></i></a>
+            </li>
+            
+            <li>
+                <a href="https://www.tanglei.name/feed.xml" target="_blank"><i class="fa fa-rss"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar:category list -->
+<div class="panel panel-default categories">
+    <div class="panel-heading title">
+        分类列表
+    </div>
+    <div class="panel-body list">
+        <ul>
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/贵州支教行/">
+                  贵州支教行&nbsp;<span class="count">[12]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/课程学习/">
+                  课程学习&nbsp;<span class="count">[88]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/MyLife/">
+                  MyLife&nbsp;<span class="count">[45]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/经验技巧/">
+                  经验技巧&nbsp;<span class="count">[93]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/社会工作/">
+                  社会工作&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/网络文摘/">
+                  网络文摘&nbsp;<span class="count">[28]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件体系结构/">
+                  软件体系结构&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/旅游/">
+                  旅游&nbsp;<span class="count">[23]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软考/">
+                  软考&nbsp;<span class="count">[2]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件度量及其应用/">
+                  软件度量及其应用&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/工作那些事儿/">
+                  工作那些事儿&nbsp;<span class="count">[42]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我做站长/">
+                  我做站长&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/coding小工具/">
+                  coding小工具&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/除臭虫/">
+                  除臭虫&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/学到老/">
+                  学到老&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我不会算法/">
+                  我不会算法&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/数据挖掘/">
+                  数据挖掘&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/计算机图形学/">
+                  计算机图形学&nbsp;<span class="count">[5]</span>
+              </a>
+          </li>
+
+          
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar: tag list -->
+<div class="panel panel-default tags">
+    <div class="panel-heading title">
+        标签云
+    </div>
+    <div class="panel-body list">
+         
+        <input type="hidden" id="tag-values" value='{"name":"丰田助学","count":16},{"name":"贵州支教","count":12},{"name":"铜厂小学","count":9},{"name":"中南大学","count":12},{"name":"云南赶集","count":1},{"name":"HelloWorld","count":5},{"name":"我做站长","count":35},{"name":"设计模式","count":7},{"name":"Wordpress","count":18},{"name":"系统架构师","count":11},{"name":"软考","count":25},{"name":"论文","count":6},{"name":"软件0804","count":8},{"name":"Java","count":24},{"name":"J2EE","count":3},{"name":"JAVA","count":1},{"name":"考试","count":25},{"name":"SEO","count":3},{"name":"软件体系结构","count":6},{"name":"Android","count":28},{"name":"软件工程","count":2},{"name":"Windows","count":17},{"name":"软件测试","count":1},{"name":"总结","count":13},{"name":"Oracle","count":4},{"name":"存储过程","count":3},{"name":"数据库应用","count":3},{"name":"数据库","count":8},{"name":"先进班集体","count":1},{"name":"Linux","count":15},{"name":"Ubuntu","count":8},{"name":"Defy","count":3},{"name":"传感器","count":1},{"name":"访日交流","count":8},{"name":"旅游","count":22},{"name":"软件学院","count":11},{"name":"大学生科协","count":4},{"name":"玩遍中国","count":11},{"name":"计算机网络","count":5},{"name":"Eclipse","count":4},{"name":"软件度量","count":11},{"name":"软件设计师","count":4},{"name":"编译原理","count":2},{"name":"程序语言","count":2},{"name":"操作系统","count":3},{"name":"多媒体","count":2},{"name":"网络安全","count":9},{"name":"TCP/IP","count":2},{"name":"编程语言","count":1},{"name":"考点","count":1},{"name":"Google","count":5},{"name":"软件结构度量","count":1},{"name":"CMM","count":6},{"name":"项目管理","count":3},{"name":"实习","count":33},{"name":"面试","count":18},{"name":"网络营销","count":1},{"name":"百度","count":4},{"name":"笔试","count":2},{"name":"腾讯","count":31},{"name":"编程比赛","count":4},{"name":"科研","count":4},{"name":"电子商务","count":11},{"name":"虚拟主机","count":2},{"name":"网路安全","count":1},{"name":"Foxmail","count":3},{"name":"微软","count":1},{"name":"软件能力成熟度模型","count":2},{"name":"软件过程改进","count":3},{"name":"SCM复习资料","count":1},{"name":"软件配置管理","count":12},{"name":"SCM","count":6},{"name":"工具","count":19},{"name":"反模式","count":1},{"name":"玩玩手机","count":5},{"name":"程序员","count":4},{"name":"健康","count":1},{"name":"共享上网","count":2},{"name":"Bug","count":4},{"name":"coding小工具","count":1},{"name":"工作日志","count":19},{"name":"Apache","count":2},{"name":"PHP","count":13},{"name":"实习日志","count":1},{"name":"工作实习生","count":1},{"name":"Mysql","count":1},{"name":"Shell","count":3},{"name":"腾讯实习日志","count":1},{"name":"hosts","count":2},{"name":"Vim","count":3},{"name":"正则表达式","count":2},{"name":"搜索引擎","count":1},{"name":"跨域","count":1},{"name":"前端","count":2},{"name":"保研","count":15},{"name":"算法","count":9},{"name":"清华大学","count":12},{"name":"丰田助学金","count":3},{"name":"WiFi","count":1},{"name":"实习生","count":1},{"name":"wifi自动关闭","count":1},{"name":"腾讯实习","count":1},{"name":"经验技巧","count":13},{"name":"DDOS","count":2},{"name":"AOP","count":3},{"name":"租房","count":2},{"name":"Sqlite","count":2},{"name":"Python","count":11},{"name":"OOP","count":5},{"name":"数据挖掘","count":8},{"name":"GitHub","count":2},{"name":"SVM","count":3},{"name":"R语言","count":2},{"name":"足迹","count":2},{"name":"笛子","count":2},{"name":"计算机图形学","count":5},{"name":"OpenGL","count":3},{"name":"回忆录","count":1},{"name":"年终总结","count":1},{"name":"域名","count":1},{"name":"计算几何","count":2},{"name":"敲敲代码","count":9},{"name":"Latex","count":3},{"name":"C++","count":10},{"name":"Mac","count":7},{"name":"飞行模式","count":2},{"name":"性能优化","count":2},{"name":"Javascript","count":1},{"name":"工作","count":1},{"name":"玩遍世界","count":1},{"name":"Scala","count":2},{"name":"MyLife","count":1},{"name":"快捷键","count":1},{"name":"云服务","count":1},{"name":"Blog","count":1},{"name":"微信公众号","count":1}'/>
+        <div style="display: none"><a id="tag-value" class="taglink" rel="bookmark" href="/tag/#" data-target-cate="#"></a></div>
+        <div class="tag-values-container">
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+  </div>
+
+  <footer>
+  <div class="text-center">
+    © 2010-2016 All rights reserved.
+    Made with <a href="http://jekyllrb.com/" rel="nofollow" target="_blank">Jekyll</a>
+    & Modified by <a href="http://www.tanglei.name/about/" >Tanglei</a>
+    and <i class="fa fa-heart"></i> by <a rel="nofollow" href="https://github.com/guovz/jekyll-pithy" target="_blank">Pithy</a>
+  </div>
+  <div class="totop" data-toggle="totop">
+      <i class="fa fa-chevron-up"></i>
+  </div>
+</footer>
+
+
+  <!--the js include-->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="/assets/script/pithy.js"></script>
+
+<!--
+  the site comment script
+-->
+
+
+  <script>
+    
+    var disqus_config = function () {
+        this.page.url = 'https://www.tanglei.name/blog/bezier-curve-and-surface.html' ; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '/blog/bezier-curve-and-surface.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+        if($("#disqus_thread").length) {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://hexo-tanglei.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+    powered by Disqus.</a></noscript>
+
+
+
+<!--
+  the site analysis script
+-->
+
+  <!-- baidu analysis -->
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?f0117177475f54027bfcaceb8d668cee";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+</body>
+</html>

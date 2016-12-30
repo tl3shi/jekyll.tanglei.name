@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+  <head>
+    <title>tanglei's blog|唐磊的个人博客</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="keywords" content=",  , 唐磊, 中南大学, 清华大学, 软件工程师, 计算机, 全栈工程师" />
+    <meta name="description" content=",   中南大学|清华大学软件学院唐磊的博客,主攻软件工程,数据挖掘,这里记录了我的学习,生活和工作" />
+
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+
+  <!--Font awesome-->
+  <link href="/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- The pithy main css -->
+  <link rel="stylesheet" href="/assets/stylesheet/pithy.css">
+  <link rel="stylesheet" href="/assets/stylesheet/molokai.css">
+
+
+  <!--[if lt IE 9]>
+  <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv-printshiv.js"></script>
+  <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+  <![endif]-->
+  <link rel="alternate" type="application/rss+xml" title="tanglei's blog|唐磊的个人博客" href="https://www.tanglei.name/feed.xml" />
+</head>
+
+<body>
+  <nav class="navbar navbar-pithy" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+                data-target="#pithy-navbar" aria-expanded="false">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" rel="bookmark" href="/">TangLei</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="pithy-navbar">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="bookmark" href="/">首页</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/archives.html">Archives</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/about/">关于</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+  <div class="container page-content">
+    <div class="col-md-9 col-content">
+    
+      <!-- this is post list -->
+<div class="panel panel-pithy posts">
+    <div class="panel-heading">
+      <div class="title">
+        <a href="/blog/linux-compress-uncompress-files.html"><i class="fa fa-bookmark-o"></i>Linux 文件解压缩命令</a>
+      </div>
+    </div>
+    <div class="panel-body excerpt">
+        
+          <p>在linux下开发，一些命令不熟悉很囧啊。这两天得在开发机上配置qzhttp和ttc等。讲本地的一些tar包上传去后不知道用啥命令解压。网上找了个，搜藏下。</p>
+
+
+        
+    </div>
+    <div class="panel-footer operate">
+        <div class="pull-right">
+          <span class="time">
+              <i class="fa fa-clock-o"></i> 2011-07-18
+            </span>
+          <a class="read" rel="nofollow" href="/blog/linux-compress-uncompress-files.html#post-content">
+            <i class="fa fa-gg"></i> 阅读全文
+          </a>
+          <a class="comment" rel="nofollow" href="/blog/linux-compress-uncompress-files.html#post-comment">
+            <i class="fa fa-comment-o"></i> 评论
+          </a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+    
+      <!-- this is post list -->
+<div class="panel panel-pithy posts">
+    <div class="panel-heading">
+      <div class="title">
+        <a href="/blog/securecrt_file_up_and_down.html"><i class="fa fa-bookmark-o"></i>SecureCRT上传和下载文件命令</a>
+      </div>
+    </div>
+    <div class="panel-body excerpt">
+        
+          <p>公司开发机跟本机交互，通常用SecureCRT。</p>
+
+<p>secureCRT在linux上面的sz,rz命令与ssh的配合设置一下上传和下载的默认目录就行options–&gt;session options–&gt;file transfer 下可以设置上传和下载的目录。</p>
+
+<p>剩下的你只要在用SecureCRT登陆linux终端的时候：</p>
+
+<p>发送文件到客户端：sz filename zmodem接收可以自行启动.</p>
+
+<p>从客户端上传文件到linux服务端：rz 然后在 SecureCRT 里选文件发送,协议 zmodem.</p>
+
+        
+    </div>
+    <div class="panel-footer operate">
+        <div class="pull-right">
+          <span class="time">
+              <i class="fa fa-clock-o"></i> 2011-07-18
+            </span>
+          <a class="read" rel="nofollow" href="/blog/securecrt_file_up_and_down.html#post-content">
+            <i class="fa fa-gg"></i> 阅读全文
+          </a>
+          <a class="comment" rel="nofollow" href="/blog/securecrt_file_up_and_down.html#post-comment">
+            <i class="fa fa-comment-o"></i> 评论
+          </a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+    
+      <!-- this is post list -->
+<div class="panel panel-pithy posts">
+    <div class="panel-heading">
+      <div class="title">
+        <a href="/blog/mysql_query_case_sensitive.html"><i class="fa fa-bookmark-o"></i>php中mysql_query函数区分大小写</a>
+      </div>
+    </div>
+    <div class="panel-body excerpt">
+        
+          <p>今天写php代码的时候，发现一个问题，因为我的数据库是用mysqlfront建的，自动添加的字段是Id作为主键。然后我在查询的时候写了这样的代码：</p>
+
+
+        
+    </div>
+    <div class="panel-footer operate">
+        <div class="pull-right">
+          <span class="time">
+              <i class="fa fa-clock-o"></i> 2011-07-18
+            </span>
+          <a class="read" rel="nofollow" href="/blog/mysql_query_case_sensitive.html#post-content">
+            <i class="fa fa-gg"></i> 阅读全文
+          </a>
+          <a class="comment" rel="nofollow" href="/blog/mysql_query_case_sensitive.html#post-comment">
+            <i class="fa fa-comment-o"></i> 评论
+          </a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+    
+      <!-- this is post list -->
+<div class="panel panel-pithy posts">
+    <div class="panel-heading">
+      <div class="title">
+        <a href="/blog/tomcat-config-cgi.html"><i class="fa fa-bookmark-o"></i>Tomcat配置CGI实例</a>
+      </div>
+    </div>
+    <div class="panel-body excerpt">
+        
+          <p>腾讯实习的培训布置的作用中需要用Qzhttp+FastCGI+TTC架构写demo.网上参照了下,最后成功在Tomcat下配置CGI并实现简单例子.</p>
+
+<p>Tomcat提供了对CGI的支持，但默认情况下，Tomcat对CGI的支持被禁止了。开启支持要采取如下配置:</p>
+
+<p>将文件 $CATALINA_BASE/server/lib/servlets-cgi.renametojar 的名称修改为$CATALINA_BASE/server/lib/servlets-cgi.jar。有的还说要将此目录下servlets-ssi.renametojar改成servlets-ssi.jar. 如果想让Tomcat下所有的Application支持支持CGI，可以修改 $CATALINA_BASE/conf/web.xml；如果只希望某些Application支持CGI，那么只需要修改这些应用root目录下的/WEB-INF/web.xml文件。</p>
+
+<p>使用batch命令编写CGI脚本，可以将以下几行配置代码添加到web.xml就可完成对web.xml文件的修改(具体见下)：其中的参数: 配置CGI servlet的行为，涉及到以下几个servlet的初始化参数。</p>
+
+<p>cgiPathPrefix – CGI程序所在的目录，CGI servlet将按照以下路径搜索CGI程序：应用程序root目录 + 路径分割符 + cgiPathPrefix。其默认值为 WEB-INF/cgi。CGI程序应该放在WEB-INF下面的目录以防止程序被当作普通文件被下载或其脚本内容被查看。</p>
+
+<p>debug – 设置servlet在日志中记录调试信息的级别，其值越大，信息越详细。默认值为0。</p>
+
+<p>executable – 用来运行脚本的可执行程序，默认为perl。</p>
+
+<p>parameterEncoding – CGI servlet使用的编码类型名称。默认值取 System.getProperty(“file.encoding”,”UTF-8″)。</p>
+
+<p>passShellEnvironment – 是否将shell的环境变量传递给CGI脚本。默认值为false。</p>
+
+<p>举例：</p>
+
+<p>myeclipse新建一个web项目。web.xml内容如下</p>
+
+
+        
+    </div>
+    <div class="panel-footer operate">
+        <div class="pull-right">
+          <span class="time">
+              <i class="fa fa-clock-o"></i> 2011-07-18
+            </span>
+          <a class="read" rel="nofollow" href="/blog/tomcat-config-cgi.html#post-content">
+            <i class="fa fa-gg"></i> 阅读全文
+          </a>
+          <a class="comment" rel="nofollow" href="/blog/tomcat-config-cgi.html#post-comment">
+            <i class="fa fa-comment-o"></i> 评论
+          </a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+    
+      <!-- this is post list -->
+<div class="panel panel-pithy posts">
+    <div class="panel-heading">
+      <div class="title">
+        <a href="/blog/intern-in-tencent-study-on-sunday.html"><i class="fa fa-bookmark-o"></i>腾讯实习-周日学习</a>
+      </div>
+    </div>
+    <div class="panel-body excerpt">
+        
+          <p>今天周日,本来不上班的.但是鉴于自己对php还不熟悉,对明天要答疑的qzhttp+fastcgi+tcc的架构不了解这样的情况下,准备到公司主动加班.周日公司食堂不开啊没有班车各种不爽。</p>
+
+
+        
+    </div>
+    <div class="panel-footer operate">
+        <div class="pull-right">
+          <span class="time">
+              <i class="fa fa-clock-o"></i> 2011-07-17
+            </span>
+          <a class="read" rel="nofollow" href="/blog/intern-in-tencent-study-on-sunday.html#post-content">
+            <i class="fa fa-gg"></i> 阅读全文
+          </a>
+          <a class="comment" rel="nofollow" href="/blog/intern-in-tencent-study-on-sunday.html#post-comment">
+            <i class="fa fa-comment-o"></i> 评论
+          </a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+    
+      <!-- this is post list -->
+<div class="panel panel-pithy posts">
+    <div class="panel-heading">
+      <div class="title">
+        <a href="/blog/intern-in-tencent-no-working-in-weekend.html"><i class="fa fa-bookmark-o"></i>腾讯实习-周末不上班</a>
+      </div>
+    </div>
+    <div class="panel-body excerpt">
+        
+          <p>今天第一觉醒来，去上厕所，看了下时间7点多，还早。就算去公司也还早。于是睡下……再醒来，9点半了，去公司也没班车了，就不去了吧。然后主要是公司周末加班的话，食堂也没开。看来TX是不鼓励大家周末加班的。所以也没有加班费这一说了。</p>
+
+
+        
+    </div>
+    <div class="panel-footer operate">
+        <div class="pull-right">
+          <span class="time">
+              <i class="fa fa-clock-o"></i> 2011-07-17
+            </span>
+          <a class="read" rel="nofollow" href="/blog/intern-in-tencent-no-working-in-weekend.html#post-content">
+            <i class="fa fa-gg"></i> 阅读全文
+          </a>
+          <a class="comment" rel="nofollow" href="/blog/intern-in-tencent-no-working-in-weekend.html#post-comment">
+            <i class="fa fa-comment-o"></i> 评论
+          </a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+    
+      <!-- this is post list -->
+<div class="panel panel-pithy posts">
+    <div class="panel-heading">
+      <div class="title">
+        <a href="/blog/intern-in-tencent-the-third-day.html"><i class="fa fa-bookmark-o"></i>腾讯实习-第三天</a>
+      </div>
+    </div>
+    <div class="panel-body excerpt">
+        
+          <p>今天上午有培训了。早上班车过去，下车的时候买包子，Carmelo差点就把我收藏的“古币”给用了，幸好被我发现了，给换回来了。上午9点半到达腾讯2412.讲的是公共组件与后台技术的介绍。一些基本概念，框架。后来讲了腾讯内部使用的框架，Qzhttp，TTC等。还有CGI，还布置了一个作业。Qzhttp,ttc，cgi程序连一下，配置。cgi用C++写，我表示压力很大啊。分组写，当然我跟我小组的brian，还有Carmelo了。brian29号那批，现在在跟项目有任务了，但还得跟我们这批实习生培训。</p>
+
+
+        
+    </div>
+    <div class="panel-footer operate">
+        <div class="pull-right">
+          <span class="time">
+              <i class="fa fa-clock-o"></i> 2011-07-16
+            </span>
+          <a class="read" rel="nofollow" href="/blog/intern-in-tencent-the-third-day.html#post-content">
+            <i class="fa fa-gg"></i> 阅读全文
+          </a>
+          <a class="comment" rel="nofollow" href="/blog/intern-in-tencent-the-third-day.html#post-comment">
+            <i class="fa fa-comment-o"></i> 评论
+          </a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+    
+      <!-- this is post list -->
+<div class="panel panel-pithy posts">
+    <div class="panel-heading">
+      <div class="title">
+        <a href="/blog/xampp-start-but-access-forbidden-errorno-403.html"><i class="fa fa-bookmark-o"></i>XAMPP安装后出现拒绝访问-Access forbidden-Error 403</a>
+      </div>
+    </div>
+    <div class="panel-body excerpt">
+        
+          <p>前面说到XAMPP安装后配环境时出现了问题就是这个，说也奇怪，刚开始安装完毕后，就能正常访问到XAMPP的首页，让选择语言。当我在eclipse里面新建一个工作空间到htdocs后就不行了，访问就一直拒绝。这奇怪啊，我eclipse搞个工作空间到htdocs里面有啥影响啊。这个问题出现的原因未解。有时候出现的一些莫名其妙的问题是无法解释的。</p>
+
+
+        
+    </div>
+    <div class="panel-footer operate">
+        <div class="pull-right">
+          <span class="time">
+              <i class="fa fa-clock-o"></i> 2011-07-15
+            </span>
+          <a class="read" rel="nofollow" href="/blog/xampp-start-but-access-forbidden-errorno-403.html#post-content">
+            <i class="fa fa-gg"></i> 阅读全文
+          </a>
+          <a class="comment" rel="nofollow" href="/blog/xampp-start-but-access-forbidden-errorno-403.html#post-comment">
+            <i class="fa fa-comment-o"></i> 评论
+          </a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+    
+    <nav>
+      <div class="pagination-x">
+    
+    <a href="/">&lt;&lt;</a>
+    
+    
+      
+        <a href="/page/23/">&lt;</a>
+      
+    
+
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+
+    
+    
+    
+    
+      
+        <a href="/page/21/">21</a>
+      
+    
+      
+        <a href="/page/22/">22</a>
+      
+    
+      
+        <a href="/page/23/">23</a>
+      
+    
+      
+        <span class="curr-page">24</span>
+      
+    
+      
+        <a href="/page/25/">25</a>
+      
+    
+      
+        <a href="/page/26/">26</a>
+      
+    
+      
+        <a href="/page/27/">27</a>
+      
+    
+      
+        <a href="/page/28/">28</a>
+      
+    
+      
+        <a href="/page/29/">29</a>
+      
+    
+      
+        <a href="/page/30/">30</a>
+      
+    
+
+
+    
+      <a href="/page/25/">&gt;</a>
+    
+    
+    <a href="/page/51/">&gt;&gt;</a>
+    
+</div>
+     
+    </nav>
+</div>    
+<div class="col-md-3 col-sidebar">
+    <div class="panel panel-pithy author">
+    <div class="panel-heading avastar">
+        <img src="/tx.jpg" alt="tanglei"/>
+    </div>
+    <div class="panel-body">
+        码农 @ 宜信大数据创新中心, 毕业于CSU && THU,  曾工作于<a href='http://www.tencent.com/zh-cn/index.shtml' target='_blank'>腾讯</a> && <a href='http://www.umeng.com/' target='_blank'>友盟</a>.  &nbsp; <a href='/about/'> MORE </a>
+    </div>
+    <div class="panel-footer social">
+        <ul>
+            
+            <li>
+                <a rel="nofollow" href="http://www.weibo.com/tangleithu/" target="_blank"><i class="fa fa-weibo"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://github.com/tl3shi" target="_blank"><i class="fa fa-github"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://www.facebook.com/tanglei.name" target="_blank"><i class="fa fa-facebook"></i></a>
+            </li>
+            
+            <li>
+                <a href="https://www.tanglei.name/feed.xml" target="_blank"><i class="fa fa-rss"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+    <!-- sidebar:category list -->
+<div class="panel panel-default categories">
+    <div class="panel-heading title">
+        分类列表
+    </div>
+    <div class="panel-body list">
+        <ul>
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/贵州支教行/">
+                  贵州支教行&nbsp;<span class="count">[12]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/课程学习/">
+                  课程学习&nbsp;<span class="count">[88]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/MyLife/">
+                  MyLife&nbsp;<span class="count">[45]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/经验技巧/">
+                  经验技巧&nbsp;<span class="count">[93]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/社会工作/">
+                  社会工作&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/网络文摘/">
+                  网络文摘&nbsp;<span class="count">[28]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件体系结构/">
+                  软件体系结构&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/旅游/">
+                  旅游&nbsp;<span class="count">[23]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软考/">
+                  软考&nbsp;<span class="count">[2]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件度量及其应用/">
+                  软件度量及其应用&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/工作那些事儿/">
+                  工作那些事儿&nbsp;<span class="count">[42]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我做站长/">
+                  我做站长&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/coding小工具/">
+                  coding小工具&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/除臭虫/">
+                  除臭虫&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/学到老/">
+                  学到老&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我不会算法/">
+                  我不会算法&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/数据挖掘/">
+                  数据挖掘&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/计算机图形学/">
+                  计算机图形学&nbsp;<span class="count">[5]</span>
+              </a>
+          </li>
+
+          
+        </ul>
+    </div>
+</div>
+
+    <!-- sidebar: tag list -->
+<div class="panel panel-default tags">
+    <div class="panel-heading title">
+        标签云
+    </div>
+    <div class="panel-body list">
+         
+        <input type="hidden" id="tag-values" value='{"name":"丰田助学","count":16},{"name":"贵州支教","count":12},{"name":"铜厂小学","count":9},{"name":"中南大学","count":12},{"name":"云南赶集","count":1},{"name":"HelloWorld","count":5},{"name":"我做站长","count":35},{"name":"设计模式","count":7},{"name":"Wordpress","count":18},{"name":"系统架构师","count":11},{"name":"软考","count":25},{"name":"论文","count":6},{"name":"软件0804","count":8},{"name":"Java","count":24},{"name":"J2EE","count":3},{"name":"JAVA","count":1},{"name":"考试","count":25},{"name":"SEO","count":3},{"name":"软件体系结构","count":6},{"name":"Android","count":28},{"name":"软件工程","count":2},{"name":"Windows","count":17},{"name":"软件测试","count":1},{"name":"总结","count":13},{"name":"Oracle","count":4},{"name":"存储过程","count":3},{"name":"数据库应用","count":3},{"name":"数据库","count":8},{"name":"先进班集体","count":1},{"name":"Linux","count":15},{"name":"Ubuntu","count":8},{"name":"Defy","count":3},{"name":"传感器","count":1},{"name":"访日交流","count":8},{"name":"旅游","count":22},{"name":"软件学院","count":11},{"name":"大学生科协","count":4},{"name":"玩遍中国","count":11},{"name":"计算机网络","count":5},{"name":"Eclipse","count":4},{"name":"软件度量","count":11},{"name":"软件设计师","count":4},{"name":"编译原理","count":2},{"name":"程序语言","count":2},{"name":"操作系统","count":3},{"name":"多媒体","count":2},{"name":"网络安全","count":9},{"name":"TCP/IP","count":2},{"name":"编程语言","count":1},{"name":"考点","count":1},{"name":"Google","count":5},{"name":"软件结构度量","count":1},{"name":"CMM","count":6},{"name":"项目管理","count":3},{"name":"实习","count":33},{"name":"面试","count":18},{"name":"网络营销","count":1},{"name":"百度","count":4},{"name":"笔试","count":2},{"name":"腾讯","count":31},{"name":"编程比赛","count":4},{"name":"科研","count":4},{"name":"电子商务","count":11},{"name":"虚拟主机","count":2},{"name":"网路安全","count":1},{"name":"Foxmail","count":3},{"name":"微软","count":1},{"name":"软件能力成熟度模型","count":2},{"name":"软件过程改进","count":3},{"name":"SCM复习资料","count":1},{"name":"软件配置管理","count":12},{"name":"SCM","count":6},{"name":"工具","count":19},{"name":"反模式","count":1},{"name":"玩玩手机","count":5},{"name":"程序员","count":4},{"name":"健康","count":1},{"name":"共享上网","count":2},{"name":"Bug","count":4},{"name":"coding小工具","count":1},{"name":"工作日志","count":19},{"name":"Apache","count":2},{"name":"PHP","count":13},{"name":"实习日志","count":1},{"name":"工作实习生","count":1},{"name":"Mysql","count":1},{"name":"Shell","count":3},{"name":"腾讯实习日志","count":1},{"name":"hosts","count":2},{"name":"Vim","count":3},{"name":"正则表达式","count":2},{"name":"搜索引擎","count":1},{"name":"跨域","count":1},{"name":"前端","count":2},{"name":"保研","count":15},{"name":"算法","count":9},{"name":"清华大学","count":12},{"name":"丰田助学金","count":3},{"name":"WiFi","count":1},{"name":"实习生","count":1},{"name":"wifi自动关闭","count":1},{"name":"腾讯实习","count":1},{"name":"经验技巧","count":13},{"name":"DDOS","count":2},{"name":"AOP","count":3},{"name":"租房","count":2},{"name":"Sqlite","count":2},{"name":"Python","count":11},{"name":"OOP","count":5},{"name":"数据挖掘","count":8},{"name":"GitHub","count":2},{"name":"SVM","count":3},{"name":"R语言","count":2},{"name":"足迹","count":2},{"name":"笛子","count":2},{"name":"计算机图形学","count":5},{"name":"OpenGL","count":3},{"name":"回忆录","count":1},{"name":"年终总结","count":1},{"name":"域名","count":1},{"name":"计算几何","count":2},{"name":"敲敲代码","count":9},{"name":"Latex","count":3},{"name":"C++","count":10},{"name":"Mac","count":7},{"name":"飞行模式","count":2},{"name":"性能优化","count":2},{"name":"Javascript","count":1},{"name":"工作","count":1},{"name":"玩遍世界","count":1},{"name":"Scala","count":2},{"name":"MyLife","count":1},{"name":"快捷键","count":1},{"name":"云服务","count":1},{"name":"Blog","count":1},{"name":"微信公众号","count":1}'/>
+        <div style="display: none"><a id="tag-value" class="taglink" rel="bookmark" href="/tag/#" data-target-cate="#"></a></div>
+        <div class="tag-values-container">
+        </div>
+    </div>
+</div>
+
+    <!-- sidebar:category list -->
+<div class="panel panel-default categories">
+    <div class="panel-heading title">
+        Blogs 
+    </div>
+    <div class="panel-body">
+        <ul>
+          <li><a href="https://dickwu.com/" title="Dick Wu" target="_blank">Dick Wu</a></li>
+          <li><a href="http://www.klion26.com/" title="Klion26" target="_blank">Klion26</a></li>
+          <li><a href="http://www.programlife.net/" rel="friend met colleague neighbor" target="_blank">代码疯子</a></li>
+          <li><a href="http://liangjiabin.com/" rel="friend met colleague neighbor" target="_blank">梁佳宾的网络日志</a></li>
+          <li><a href="http://ilovetile.com/" title="王思捷-前端" target="_blank">我爱平铺</a></li>
+          <li><a href="http://blog.haipo.me/" title="杨海坡" target="_blank">杨海坡</a></li>
+          <li><a href="http://www.dreamflier.net/blog/user1/3/index.html" target="_blank">梦翔天空</a></li>
+          <li><a href="http://www.the5fire.com" rel="friend" target="_blank">胡阳个人博客</a></li>
+          <li><a href="http://www.yunweipai.com/" title="运维派" target="_blank">运维派</a></li>
+          <li><a href="http://www.thuflute.com/index.html" title="清华大学笛子协会~我创立滴哦~ :)" target="_blank">清华大学笛子协会</a></li>
+          <li><a href="http://coolshell.cn/" target="_blank">酷壳</a></li>
+          <li><a href="http://zhiqiang.org/blog/" title="阅微堂" target="_blank">阅微堂</a></li>
+        </ul>
+    </div>
+</div>
+
+</div>
+
+  </div>
+
+  <footer>
+  <div class="text-center">
+    © 2010-2016 All rights reserved.
+    Made with <a href="http://jekyllrb.com/" rel="nofollow" target="_blank">Jekyll</a>
+    & Modified by <a href="http://www.tanglei.name/about/" >Tanglei</a>
+    and <i class="fa fa-heart"></i> by <a rel="nofollow" href="https://github.com/guovz/jekyll-pithy" target="_blank">Pithy</a>
+  </div>
+  <div class="totop" data-toggle="totop">
+      <i class="fa fa-chevron-up"></i>
+  </div>
+</footer>
+
+
+  <!--the js include-->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="/assets/script/pithy.js"></script>
+
+<!--
+  the site comment script
+-->
+
+
+  <script>
+    
+    var disqus_config = function () {
+        this.page.url = 'https://www.tanglei.name/page/24/' ; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '/page/24/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+        if($("#disqus_thread").length) {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://hexo-tanglei.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+    powered by Disqus.</a></noscript>
+
+
+
+<!--
+  the site analysis script
+-->
+
+  <!-- baidu analysis -->
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?f0117177475f54027bfcaceb8d668cee";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+</body>
+</html>

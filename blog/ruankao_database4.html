@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+  <head>
+    <title>软考：数据库知识(四)</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="keywords" content="软考：数据库知识(四), 课程学习, 软考,数据库,, 唐磊, 中南大学, 清华大学, 软件工程师, 计算机, 全栈工程师" />
+    <meta name="description" content="软考：数据库知识(四), 课程学习, 软考,数据库, 1.7关系数据库规范化理论 **" />
+
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+
+  <!--Font awesome-->
+  <link href="/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- The pithy main css -->
+  <link rel="stylesheet" href="/assets/stylesheet/pithy.css">
+  <link rel="stylesheet" href="/assets/stylesheet/molokai.css">
+
+
+  <!--[if lt IE 9]>
+  <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv-printshiv.js"></script>
+  <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+  <![endif]-->
+  <link rel="alternate" type="application/rss+xml" title="tanglei's blog|唐磊的个人博客" href="https://www.tanglei.name/feed.xml" />
+</head>
+
+<body>
+  <nav class="navbar navbar-pithy" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+                data-target="#pithy-navbar" aria-expanded="false">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" rel="bookmark" href="/">TangLei</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="pithy-navbar">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="bookmark" href="/">首页</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/archives.html">Archives</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/about/">关于</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+  <div class="container page-content">
+    <div>
+    <div class="col-md-9 col-content">
+        <div id="post-content" class="panel panel-pithy post">
+            <div class="panel-heading">
+                <div class="title">
+                  <i class="fa fa-bookmark-o"></i>软考：数据库知识(四)
+                </div>
+                <ul class="info">
+                    <li>
+                      作者 <span class="author"> 
+        
+            tanglei
+        
+        </span>
+                    </li>
+                    <li>
+                      最后编辑 2011年04月20日
+                    </li>
+                    <li>
+                      Tags
+                     
+                         <a class="tag" href="/tag/#软考">软考</a>
+                     
+                         <a class="tag" href="/tag/#数据库">数据库</a>
+                     
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body content">
+                <p><strong>1.7</strong><strong>关系数据库规范化理论</strong> <em>**</em></p>
+
+<p>为了使数据库设计的方法走向完备，人们研究了规范化理论，指导我们设计规范的数据库模式。按属性间依赖情况来区分，关系规范化的程度为第一范式、第二范式、第三范式、BCNF范式和第四范式等。</p>
+
+<p><strong>函数依赖</strong></p>
+
+<p>数据依赖是现实世界中属性间联系和约束的抽象，是数据的内在性质。</p>
+
+<p>函数依赖（functional dependency，FD ）是一种最重要、最基本的数据依赖。其具体定义如下：</p>
+
+<p>设有关系模式R（U），X和Y是属性集U的子集，FD是行为X→Y的一个命题，只要r是R的关系，对r中任意两个元组都有“X值相等蕴涵Y值相等”，那么函数依赖X→Y在关系模式R（U）中成立。</p>
+
+<p>FD与侯选键之间的关系：若存在X-&gt;U，并且不存在X的任意真子集X1，使得X1-&gt;U成立，那么就称X为关系的一个侯选键。</p>
+
+<p>函数依赖还有几条推理规则：</p>
+
+<p>自反性；增广性；传递性；并规则；分解规则；伪传递规则；</p>
+
+<p>◆模式分解：目的是消除冗余和操作异常问题</p>
+
+<p>模式分解的三个定义：</p>
+
+<p>          分解具有“无损连接性”</p>
+
+<p>          分解要“保持函数依赖”</p>
+
+<p>          分解既要“保持函数依赖”，又要具有“无损连接性”。</p>
+
+<p>关系模式分解的两个特性实际涉及到两个数据库模式的等价性问题。包括数据等价和依赖等价两个方面：</p>
+
+<p>数据等价：两个数据库实例应表示同样的信息内容，用“无损联接”衡量。</p>
+
+<p>依赖等价：两个数据库模式应有相互逻辑关系的函数依赖集，此时数据的语义是不会出现差错的。</p>
+
+<p>例：关系模式 S-L-C(SNO，SDEPT，SLOC，CNO，G)中，SLOC为学生的住处，并且每个系的学生住在同一个地方。</p>
+
+<p>这里码为(SNO,CNO)。函数依赖有：</p>
+
+<p>(SNO,CNO) G</p>
+
+<p>SNO→SDEPT,</p>
+
+<p>(SNO,CNO) SDEPT SNO→SLOC,</p>
+
+<p>(SNO,CNO) SLOC</p>
+
+<p>SDEPT→SLOC</p>
+
+<p>用投影分解把关系模式S-L-C分解为3NF范式，且保持函数依赖。</p>
+
+<p>解法：</p>
+
+<p>⑴ 对R〈U,F〉中的函数依赖集F进行“极小化处理”。</p>
+
+<p>F= { SNO,CNO→G，SNO→SDEPT，SDEPT→SLOC }。</p>
+
+<p>⑵ R中没有不在F中出现的属性。</p>
+
+<p>⑶ 不存在X→AÎF，且XA=U，接着做第 = 4 * GB2 ⑷步。</p>
+
+<p>⑷ 对F按具有相同左部的原则分组。</p>
+
+<p>r={SC{ SNO,CNO,G }，SNO,CNO→G}，S-D〈{ SNO,SDEPT }, SNO→SDEPT〉，</p>
+
+<p>D-L〈{ SDEPT,SLOC }, SDEPT→SLOC〉}</p>
+
+<p>◆范式</p>
+
+<p>范式（normal form，NF）是衡量关系模式的优劣的标准。范式有很多种，与数据依赖有着直接的联系。</p>
+
+<p>第一范式1NF</p>
+
+<p>如果关系模式R中，每个分量是不可分的数据项，就称R属于第一范式。</p>
+
+<p>第二范式2NF</p>
+
+<p>若关系模式R属于1NF，且每个非主属性完全函数依赖于候选关键字，则称R属于第二范式。</p>
+
+<p>第三范式3NF</p>
+
+<p>若关系模式R属于1NF，且每个非主属性都不传递依赖于R的候选关键字，则称R属于第三范式。</p>
+
+<p>这里的主属性是指键的属性，而不是任何键的属性就是非主属性</p>
+
+<p>BC范式BCNF</p>
+
+<p>若关系模式R属于1NF，且每个属性都不传递依赖于R的候选关键字，则称R属于BC范式。</p>
+
+<p>由上可知，4种范式之间的关系：BCNF&lt;3NF&lt;2NF&lt;1NF</p>
+
+<p><strong>2.3</strong> <strong>关系运算</strong> <em>**</em></p>
+
+<p>用例子说明前面的概念</p>
+
+<p>设关系R：         ——————————-</p>
+
+<p>A     B      C</p>
+
+<p>——————————-</p>
+
+<p>a      b      c</p>
+
+<p>d      a      f</p>
+
+<p>c      b      d</p>
+
+<p>关系S：      ———————————-</p>
+
+<p>A      B       C</p>
+
+<p>———————————-</p>
+
+<p>b      g       a</p>
+
+<p>d      a       f</p>
+
+<p>则R∪S为：           ——————————</p>
+
+<p>A   B    C</p>
+
+<p>——————————</p>
+
+<p>a    b     c</p>
+
+<p>d    a     f</p>
+
+<p>c    d     b</p>
+
+<p>b    g     a</p>
+
+<p>R－S为：             —————————–</p>
+
+<p>A    B    C</p>
+
+<p>——————————-</p>
+
+<p>a     b      c</p>
+
+<p>c     b      d</p>
+
+<p>R×S为：——————————————————————–</p>
+
+<p>R.A    R.B     R.C    S.A    S.B    S.C</p>
+
+<p>———————————————————————-</p>
+
+<p>a        b        c       b        g       a</p>
+
+<p>a        b        c       d        a       f</p>
+
+<p>d         a        f        b        g       a</p>
+
+<p>d         a        f        d        a        f</p>
+
+<p>c         b       d        b        g        a</p>
+
+<p>c         b       d       d        a        f</p>
+
+<p>（R）为：                       ———————-</p>
+
+<p>A     C</p>
+
+<p>———————-</p>
+
+<p>a      c</p>
+
+<p>d      f</p>
+
+<p>c      d</p>
+
+<p>（R)为：                   ————————–</p>
+
+<p>A     B     C</p>
+
+<p>————————-</p>
+
+<p>a      b     c</p>
+
+<p>c     b     d</p>
+
+<p>关系R:     —————————      关系S为：———————</p>
+
+<p>A            B            C                        D     E</p>
+
+<p>—————————–              ———————-</p>
+
+<p>1            2            3                         3      1</p>
+
+<p>4            5            6                          6      2</p>
+
+<p>7            8            9</p>
+
+<p>则：小于联接R│×│S为：———————————</p>
+
+<p>2&lt;1                       A        B     C     D    E</p>
+
+<p>———————————-</p>
+
+<p>1         2     3     3     1</p>
+
+<p>1         2     3     6     2</p>
+
+<p>4         5     6     6     2</p>
+
+<p>若关系R为：——————             关系S为：—————–</p>
+
+<p>A   B     C                              B    C   D</p>
+
+<p>——————-                       ——————-</p>
+
+<p>a    b     c                               b     c   d</p>
+
+<p>d     b     c                               b     c   e</p>
+
+<p>b     b     f                                a     d    f</p>
+
+<p>c    a     d</p>
+
+<p>则：自然联接R×S为：                    —————————-</p>
+
+<p>A     B     C     D</p>
+
+<p>————————–</p>
+
+<p>a     b     c     d</p>
+
+<p>a     b     c     e</p>
+
+<p>d     b     c     d</p>
+
+<p>d     b     c     e</p>
+
+<p>c     a     d     f</p>
+
+<p>若关系R为：       ————————–   关系S为：—————</p>
+
+<p>A     B     C     D                        C     D</p>
+
+<p>————————–             —————</p>
+
+<p>a      b     c      d                      c     d</p>
+
+<p>a      b     e      f                      e      f</p>
+
+<p>`                             b      c     e      f</p>
+
+<p>e      d     c      d</p>
+
+<p>e      d     e      f</p>
+
+<p>a      b     d      e</p>
+
+<p>则R÷S为：          ————–</p>
+
+<p>A            B</p>
+
+<p>—————</p>
+
+<p>a             b</p>
+
+<p>e             d</p>
+
+<p>例题：</p>
+
+<p>若有关系模式R(A，B，C)和S(C，D，E)，对于如下的关系代数表达式：（数据库）</p>
+
+<p>E=∏A,D(σB&lt;‘2003’∧R.C=S.C∧E=’80′(R×S))</p>
+
+<p>E=∏A,D(σR.C=S.C(σB&lt;‘2003′(R)×σE=’80′(S)))</p>
+
+<p>E=∏A,D(σB&lt;‘2003′(R)σE=’80′(S))</p>
+
+<p>E=∏A,D(σB&lt;‘2003’∧E=’80′(RS))</p>
+
+<p>正确的结论是__A__ ，表达式 __C__ 的查询效率最高。</p>
+
+<table border="0" cellspacing="1" cellpadding="0" width="94%">
+  <tr>
+    <td colspan="2" width="50%">
+      (20) A. E<sub>1</sub>≡E<sub>2</sub>≡E<sub>3</sub>≡E<sub>4</sub>
+    </td>
+    
+    <td colspan="2" width="50%">
+      B. E<sub>3</sub>≡E<sub>4</sub>但E<sub>1</sub>≠E<sub>2</sub>
+    </td>
+  </tr>
+  
+  <tr>
+    <td colspan="2" width="50%">
+      C. E<sub>1</sub>≡E<sub>2</sub>但E<sub>3</sub>≠E<sub>4</sub>
+    </td>
+    
+    <td colspan="2" width="50%">
+      D. E<sub>3</sub>≠E<sub>4</sub>但E<sub>2</sub>≡E<sub>4</sub>
+    </td>
+  </tr>
+  
+  <tr>
+    <td width="24%">
+      (21) A. E<sub>1</sub>
+    </td>
+    
+    <td width="26%">
+      C. E<sub>3</sub>
+    </td>
+    
+    <td width="25%">
+      B. E<sub>2</sub>
+    </td>
+    
+    <td width="25%">
+      D. E<sub>4</sub>
+    </td>
+  </tr>
+  
+  <tr>
+    <td width="169">
+    </td>
+    
+    <td width="183">
+    </td>
+    
+    <td width="176">
+    </td>
+    
+    <td width="176">
+    </td>
+  </tr>
+</table>
+
+<table border="0" cellspacing="1" cellpadding="0" width="94%">
+  <tr>
+    <td width="169">
+    </td>
+    
+    <td width="183">
+    </td>
+    
+    <td width="176">
+    </td>
+    
+    <td width="176">
+    </td>
+  </tr>
+</table>
+
+<p>例<strong>关系范式：</strong></p>
+
+<hr />
+
+<p>设有以图书管理数据库，其关系模式是R<sub></sub>（L#，B#，BNAME，BPRICE，BPUB），其属性分别表示个人借书证号、书号、书名、书价、图书出版社。该关系模式<strong>A</strong>。它的主要问题是数据冗余。如把R<sub></sub>分解成两个关系模式R<sub>1</sub><strong>B</strong>和R<sub>2</sub><strong>C</strong>，则可以部分的解决这一问题。R<sub>1</sub>和R<sub>2</sub>是规范化程度较差的范式<strong>D</strong>。另外一种分解方法可以得到3个模式R<sub>3</sub>（L#，B#），R<sub>4</sub>（B#，BNAME），R<sub>5</sub>（BNAME，BPRICE，BPUB），则R<sub>3</sub>、R<sub>4</sub>和R<sub>5</sub>都<strong>E</strong>。</p>
+
+<p>A、D、E：   ①属于第一范式但不属于第二范式</p>
+
+<p>②属于第二范式但不属于第三范式</p>
+
+<p>③属于第三范式</p>
+
+<p>④不是范式</p>
+
+<p>⑤属于第二范式但不属于第一范式</p>
+
+<p>⑥属于第三范式但不属于第二范式</p>
+
+<p>B、C：      ①（L#，B#，BPRICE）               ②（L#，B#）</p>
+
+<p>③（B#，BNAME）                    ④（B#，BNAME，BPRICE，BPUB）</p>
+
+<p>⑤（BNAME，BPRICE，BPUB）          ⑥（L#，BNAME，BPRICE）</p>
+
+<p>A：①    B：②    C：④    D：②    E：③</p>
+
+<p>**</p>
+
+<p>**</p>
+
+            </div>
+            <div class="post-nav">
+    
+    <a class="prev" href=/blog/ruankao_database.html>&laquo; &nbsp;软考：数据库知识(三)</a>
+    
+    
+    <a class="next" href=/blog/ruankao_database5.html>软考：数据库知识(五)&nbsp;&raquo;</a>
+    
+</div>
+
+            
+        </div>
+        <!--
+            if config set comment enable,include comment
+        -->
+        
+            <!-- comment -->
+<div id="post-comment" class="panel panel-default">
+    <div class="panel-body">
+        
+
+        
+            <div id="disqus_thread"></div>
+        
+    </div>
+</div>
+
+        
+    </div>
+    <div class="col-md-3 col-sidebar">
+        <div class="panel panel-pithy author">
+    <div class="panel-heading avastar">
+        <img src="/tx.jpg" alt="tanglei"/>
+    </div>
+    <div class="panel-body">
+        码农 @ 宜信大数据创新中心, 毕业于CSU && THU,  曾工作于<a href='http://www.tencent.com/zh-cn/index.shtml' target='_blank'>腾讯</a> && <a href='http://www.umeng.com/' target='_blank'>友盟</a>.  &nbsp; <a href='/about/'> MORE </a>
+    </div>
+    <div class="panel-footer social">
+        <ul>
+            
+            <li>
+                <a rel="nofollow" href="http://www.weibo.com/tangleithu/" target="_blank"><i class="fa fa-weibo"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://github.com/tl3shi" target="_blank"><i class="fa fa-github"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://www.facebook.com/tanglei.name" target="_blank"><i class="fa fa-facebook"></i></a>
+            </li>
+            
+            <li>
+                <a href="https://www.tanglei.name/feed.xml" target="_blank"><i class="fa fa-rss"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar:category list -->
+<div class="panel panel-default categories">
+    <div class="panel-heading title">
+        分类列表
+    </div>
+    <div class="panel-body list">
+        <ul>
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/贵州支教行/">
+                  贵州支教行&nbsp;<span class="count">[12]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/课程学习/">
+                  课程学习&nbsp;<span class="count">[88]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/MyLife/">
+                  MyLife&nbsp;<span class="count">[45]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/经验技巧/">
+                  经验技巧&nbsp;<span class="count">[93]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/社会工作/">
+                  社会工作&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/网络文摘/">
+                  网络文摘&nbsp;<span class="count">[28]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件体系结构/">
+                  软件体系结构&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/旅游/">
+                  旅游&nbsp;<span class="count">[23]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软考/">
+                  软考&nbsp;<span class="count">[2]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件度量及其应用/">
+                  软件度量及其应用&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/工作那些事儿/">
+                  工作那些事儿&nbsp;<span class="count">[42]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我做站长/">
+                  我做站长&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/coding小工具/">
+                  coding小工具&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/除臭虫/">
+                  除臭虫&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/学到老/">
+                  学到老&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我不会算法/">
+                  我不会算法&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/数据挖掘/">
+                  数据挖掘&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/计算机图形学/">
+                  计算机图形学&nbsp;<span class="count">[5]</span>
+              </a>
+          </li>
+
+          
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar: tag list -->
+<div class="panel panel-default tags">
+    <div class="panel-heading title">
+        标签云
+    </div>
+    <div class="panel-body list">
+         
+        <input type="hidden" id="tag-values" value='{"name":"丰田助学","count":16},{"name":"贵州支教","count":12},{"name":"铜厂小学","count":9},{"name":"中南大学","count":12},{"name":"云南赶集","count":1},{"name":"HelloWorld","count":5},{"name":"我做站长","count":35},{"name":"设计模式","count":7},{"name":"Wordpress","count":18},{"name":"系统架构师","count":11},{"name":"软考","count":25},{"name":"论文","count":6},{"name":"软件0804","count":8},{"name":"Java","count":24},{"name":"J2EE","count":3},{"name":"JAVA","count":1},{"name":"考试","count":25},{"name":"SEO","count":3},{"name":"软件体系结构","count":6},{"name":"Android","count":28},{"name":"软件工程","count":2},{"name":"Windows","count":17},{"name":"软件测试","count":1},{"name":"总结","count":13},{"name":"Oracle","count":4},{"name":"存储过程","count":3},{"name":"数据库应用","count":3},{"name":"数据库","count":8},{"name":"先进班集体","count":1},{"name":"Linux","count":15},{"name":"Ubuntu","count":8},{"name":"Defy","count":3},{"name":"传感器","count":1},{"name":"访日交流","count":8},{"name":"旅游","count":22},{"name":"软件学院","count":11},{"name":"大学生科协","count":4},{"name":"玩遍中国","count":11},{"name":"计算机网络","count":5},{"name":"Eclipse","count":4},{"name":"软件度量","count":11},{"name":"软件设计师","count":4},{"name":"编译原理","count":2},{"name":"程序语言","count":2},{"name":"操作系统","count":3},{"name":"多媒体","count":2},{"name":"网络安全","count":9},{"name":"TCP/IP","count":2},{"name":"编程语言","count":1},{"name":"考点","count":1},{"name":"Google","count":5},{"name":"软件结构度量","count":1},{"name":"CMM","count":6},{"name":"项目管理","count":3},{"name":"实习","count":33},{"name":"面试","count":18},{"name":"网络营销","count":1},{"name":"百度","count":4},{"name":"笔试","count":2},{"name":"腾讯","count":31},{"name":"编程比赛","count":4},{"name":"科研","count":4},{"name":"电子商务","count":11},{"name":"虚拟主机","count":2},{"name":"网路安全","count":1},{"name":"Foxmail","count":3},{"name":"微软","count":1},{"name":"软件能力成熟度模型","count":2},{"name":"软件过程改进","count":3},{"name":"SCM复习资料","count":1},{"name":"软件配置管理","count":12},{"name":"SCM","count":6},{"name":"工具","count":19},{"name":"反模式","count":1},{"name":"玩玩手机","count":5},{"name":"程序员","count":4},{"name":"健康","count":1},{"name":"共享上网","count":2},{"name":"Bug","count":4},{"name":"coding小工具","count":1},{"name":"工作日志","count":19},{"name":"Apache","count":2},{"name":"PHP","count":13},{"name":"实习日志","count":1},{"name":"工作实习生","count":1},{"name":"Mysql","count":1},{"name":"Shell","count":3},{"name":"腾讯实习日志","count":1},{"name":"hosts","count":2},{"name":"Vim","count":3},{"name":"正则表达式","count":2},{"name":"搜索引擎","count":1},{"name":"跨域","count":1},{"name":"前端","count":2},{"name":"保研","count":15},{"name":"算法","count":9},{"name":"清华大学","count":12},{"name":"丰田助学金","count":3},{"name":"WiFi","count":1},{"name":"实习生","count":1},{"name":"wifi自动关闭","count":1},{"name":"腾讯实习","count":1},{"name":"经验技巧","count":13},{"name":"DDOS","count":2},{"name":"AOP","count":3},{"name":"租房","count":2},{"name":"Sqlite","count":2},{"name":"Python","count":11},{"name":"OOP","count":5},{"name":"数据挖掘","count":8},{"name":"GitHub","count":2},{"name":"SVM","count":3},{"name":"R语言","count":2},{"name":"足迹","count":2},{"name":"笛子","count":2},{"name":"计算机图形学","count":5},{"name":"OpenGL","count":3},{"name":"回忆录","count":1},{"name":"年终总结","count":1},{"name":"域名","count":1},{"name":"计算几何","count":2},{"name":"敲敲代码","count":9},{"name":"Latex","count":3},{"name":"C++","count":10},{"name":"Mac","count":7},{"name":"飞行模式","count":2},{"name":"性能优化","count":2},{"name":"Javascript","count":1},{"name":"工作","count":1},{"name":"玩遍世界","count":1},{"name":"Scala","count":2},{"name":"MyLife","count":1},{"name":"快捷键","count":1},{"name":"云服务","count":1},{"name":"Blog","count":1},{"name":"微信公众号","count":1}'/>
+        <div style="display: none"><a id="tag-value" class="taglink" rel="bookmark" href="/tag/#" data-target-cate="#"></a></div>
+        <div class="tag-values-container">
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+  </div>
+
+  <footer>
+  <div class="text-center">
+    © 2010-2016 All rights reserved.
+    Made with <a href="http://jekyllrb.com/" rel="nofollow" target="_blank">Jekyll</a>
+    & Modified by <a href="http://www.tanglei.name/about/" >Tanglei</a>
+    and <i class="fa fa-heart"></i> by <a rel="nofollow" href="https://github.com/guovz/jekyll-pithy" target="_blank">Pithy</a>
+  </div>
+  <div class="totop" data-toggle="totop">
+      <i class="fa fa-chevron-up"></i>
+  </div>
+</footer>
+
+
+  <!--the js include-->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="/assets/script/pithy.js"></script>
+
+<!--
+  the site comment script
+-->
+
+
+  <script>
+    
+    var disqus_config = function () {
+        this.page.url = 'https://www.tanglei.name/blog/ruankao_database4.html' ; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '/blog/ruankao_database4.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+        if($("#disqus_thread").length) {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://hexo-tanglei.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+    powered by Disqus.</a></noscript>
+
+
+
+<!--
+  the site analysis script
+-->
+
+  <!-- baidu analysis -->
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?f0117177475f54027bfcaceb8d668cee";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+</body>
+</html>

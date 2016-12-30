@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+  <head>
+    <title>软件度量复习整理-Software Measurement</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="keywords" content="软件度量复习整理-Software Measurement, 课程学习, 软件度量,, 唐磊, 中南大学, 清华大学, 软件工程师, 计算机, 全栈工程师" />
+    <meta name="description" content="软件度量复习整理-Software Measurement, 课程学习, 软件度量, 下周三《软件度量及其应用》就要考试了，今天看了下PPT，总结了下。PPT是英文的，就当是再此熟悉下英语单词吧。第一章是讲测量的相关概念滴。" />
+
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+
+  <!--Font awesome-->
+  <link href="/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- The pithy main css -->
+  <link rel="stylesheet" href="/assets/stylesheet/pithy.css">
+  <link rel="stylesheet" href="/assets/stylesheet/molokai.css">
+
+
+  <!--[if lt IE 9]>
+  <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv-printshiv.js"></script>
+  <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+  <![endif]-->
+  <link rel="alternate" type="application/rss+xml" title="tanglei's blog|唐磊的个人博客" href="https://www.tanglei.name/feed.xml" />
+</head>
+
+<body>
+  <nav class="navbar navbar-pithy" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+                data-target="#pithy-navbar" aria-expanded="false">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" rel="bookmark" href="/">TangLei</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="pithy-navbar">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="bookmark" href="/">首页</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/archives.html">Archives</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/about/">关于</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+  <div class="container page-content">
+    <div>
+    <div class="col-md-9 col-content">
+        <div id="post-content" class="panel panel-pithy post">
+            <div class="panel-heading">
+                <div class="title">
+                  <i class="fa fa-bookmark-o"></i>软件度量复习整理-Software Measurement
+                </div>
+                <ul class="info">
+                    <li>
+                      作者 <span class="author"> 
+        
+            tanglei
+        
+        </span>
+                    </li>
+                    <li>
+                      最后编辑 2011年04月22日
+                    </li>
+                    <li>
+                      Tags
+                     
+                         <a class="tag" href="/tag/#软件度量">软件度量</a>
+                     
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body content">
+                <p>下周三《软件度量及其应用》就要考试了，今天看了下PPT，总结了下。PPT是英文的，就当是再此熟悉下英语单词吧。第一章是讲测量的相关概念滴。</p>
+
+<p>测量的定义：A common definition states that “measurement is a process by which numbers or symbols are assigned to attributes of entities of a software product, process, or project.” 测量是一个用数字或者符号来表示一个软件产品、过程或者项目实体属性的过程。</p>
+
+<p><strong> </strong><strong>Humphrey, author of Capability Maturity Model (CMM)</strong> has developed a metrics-based framework, PSP (personal software process);IDEAL, a process improvement guideline from the CMM family of standards again emphasizes measurements</p>
+
+<p><strong>ISO 9000:2000</strong> focuses on measurement, analysis, and improvement. 专注与测量、分析和改进。</p>
+
+<p><strong>ISO 9126</strong> gives a framework for measuring software quality. (Functionality, Reliability, Usability, Efficiency, Maintainability, Portability)给出了测量软件质量的框架：功能性，可靠性，可用性，效率，可维护性，可移植性</p>
+
+<p><strong>The Six</strong> <strong>Sigma</strong> <strong>movement</strong>, in one of its modern forms, is centered on the DMAIC principle: define, measure, analyze, improve and control. 6σ质量改进<strong>方法</strong><strong>:</strong><strong>以</strong>DMAIC改进流程为中心，定义，测量，分析，提高，和控制。</p>
+
+<p><strong> </strong>Measurement, as a process, exhibits an internal evolution and happens in three phases:测量作为一个过程，有三个阶段：</p>
+
+<ol>
+  <li>Measuring with the Mind: Cognitive Phase;认知</li>
+  <li>Measuring with Words: Semantic Phase;语义</li>
+  <li>Measuring with Numbers: Quantitative Phase.定量</li>
+</ol>
+
+<p><strong>测量尺度类型</strong> ：</p>
+
+<p>标定和类型尺度属于语言尺度(Linguistic)。间隔尺度、比例尺度和绝对尺度属于定量尺度。<em>**</em></p>
+
+<p><strong>Nominal Scale(</strong><strong>标定尺度)</strong></p>
+
+<p>Giving unique and unequivocal（不含糊） names to concepts and defining technical terms also belong to this scale. 标定尺度给出了唯一、不含糊的概念名称并且定义技术关系也属于标定尺度；</p>
+
+<p><strong>Typological Scale</strong> <strong>（类型尺度）</strong></p>
+
+<p>Identify types or categories in entities that have been already recognized and named.</p>
+
+<p>This scale is also known as the nominal-categorical scale. 类型尺度识别实体中已经定义和命名的类型或种类（categories），也叫绝对标定尺度。</p>
+
+<p><strong>Ordinal Scale (</strong><strong>序列尺度)</strong></p>
+
+<p>Assessing values in measured entities and rearranging them according to the order of value. Both value and order are expressed using words or symbols. 估计已测量的实体的值并将他们按顺序重组排列，值和顺序均用字符或符号来表达。</p>
+
+<p><strong>Interval Scale</strong> <strong>（间隔尺度）</strong></p>
+
+<p>Used for perceiving increments, not ratios. There is no rational zero in this scale.用于理解增量而不是比例，没有不合理的0值。</p>
+
+<p><strong>Ratio Scale (</strong><strong>比例尺度)</strong></p>
+
+<p>Permits ratio calculation and equipped with rational zero reference point.允许比例计算和合理的0参考点。</p>
+
+<p><strong>Absolute Scale(</strong><strong>绝对尺度)</strong></p>
+
+<p>Used for counting. There is only one possible measure of an absolute attribute. 用于计数，只有一种可能的绝对属性测量值。</p>
+
+<p><strong>小结：</strong></p>
+
+<p><strong>Nominal</strong>：Entities are classified. No arithmetic meaningful.实体分类，算术没有意义。eg Blood Groups: O+, A , AB , AB-,选择题中的ABC啊之类的。</p>
+
+<p><strong>Ordinal</strong>：Entities are classified and ordered. Cannot use + or -.实体分类和有序，不能用+/-.</p>
+
+<p><strong>Interval</strong>：Entities classified, ordered, and differences between them understood (‘units’). No zero, but can use ordinary arithmetic on intervals.实体分类、有序，之间有区别，跟单位相关，没有0值，但能用一般的算数。//可以用+/-,不能用*//</p>
+
+<p><strong>Ratio</strong>：Zeros, units, ratios between entities. All arithmetic.0值，单位，比例在实体之间，所有的算术可以用。</p>
+
+<p><strong>Absolute</strong>：Counting; only one possible measure. All arithmetic.计数，只有一种可能，所有的算数法则。</p>
+
+<p>再看下这个几个单词的区别：</p>
+
+<p>Metrics – The art or science of measurement</p>
+
+<p>Metric – A standard of measurement</p>
+
+<p>Measurement – the act or process of measuring</p>
+
+<p>Measure – dimensions, capacity or amount of something</p>
+
+<p>附上PPT上面的练习题目：</p>
+
+<p>练习：For each of the following statements, explain whether or not it is meaningful and if the statement is meaningless say whether there is a “quick fix” which could make the statement more meaningful.</p>
+
+<p>(a) 100C is the boiling point of water.</p>
+
+<p>(b) Today is twice as hot as yesterday.</p>
+
+<p>(c) The FT index fell 325 points today.</p>
+
+<p>(d) The program is 50 lines of code long.</p>
+
+<p>(e) The program took 3 months to write.</p>
+
+<p>(f) The testing on this project took twice as long as the programming.</p>
+
+<p>(g) The cost of maintaining program B is twice that of maintaining program A.</p>
+
+<p>(h) Program A is more complex than program B.</p>
+
+<p>(a) “100 C is the boiling point of water” is a meaningful. Degrees C is an interval scale since each degree is equal but the zero is arbitrary. Transformation to Fahrenheit scale is example of an affine transformation which is valid for interval scales.</p>
+
+<p>(b) “Today is twice as hot as yesterday” is unlikely to be meaningful as weather temperature is measured in C or F which are not ratio scales (which would be required for “twice” to be meaningful). Differences are meaningful however, so if today is 10 degrees C, and yesterday was 5 degrees C, then it would be meaningful to say that today is 5 degrees hotter than yesterday.</p>
+
+<p>(c) The FT index is an example of an indirect measure (calculated from the value of lots of different shares). The calculation is made such that the resulting value is on a ratio scale. The zero is meaningful (the shares have value) and the differences are equal.</p>
+
+<p>(d)Depending on its precise definition, Line of Code is probably an absolute scale so the sentence is meaningful. Transformations which convert between lines of code measures for different languages may be empirically substantiated but are not valid for an absolute scale.</p>
+
+<p>(e) (f)  Elapsed time is a ratio scale made by subtracting two points in time. Points in time are measured on interval scale (eg. 3/10/2002 10:11:30). Transformations of elapsed time such as 1 month = 20 working days are valid for elapsed time (ratio scale). But (31 Jan 1997) = 31 * (1st Jan 1997) is not valid since date is an interval scale.</p>
+
+<p>(g) Cost is a ratio scale. Assuming we are talking about something like cost of maintenance per year, then the sentence is meaningful.</p>
+
+<p>(h)Complexity however defined is likely to be at least an ordinal scale so the sentence is OK.</p>
+
+            </div>
+            <div class="post-nav">
+    
+    <a class="prev" href=/blog/the_large_google.html>&laquo; &nbsp;[转]Google到底有多大？Google究竟有多少用户？</a>
+    
+    
+    <a class="next" href=/blog/chungxinluntan.html>当创新论坛遇到登山比赛&nbsp;&raquo;</a>
+    
+</div>
+
+            
+        </div>
+        <!--
+            if config set comment enable,include comment
+        -->
+        
+            <!-- comment -->
+<div id="post-comment" class="panel panel-default">
+    <div class="panel-body">
+        
+
+        
+            <div id="disqus_thread"></div>
+        
+    </div>
+</div>
+
+        
+    </div>
+    <div class="col-md-3 col-sidebar">
+        <div class="panel panel-pithy author">
+    <div class="panel-heading avastar">
+        <img src="/tx.jpg" alt="tanglei"/>
+    </div>
+    <div class="panel-body">
+        码农 @ 宜信大数据创新中心, 毕业于CSU && THU,  曾工作于<a href='http://www.tencent.com/zh-cn/index.shtml' target='_blank'>腾讯</a> && <a href='http://www.umeng.com/' target='_blank'>友盟</a>.  &nbsp; <a href='/about/'> MORE </a>
+    </div>
+    <div class="panel-footer social">
+        <ul>
+            
+            <li>
+                <a rel="nofollow" href="http://www.weibo.com/tangleithu/" target="_blank"><i class="fa fa-weibo"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://github.com/tl3shi" target="_blank"><i class="fa fa-github"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://www.facebook.com/tanglei.name" target="_blank"><i class="fa fa-facebook"></i></a>
+            </li>
+            
+            <li>
+                <a href="https://www.tanglei.name/feed.xml" target="_blank"><i class="fa fa-rss"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar:category list -->
+<div class="panel panel-default categories">
+    <div class="panel-heading title">
+        分类列表
+    </div>
+    <div class="panel-body list">
+        <ul>
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/贵州支教行/">
+                  贵州支教行&nbsp;<span class="count">[12]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/课程学习/">
+                  课程学习&nbsp;<span class="count">[88]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/MyLife/">
+                  MyLife&nbsp;<span class="count">[45]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/经验技巧/">
+                  经验技巧&nbsp;<span class="count">[93]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/社会工作/">
+                  社会工作&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/网络文摘/">
+                  网络文摘&nbsp;<span class="count">[28]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件体系结构/">
+                  软件体系结构&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/旅游/">
+                  旅游&nbsp;<span class="count">[23]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软考/">
+                  软考&nbsp;<span class="count">[2]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件度量及其应用/">
+                  软件度量及其应用&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/工作那些事儿/">
+                  工作那些事儿&nbsp;<span class="count">[42]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我做站长/">
+                  我做站长&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/coding小工具/">
+                  coding小工具&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/除臭虫/">
+                  除臭虫&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/学到老/">
+                  学到老&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我不会算法/">
+                  我不会算法&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/数据挖掘/">
+                  数据挖掘&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/计算机图形学/">
+                  计算机图形学&nbsp;<span class="count">[5]</span>
+              </a>
+          </li>
+
+          
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar: tag list -->
+<div class="panel panel-default tags">
+    <div class="panel-heading title">
+        标签云
+    </div>
+    <div class="panel-body list">
+         
+        <input type="hidden" id="tag-values" value='{"name":"丰田助学","count":16},{"name":"贵州支教","count":12},{"name":"铜厂小学","count":9},{"name":"中南大学","count":12},{"name":"云南赶集","count":1},{"name":"HelloWorld","count":5},{"name":"我做站长","count":35},{"name":"设计模式","count":7},{"name":"Wordpress","count":18},{"name":"系统架构师","count":11},{"name":"软考","count":25},{"name":"论文","count":6},{"name":"软件0804","count":8},{"name":"Java","count":24},{"name":"J2EE","count":3},{"name":"JAVA","count":1},{"name":"考试","count":25},{"name":"SEO","count":3},{"name":"软件体系结构","count":6},{"name":"Android","count":28},{"name":"软件工程","count":2},{"name":"Windows","count":17},{"name":"软件测试","count":1},{"name":"总结","count":13},{"name":"Oracle","count":4},{"name":"存储过程","count":3},{"name":"数据库应用","count":3},{"name":"数据库","count":8},{"name":"先进班集体","count":1},{"name":"Linux","count":15},{"name":"Ubuntu","count":8},{"name":"Defy","count":3},{"name":"传感器","count":1},{"name":"访日交流","count":8},{"name":"旅游","count":22},{"name":"软件学院","count":11},{"name":"大学生科协","count":4},{"name":"玩遍中国","count":11},{"name":"计算机网络","count":5},{"name":"Eclipse","count":4},{"name":"软件度量","count":11},{"name":"软件设计师","count":4},{"name":"编译原理","count":2},{"name":"程序语言","count":2},{"name":"操作系统","count":3},{"name":"多媒体","count":2},{"name":"网络安全","count":9},{"name":"TCP/IP","count":2},{"name":"编程语言","count":1},{"name":"考点","count":1},{"name":"Google","count":5},{"name":"软件结构度量","count":1},{"name":"CMM","count":6},{"name":"项目管理","count":3},{"name":"实习","count":33},{"name":"面试","count":18},{"name":"网络营销","count":1},{"name":"百度","count":4},{"name":"笔试","count":2},{"name":"腾讯","count":31},{"name":"编程比赛","count":4},{"name":"科研","count":4},{"name":"电子商务","count":11},{"name":"虚拟主机","count":2},{"name":"网路安全","count":1},{"name":"Foxmail","count":3},{"name":"微软","count":1},{"name":"软件能力成熟度模型","count":2},{"name":"软件过程改进","count":3},{"name":"SCM复习资料","count":1},{"name":"软件配置管理","count":12},{"name":"SCM","count":6},{"name":"工具","count":19},{"name":"反模式","count":1},{"name":"玩玩手机","count":5},{"name":"程序员","count":4},{"name":"健康","count":1},{"name":"共享上网","count":2},{"name":"Bug","count":4},{"name":"coding小工具","count":1},{"name":"工作日志","count":19},{"name":"Apache","count":2},{"name":"PHP","count":13},{"name":"实习日志","count":1},{"name":"工作实习生","count":1},{"name":"Mysql","count":1},{"name":"Shell","count":3},{"name":"腾讯实习日志","count":1},{"name":"hosts","count":2},{"name":"Vim","count":3},{"name":"正则表达式","count":2},{"name":"搜索引擎","count":1},{"name":"跨域","count":1},{"name":"前端","count":2},{"name":"保研","count":15},{"name":"算法","count":9},{"name":"清华大学","count":12},{"name":"丰田助学金","count":3},{"name":"WiFi","count":1},{"name":"实习生","count":1},{"name":"wifi自动关闭","count":1},{"name":"腾讯实习","count":1},{"name":"经验技巧","count":13},{"name":"DDOS","count":2},{"name":"AOP","count":3},{"name":"租房","count":2},{"name":"Sqlite","count":2},{"name":"Python","count":11},{"name":"OOP","count":5},{"name":"数据挖掘","count":8},{"name":"GitHub","count":2},{"name":"SVM","count":3},{"name":"R语言","count":2},{"name":"足迹","count":2},{"name":"笛子","count":2},{"name":"计算机图形学","count":5},{"name":"OpenGL","count":3},{"name":"回忆录","count":1},{"name":"年终总结","count":1},{"name":"域名","count":1},{"name":"计算几何","count":2},{"name":"敲敲代码","count":9},{"name":"Latex","count":3},{"name":"C++","count":10},{"name":"Mac","count":7},{"name":"飞行模式","count":2},{"name":"性能优化","count":2},{"name":"Javascript","count":1},{"name":"工作","count":1},{"name":"玩遍世界","count":1},{"name":"Scala","count":2},{"name":"MyLife","count":1},{"name":"快捷键","count":1},{"name":"云服务","count":1},{"name":"Blog","count":1},{"name":"微信公众号","count":1}'/>
+        <div style="display: none"><a id="tag-value" class="taglink" rel="bookmark" href="/tag/#" data-target-cate="#"></a></div>
+        <div class="tag-values-container">
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+  </div>
+
+  <footer>
+  <div class="text-center">
+    © 2010-2016 All rights reserved.
+    Made with <a href="http://jekyllrb.com/" rel="nofollow" target="_blank">Jekyll</a>
+    & Modified by <a href="http://www.tanglei.name/about/" >Tanglei</a>
+    and <i class="fa fa-heart"></i> by <a rel="nofollow" href="https://github.com/guovz/jekyll-pithy" target="_blank">Pithy</a>
+  </div>
+  <div class="totop" data-toggle="totop">
+      <i class="fa fa-chevron-up"></i>
+  </div>
+</footer>
+
+
+  <!--the js include-->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="/assets/script/pithy.js"></script>
+
+<!--
+  the site comment script
+-->
+
+
+  <script>
+    
+    var disqus_config = function () {
+        this.page.url = 'https://www.tanglei.name/blog/software-measurement.html' ; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '/blog/software-measurement.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+        if($("#disqus_thread").length) {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://hexo-tanglei.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+    powered by Disqus.</a></noscript>
+
+
+
+<!--
+  the site analysis script
+-->
+
+  <!-- baidu analysis -->
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?f0117177475f54027bfcaceb8d668cee";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+</body>
+</html>

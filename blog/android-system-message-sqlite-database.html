@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+  <head>
+    <title>android手机获取系统短信sqlite数据库并查看内容</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="keywords" content="android手机获取系统短信sqlite数据库并查看内容, 经验技巧, Android,玩玩手机,Sqlite,, 唐磊, 中南大学, 清华大学, 软件工程师, 计算机, 全栈工程师" />
+    <meta name="description" content="android手机获取系统短信sqlite数据库并查看内容, 经验技巧, Android,玩玩手机,Sqlite, 一个朋友过来，准备玩玩Ta的android手机，给我之前还要拿回去看看，结果是ta把短信加密了(第三方短信)，怕我知道ta的啥见不得人的秘密。o(∩_∩)o 哈哈。TA威胁我说加密了，看我怎么看。结果我说要是我能看呢。ta威胁我说不行，我就非得试试。直接的思路是，他的手机已经root过，我应该能直接拿到sqlit..." />
+
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+
+  <!--Font awesome-->
+  <link href="/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- The pithy main css -->
+  <link rel="stylesheet" href="/assets/stylesheet/pithy.css">
+  <link rel="stylesheet" href="/assets/stylesheet/molokai.css">
+
+
+  <!--[if lt IE 9]>
+  <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv-printshiv.js"></script>
+  <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+  <![endif]-->
+  <link rel="alternate" type="application/rss+xml" title="tanglei's blog|唐磊的个人博客" href="https://www.tanglei.name/feed.xml" />
+</head>
+
+<body>
+  <nav class="navbar navbar-pithy" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+                data-target="#pithy-navbar" aria-expanded="false">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" rel="bookmark" href="/">TangLei</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="pithy-navbar">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="bookmark" href="/">首页</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/archives.html">Archives</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/about/">关于</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+  <div class="container page-content">
+    <div>
+    <div class="col-md-9 col-content">
+        <div id="post-content" class="panel panel-pithy post">
+            <div class="panel-heading">
+                <div class="title">
+                  <i class="fa fa-bookmark-o"></i>android手机获取系统短信sqlite数据库并查看内容
+                </div>
+                <ul class="info">
+                    <li>
+                      作者 <span class="author"> 
+        
+            tanglei
+        
+        </span>
+                    </li>
+                    <li>
+                      最后编辑 2012年03月05日
+                    </li>
+                    <li>
+                      Tags
+                     
+                         <a class="tag" href="/tag/#Android">Android</a>
+                     
+                         <a class="tag" href="/tag/#玩玩手机">玩玩手机</a>
+                     
+                         <a class="tag" href="/tag/#Sqlite">Sqlite</a>
+                     
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body content">
+                <p>一个朋友过来，准备玩玩Ta的android手机，给我之前还要拿回去看看，结果是ta把短信加密了(第三方短信)，怕我知道ta的啥见不得人的秘密。o(∩_∩)o 哈哈。TA威胁我说加密了，看我怎么看。结果我说要是我能看呢。ta威胁我说不行，我就非得试试。直接的思路是，他的手机已经root过，我应该能直接拿到sqlite数据库。（其他方法比如下对应软件的破解解密爆破等没试过）。</p>
+
+<p>准备的工具是adb调试工具、sqlite工具。（之前搞过android开发，所以OK）</p>
+
+<p>手机连接电脑后，对应驱动安装好之后，直接进shell，adb shell。然后cd进系统短信数据库的目录。结果总提示没有permission. 然后觉得是否是这样没有root权限,再看看adb 帮助提示,说命令adb root是可以以root身份进入的.结果又提示说这个调试工具不能用于真实的手机产品.adbd cannot run as root in production builds .最后尝试什么sudo su啊之类的也不行.(当时一直关注于电脑上的commond端，没注意手机)，其实只要执行命令su 之后，手机有提示，点击一下允许root权限即可。命令行得到root之后就方便了。</p>
+
+<p>首先查看存放短信的sqlite数据库是不是在下面这个目录</p>
+
+<p>/data/data/com.android.providers.telephony/databases/mmssms.db</p>
+
+<p><a href="/wp-content/uploads/2012/03/clip_image002.jpg"><img title="clip_image002" src="/wp-content/uploads/2012/03/clip_image002_thumb.jpg" alt="clip_image002" hspace="12" /></a></p>
+
+<p>OK，在滴。然后就是想的直接用命令cp或者copy命令复制到sdcard上，取回到电脑里。结果悲催的是居然木有cp命令。然后网上查询得到下面这个方法。可以用<a href="http://baike.baidu.com/view/3568252.htm">dd命令</a>(链接百科详解)。(说是cat命令重定向输出也可以).</p>
+
+<p>现在已经将系统目录下的数据库copy到sdcard了。</p>
+
+<p><a href="/wp-content/uploads/2012/03/clip_image004.jpg"><img title="clip_image004" src="/wp-content/uploads/2012/03/clip_image004_thumb.jpg" alt="clip_image004" hspace="12" data-pinit="registered" /></a></p>
+
+<p>然后退出adb调试器。(我不知道怎么在adb调试器里面直接将文件导出到数据库)用adb pull命令导出(之前只用过这种adb push 和adb pull 等)。</p>
+
+<p><a href="/wp-content/uploads/2012/03/clip_image006.jpg"><img title="clip_image006" src="/wp-content/uploads/2012/03/clip_image006_thumb.jpg" alt="clip_image006" /></a></p>
+
+<p>OK，已经将数据库拿到电脑上了。</p>
+
+<p>打开sqlite命令，查看数据库。</p>
+
+<p><a href="/wp-content/uploads/2012/03/clip_image008.jpg"><img title="clip_image008" src="/wp-content/uploads/2012/03/clip_image008_thumb.jpg" alt="clip_image008" data-pinit="registered" /></a></p>
+
+<p>看该数据库下的表。很明显sms是保存短信的，直接select就能知道短信内容。(涉及到电话号码，就给划掉了)</p>
+
+<p><a href="/wp-content/uploads/2012/03/clip_image010.jpg"><img title="clip_image010" src="/wp-content/uploads/2012/03/clip_image010_thumb.jpg" alt="clip_image010" data-pinit="registered" /></a></p>
+
+<p>乱码，不着急。将查询结果导出到文件。</p>
+
+<p>.output是改变输出。返回标准输出。.output stdout</p>
+
+<p><a href="/wp-content/uploads/2012/03/clip_image012.jpg"><img title="clip_image012" src="/wp-content/uploads/2012/03/clip_image012_thumb.jpg" alt="clip_image012" /></a></p>
+
+<p>再select一遍。已经在当前目录下生生成查询结果的文件。</p>
+
+<p><a href="/wp-content/uploads/2012/03/clip_image014.jpg"><img title="clip_image014" src="/wp-content/uploads/2012/03/clip_image014_thumb.jpg" alt="clip_image014" hspace="12" /></a></p>
+
+<p>直接打开，即可。</p>
+
+<p><a href="/wp-content/uploads/2012/03/clip_image015.jpg"><img title="clip_image015" src="/wp-content/uploads/2012/03/clip_image015_thumb.jpg" alt="clip_image015" data-pinit="registered" /></a></p>
+
+<p>参考资料：</p>
+
+<ol>
+  <li>
+    <p>已经root，命令行获取不到root权限问题参考（adb root错误信息adbd cannot run as root in production builds问题解决）：<a href="http://blog.csdn.net/littletigerat/article/details/6549021">http://blog.csdn.net/littletigerat/article/details/6549021</a></p>
+  </li>
+  <li>
+    <p>命令行没有cp copy命令 参考：<a href="http://blog.allenm.me/2010/04/android-shell-%E6%B2%A1%E6%9C%89-cp-%E5%91%BD%E4%BB%A4%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">http://blog.allenm.me/2010/04/android-shell-%E6%B2%A1%E6%9C%89-cp-%E5%91%BD%E4%BB%A4%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</a></p>
+  </li>
+  <li>
+    <p>android系统短信数据库位置参考：(sms表字段信息)：<a href="http://blog.csdn.net/reachkate/article/details/6784082">http://blog.csdn.net/reachkate/article/details/6784082</a></p>
+  </li>
+  <li>
+    <p>sqlite命令参考：<a href="http://wenku.baidu.com/view/17f8c720192e45361066f5e7.html">http://wenku.baidu.com/view/17f8c720192e45361066f5e7.html</a></p>
+  </li>
+</ol>
+
+            </div>
+            <div class="post-nav">
+    
+    <a class="prev" href=/blog/difference-between-array_merge-and-plus.html>&laquo; &nbsp;php中数组array_merge和运算符加号(+)的区别</a>
+    
+    
+    <a class="next" href=/blog/use-writer-to-post-wordpress-blog.html>用Windows live writer快速发表Wordpress博客&nbsp;&raquo;</a>
+    
+</div>
+
+            
+        </div>
+        <!--
+            if config set comment enable,include comment
+        -->
+        
+            <!-- comment -->
+<div id="post-comment" class="panel panel-default">
+    <div class="panel-body">
+        
+
+        
+            <div id="disqus_thread"></div>
+        
+    </div>
+</div>
+
+        
+    </div>
+    <div class="col-md-3 col-sidebar">
+        <div class="panel panel-pithy author">
+    <div class="panel-heading avastar">
+        <img src="/tx.jpg" alt="tanglei"/>
+    </div>
+    <div class="panel-body">
+        码农 @ 宜信大数据创新中心, 毕业于CSU && THU,  曾工作于<a href='http://www.tencent.com/zh-cn/index.shtml' target='_blank'>腾讯</a> && <a href='http://www.umeng.com/' target='_blank'>友盟</a>.  &nbsp; <a href='/about/'> MORE </a>
+    </div>
+    <div class="panel-footer social">
+        <ul>
+            
+            <li>
+                <a rel="nofollow" href="http://www.weibo.com/tangleithu/" target="_blank"><i class="fa fa-weibo"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://github.com/tl3shi" target="_blank"><i class="fa fa-github"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://www.facebook.com/tanglei.name" target="_blank"><i class="fa fa-facebook"></i></a>
+            </li>
+            
+            <li>
+                <a href="https://www.tanglei.name/feed.xml" target="_blank"><i class="fa fa-rss"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar:category list -->
+<div class="panel panel-default categories">
+    <div class="panel-heading title">
+        分类列表
+    </div>
+    <div class="panel-body list">
+        <ul>
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/贵州支教行/">
+                  贵州支教行&nbsp;<span class="count">[12]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/课程学习/">
+                  课程学习&nbsp;<span class="count">[88]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/MyLife/">
+                  MyLife&nbsp;<span class="count">[45]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/经验技巧/">
+                  经验技巧&nbsp;<span class="count">[93]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/社会工作/">
+                  社会工作&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/网络文摘/">
+                  网络文摘&nbsp;<span class="count">[28]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件体系结构/">
+                  软件体系结构&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/旅游/">
+                  旅游&nbsp;<span class="count">[23]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软考/">
+                  软考&nbsp;<span class="count">[2]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件度量及其应用/">
+                  软件度量及其应用&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/工作那些事儿/">
+                  工作那些事儿&nbsp;<span class="count">[42]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我做站长/">
+                  我做站长&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/coding小工具/">
+                  coding小工具&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/除臭虫/">
+                  除臭虫&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/学到老/">
+                  学到老&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我不会算法/">
+                  我不会算法&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/数据挖掘/">
+                  数据挖掘&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/计算机图形学/">
+                  计算机图形学&nbsp;<span class="count">[5]</span>
+              </a>
+          </li>
+
+          
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar: tag list -->
+<div class="panel panel-default tags">
+    <div class="panel-heading title">
+        标签云
+    </div>
+    <div class="panel-body list">
+         
+        <input type="hidden" id="tag-values" value='{"name":"丰田助学","count":16},{"name":"贵州支教","count":12},{"name":"铜厂小学","count":9},{"name":"中南大学","count":12},{"name":"云南赶集","count":1},{"name":"HelloWorld","count":5},{"name":"我做站长","count":35},{"name":"设计模式","count":7},{"name":"Wordpress","count":18},{"name":"系统架构师","count":11},{"name":"软考","count":25},{"name":"论文","count":6},{"name":"软件0804","count":8},{"name":"Java","count":24},{"name":"J2EE","count":3},{"name":"JAVA","count":1},{"name":"考试","count":25},{"name":"SEO","count":3},{"name":"软件体系结构","count":6},{"name":"Android","count":28},{"name":"软件工程","count":2},{"name":"Windows","count":17},{"name":"软件测试","count":1},{"name":"总结","count":13},{"name":"Oracle","count":4},{"name":"存储过程","count":3},{"name":"数据库应用","count":3},{"name":"数据库","count":8},{"name":"先进班集体","count":1},{"name":"Linux","count":15},{"name":"Ubuntu","count":8},{"name":"Defy","count":3},{"name":"传感器","count":1},{"name":"访日交流","count":8},{"name":"旅游","count":22},{"name":"软件学院","count":11},{"name":"大学生科协","count":4},{"name":"玩遍中国","count":11},{"name":"计算机网络","count":5},{"name":"Eclipse","count":4},{"name":"软件度量","count":11},{"name":"软件设计师","count":4},{"name":"编译原理","count":2},{"name":"程序语言","count":2},{"name":"操作系统","count":3},{"name":"多媒体","count":2},{"name":"网络安全","count":9},{"name":"TCP/IP","count":2},{"name":"编程语言","count":1},{"name":"考点","count":1},{"name":"Google","count":5},{"name":"软件结构度量","count":1},{"name":"CMM","count":6},{"name":"项目管理","count":3},{"name":"实习","count":33},{"name":"面试","count":18},{"name":"网络营销","count":1},{"name":"百度","count":4},{"name":"笔试","count":2},{"name":"腾讯","count":31},{"name":"编程比赛","count":4},{"name":"科研","count":4},{"name":"电子商务","count":11},{"name":"虚拟主机","count":2},{"name":"网路安全","count":1},{"name":"Foxmail","count":3},{"name":"微软","count":1},{"name":"软件能力成熟度模型","count":2},{"name":"软件过程改进","count":3},{"name":"SCM复习资料","count":1},{"name":"软件配置管理","count":12},{"name":"SCM","count":6},{"name":"工具","count":19},{"name":"反模式","count":1},{"name":"玩玩手机","count":5},{"name":"程序员","count":4},{"name":"健康","count":1},{"name":"共享上网","count":2},{"name":"Bug","count":4},{"name":"coding小工具","count":1},{"name":"工作日志","count":19},{"name":"Apache","count":2},{"name":"PHP","count":13},{"name":"实习日志","count":1},{"name":"工作实习生","count":1},{"name":"Mysql","count":1},{"name":"Shell","count":3},{"name":"腾讯实习日志","count":1},{"name":"hosts","count":2},{"name":"Vim","count":3},{"name":"正则表达式","count":2},{"name":"搜索引擎","count":1},{"name":"跨域","count":1},{"name":"前端","count":2},{"name":"保研","count":15},{"name":"算法","count":9},{"name":"清华大学","count":12},{"name":"丰田助学金","count":3},{"name":"WiFi","count":1},{"name":"实习生","count":1},{"name":"wifi自动关闭","count":1},{"name":"腾讯实习","count":1},{"name":"经验技巧","count":13},{"name":"DDOS","count":2},{"name":"AOP","count":3},{"name":"租房","count":2},{"name":"Sqlite","count":2},{"name":"Python","count":11},{"name":"OOP","count":5},{"name":"数据挖掘","count":8},{"name":"GitHub","count":2},{"name":"SVM","count":3},{"name":"R语言","count":2},{"name":"足迹","count":2},{"name":"笛子","count":2},{"name":"计算机图形学","count":5},{"name":"OpenGL","count":3},{"name":"回忆录","count":1},{"name":"年终总结","count":1},{"name":"域名","count":1},{"name":"计算几何","count":2},{"name":"敲敲代码","count":9},{"name":"Latex","count":3},{"name":"C++","count":10},{"name":"Mac","count":7},{"name":"飞行模式","count":2},{"name":"性能优化","count":2},{"name":"Javascript","count":1},{"name":"工作","count":1},{"name":"玩遍世界","count":1},{"name":"Scala","count":2},{"name":"MyLife","count":1},{"name":"快捷键","count":1},{"name":"云服务","count":1},{"name":"Blog","count":1},{"name":"微信公众号","count":1}'/>
+        <div style="display: none"><a id="tag-value" class="taglink" rel="bookmark" href="/tag/#" data-target-cate="#"></a></div>
+        <div class="tag-values-container">
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+  </div>
+
+  <footer>
+  <div class="text-center">
+    © 2010-2016 All rights reserved.
+    Made with <a href="http://jekyllrb.com/" rel="nofollow" target="_blank">Jekyll</a>
+    & Modified by <a href="http://www.tanglei.name/about/" >Tanglei</a>
+    and <i class="fa fa-heart"></i> by <a rel="nofollow" href="https://github.com/guovz/jekyll-pithy" target="_blank">Pithy</a>
+  </div>
+  <div class="totop" data-toggle="totop">
+      <i class="fa fa-chevron-up"></i>
+  </div>
+</footer>
+
+
+  <!--the js include-->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="/assets/script/pithy.js"></script>
+
+<!--
+  the site comment script
+-->
+
+
+  <script>
+    
+    var disqus_config = function () {
+        this.page.url = 'https://www.tanglei.name/blog/android-system-message-sqlite-database.html' ; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '/blog/android-system-message-sqlite-database.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+        if($("#disqus_thread").length) {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://hexo-tanglei.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+    powered by Disqus.</a></noscript>
+
+
+
+<!--
+  the site analysis script
+-->
+
+  <!-- baidu analysis -->
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?f0117177475f54027bfcaceb8d668cee";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+</body>
+</html>

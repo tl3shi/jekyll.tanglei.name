@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+  <head>
+    <title>哎呀, 404了</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="keywords" content="哎呀, 404了,  , 唐磊, 中南大学, 清华大学, 软件工程师, 计算机, 全栈工程师" />
+    <meta name="description" content="哎呀, 404了,   中南大学|清华大学软件学院唐磊的博客,主攻软件工程,数据挖掘,这里记录了我的学习,生活和工作" />
+
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+
+  <!--Font awesome-->
+  <link href="/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- The pithy main css -->
+  <link rel="stylesheet" href="/assets/stylesheet/pithy.css">
+  <link rel="stylesheet" href="/assets/stylesheet/molokai.css">
+
+
+  <!--[if lt IE 9]>
+  <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv-printshiv.js"></script>
+  <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+  <![endif]-->
+  <link rel="alternate" type="application/rss+xml" title="tanglei's blog|唐磊的个人博客" href="https://www.tanglei.name/feed.xml" />
+</head>
+
+<body>
+  <nav class="navbar navbar-pithy" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+                data-target="#pithy-navbar" aria-expanded="false">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" rel="bookmark" href="/">TangLei</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="pithy-navbar">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="bookmark" href="/">首页</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/archives.html">Archives</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/about/">关于</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+  <div class="container page-content">
+    <div>
+    <div id="post-content" class="panel panel-pithy post">
+      <div class="panel-heading">
+        <div class="title">
+          <i class="fa fa-bookmark-o"></i> 哎呀, 404了
+        </div>
+      </div>
+      <div class="panel-body">
+        <p>如果你是从其他网站跳转过来的, 那可能是因为其他网站收录了我老版本的blog,  访问<a href="http://wordpress.tanglei.name">我的老wordpress版本的在这里</a>.</p>
+
+<p>由于我进行了网站的改版, 对链接进行了统一的整理.</p>
+
+<p>我尝试把你带入到你要访问的页面, 但失败了也不能怪我了~ 可能这个页面确实是404呢~</p>
+
+<p><span id="show" style="font-size: 18px; color: red;"></span></p>
+
+<script type="text/javascript">
+  var uri = window.location.pathname;
+  if (uri === '/404.html') {
+  	document.getElementById('show').innerHTML = "故意来看我的<b>404</b> 图片的吧? :) ";
+  } else {
+  	var try_post_name = uri.substring(1, uri.length - 1);
+	  if (uri.indexOf("/blog") === 0 ) {
+	    // 确实是404了
+	    document.getElementById('show').innerHTML = "貌似确实是 <b>404</b> 了.";
+	  } else {
+	    var t = 5;
+	    setInterval("refer()", 1000);
+	    function refer() {
+	      if (t === 0) {
+	        window.location.href = window.location.origin + "/blog/" + try_post_name + ".html";
+	      }
+	      document.getElementById('show').innerHTML = "<b>" + t + "</b>秒后跳转到新的页面";
+	      t--;
+	  }
+  }
+}
+</script>
+
+<p><img src="/resources/404.jpg" alt="" /></p>
+
+
+      </div>
+      <div class="post-nav">
+    
+    
+</div>
+
+      
+  </div>
+  <!--
+      if config set comment enable,include comment
+  -->
+  
+      <!-- comment -->
+<div id="post-comment" class="panel panel-default">
+    <div class="panel-body">
+        
+
+        
+            <div id="disqus_thread"></div>
+        
+    </div>
+</div>
+
+  
+</div>
+
+  </div>
+
+  <footer>
+  <div class="text-center">
+    © 2010-2016 All rights reserved.
+    Made with <a href="http://jekyllrb.com/" rel="nofollow" target="_blank">Jekyll</a>
+    & Modified by <a href="http://www.tanglei.name/about/" >Tanglei</a>
+    and <i class="fa fa-heart"></i> by <a rel="nofollow" href="https://github.com/guovz/jekyll-pithy" target="_blank">Pithy</a>
+  </div>
+  <div class="totop" data-toggle="totop">
+      <i class="fa fa-chevron-up"></i>
+  </div>
+</footer>
+
+
+  <!--the js include-->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="/assets/script/pithy.js"></script>
+
+<!--
+  the site comment script
+-->
+
+
+  <script>
+    
+    var disqus_config = function () {
+        this.page.url = 'https://www.tanglei.name/404.html' ; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '/404.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+        if($("#disqus_thread").length) {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://hexo-tanglei.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+    powered by Disqus.</a></noscript>
+
+
+
+<!--
+  the site analysis script
+-->
+
+  <!-- baidu analysis -->
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?f0117177475f54027bfcaceb8d668cee";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+</body>
+</html>

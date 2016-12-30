@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+  <head>
+    <title>android传感器开发基础</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="keywords" content="android传感器开发基础, 经验技巧, Android,传感器,, 唐磊, 中南大学, 清华大学, 软件工程师, 计算机, 全栈工程师" />
+    <meta name="description" content="android传感器开发基础, 经验技巧, Android,传感器, 本文节选于机械工业出版社推出的《Android应用开发揭秘》一书，作者为杨丰盛。本书内容全面，详细讲解了Android框架、Android组件、用户界面开发、游戏开发、数据存储、多媒体开发和网络开发等基础知识，而且还深入阐述了传感器、语音识别、桌面组件开发、Android游戏引擎设计、Android应用优化、Op..." />
+
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+
+  <!--Font awesome-->
+  <link href="/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- The pithy main css -->
+  <link rel="stylesheet" href="/assets/stylesheet/pithy.css">
+  <link rel="stylesheet" href="/assets/stylesheet/molokai.css">
+
+
+  <!--[if lt IE 9]>
+  <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv-printshiv.js"></script>
+  <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+  <![endif]-->
+  <link rel="alternate" type="application/rss+xml" title="tanglei's blog|唐磊的个人博客" href="https://www.tanglei.name/feed.xml" />
+</head>
+
+<body>
+  <nav class="navbar navbar-pithy" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+                data-target="#pithy-navbar" aria-expanded="false">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" rel="bookmark" href="/">TangLei</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="pithy-navbar">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="bookmark" href="/">首页</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/archives.html">Archives</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/about/">关于</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+  <div class="container page-content">
+    <div>
+    <div class="col-md-9 col-content">
+        <div id="post-content" class="panel panel-pithy post">
+            <div class="panel-heading">
+                <div class="title">
+                  <i class="fa fa-bookmark-o"></i>android传感器开发基础
+                </div>
+                <ul class="info">
+                    <li>
+                      作者 <span class="author"> 
+        
+            tanglei
+        
+        </span>
+                    </li>
+                    <li>
+                      最后编辑 2011年02月25日
+                    </li>
+                    <li>
+                      Tags
+                     
+                         <a class="tag" href="/tag/#Android">Android</a>
+                     
+                         <a class="tag" href="/tag/#传感器">传感器</a>
+                     
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body content">
+                <p>本文节选于机械工业出版社推出的《Android应用开发揭秘》一书，作者为杨丰盛。本书内容全面，详细讲解了Android框架、Android组件、用户界面开发、游戏开发、数据存储、多媒体开发和网络开发等基础知识，而且还深入阐述了传感器、语音识别、桌面组件开发、Android游戏引擎设计、Android应用优化、OpenGL等高级知识。另外，本书还全面介绍了如何利用原生的C/C++（NDK）和Python、Lua等脚本语言（Android Scripting Environment）来开发Android应用，并以迭代的方式重现了各种常用的Android应用和经典Android游戏的开发全过程。</p>
+
+<p><strong>第9章  Android特色开发</strong></p>
+
+<p>Android 是一个面向应用程序开发的丰富平台，它拥有许多具有吸引力的用户界面元素、数据管理和网络应用等优秀的功能。Android 还提供了很多颇具特色的接口。本章我们将分别介绍这些吸引开发者眼球的特色开发，主要包括：传感器系统（Sensor）、语音识别技术（RecognizerIntent）、Google Map和用来开发桌面的插件（Widget）。通过本章的学习，读者将对Android有一个更深入的了解，可以开发出一些有特色、有创意的应用程序。</p>
+
+<p><strong>9.1  传感器</strong></p>
+
+<p>据调查，2008年全球传感器销售额为506亿美元，预计到2010年全球传感器销售额可达600亿美元以上。调查显示，东欧、亚太区和加拿大成为传感器市场增长最快的地区，而美国、德国、日本依旧是传感器市场分布最大的地区。就世界范围而言，传感器市场增长最快的领域依旧是汽车，占第二位的是过程控制，当然现在也被广泛应用于通信。那么，传感器的定义是什么呢？有哪些种类的传感器呢？Android中提供了哪些传感器呢？</p>
+
+<p>1．传感器的定义</p>
+
+<p>传感器是一种物理装置或生物器官，能够探测、感受外界的信号、物理条件（如光、热、湿度）或化学组成（如烟雾），并将探知的信息传递给其他装置或器官。国家标准GB7665—87对传感器的定义是：“能感受规定的被测量并按照一定的规律转换成可用信号的器件或装置，通常由敏感元件和转换元件组成”。传感器是一种检测装置，能感受被测量的信息，并能将检测的感受到的信息，按一定规律变换成为电信号或其他所需形式的信息输出，以满足信息的传输、处理、存储、显示、记录和控制等要求。它是实现自动检测和自动控制的首要环节。</p>
+
+<p>2．传感器的种类</p>
+
+<p>可以从不同的角度对传感器进行分类：转换原理（传感器工作的基本物理或化学效应）；用途；输出信号类型以及制作材料和工艺等。</p>
+
+<p>根据工作原理，传感器可分为物理传感器和化学传感器两大类。</p>
+
+<p>物理传感器应用的是物理效应，诸如压电效应，磁致伸缩现象，离化、极化、热电、光电、磁电等效应。被测信号量的微小变化都将转换成电信号。</p>
+
+<p>化学传感器包括那些以化学吸附、电化学反应等现象为因果关系的传感器，被测信号量的微小变化也将转换成电信号。</p>
+
+<p>大多数传感器是以物理原理为基础运作的。化学传感器的技术问题较多，例如可靠性问题、规模生产的可能性、价格问题等，解决了这些问题，化学传感器的应用将会有巨大增长。而有些传感器既不能划分为物理类，也不能划分为化学类。</p>
+
+<p>3．Android中传感器的种类</p>
+
+<p>Google Android操作系统中内置了很多传感器，比如G1自带了一个非常实用的加速感应器（微型陀螺仪），有了它，G1手机就支持重力感应、方向判断等功能，在部分游戏或软件中可以自动识别屏幕的横屏、竖屏方向来改变屏幕显示布局。下面是Android中支持的几种传感器：</p>
+
+<p>Sensor.TYPE_ACCELEROMETER：加速度传感器。</p>
+
+<p>Sensor.TYPE_GYROSCOPE：陀螺仪传感器。</p>
+
+<p>Sensor.TYPE_LIGHT：亮度传感器。</p>
+
+<p>Sensor.TYPE_MAGNETIC_FIELD：地磁传感器。</p>
+
+<p>Sensor.TYPE_ORIENTATION：方向传感器。</p>
+
+<p>Sensor.TYPE_PRESSURE：压力传感器。</p>
+
+<p>Sensor.TYPE_PROXIMITY：近程传感器。</p>
+
+<p>Sensor.TYPE_TEMPERATURE：温度传感器。</p>
+
+<p>下面我们通过一个例子来分析Android中传感器的使用（具体实现参见本书所附代码：第9章\ Examples_09_01），这里分析的是方向传感器（TYPE_ORIENTATION）。</p>
+
+<p>4．Android 中传感器的功能</p>
+
+<p>要在Android中使用传感器，首先需要了解SensorManager和SensorEventListener。顾名思义，SensorManager就是所有传感器的一个综合管理类，包括了传感器的种类、采样率、精准度等。我们可以通过getSystemService方法来取得一个SensorManager对象。代码如下：</p>
+
+<p>SensorManager mSensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);</p>
+
+<p>取得SensorManager对象之后，可以通过getSensorList方法来获得我们需要的传感器类型，保存到一个传感器列表中。通过如下代码可以得到一个方向传感器：</p>
+
+<p>List<Sensor> sensors = mSensorManager.getSensorList(Sensor.TYPE_ORIENTATION);</Sensor></p>
+
+<p>要与传感器交互，应用程序必须注册以侦听与一个或多个传感器相关的活动。Android中提供了registerListener来注册一个传感器，并提供了unregisterListener来卸载一个传感器。registerListener方法包括3个参数：第1个参数，接收信号的Listener实例；第2个参数，想接收的传感器类型的列表（即上一步创建的List<Sensor>对象）；第3个参数，接收频度。调用之后返回一个布尔值，true表示成功，false表示失败。当然，之后不再使用时，我们还需要卸载。代码如下：</Sensor></p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="c1">//注册传感器  </span>
+ <span class="n">Boolean</span>  <span class="n">mRegisteredSensor</span> <span class="o">=</span> <span class="n">mSensorManager</span><span class="o">.</span><span class="na">registerListener</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">sensor</span><span class="o">,</span>   
+ <span class="n">SensorManager</span><span class="o">.</span><span class="na">SENSOR_DELAY_FASTEST</span><span class="o">);</span>  
+ <span class="c1">//卸载传感器  </span>
+ <span class="n">mSensorManager</span><span class="o">.</span><span class="na">unregisterListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+</code></pre>
+</div>
+
+<p>其中，SensorEventListener是使用传感器的核心部分，包括以下两个方法必须实现：</p>
+
+<p>onSensorChanged (SensorEvent event) 方法在传感器值更改时调用。该方法只由受此应用程序监视的传感器调用。该方法的参数包括一个SensorEvent对象，该对象主要包括一组浮点数，表示传感器获得的方向、加速度等信息。例如，以下代码可以取得其值：</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kt">float</span> <span class="n">x</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="na">values</span><span class="o">[</span><span class="n">SensorManager</span><span class="o">.</span><span class="na">DATA_X</span><span class="o">];</span>  
+<span class="kt">float</span> <span class="n">y</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="na">values</span><span class="o">[</span><span class="n">SensorManager</span><span class="o">.</span><span class="na">DATA_Y</span><span class="o">];</span>  
+<span class="kt">float</span> <span class="n">z</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="na">values</span><span class="o">[</span><span class="n">SensorManager</span><span class="o">.</span><span class="na">DATA_Z</span><span class="o">];</span>  <span class="err">```</span>
+
+<span class="n">onAccuracyChanged</span> <span class="o">(</span><span class="n">Sensor</span> <span class="n">sensor</span><span class="o">,</span><span class="kt">int</span> <span class="n">accuracy</span><span class="o">)</span> <span class="err">方法在传感器的精准度发生改变时调用。其参数包括两个整数：一个表示传感器，另一个表示该传感器新的准确值。</span>
+  
+<span class="err">具体实现如代码清单</span><span class="mi">9</span><span class="o">-</span><span class="mi">1</span><span class="err">所示。</span>
+  
+<span class="err">代码清单</span><span class="mi">9</span><span class="o">-</span><span class="mi">1</span> <span class="err">第</span><span class="mi">9</span><span class="err">章\</span><span class="n">Examples</span><span class="err">\</span><span class="n">_09</span><span class="err">\</span><span class="n">_01</span><span class="err">\</span><span class="n">src</span><span class="err">\</span><span class="n">com</span><span class="err">\</span><span class="n">yarin</span><span class="err">\</span><span class="n">android</span><span class="err">\</span><span class="n">Examples</span><span class="err">\</span><span class="n">_09</span><span class="err">\</span><span class="n">_01</span><span class="err">\</span><span class="n">Activity01</span><span class="o">.</span><span class="na">java</span>
+
+<span class="err">```</span><span class="n">java</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Activity01</span> <span class="kd">extends</span> <span class="n">Activity</span> <span class="kd">implements</span> <span class="n">SensorEventListener</span>  
+<span class="o">{</span>  
+    <span class="kd">private</span> <span class="kt">boolean</span>         <span class="n">mRegisteredSensor</span><span class="o">;</span>  
+    <span class="c1">//定义SensorManager  </span>
+    <span class="kd">private</span> <span class="n">SensorManager</span>       <span class="n">mSensorManager</span><span class="o">;</span>  
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span>  
+    <span class="o">{</span>  
+        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>  
+        <span class="n">setContentView</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">main</span><span class="o">);</span>  
+        <span class="n">mRegisteredSensor</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>  
+        <span class="c1">//取得SensorManager实例  </span>
+        <span class="n">mSensorManager</span> <span class="o">=</span> <span class="o">(</span><span class="n">SensorManager</span><span class="o">)</span> <span class="n">getSystemService</span><span class="o">(</span><span class="n">SENSOR_SERVICE</span><span class="o">);</span>  
+    <span class="o">}</span>  
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onResume</span><span class="o">()</span>  
+    <span class="o">{</span>  
+        <span class="kd">super</span><span class="o">.</span><span class="na">onResume</span><span class="o">();</span>  
+        <span class="c1">//接收SensorManager的一个列表(Listener)  </span>
+        <span class="c1">//这里我们指定类型为TYPE_ORIENTATION(方向传感器)  </span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">Sensor</span><span class="o">&gt;</span> <span class="n">sensors</span> <span class="o">=</span> <span class="n">mSensorManager</span><span class="o">.</span><span class="na">getSensorList</span>  
+        <span class="o">(</span><span class="n">Sensor</span><span class="o">.</span><span class="na">TYPE_ORIENTATION</span><span class="o">);</span>  
+        <span class="k">if</span> <span class="o">(</span><span class="n">sensors</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span>  
+        <span class="o">{</span>  
+            <span class="n">Sensor</span> <span class="n">sensor</span> <span class="o">=</span> <span class="n">sensors</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>  
+            <span class="c1">//注册SensorManager  </span>
+            <span class="c1">//this-&gt;接收sensor的实例  </span>
+            <span class="c1">//接收传感器类型的列表  </span>
+            <span class="c1">//接收的频率  </span>
+            <span class="n">mRegisteredSensor</span> <span class="o">=</span> <span class="n">mSensorManager</span><span class="o">.</span><span class="na">registerListener</span><span class="o">(</span><span class="k">this</span><span class="o">,</span>   
+            <span class="n">sensor</span><span class="o">,</span> <span class="n">SensorManager</span><span class="o">.</span><span class="na">SENSOR_DELAY_FASTEST</span><span class="o">);</span>  
+        <span class="o">}</span>  
+    <span class="o">}</span>  
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onPause</span><span class="o">()</span>  
+    <span class="o">{</span>  
+        <span class="k">if</span> <span class="o">(</span><span class="n">mRegisteredSensor</span><span class="o">)</span>  
+        <span class="o">{</span>  
+            <span class="c1">//如果调用了registerListener  </span>
+            <span class="c1">//这里我们需要unregisterListener来卸载/取消注册  </span>
+        <span class="n">mSensorManager</span><span class="o">.</span><span class="na">unregisterListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>  
+            <span class="n">mRegisteredSensor</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>  
+        <span class="o">}</span>  
+        <span class="kd">super</span><span class="o">.</span><span class="na">onPause</span><span class="o">();</span>  
+    <span class="o">}</span>  
+    <span class="c1">//当精准度发生改变时  </span>
+    <span class="c1">//sensor-&gt;传感器  </span>
+    <span class="c1">//accuracy-&gt;精准度  </span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onAccuracyChanged</span><span class="o">(</span><span class="n">Sensor</span> <span class="n">sensor</span><span class="o">,</span> <span class="kt">int</span> <span class="n">accuracy</span><span class="o">)</span>  
+    <span class="o">{</span>  
+        <span class="c1">//处理精准度改变  </span>
+    <span class="o">}</span>  
+    <span class="c1">// 当传感器在被改变时触发  </span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onSensorChanged</span><span class="o">(</span><span class="n">SensorEvent</span> <span class="n">event</span><span class="o">)</span>  
+    <span class="o">{</span>  
+        <span class="c1">// 接收方向传感器的类型  </span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">event</span><span class="o">.</span><span class="na">sensor</span><span class="o">.</span><span class="na">getType</span><span class="o">()</span> <span class="o">==</span> <span class="n">Sensor</span><span class="o">.</span><span class="na">TYPE_ORIENTATION</span><span class="o">)</span>  
+        <span class="o">{</span>  
+            <span class="c1">//这里我们可以得到数据，然后根据需要来处理  </span>
+            <span class="c1">//由于模拟器上面无法测试效果，因此我们暂时不处理数据  </span>
+            <span class="kt">float</span> <span class="n">x</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="na">values</span><span class="o">[</span><span class="n">SensorManager</span><span class="o">.</span><span class="na">DATA_X</span><span class="o">];</span>  
+            <span class="kt">float</span> <span class="n">y</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="na">values</span><span class="o">[</span><span class="n">SensorManager</span><span class="o">.</span><span class="na">DATA_Y</span><span class="o">];</span>  
+            <span class="kt">float</span> <span class="n">z</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="na">values</span><span class="o">[</span><span class="n">SensorManager</span><span class="o">.</span><span class="na">DATA_Z</span><span class="o">];</span>  
+        <span class="o">}</span>  
+    <span class="o">}</span>  
+<span class="o">}</span> 
+</code></pre>
+</div>
+
+<p>上面的例子中演示了如何获得方向传感器的方向、加速度等信息，我们可以根据得到的数值与上一次得到的数值之间的关系来进行需要的操作。SensorManager中还有很多常量和一些常用的方法，如下：</p>
+
+<p>getDefaultSensor：得到默认的传感器对象。</p>
+
+<p>getInclination：得到地磁传感器倾斜角的弧度值。</p>
+
+<p>getOrientation：得到设备旋转的方向。</p>
+
+<p>getSensorList：得到指定传感器的列表。</p>
+
+            </div>
+            <div class="post-nav">
+    
+    <a class="prev" href=/blog/defy_sensors.html>&laquo; &nbsp;Defy传感器列表</a>
+    
+    
+    <a class="next" href=/blog/4g-memery.html>我的Y430升4G内存啦&nbsp;&raquo;</a>
+    
+</div>
+
+            
+        </div>
+        <!--
+            if config set comment enable,include comment
+        -->
+        
+            <!-- comment -->
+<div id="post-comment" class="panel panel-default">
+    <div class="panel-body">
+        
+
+        
+            <div id="disqus_thread"></div>
+        
+    </div>
+</div>
+
+        
+    </div>
+    <div class="col-md-3 col-sidebar">
+        <div class="panel panel-pithy author">
+    <div class="panel-heading avastar">
+        <img src="/tx.jpg" alt="tanglei"/>
+    </div>
+    <div class="panel-body">
+        码农 @ 宜信大数据创新中心, 毕业于CSU && THU,  曾工作于<a href='http://www.tencent.com/zh-cn/index.shtml' target='_blank'>腾讯</a> && <a href='http://www.umeng.com/' target='_blank'>友盟</a>.  &nbsp; <a href='/about/'> MORE </a>
+    </div>
+    <div class="panel-footer social">
+        <ul>
+            
+            <li>
+                <a rel="nofollow" href="http://www.weibo.com/tangleithu/" target="_blank"><i class="fa fa-weibo"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://github.com/tl3shi" target="_blank"><i class="fa fa-github"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://www.facebook.com/tanglei.name" target="_blank"><i class="fa fa-facebook"></i></a>
+            </li>
+            
+            <li>
+                <a href="https://www.tanglei.name/feed.xml" target="_blank"><i class="fa fa-rss"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar:category list -->
+<div class="panel panel-default categories">
+    <div class="panel-heading title">
+        分类列表
+    </div>
+    <div class="panel-body list">
+        <ul>
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/贵州支教行/">
+                  贵州支教行&nbsp;<span class="count">[12]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/课程学习/">
+                  课程学习&nbsp;<span class="count">[88]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/MyLife/">
+                  MyLife&nbsp;<span class="count">[45]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/经验技巧/">
+                  经验技巧&nbsp;<span class="count">[93]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/社会工作/">
+                  社会工作&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/网络文摘/">
+                  网络文摘&nbsp;<span class="count">[28]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件体系结构/">
+                  软件体系结构&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/旅游/">
+                  旅游&nbsp;<span class="count">[23]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软考/">
+                  软考&nbsp;<span class="count">[2]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件度量及其应用/">
+                  软件度量及其应用&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/工作那些事儿/">
+                  工作那些事儿&nbsp;<span class="count">[42]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我做站长/">
+                  我做站长&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/coding小工具/">
+                  coding小工具&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/除臭虫/">
+                  除臭虫&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/学到老/">
+                  学到老&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我不会算法/">
+                  我不会算法&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/数据挖掘/">
+                  数据挖掘&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/计算机图形学/">
+                  计算机图形学&nbsp;<span class="count">[5]</span>
+              </a>
+          </li>
+
+          
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar: tag list -->
+<div class="panel panel-default tags">
+    <div class="panel-heading title">
+        标签云
+    </div>
+    <div class="panel-body list">
+         
+        <input type="hidden" id="tag-values" value='{"name":"丰田助学","count":16},{"name":"贵州支教","count":12},{"name":"铜厂小学","count":9},{"name":"中南大学","count":12},{"name":"云南赶集","count":1},{"name":"HelloWorld","count":5},{"name":"我做站长","count":35},{"name":"设计模式","count":7},{"name":"Wordpress","count":18},{"name":"系统架构师","count":11},{"name":"软考","count":25},{"name":"论文","count":6},{"name":"软件0804","count":8},{"name":"Java","count":24},{"name":"J2EE","count":3},{"name":"JAVA","count":1},{"name":"考试","count":25},{"name":"SEO","count":3},{"name":"软件体系结构","count":6},{"name":"Android","count":28},{"name":"软件工程","count":2},{"name":"Windows","count":17},{"name":"软件测试","count":1},{"name":"总结","count":13},{"name":"Oracle","count":4},{"name":"存储过程","count":3},{"name":"数据库应用","count":3},{"name":"数据库","count":8},{"name":"先进班集体","count":1},{"name":"Linux","count":15},{"name":"Ubuntu","count":8},{"name":"Defy","count":3},{"name":"传感器","count":1},{"name":"访日交流","count":8},{"name":"旅游","count":22},{"name":"软件学院","count":11},{"name":"大学生科协","count":4},{"name":"玩遍中国","count":11},{"name":"计算机网络","count":5},{"name":"Eclipse","count":4},{"name":"软件度量","count":11},{"name":"软件设计师","count":4},{"name":"编译原理","count":2},{"name":"程序语言","count":2},{"name":"操作系统","count":3},{"name":"多媒体","count":2},{"name":"网络安全","count":9},{"name":"TCP/IP","count":2},{"name":"编程语言","count":1},{"name":"考点","count":1},{"name":"Google","count":5},{"name":"软件结构度量","count":1},{"name":"CMM","count":6},{"name":"项目管理","count":3},{"name":"实习","count":33},{"name":"面试","count":18},{"name":"网络营销","count":1},{"name":"百度","count":4},{"name":"笔试","count":2},{"name":"腾讯","count":31},{"name":"编程比赛","count":4},{"name":"科研","count":4},{"name":"电子商务","count":11},{"name":"虚拟主机","count":2},{"name":"网路安全","count":1},{"name":"Foxmail","count":3},{"name":"微软","count":1},{"name":"软件能力成熟度模型","count":2},{"name":"软件过程改进","count":3},{"name":"SCM复习资料","count":1},{"name":"软件配置管理","count":12},{"name":"SCM","count":6},{"name":"工具","count":19},{"name":"反模式","count":1},{"name":"玩玩手机","count":5},{"name":"程序员","count":4},{"name":"健康","count":1},{"name":"共享上网","count":2},{"name":"Bug","count":4},{"name":"coding小工具","count":1},{"name":"工作日志","count":19},{"name":"Apache","count":2},{"name":"PHP","count":13},{"name":"实习日志","count":1},{"name":"工作实习生","count":1},{"name":"Mysql","count":1},{"name":"Shell","count":3},{"name":"腾讯实习日志","count":1},{"name":"hosts","count":2},{"name":"Vim","count":3},{"name":"正则表达式","count":2},{"name":"搜索引擎","count":1},{"name":"跨域","count":1},{"name":"前端","count":2},{"name":"保研","count":15},{"name":"算法","count":9},{"name":"清华大学","count":12},{"name":"丰田助学金","count":3},{"name":"WiFi","count":1},{"name":"实习生","count":1},{"name":"wifi自动关闭","count":1},{"name":"腾讯实习","count":1},{"name":"经验技巧","count":13},{"name":"DDOS","count":2},{"name":"AOP","count":3},{"name":"租房","count":2},{"name":"Sqlite","count":2},{"name":"Python","count":11},{"name":"OOP","count":5},{"name":"数据挖掘","count":8},{"name":"GitHub","count":2},{"name":"SVM","count":3},{"name":"R语言","count":2},{"name":"足迹","count":2},{"name":"笛子","count":2},{"name":"计算机图形学","count":5},{"name":"OpenGL","count":3},{"name":"回忆录","count":1},{"name":"年终总结","count":1},{"name":"域名","count":1},{"name":"计算几何","count":2},{"name":"敲敲代码","count":9},{"name":"Latex","count":3},{"name":"C++","count":10},{"name":"Mac","count":7},{"name":"飞行模式","count":2},{"name":"性能优化","count":2},{"name":"Javascript","count":1},{"name":"工作","count":1},{"name":"玩遍世界","count":1},{"name":"Scala","count":2},{"name":"MyLife","count":1},{"name":"快捷键","count":1},{"name":"云服务","count":1},{"name":"Blog","count":1},{"name":"微信公众号","count":1}'/>
+        <div style="display: none"><a id="tag-value" class="taglink" rel="bookmark" href="/tag/#" data-target-cate="#"></a></div>
+        <div class="tag-values-container">
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+  </div>
+
+  <footer>
+  <div class="text-center">
+    © 2010-2016 All rights reserved.
+    Made with <a href="http://jekyllrb.com/" rel="nofollow" target="_blank">Jekyll</a>
+    & Modified by <a href="http://www.tanglei.name/about/" >Tanglei</a>
+    and <i class="fa fa-heart"></i> by <a rel="nofollow" href="https://github.com/guovz/jekyll-pithy" target="_blank">Pithy</a>
+  </div>
+  <div class="totop" data-toggle="totop">
+      <i class="fa fa-chevron-up"></i>
+  </div>
+</footer>
+
+
+  <!--the js include-->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="/assets/script/pithy.js"></script>
+
+<!--
+  the site comment script
+-->
+
+
+  <script>
+    
+    var disqus_config = function () {
+        this.page.url = 'https://www.tanglei.name/blog/android_sensors_devlope.html' ; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '/blog/android_sensors_devlope.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+        if($("#disqus_thread").length) {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://hexo-tanglei.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+    powered by Disqus.</a></noscript>
+
+
+
+<!--
+  the site analysis script
+-->
+
+  <!-- baidu analysis -->
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?f0117177475f54027bfcaceb8d668cee";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+  <head>
+    <title>leetcode中的shell问题</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="keywords" content="leetcode中的shell问题, 学到老, Linux,Shell,工具,, 唐磊, 中南大学, 清华大学, 软件工程师, 计算机, 全栈工程师" />
+    <meta name="description" content="leetcode中的shell问题, 学到老, Linux,Shell,工具, 最近重温了一下 awk, sed, tr 等命令，然后发现leetcode中还有几道专门关于shell的题目shell in leetcode， 于是就也做了一下。下面是几道题目的解决方案。" />
+
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+
+  <!--Font awesome-->
+  <link href="/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- The pithy main css -->
+  <link rel="stylesheet" href="/assets/stylesheet/pithy.css">
+  <link rel="stylesheet" href="/assets/stylesheet/molokai.css">
+
+
+  <!--[if lt IE 9]>
+  <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv-printshiv.js"></script>
+  <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+  <![endif]-->
+  <link rel="alternate" type="application/rss+xml" title="tanglei's blog|唐磊的个人博客" href="https://www.tanglei.name/feed.xml" />
+</head>
+
+<body>
+  <nav class="navbar navbar-pithy" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+                data-target="#pithy-navbar" aria-expanded="false">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" rel="bookmark" href="/">TangLei</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="pithy-navbar">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="bookmark" href="/">首页</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/archives.html">Archives</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/about/">关于</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+  <div class="container page-content">
+    <div>
+    <div class="col-md-9 col-content">
+        <div id="post-content" class="panel panel-pithy post">
+            <div class="panel-heading">
+                <div class="title">
+                  <i class="fa fa-bookmark-o"></i>leetcode中的shell问题
+                </div>
+                <ul class="info">
+                    <li>
+                      作者 <span class="author"> 
+        
+            tanglei 
+        
+        </span>
+                    </li>
+                    <li>
+                      最后编辑 2016年04月19日
+                    </li>
+                    <li>
+                      Tags
+                     
+                         <a class="tag" href="/tag/#Linux">Linux</a>
+                     
+                         <a class="tag" href="/tag/#Shell">Shell</a>
+                     
+                         <a class="tag" href="/tag/#工具">工具</a>
+                     
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body content">
+                <p>最近重温了一下 <code class="highlighter-rouge">awk, sed, tr</code> 等命令，然后发现leetcode中还有几道专门关于shell的题目<a href="https://leetcode.com/problemset/shell/">shell in leetcode</a>， 于是就也做了一下。下面是几道题目的解决方案。</p>
+
+<ul id="markdown-toc">
+  <li><a href="#tenth-line-ref" id="markdown-toc-tenth-line-ref">tenth-line <a href="https://leetcode.com/problems/tenth-line/">ref</a></a></li>
+  <li><a href="#valid-phone-numbers-ref" id="markdown-toc-valid-phone-numbers-ref">valid-phone-numbers <a href="https://leetcode.com/problems/valid-phone-numbers/">ref</a></a></li>
+  <li><a href="#transpose-file-ref" id="markdown-toc-transpose-file-ref">transpose-file <a href="https://leetcode.com/problems/transpose-file/">ref</a></a></li>
+  <li><a href="#word-frequency-ref" id="markdown-toc-word-frequency-ref">Word Frequency <a href="https://leetcode.com/problems/word-frequency/">ref</a></a></li>
+</ul>
+
+<h3 id="tenth-line-ref">tenth-line <a href="https://leetcode.com/problems/tenth-line/">ref</a></h3>
+
+<blockquote>
+  <p>How would you print just the 10th line of a file?
+For example, assume that file.txt has the following content:</p>
+
+  <div class="highlighter-rouge"><pre class="highlight"><code>Line 1
+Line 2
+Line 3
+Line 4
+Line 5
+Line 6
+Line 7
+Line 8
+Line 9
+Line 10
+Your script should output the tenth line, which is:
+
+Line 10
+</code></pre>
+  </div>
+</blockquote>
+
+<p>即打印一个文件中的第10行。
+我刚开始就写了<code class="highlighter-rouge">head -n 10 file.txt | tail -n 1</code> 这个错, 这个是10行内的最后一行，不足10行的就不要打印了。</p>
+
+<p>AC的解决方案有3个如下：</p>
+
+<ul>
+  <li><code class="highlighter-rouge">head -n 10 file.txt | tail -n +10</code> 这个是OK的, 先取出前10行, 再从内容中从前往后取第10行及其以后的</li>
+  <li><code class="highlighter-rouge">sed -n '10p' file.txt</code> <code class="highlighter-rouge">-n</code> 去除本来要echo file.txt中的内容</li>
+  <li><code class="highlighter-rouge">awk 'NR==10' file.txt</code>  或者 <code class="highlighter-rouge">awk 'NR==10{print $0}' file.txt</code>, awk参考<a href="http://coolshell.cn/articles/9070.html">AWK简明教程</a></li>
+</ul>
+
+<h3 id="valid-phone-numbers-ref">valid-phone-numbers <a href="https://leetcode.com/problems/valid-phone-numbers/">ref</a></h3>
+
+<blockquote>
+  <p>Given a text file file.txt that contains list of phone numbers (one per line), write a one liner bash script to print all valid phone numbers.</p>
+
+  <p>You may assume that a valid phone number must appear in one of the following two formats: (xxx) xxx-xxxx or xxx-xxx-xxxx. (x means a digit)</p>
+
+  <p>You may also assume each line in the text file must not contain leading or trailing white spaces.
+For example, assume that file.txt has the following content:</p>
+
+  <div class="highlighter-rouge"><pre class="highlight"><code>987-123-4567
+123 456 7890
+(123) 456-7890
+Your script should output the following valid phone numbers:
+
+987-123-4567
+(123) 456-7890
+</code></pre>
+  </div>
+</blockquote>
+
+<p>需要从文件中提取满足特定条件的行，用正则表达式即可。可用<code class="highlighter-rouge">grep, sed, awk</code>实现。</p>
+
+<p><code class="highlighter-rouge">awk '$0 ~ /^\([0-9]{3}\) [0-9]{3}-[0-9]{4}$|^[0-9]{3}-[0-9]{3}-[0-9]{4}$/' file.txt	</code></p>
+
+<p>awk, <code class="highlighter-rouge">$0</code>表示整行, <code class="highlighter-rouge">/reg1|reg2/</code> reg1满足或者reg2满足, 或者省略”$0 ~” 然后将两个reg共同部分提取出来.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>awk <span class="s1">'/^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/'</span> file.txt
+<span class="c"># Mac sed, -E 正则  GNU/Linux也OK</span>
+sed -n -E <span class="s1">'/^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/p'</span> file.txt
+<span class="c"># GNU/Linux sed  -r 正则</span>
+sed -n -r <span class="s1">'/^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/p'</span> file.txt
+<span class="c"># both GNU/Linux and Mac, --extended-regexp (或者直接 egrep '^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$' file.txt)</span>
+grep -E <span class="s1">'^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$'</span> file.txt 
+<span class="c"># only GNU/Linux --perl-regexp</span>
+grep -P <span class="s1">'^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$'</span> file.txt 
+</code></pre>
+</div>
+
+<p>Max OS X上的<code class="highlighter-rouge">sed</code>是BSD的版本(BSD的<code class="highlighter-rouge">\n, \t</code> 等都得注意)，Linux上的是GNU的版本, 
+例如在<strong>Mac中空格替换换行符</strong>用
+<code class="highlighter-rouge">sed -E 's/ /\'$'\n/g' words.txt</code>
+而Linux下只需要
+<code class="highlighter-rouge">sed 's/ /\n/g' words.txt</code></p>
+
+<p>Reference</p>
+
+<ul>
+  <li><a href="http://unix.stackexchange.com/questions/42321/how-can-i-instruct-bsd-sed-to-interpret-escape-sequences-like-n-and-t">\n in bsd sed</a></li>
+  <li><a href="http://nlfiedler.github.io/2010/12/05/newlines-in-sed-on-mac.html">newlines-in-sed-on-mac</a></li>
+</ul>
+
+<h3 id="transpose-file-ref">transpose-file <a href="https://leetcode.com/problems/transpose-file/">ref</a></h3>
+<blockquote>
+  <p>Given a text file file.txt, transpose its content.</p>
+
+  <p>You may assume that each row has the same number of columns and each field is separated by the ‘ ‘ character.</p>
+
+  <p>For example, if file.txt has the following content:</p>
+
+  <div class="highlighter-rouge"><pre class="highlight"><code>name age
+alice 21
+ryan 30
+</code></pre>
+  </div>
+
+  <p>Output the following:</p>
+
+  <div class="highlighter-rouge"><pre class="highlight"><code>name alice ryan
+age 21 30
+</code></pre>
+  </div>
+</blockquote>
+
+<p>类似shell版本的矩阵转置问题。</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nv">ncol</span><span class="o">=</span><span class="sb">`</span>head -n1 file.txt | wc -w<span class="sb">`</span>
+<span class="k">for </span>i <span class="k">in</span> <span class="sb">`</span>seq 1 <span class="nv">$ncol</span><span class="sb">`</span>
+<span class="k">do
+    </span><span class="nb">echo</span> <span class="sb">`</span>cut -d<span class="s1">' '</span> -f<span class="nv">$i</span> file.txt<span class="sb">`</span>
+<span class="k">done</span>
+</code></pre>
+</div>
+<p>把每一列用<code class="highlighter-rouge">cut</code>取出来，然后<code class="highlighter-rouge">echo</code>成一行。<code class="highlighter-rouge">echo</code>会去掉换行符, 不过<a href="https://leetcode.com/discuss/31308/simple-bash-solution-that-oj-hates">ref这个方案</a>超内存了.</p>
+
+<p>最后方案用<code class="highlighter-rouge">awk</code>实现。</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>awk <span class="s1">'{for(i=1;i&lt;=NF;i++){ a[i]=a[i] sprintf("%s ", $i); }} END { for (i=1;i&lt;=NF;i++) print a[i]; }'</span> file.txt | sed <span class="s1">'s/ $//'</span>
+</code></pre>
+</div>
+
+<p>解释一下得</p>
+
+<ul>
+  <li>第一行处理后: <code class="highlighter-rouge">a[1]=name , a[2]=age</code></li>
+  <li>第二行处理后: <code class="highlighter-rouge">a[1]=name alice , a[2]=age 21</code></li>
+  <li>…</li>
+  <li>都处理完后, 打印a[1]中的得到<code class="highlighter-rouge">name alice ryan</code>, 最后再删除最后一列跟着的空格即可。</li>
+</ul>
+
+<p>注意最后替换掉换行符前面的空格, 这个方案在GNU/Linux下OK,  Mac下貌似还需要逆序一下, 主要区别是<code class="highlighter-rouge">for (i in a)</code>, Mac下逆序了</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># GNU/Linux下OK</span>
+awk <span class="s1">'{ for(i=1;i&lt;=NF;i++){ a[i]=a[i] sprintf("%s ", $i); } } END { for (i in a) print a[i]; }'</span> file.txt | sed <span class="s1">'s/ $//'</span>  
+<span class="c">#这个需要逆序for (i in a) Mac下是逆序的index</span>
+awk  <span class="s1">'{ for(i=1;i&lt;=NF;i++){ a[i]=a[i] sprintf("%s ", $i); } } END { for (i in a) print a[i]; }'</span> file.txt | sed <span class="s1">'s/ $//'</span> | tail -r  
+</code></pre>
+</div>
+
+<p>或者这样也行, 把空格拿到开头, 最后替换掉即可.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>awk  <span class="s1">'{for(i=1;i&lt;=NF;i++){ a[i]=a[i] " " $i; }} END { for (i=1;i&lt;=NF;i++) print a[i]; }'</span> file.txt | sed <span class="s1">'s/^ //'</span>
+</code></pre>
+</div>
+
+<p>这个参考了<a href="http://unix.stackexchange.com/questions/79642/transposing-rows-and-columns">ref SO</a></p>
+
+<h3 id="word-frequency-ref">Word Frequency <a href="https://leetcode.com/problems/word-frequency/">ref</a></h3>
+
+<blockquote>
+  <p>Write a bash script to calculate the frequency of each word in a text file words.txt.</p>
+
+  <p>For simplicity sake, you may assume:</p>
+
+  <ul>
+    <li>words.txt contains only lowercase characters and space ‘ ‘ characters.</li>
+    <li>Each word must consist of lowercase characters only.</li>
+    <li>Words are separated by one or more whitespace characters.</li>
+  </ul>
+
+  <p>For example, assume that words.txt has the following content:</p>
+
+  <div class="highlighter-rouge"><pre class="highlight"><code>the day is sunny the the
+the sunny is is
+</code></pre>
+  </div>
+
+  <p>Your script should output the following, sorted by descending frequency:</p>
+
+  <div class="highlighter-rouge"><pre class="highlight"><code>the 4
+is 3
+sunny 2
+day 1
+</code></pre>
+  </div>
+
+  <p>Note: Don’t worry about handling ties, it is guaranteed that each word’s frequency count is unique.</p>
+</blockquote>
+
+<p>计算每个单词出现的次数，并按照次数从多到少排列。这个功能简单， 结合<code class="highlighter-rouge">sort, uniq</code>就可以实现。</p>
+
+<p>Mac下换行注意<code class="highlighter-rouge">" \'$'\n"</code>, <code class="highlighter-rouge">sort</code>参数 <code class="highlighter-rouge">-n</code>(number排序, -d字典序), <code class="highlighter-rouge">-r</code>(reverse), <code class="highlighter-rouge">-k</code>(第几列), <code class="highlighter-rouge">-t</code>(分隔符), 结果为”number string” 再调换一下列位置, 还得去掉空格的行.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sed -E <span class="s1">'s/[[:space:]]+/\'</span><span class="nv">$'</span><span class="se">\n</span>/g<span class="s1">' words.txt | sort | uniq -c | sort -n -r -k1 | awk '</span><span class="o">{</span>print <span class="nv">$2</span> <span class="s2">" "</span><span class="nv">$1</span><span class="o">}</span><span class="s1">'
+</span></code></pre>
+</div>
+
+<p>最后答案:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sed -E <span class="s1">'s/[[:space:]]+/\n/g'</span> words.txt | grep -v <span class="s2">"^$"</span> | sort | uniq -c | sort -n -r -k1 | awk <span class="s1">'{print $2 " "$1}'</span>
+<span class="c">#用grep -v或者awk进行去空行</span>
+sed -E <span class="s1">'s/\s+/\n/g'</span> words.txt | sort | uniq -c | sort -nr | awk <span class="s1">'$2!=""{print $2 " "$1}'</span>
+</code></pre>
+</div>
+
+            </div>
+            <div class="post-nav">
+    
+    <a class="prev" href=/blog/travel-to-zhangjiajie.html>&laquo; &nbsp;张家界旅游</a>
+    
+    
+    <a class="next" href=/blog/buy-in-hhkb-pro2-type-s.html>入手传说中的 HHKB Pro2 Type-S&nbsp;&raquo;</a>
+    
+</div>
+
+            
+        </div>
+        <!--
+            if config set comment enable,include comment
+        -->
+        
+            <!-- comment -->
+<div id="post-comment" class="panel panel-default">
+    <div class="panel-body">
+        
+
+        
+            <div id="disqus_thread"></div>
+        
+    </div>
+</div>
+
+        
+    </div>
+    <div class="col-md-3 col-sidebar">
+        <div class="panel panel-pithy author">
+    <div class="panel-heading avastar">
+        <img src="/tx.jpg" alt="tanglei"/>
+    </div>
+    <div class="panel-body">
+        码农 @ 宜信大数据创新中心, 毕业于CSU && THU,  曾工作于<a href='http://www.tencent.com/zh-cn/index.shtml' target='_blank'>腾讯</a> && <a href='http://www.umeng.com/' target='_blank'>友盟</a>.  &nbsp; <a href='/about/'> MORE </a>
+    </div>
+    <div class="panel-footer social">
+        <ul>
+            
+            <li>
+                <a rel="nofollow" href="http://www.weibo.com/tangleithu/" target="_blank"><i class="fa fa-weibo"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://github.com/tl3shi" target="_blank"><i class="fa fa-github"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://www.facebook.com/tanglei.name" target="_blank"><i class="fa fa-facebook"></i></a>
+            </li>
+            
+            <li>
+                <a href="https://www.tanglei.name/feed.xml" target="_blank"><i class="fa fa-rss"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar:category list -->
+<div class="panel panel-default categories">
+    <div class="panel-heading title">
+        分类列表
+    </div>
+    <div class="panel-body list">
+        <ul>
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/贵州支教行/">
+                  贵州支教行&nbsp;<span class="count">[12]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/课程学习/">
+                  课程学习&nbsp;<span class="count">[88]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/MyLife/">
+                  MyLife&nbsp;<span class="count">[45]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/经验技巧/">
+                  经验技巧&nbsp;<span class="count">[93]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/社会工作/">
+                  社会工作&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/网络文摘/">
+                  网络文摘&nbsp;<span class="count">[28]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件体系结构/">
+                  软件体系结构&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/旅游/">
+                  旅游&nbsp;<span class="count">[23]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软考/">
+                  软考&nbsp;<span class="count">[2]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件度量及其应用/">
+                  软件度量及其应用&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/工作那些事儿/">
+                  工作那些事儿&nbsp;<span class="count">[42]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我做站长/">
+                  我做站长&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/coding小工具/">
+                  coding小工具&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/除臭虫/">
+                  除臭虫&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/学到老/">
+                  学到老&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我不会算法/">
+                  我不会算法&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/数据挖掘/">
+                  数据挖掘&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/计算机图形学/">
+                  计算机图形学&nbsp;<span class="count">[5]</span>
+              </a>
+          </li>
+
+          
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar: tag list -->
+<div class="panel panel-default tags">
+    <div class="panel-heading title">
+        标签云
+    </div>
+    <div class="panel-body list">
+         
+        <input type="hidden" id="tag-values" value='{"name":"丰田助学","count":16},{"name":"贵州支教","count":12},{"name":"铜厂小学","count":9},{"name":"中南大学","count":12},{"name":"云南赶集","count":1},{"name":"HelloWorld","count":5},{"name":"我做站长","count":35},{"name":"设计模式","count":7},{"name":"Wordpress","count":18},{"name":"系统架构师","count":11},{"name":"软考","count":25},{"name":"论文","count":6},{"name":"软件0804","count":8},{"name":"Java","count":24},{"name":"J2EE","count":3},{"name":"JAVA","count":1},{"name":"考试","count":25},{"name":"SEO","count":3},{"name":"软件体系结构","count":6},{"name":"Android","count":28},{"name":"软件工程","count":2},{"name":"Windows","count":17},{"name":"软件测试","count":1},{"name":"总结","count":13},{"name":"Oracle","count":4},{"name":"存储过程","count":3},{"name":"数据库应用","count":3},{"name":"数据库","count":8},{"name":"先进班集体","count":1},{"name":"Linux","count":15},{"name":"Ubuntu","count":8},{"name":"Defy","count":3},{"name":"传感器","count":1},{"name":"访日交流","count":8},{"name":"旅游","count":22},{"name":"软件学院","count":11},{"name":"大学生科协","count":4},{"name":"玩遍中国","count":11},{"name":"计算机网络","count":5},{"name":"Eclipse","count":4},{"name":"软件度量","count":11},{"name":"软件设计师","count":4},{"name":"编译原理","count":2},{"name":"程序语言","count":2},{"name":"操作系统","count":3},{"name":"多媒体","count":2},{"name":"网络安全","count":9},{"name":"TCP/IP","count":2},{"name":"编程语言","count":1},{"name":"考点","count":1},{"name":"Google","count":5},{"name":"软件结构度量","count":1},{"name":"CMM","count":6},{"name":"项目管理","count":3},{"name":"实习","count":33},{"name":"面试","count":18},{"name":"网络营销","count":1},{"name":"百度","count":4},{"name":"笔试","count":2},{"name":"腾讯","count":31},{"name":"编程比赛","count":4},{"name":"科研","count":4},{"name":"电子商务","count":11},{"name":"虚拟主机","count":2},{"name":"网路安全","count":1},{"name":"Foxmail","count":3},{"name":"微软","count":1},{"name":"软件能力成熟度模型","count":2},{"name":"软件过程改进","count":3},{"name":"SCM复习资料","count":1},{"name":"软件配置管理","count":12},{"name":"SCM","count":6},{"name":"工具","count":19},{"name":"反模式","count":1},{"name":"玩玩手机","count":5},{"name":"程序员","count":4},{"name":"健康","count":1},{"name":"共享上网","count":2},{"name":"Bug","count":4},{"name":"coding小工具","count":1},{"name":"工作日志","count":19},{"name":"Apache","count":2},{"name":"PHP","count":13},{"name":"实习日志","count":1},{"name":"工作实习生","count":1},{"name":"Mysql","count":1},{"name":"Shell","count":3},{"name":"腾讯实习日志","count":1},{"name":"hosts","count":2},{"name":"Vim","count":3},{"name":"正则表达式","count":2},{"name":"搜索引擎","count":1},{"name":"跨域","count":1},{"name":"前端","count":2},{"name":"保研","count":15},{"name":"算法","count":9},{"name":"清华大学","count":12},{"name":"丰田助学金","count":3},{"name":"WiFi","count":1},{"name":"实习生","count":1},{"name":"wifi自动关闭","count":1},{"name":"腾讯实习","count":1},{"name":"经验技巧","count":13},{"name":"DDOS","count":2},{"name":"AOP","count":3},{"name":"租房","count":2},{"name":"Sqlite","count":2},{"name":"Python","count":11},{"name":"OOP","count":5},{"name":"数据挖掘","count":8},{"name":"GitHub","count":2},{"name":"SVM","count":3},{"name":"R语言","count":2},{"name":"足迹","count":2},{"name":"笛子","count":2},{"name":"计算机图形学","count":5},{"name":"OpenGL","count":3},{"name":"回忆录","count":1},{"name":"年终总结","count":1},{"name":"域名","count":1},{"name":"计算几何","count":2},{"name":"敲敲代码","count":9},{"name":"Latex","count":3},{"name":"C++","count":10},{"name":"Mac","count":7},{"name":"飞行模式","count":2},{"name":"性能优化","count":2},{"name":"Javascript","count":1},{"name":"工作","count":1},{"name":"玩遍世界","count":1},{"name":"Scala","count":2},{"name":"MyLife","count":1},{"name":"快捷键","count":1},{"name":"云服务","count":1},{"name":"Blog","count":1},{"name":"微信公众号","count":1}'/>
+        <div style="display: none"><a id="tag-value" class="taglink" rel="bookmark" href="/tag/#" data-target-cate="#"></a></div>
+        <div class="tag-values-container">
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+  </div>
+
+  <footer>
+  <div class="text-center">
+    © 2010-2016 All rights reserved.
+    Made with <a href="http://jekyllrb.com/" rel="nofollow" target="_blank">Jekyll</a>
+    & Modified by <a href="http://www.tanglei.name/about/" >Tanglei</a>
+    and <i class="fa fa-heart"></i> by <a rel="nofollow" href="https://github.com/guovz/jekyll-pithy" target="_blank">Pithy</a>
+  </div>
+  <div class="totop" data-toggle="totop">
+      <i class="fa fa-chevron-up"></i>
+  </div>
+</footer>
+
+
+  <!--the js include-->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="/assets/script/pithy.js"></script>
+
+<!--
+  the site comment script
+-->
+
+
+  <script>
+    
+    var disqus_config = function () {
+        this.page.url = 'https://www.tanglei.name/blog/shell-problems-in-leetcode.html' ; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '/blog/shell-problems-in-leetcode.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+        if($("#disqus_thread").length) {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://hexo-tanglei.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+    powered by Disqus.</a></noscript>
+
+
+
+<!--
+  the site analysis script
+-->
+
+  <!-- baidu analysis -->
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?f0117177475f54027bfcaceb8d668cee";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+  <head>
+    <title>Tomcat配置CGI实例</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="keywords" content="Tomcat配置CGI实例, 工作那些事儿, Java,腾讯,实习,工作日志,, 唐磊, 中南大学, 清华大学, 软件工程师, 计算机, 全栈工程师" />
+    <meta name="description" content="Tomcat配置CGI实例, 工作那些事儿, Java,腾讯,实习,工作日志, 腾讯实习的培训布置的作用中需要用Qzhttp+FastCGI+TTC架构写demo.网上参照了下,最后成功在Tomcat下配置CGI并实现简单例子.Tomcat提供了对CGI的支持，但默认情况下，Tomcat对CGI的支持被禁止了。开启支持要采取如下配置:将文件 $CATALINA_BASE/server/lib..." />
+
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+
+  <!--Font awesome-->
+  <link href="/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- The pithy main css -->
+  <link rel="stylesheet" href="/assets/stylesheet/pithy.css">
+  <link rel="stylesheet" href="/assets/stylesheet/molokai.css">
+
+
+  <!--[if lt IE 9]>
+  <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv-printshiv.js"></script>
+  <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+  <![endif]-->
+  <link rel="alternate" type="application/rss+xml" title="tanglei's blog|唐磊的个人博客" href="https://www.tanglei.name/feed.xml" />
+</head>
+
+<body>
+  <nav class="navbar navbar-pithy" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+                data-target="#pithy-navbar" aria-expanded="false">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" rel="bookmark" href="/">TangLei</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="pithy-navbar">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="bookmark" href="/">首页</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/archives.html">Archives</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/about/">关于</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+  <div class="container page-content">
+    <div>
+    <div class="col-md-9 col-content">
+        <div id="post-content" class="panel panel-pithy post">
+            <div class="panel-heading">
+                <div class="title">
+                  <i class="fa fa-bookmark-o"></i>Tomcat配置CGI实例
+                </div>
+                <ul class="info">
+                    <li>
+                      作者 <span class="author"> 
+        
+            tanglei
+        
+        </span>
+                    </li>
+                    <li>
+                      最后编辑 2011年07月18日
+                    </li>
+                    <li>
+                      Tags
+                     
+                         <a class="tag" href="/tag/#Java">Java</a>
+                     
+                         <a class="tag" href="/tag/#腾讯">腾讯</a>
+                     
+                         <a class="tag" href="/tag/#实习">实习</a>
+                     
+                         <a class="tag" href="/tag/#工作日志">工作日志</a>
+                     
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body content">
+                <p>腾讯实习的培训布置的作用中需要用Qzhttp+FastCGI+TTC架构写demo.网上参照了下,最后成功在Tomcat下配置CGI并实现简单例子.</p>
+
+<p>Tomcat提供了对CGI的支持，但默认情况下，Tomcat对CGI的支持被禁止了。开启支持要采取如下配置:</p>
+
+<p>将文件 $CATALINA_BASE/server/lib/servlets-cgi.renametojar 的名称修改为$CATALINA_BASE/server/lib/servlets-cgi.jar。有的还说要将此目录下servlets-ssi.renametojar改成servlets-ssi.jar. 如果想让Tomcat下所有的Application支持支持CGI，可以修改 $CATALINA_BASE/conf/web.xml；如果只希望某些Application支持CGI，那么只需要修改这些应用root目录下的/WEB-INF/web.xml文件。</p>
+
+<p>使用batch命令编写CGI脚本，可以将以下几行配置代码添加到web.xml就可完成对web.xml文件的修改(具体见下)：其中的参数: 配置CGI servlet的行为，涉及到以下几个servlet的初始化参数。</p>
+
+<p>cgiPathPrefix – CGI程序所在的目录，CGI servlet将按照以下路径搜索CGI程序：应用程序root目录 + 路径分割符 + cgiPathPrefix。其默认值为 WEB-INF/cgi。CGI程序应该放在WEB-INF下面的目录以防止程序被当作普通文件被下载或其脚本内容被查看。</p>
+
+<p>debug – 设置servlet在日志中记录调试信息的级别，其值越大，信息越详细。默认值为0。</p>
+
+<p>executable – 用来运行脚本的可执行程序，默认为perl。</p>
+
+<p>parameterEncoding – CGI servlet使用的编码类型名称。默认值取 System.getProperty(“file.encoding”,”UTF-8″)。</p>
+
+<p>passShellEnvironment – 是否将shell的环境变量传递给CGI脚本。默认值为false。</p>
+
+<p>举例：</p>
+
+<p>myeclipse新建一个web项目。web.xml内容如下</p>
+
+<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;web-app</span> <span class="na">version=</span><span class="s">"2.4"</span> 
+	<span class="na">xmlns=</span><span class="s">"http://java.sun.com/xml/ns/j2ee"</span> 
+	<span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> 
+	<span class="na">xsi:schemaLocation=</span><span class="s">"http://java.sun.com/xml/ns/j2ee</span> 
+	<span class="err">http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"</span><span class="nt">&gt;</span>
+
+
+
+<span class="c">&lt;!-- CGI servlet configuration --&gt;</span>
+<span class="nt">&lt;servlet&gt;</span>
+<span class="nt">&lt;servlet-name&gt;</span>cgi<span class="nt">&lt;/servlet-name&gt;</span>
+<span class="nt">&lt;servlet-class&gt;</span>org.apache.catalina.servlets.CGIServlet<span class="nt">&lt;/servlet-class&gt;</span>
+    <span class="nt">&lt;init-param&gt;</span>
+      
+
+<span class="nt">&lt;param-name</span> <span class="nt">/&gt;</span>
+debug<span class="nt">&lt;/param-name&gt;</span>
+      
+
+<span class="nt">&lt;param-value</span> <span class="nt">/&gt;</span>
+100<span class="nt">&lt;/param-value&gt;</span>
+    <span class="nt">&lt;/init-param&gt;</span>
+    <span class="nt">&lt;init-param&gt;</span>
+      
+
+<span class="nt">&lt;param-name</span> <span class="nt">/&gt;</span>
+cgiPathPrefix<span class="nt">&lt;/param-name&gt;</span>
+      
+
+<span class="nt">&lt;param-value</span> <span class="nt">/&gt;</span>
+WEB-INF/cgi<span class="nt">&lt;/param-value&gt;</span>
+    <span class="nt">&lt;/init-param&gt;</span>
+    <span class="nt">&lt;init-param&gt;</span>
+      
+
+<span class="nt">&lt;param-name</span> <span class="nt">/&gt;</span>
+executable<span class="nt">&lt;/param-name&gt;</span>
+      
+
+<span class="nt">&lt;param-value</span> <span class="nt">/&gt;</span>
+cmd.exe /c<span class="nt">&lt;/param-value&gt;</span>
+    <span class="nt">&lt;/init-param&gt;</span>
+    <span class="nt">&lt;init-param&gt;</span>
+      
+
+<span class="nt">&lt;param-name</span> <span class="nt">/&gt;</span>
+passShellEnvironment<span class="nt">&lt;/param-name&gt;</span>
+      
+
+<span class="nt">&lt;param-value</span> <span class="nt">/&gt;</span>
+true<span class="nt">&lt;/param-value&gt;</span>
+    <span class="nt">&lt;/init-param&gt;</span>
+    <span class="nt">&lt;load-on-startup&gt;</span>5<span class="nt">&lt;/load-on-startup&gt;</span>
+<span class="nt">&lt;/servlet&gt;</span>
+
+
+<span class="c">&lt;!-- CGI servlet mapping --&gt;</span> 
+<span class="nt">&lt;servlet-mapping&gt;</span>
+    <span class="nt">&lt;servlet-name&gt;</span>cgi<span class="nt">&lt;/servlet-name&gt;</span>
+    <span class="nt">&lt;url-pattern&gt;</span>/cgi-bin/*<span class="nt">&lt;/url-pattern&gt;</span>
+<span class="nt">&lt;/servlet-mapping&gt;</span>
+
+<span class="nt">&lt;/web-app&gt;</span>
+</code></pre>
+</div>
+
+<p>然后构造如下目录：<a href="/wp-content/uploads/2011/07/tomcat-cgi-directory.jpg"><img class="aligncenter size-full wp-image-1025" title="tomcat-cgi-directory" src="/wp-content/uploads/2011/07/tomcat-cgi-directory.jpg" alt="TOMCAT配置CGI目录结构" data-pinit="registered" /></a></p>
+
+<p>注意结构，web-inf下面有个CGI，在web.xml配置的目录结构，当然也可以改相应的配置文件与目录结构对应即可。</p>
+
+<p>其中test.bat</p>
+
+<div class="language-xml highlighter-rouge"><pre class="highlight"><code>echo OFF
+echo Content-type: text/html
+echo.
+echo.
+echo ^
+echo ^
+echo ^CGI Test Demo^
+echo ^Time is:
+time /t
+echo ^
+echo ^Location is:
+chdir
+echo ^
+echo ^
+echo ^
+</code></pre>
+</div>
+
+<p>启动tomcat，然后浏览器访问：http://localhost/cgiDemo/cgi-bin/test.bat 看到如下图说明配置成功了</p>
+
+<p><a href="/wp-content/uploads/2011/07/tomcat-cgi-demo.jpg"><img class="aligncenter size-medium wp-image-1026" title="tomcat-cgi-demo" src="/wp-content/uploads/2011/07/tomcat-cgi-demo.jpg" alt="TOmcat配置CGI" data-pinit="registered" /></a></p>
+
+<p>再写个C语言的程序：add.cpp</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="cp">#include &lt;stdio.h&gt; 
+#include &lt;stdlib.h&gt; 
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> 
+<span class="p">{</span> 
+	<span class="kt">char</span> <span class="o">*</span><span class="n">data</span><span class="p">;</span> 
+	<span class="kt">long</span> <span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">;</span> 
+ 	 
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%s"</span><span class="p">,</span><span class="s">"Content-Type:text/html;charset=gb2312</span><span class="se">\n\n</span><span class="s">"</span><span class="p">);</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">" &lt;TITLE&gt; 乘法结果 &lt;/TITLE&gt; "</span><span class="p">);</span> 
+	<span class="n">printf</span><span class="p">(</span><span class="s">" &lt;H3&gt; 乘法结果 &lt;/H3&gt; "</span><span class="p">);</span> 
+	<span class="n">data</span> <span class="o">=</span> <span class="n">getenv</span><span class="p">(</span><span class="s">"QUERY_STRING"</span><span class="p">);</span> 
+	<span class="k">if</span><span class="p">(</span><span class="n">data</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> 
+		<span class="n">printf</span><span class="p">(</span><span class="s">" &lt;P&gt; 错误！数据没有被输入或者数据传输有问题"</span><span class="p">);</span> 
+  	<span class="c1">//sscanf 类似正则表达式 以固定的格式为输入源，而scanf从标准输入获得输入源 
+</span>  	<span class="c1">//成功则返回参数数目 
+</span>  	<span class="k">else</span> <span class="k">if</span><span class="p">(</span> <span class="n">sscanf</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="s">"m=%ld&amp;n=%ld"</span><span class="p">,</span><span class="o">&amp;</span><span class="n">m</span><span class="p">,</span><span class="o">&amp;</span><span class="n">n</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">)</span> 
+  		<span class="n">printf</span><span class="p">(</span><span class="s">" &lt;P&gt; 错误！输入数据非法。表单中输入的必须是数字。"</span><span class="p">);</span> 	
+    	<span class="k">else</span> 
+    		<span class="n">printf</span><span class="p">(</span><span class="s">" &lt;P&gt; %ld * %ld = %ld。&lt;br /&gt;"</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="o">*</span><span class="n">n</span><span class="p">);</span> 
+      	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span> 
+      <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>编译连接成可执行文件。在上图中已经显示出来。<br />
+有个html的表单：</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;FORM</span> <span class="na">ACTION=</span><span class="s">"cgi-bin/add.exe"</span> <span class="na">method=</span><span class="s">"get"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;P&gt;</span>
+    请在下面填入乘数和被乘数，按下确定后可以看到结果。 
+    		<span class="nt">&lt;INPUT</span> <span class="na">NAME=</span><span class="s">"m"</span> <span class="na">SIZE=</span><span class="s">"5"</span> <span class="nt">/&gt;</span> 
+    		<span class="nt">&lt;INPUT</span> <span class="na">NAME=</span><span class="s">"n"</span> <span class="na">SIZE=</span><span class="s">"5"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/P&gt;&lt;/BR&gt;</span> 
+  <span class="nt">&lt;INPUT</span> <span class="na">TYPE=</span><span class="s">"SUBMIT"</span> <span class="na">VALUE=</span><span class="s">"确定"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  &lt;p&gt;
+    我的首页是为了测get post两种情况写的代码如下：
+  &lt;/p&gt;
+</code></pre>
+</div>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="o">&lt;%</span><span class="err">@</span> <span class="n">page</span> <span class="n">language</span><span class="o">=</span><span class="s">"java"</span> <span class="kn">import</span><span class="err">="</span><span class="nn">java.util.*</span><span class="s">" pageEncoding="</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span><span class="s">"%&gt;
+&lt;%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"</span><span class="o">:</span><span class="c1">//"+request.getServerName()+":"+request.getServerPort()+path+"/";</span>
+<span class="o">%&gt;</span>
+  <span class="o">&lt;%=</span><span class="n">basePath</span><span class="o">%&gt;</span>
+<span class="o">&lt;</span><span class="n">center</span><span class="o">&gt;</span>
+  <span class="nl">get:</span>
+<span class="o">&lt;/</span><span class="n">center</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">hr</span> <span class="n">size</span><span class="o">=</span><span class="s">"4"</span> <span class="n">color</span><span class="o">=</span><span class="s">"red"</span> <span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="n">center</span><span class="o">&gt;</span>
+  <span class="n">post</span>  <span class="err">得通过另外的方式才行</span>  <span class="err">先得到</span><span class="n">Content</span><span class="o">-</span><span class="nl">length:</span>
+<span class="o">&lt;/</span><span class="n">center</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">hr</span> <span class="n">size</span><span class="o">=</span><span class="s">"4"</span> <span class="n">color</span><span class="o">=</span><span class="s">"red"</span> <span class="o">/&gt;</span>
+
+<span class="o">&lt;</span><span class="n">center</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">FORM</span> <span class="n">ACTION</span><span class="o">=</span><span class="s">"cgi-bin/add.exe"</span> <span class="n">method</span><span class="o">=</span><span class="s">"get"</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">P</span><span class="o">&gt;</span>
+      <span class="err">请在下面填入乘数和被乘数，按下确定后可以看到结果。</span> 
+      		<span class="o">&lt;</span><span class="n">INPUT</span> <span class="n">NAME</span><span class="o">=</span><span class="s">"m"</span> <span class="n">SIZE</span><span class="o">=</span><span class="s">"5"</span> <span class="o">/&gt;</span> 
+      		<span class="o">&lt;</span><span class="n">INPUT</span> <span class="n">NAME</span><span class="o">=</span><span class="s">"n"</span> <span class="n">SIZE</span><span class="o">=</span><span class="s">"5"</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="n">P</span><span class="o">&gt;&lt;/</span><span class="n">BR</span><span class="o">&gt;</span> 
+    		
+    
+    <span class="o">&lt;</span><span class="n">INPUT</span> <span class="n">TYPE</span><span class="o">=</span><span class="s">"SUBMIT"</span> <span class="n">VALUE</span><span class="o">=</span><span class="s">"确定"</span> <span class="o">/&gt;</span> 
+    <span class="o">&lt;</span><span class="n">center</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">FORM</span> <span class="o">&gt;</span> 
+        <span class="o">&lt;/</span><span class="n">body</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">html</span><span class="o">&gt;</span>
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  &lt;p&gt;
+    效果：
+  &lt;/p&gt;
+  
+  
+  &lt;p&gt;
+    &lt;a href="/wp-content/uploads/2011/07/tomcat-config-cgi-run-cpp.jpg"&gt;&lt;img class="aligncenter size-medium wp-image-1027" title="tomcat-config-cgi-run-cpp" src="/wp-content/uploads/2011/07/tomcat-config-cgi-run-cpp.jpg" alt="Tomcat配置CGI运行C程序"  data-pinit="registered" /&gt;&lt;/a&gt;
+    
+  &lt;/p&gt;
+  
+  
+  &lt;p&gt;
+    输入数据结果现实:&lt;br /&gt;
+    &lt;a href="/wp-content/uploads/2011/07/tomcat-cgi-cpp-result.jpg"&gt;&lt;img class="aligncenter size-medium wp-image-1028" title="tomcat-cgi-cpp-result" src="/wp-content/uploads/2011/07/tomcat-cgi-cpp-result.jpg" alt="Tomcat配置CGI运行Exe文件"   data-pinit="registered" /&gt;&lt;/a&gt;
+  &lt;/p&gt;
+  
+  
+  &lt;p&gt;
+    差不多了。现在我又有一种方法通过java等运行C可执行文件了。之前用&lt;a href="/blog/java-native-demo.html"&gt;native也写过helloworld的例子&lt;/a&gt;。
+  &lt;/p&gt;
+</code></pre>
+</div>
+
+            </div>
+            <div class="post-nav">
+    
+    <a class="prev" href=/blog/intern-in-tencent-study-on-sunday.html>&laquo; &nbsp;腾讯实习-周日学习</a>
+    
+    
+    <a class="next" href=/blog/mysql_query_case_sensitive.html>php中mysql_query函数区分大小写&nbsp;&raquo;</a>
+    
+</div>
+
+            
+        </div>
+        <!--
+            if config set comment enable,include comment
+        -->
+        
+            <!-- comment -->
+<div id="post-comment" class="panel panel-default">
+    <div class="panel-body">
+        
+
+        
+            <div id="disqus_thread"></div>
+        
+    </div>
+</div>
+
+        
+    </div>
+    <div class="col-md-3 col-sidebar">
+        <div class="panel panel-pithy author">
+    <div class="panel-heading avastar">
+        <img src="/tx.jpg" alt="tanglei"/>
+    </div>
+    <div class="panel-body">
+        码农 @ 宜信大数据创新中心, 毕业于CSU && THU,  曾工作于<a href='http://www.tencent.com/zh-cn/index.shtml' target='_blank'>腾讯</a> && <a href='http://www.umeng.com/' target='_blank'>友盟</a>.  &nbsp; <a href='/about/'> MORE </a>
+    </div>
+    <div class="panel-footer social">
+        <ul>
+            
+            <li>
+                <a rel="nofollow" href="http://www.weibo.com/tangleithu/" target="_blank"><i class="fa fa-weibo"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://github.com/tl3shi" target="_blank"><i class="fa fa-github"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://www.facebook.com/tanglei.name" target="_blank"><i class="fa fa-facebook"></i></a>
+            </li>
+            
+            <li>
+                <a href="https://www.tanglei.name/feed.xml" target="_blank"><i class="fa fa-rss"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar:category list -->
+<div class="panel panel-default categories">
+    <div class="panel-heading title">
+        分类列表
+    </div>
+    <div class="panel-body list">
+        <ul>
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/贵州支教行/">
+                  贵州支教行&nbsp;<span class="count">[12]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/课程学习/">
+                  课程学习&nbsp;<span class="count">[88]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/MyLife/">
+                  MyLife&nbsp;<span class="count">[45]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/经验技巧/">
+                  经验技巧&nbsp;<span class="count">[93]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/社会工作/">
+                  社会工作&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/网络文摘/">
+                  网络文摘&nbsp;<span class="count">[28]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件体系结构/">
+                  软件体系结构&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/旅游/">
+                  旅游&nbsp;<span class="count">[23]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软考/">
+                  软考&nbsp;<span class="count">[2]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件度量及其应用/">
+                  软件度量及其应用&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/工作那些事儿/">
+                  工作那些事儿&nbsp;<span class="count">[42]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我做站长/">
+                  我做站长&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/coding小工具/">
+                  coding小工具&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/除臭虫/">
+                  除臭虫&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/学到老/">
+                  学到老&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我不会算法/">
+                  我不会算法&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/数据挖掘/">
+                  数据挖掘&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/计算机图形学/">
+                  计算机图形学&nbsp;<span class="count">[5]</span>
+              </a>
+          </li>
+
+          
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar: tag list -->
+<div class="panel panel-default tags">
+    <div class="panel-heading title">
+        标签云
+    </div>
+    <div class="panel-body list">
+         
+        <input type="hidden" id="tag-values" value='{"name":"丰田助学","count":16},{"name":"贵州支教","count":12},{"name":"铜厂小学","count":9},{"name":"中南大学","count":12},{"name":"云南赶集","count":1},{"name":"HelloWorld","count":5},{"name":"我做站长","count":35},{"name":"设计模式","count":7},{"name":"Wordpress","count":18},{"name":"系统架构师","count":11},{"name":"软考","count":25},{"name":"论文","count":6},{"name":"软件0804","count":8},{"name":"Java","count":24},{"name":"J2EE","count":3},{"name":"JAVA","count":1},{"name":"考试","count":25},{"name":"SEO","count":3},{"name":"软件体系结构","count":6},{"name":"Android","count":28},{"name":"软件工程","count":2},{"name":"Windows","count":17},{"name":"软件测试","count":1},{"name":"总结","count":13},{"name":"Oracle","count":4},{"name":"存储过程","count":3},{"name":"数据库应用","count":3},{"name":"数据库","count":8},{"name":"先进班集体","count":1},{"name":"Linux","count":15},{"name":"Ubuntu","count":8},{"name":"Defy","count":3},{"name":"传感器","count":1},{"name":"访日交流","count":8},{"name":"旅游","count":22},{"name":"软件学院","count":11},{"name":"大学生科协","count":4},{"name":"玩遍中国","count":11},{"name":"计算机网络","count":5},{"name":"Eclipse","count":4},{"name":"软件度量","count":11},{"name":"软件设计师","count":4},{"name":"编译原理","count":2},{"name":"程序语言","count":2},{"name":"操作系统","count":3},{"name":"多媒体","count":2},{"name":"网络安全","count":9},{"name":"TCP/IP","count":2},{"name":"编程语言","count":1},{"name":"考点","count":1},{"name":"Google","count":5},{"name":"软件结构度量","count":1},{"name":"CMM","count":6},{"name":"项目管理","count":3},{"name":"实习","count":33},{"name":"面试","count":18},{"name":"网络营销","count":1},{"name":"百度","count":4},{"name":"笔试","count":2},{"name":"腾讯","count":31},{"name":"编程比赛","count":4},{"name":"科研","count":4},{"name":"电子商务","count":11},{"name":"虚拟主机","count":2},{"name":"网路安全","count":1},{"name":"Foxmail","count":3},{"name":"微软","count":1},{"name":"软件能力成熟度模型","count":2},{"name":"软件过程改进","count":3},{"name":"SCM复习资料","count":1},{"name":"软件配置管理","count":12},{"name":"SCM","count":6},{"name":"工具","count":19},{"name":"反模式","count":1},{"name":"玩玩手机","count":5},{"name":"程序员","count":4},{"name":"健康","count":1},{"name":"共享上网","count":2},{"name":"Bug","count":4},{"name":"coding小工具","count":1},{"name":"工作日志","count":19},{"name":"Apache","count":2},{"name":"PHP","count":13},{"name":"实习日志","count":1},{"name":"工作实习生","count":1},{"name":"Mysql","count":1},{"name":"Shell","count":3},{"name":"腾讯实习日志","count":1},{"name":"hosts","count":2},{"name":"Vim","count":3},{"name":"正则表达式","count":2},{"name":"搜索引擎","count":1},{"name":"跨域","count":1},{"name":"前端","count":2},{"name":"保研","count":15},{"name":"算法","count":9},{"name":"清华大学","count":12},{"name":"丰田助学金","count":3},{"name":"WiFi","count":1},{"name":"实习生","count":1},{"name":"wifi自动关闭","count":1},{"name":"腾讯实习","count":1},{"name":"经验技巧","count":13},{"name":"DDOS","count":2},{"name":"AOP","count":3},{"name":"租房","count":2},{"name":"Sqlite","count":2},{"name":"Python","count":11},{"name":"OOP","count":5},{"name":"数据挖掘","count":8},{"name":"GitHub","count":2},{"name":"SVM","count":3},{"name":"R语言","count":2},{"name":"足迹","count":2},{"name":"笛子","count":2},{"name":"计算机图形学","count":5},{"name":"OpenGL","count":3},{"name":"回忆录","count":1},{"name":"年终总结","count":1},{"name":"域名","count":1},{"name":"计算几何","count":2},{"name":"敲敲代码","count":9},{"name":"Latex","count":3},{"name":"C++","count":10},{"name":"Mac","count":7},{"name":"飞行模式","count":2},{"name":"性能优化","count":2},{"name":"Javascript","count":1},{"name":"工作","count":1},{"name":"玩遍世界","count":1},{"name":"Scala","count":2},{"name":"MyLife","count":1},{"name":"快捷键","count":1},{"name":"云服务","count":1},{"name":"Blog","count":1},{"name":"微信公众号","count":1}'/>
+        <div style="display: none"><a id="tag-value" class="taglink" rel="bookmark" href="/tag/#" data-target-cate="#"></a></div>
+        <div class="tag-values-container">
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+  </div>
+
+  <footer>
+  <div class="text-center">
+    © 2010-2016 All rights reserved.
+    Made with <a href="http://jekyllrb.com/" rel="nofollow" target="_blank">Jekyll</a>
+    & Modified by <a href="http://www.tanglei.name/about/" >Tanglei</a>
+    and <i class="fa fa-heart"></i> by <a rel="nofollow" href="https://github.com/guovz/jekyll-pithy" target="_blank">Pithy</a>
+  </div>
+  <div class="totop" data-toggle="totop">
+      <i class="fa fa-chevron-up"></i>
+  </div>
+</footer>
+
+
+  <!--the js include-->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="/assets/script/pithy.js"></script>
+
+<!--
+  the site comment script
+-->
+
+
+  <script>
+    
+    var disqus_config = function () {
+        this.page.url = 'https://www.tanglei.name/blog/tomcat-config-cgi.html' ; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '/blog/tomcat-config-cgi.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+        if($("#disqus_thread").length) {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://hexo-tanglei.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+    powered by Disqus.</a></noscript>
+
+
+
+<!--
+  the site analysis script
+-->
+
+  <!-- baidu analysis -->
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?f0117177475f54027bfcaceb8d668cee";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+  <head>
+    <title>java native例子</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="keywords" content="java native例子, 课程学习, Java,, 唐磊, 中南大学, 清华大学, 软件工程师, 计算机, 全栈工程师" />
+    <meta name="description" content="java native例子, 课程学习, Java, 研究了下java native方法的例子。网上看了下资料。首先看下什么是Native method，参考了下http://www.80×86.cn/article.asp?id=1448上的文章Simply put, a native method is the Java interface to non-Jav..." />
+
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+
+  <!--Font awesome-->
+  <link href="/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- The pithy main css -->
+  <link rel="stylesheet" href="/assets/stylesheet/pithy.css">
+  <link rel="stylesheet" href="/assets/stylesheet/molokai.css">
+
+
+  <!--[if lt IE 9]>
+  <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv-printshiv.js"></script>
+  <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+  <![endif]-->
+  <link rel="alternate" type="application/rss+xml" title="tanglei's blog|唐磊的个人博客" href="https://www.tanglei.name/feed.xml" />
+</head>
+
+<body>
+  <nav class="navbar navbar-pithy" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+                data-target="#pithy-navbar" aria-expanded="false">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" rel="bookmark" href="/">TangLei</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="pithy-navbar">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="bookmark" href="/">首页</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/archives.html">Archives</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/about/">关于</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+  <div class="container page-content">
+    <div>
+    <div class="col-md-9 col-content">
+        <div id="post-content" class="panel panel-pithy post">
+            <div class="panel-heading">
+                <div class="title">
+                  <i class="fa fa-bookmark-o"></i>java native例子
+                </div>
+                <ul class="info">
+                    <li>
+                      作者 <span class="author"> 
+        
+            tanglei
+        
+        </span>
+                    </li>
+                    <li>
+                      最后编辑 2010年12月21日
+                    </li>
+                    <li>
+                      Tags
+                     
+                         <a class="tag" href="/tag/#Java">Java</a>
+                     
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body content">
+                <p>研究了下java native方法的例子。网上看了下资料。</p>
+
+<p>首先看下什么是Native method，参考了下http://www.80×86.cn/article.asp?id=1448上的文章</p>
+
+<p>Simply put, a native method is the Java interface to non-Java code. It is Java’s link to the “outside world.” More specifically, a native method is a Java method whose implementation is provided by non-Java code, most likely C。大概意思就是说native方法是通过java调用其他非java的代码。</p>
+
+<p>in your Java class, you mark the methods you wish to implement outside of Java with the native method modifier-much like you would use the public or static modifiers. Then, rather than supplying the method’s body, you simply place a semicolon in its place.The only thing special about this declaration is that the keyword native is used as a modifier. Every other Java method modifier can be used along with native, except abstract.说的是native关键字跟其他什么public static修饰符一样也可以用来修饰方法。但除了abstract。This is logical, because the native modifier implies that an implementation exists, and the abstract modifier insists that there is no implementation. Your native methods can be static methods, thus not requiring the creation of an object (or instance of a class).这是合理的，因为native暗示这些方法是有实现体的，只不过这些实现体是非java的，但是abstract却显然的指明这些方法无实现体。呵呵。我就不翻译原文了。有兴趣的看看原文去吧。</p>
+
+<p>再查了些资料，就写了如下的代码。这个代码又是helloworld。唉，继续helloworld吧。用java去调用一个用C实现的方法。</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="cm">/**
+* project_name：nativeTest
+*  Description:
+*  Copyright: Copyright (c) 2010 by tl3shi.
+**/</span>
+<span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">i3zhai</span><span class="o">.</span><span class="na">www</span><span class="o">;</span>
+<span class="cm">/**
+*  Title: NativeHelloWorld.java
+*  Description:测试java关键字中native的方法
+* @author ： &lt;a href="mailto:tanglei3shi@163.com"&gt;tl3shi&lt;/a&gt;
+* @date：2010-12-21 下午10:23:24
+* @version 1.0
+*/</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">NativeHelloWorld</span>
+<span class="o">{</span>
+<span class="cm">/**
+* tl3shi
+* 下午10:27:23
+* Discription: 构造方法，加载dll文件
+* 或者用static 引入dll文件也可以，总之就是要在
+* 程序用到的时候之前把dll加载进来
+*/</span>
+<span class="kd">public</span> <span class="nf">NativeHelloWorld</span><span class="o">()</span>
+<span class="o">{</span>
+<span class="n">System</span><span class="o">.</span><span class="na">loadLibrary</span><span class="o">(</span><span class="s">"hello"</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+* tl3shi
+* 下午10:28:24
+* Discription:声明一个native的方法
+* 因为是native的 只是声明，实现由另外的诸如C语言去实现
+*/</span>
+<span class="kd">public</span> <span class="kd">native</span> <span class="kt">void</span> <span class="nf">nativeHello</span><span class="o">();</span>
+<span class="cm">/**
+* tl3shi
+* 下午10:28:59
+* Discription:在此类中去调用C语言中实现的方法
+*/</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">sayHello</span><span class="o">()</span>
+<span class="o">{</span>
+<span class="n">nativeHello</span><span class="o">();</span><span class="c1">//调用方法</span>
+<span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>上面已经写好了注释了。刚开始的时候，我直接用了eclipse，但发现后来dll文件容易找不到(eclipse估计估计还得哪里配置下吧)。于是就改为控制台下。</p>
+
+<p>首先用javac命令 编译出class文件。没有编译错误就会产生class文件。</p>
+
+<p>然后执行javah命令。看javah 的用法。直接控制台下就能看到</p>
+
+<p>R:\native&gt;javah</p>
+
+<p>用法：javah [选项] <类></类></p>
+
+<p>其中 [选项] 包括：</p>
+
+<p>-help 输出此帮助消息并退出</p>
+
+<p>-classpath <路径> 用于装入类的路径</路径></p>
+
+<p>-bootclasspath <路径> 用于装入引导类的路径</路径></p>
+
+<p>-d <目录> 输出目录</目录></p>
+
+<p>-o <文件> 输出文件（只能使用 -d 或 -o 中的一个）</文件></p>
+
+<p>-jni 生成 JNI样式的头文件（默认）</p>
+
+<p>-version 输出版本信息</p>
+
+<p>-verbose 启用详细输出</p>
+
+<p>-force 始终写入输出文件</p>
+
+<p>使用全限定名称指定 <类>（例</类></p>
+
+<p>如，java.lang.Object）。</p>
+
+<p>直接用javah NativeHelloWorld 就会生成一个.h的文件。如下所示：</p>
+
+<pre><code class="language-C">/* DO NOT EDIT THIS FILE - it is machine generated */
+#include
+/* Header for class NativeHelloWorld */
+
+#ifndef _Included_NativeHelloWorld
+#define _Included_NativeHelloWorld
+#ifdef __cplusplus
+extern "C" {
+#endif
+/*
+* Class:     NativeHelloWorld
+* Method:    nativeHello
+* Signature: ()V
+*/
+JNIEXPORT void JNICALL Java_NativeHelloWorld_nativeHello
+(JNIEnv * xx, jobject xxx);
+
+#ifdef __cplusplus
+}
+#endif
+#endif
+</code></pre>
+
+<p style="text-align: center;">
+  然后在写hello。c文件如下所示：
+</p>
+
+<pre><code class="language-C">#include "NativeHelloWorld.h"
+JNIEXPORT void JNICALL Java_NativeHelloWorld_nativeHello
+(JNIEnv * xx, jobject xxx)
+{
+printf("helloWorld,I am printing in the C ");
+}
+</code></pre>
+
+<p>JNIEXPORT void JNICALL Java_NativeHelloWorld_nativeHello直接copy头文件里面的就是了，</p>
+
+<p>接下来要做的就是要生成dll文件。这个dll文件就是在类NativeHelloWorld中要load的参数名字。生成dll文件可以用VC6.0之类的工具。期间在build的时候可能会遇到问题。就是上面的方法签名的地方需要加上参数。如上面的XX,xxx。这个是后来加上去的，不是javah之后就有的.</p>
+
+<p>在build的时候，跟着错误信息就知道了，还会用到其他的dll文件。这个文件到jdk安装目录下search下就OK了。有jni.h,其中jni.h又会用到jni_md.h。直接copy过来到VC的工作路径下。然后就能在debug目录里面找到dll文件了。</p>
+
+<p>此时，已经差不多了。再写个Test就OK了。</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="cm">/**
+* Title: NativeHelloWorld.java
+* Description:测试java关键字中native的方法
+* @author ： &lt;a href="mailto:tanglei3shi@163.com"&gt;tl3shi&lt;/a&gt;
+* @date：2010-12-21 下午10:23:24
+* @version 1.0
+*/</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Test</span>
+<span class="o">{</span>
+<span class="cm">/**
+* tl3shi
+* 下午10:23:24
+* Discription:
+*@param args
+*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span>
+<span class="o">{</span>
+<span class="n">NativeHelloWorld</span> <span class="n">nat</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NativeHelloWorld</span><span class="o">();</span>
+<span class="n">nat</span><span class="o">.</span><span class="na">sayHello</span><span class="o">();</span>
+<span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>再在控制台下执行javac Test.java java Test就能看到结果了。</p>
+
+<p><a href="/wp-content/uploads/2010/12/native1.png"><img class="size-full wp-image-125 aligncenter" title="native" src="/wp-content/uploads/2010/12/native1.png" alt="" /></a></p>
+
+<p><a href="/wp-content/uploads/2010/12/native.zip"></a></p>
+
+<p><a href="/wp-content/uploads/2010/12/native.zip">文章例子中的源代码SRC下载</a></p>
+
+            </div>
+            <div class="post-nav">
+    
+    <a class="prev" href=/blog/exam_j2ee.html>&laquo; &nbsp;J2EE考试有感</a>
+    
+    
+    <a class="next" href=/blog/happy-12-22.html>Happy!&nbsp;&raquo;</a>
+    
+</div>
+
+            
+        </div>
+        <!--
+            if config set comment enable,include comment
+        -->
+        
+            <!-- comment -->
+<div id="post-comment" class="panel panel-default">
+    <div class="panel-body">
+        
+
+        
+            <div id="disqus_thread"></div>
+        
+    </div>
+</div>
+
+        
+    </div>
+    <div class="col-md-3 col-sidebar">
+        <div class="panel panel-pithy author">
+    <div class="panel-heading avastar">
+        <img src="/tx.jpg" alt="tanglei"/>
+    </div>
+    <div class="panel-body">
+        码农 @ 宜信大数据创新中心, 毕业于CSU && THU,  曾工作于<a href='http://www.tencent.com/zh-cn/index.shtml' target='_blank'>腾讯</a> && <a href='http://www.umeng.com/' target='_blank'>友盟</a>.  &nbsp; <a href='/about/'> MORE </a>
+    </div>
+    <div class="panel-footer social">
+        <ul>
+            
+            <li>
+                <a rel="nofollow" href="http://www.weibo.com/tangleithu/" target="_blank"><i class="fa fa-weibo"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://github.com/tl3shi" target="_blank"><i class="fa fa-github"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://www.facebook.com/tanglei.name" target="_blank"><i class="fa fa-facebook"></i></a>
+            </li>
+            
+            <li>
+                <a href="https://www.tanglei.name/feed.xml" target="_blank"><i class="fa fa-rss"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar:category list -->
+<div class="panel panel-default categories">
+    <div class="panel-heading title">
+        分类列表
+    </div>
+    <div class="panel-body list">
+        <ul>
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/贵州支教行/">
+                  贵州支教行&nbsp;<span class="count">[12]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/课程学习/">
+                  课程学习&nbsp;<span class="count">[88]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/MyLife/">
+                  MyLife&nbsp;<span class="count">[45]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/经验技巧/">
+                  经验技巧&nbsp;<span class="count">[93]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/社会工作/">
+                  社会工作&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/网络文摘/">
+                  网络文摘&nbsp;<span class="count">[28]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件体系结构/">
+                  软件体系结构&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/旅游/">
+                  旅游&nbsp;<span class="count">[23]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软考/">
+                  软考&nbsp;<span class="count">[2]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件度量及其应用/">
+                  软件度量及其应用&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/工作那些事儿/">
+                  工作那些事儿&nbsp;<span class="count">[42]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我做站长/">
+                  我做站长&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/coding小工具/">
+                  coding小工具&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/除臭虫/">
+                  除臭虫&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/学到老/">
+                  学到老&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我不会算法/">
+                  我不会算法&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/数据挖掘/">
+                  数据挖掘&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/计算机图形学/">
+                  计算机图形学&nbsp;<span class="count">[5]</span>
+              </a>
+          </li>
+
+          
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar: tag list -->
+<div class="panel panel-default tags">
+    <div class="panel-heading title">
+        标签云
+    </div>
+    <div class="panel-body list">
+         
+        <input type="hidden" id="tag-values" value='{"name":"丰田助学","count":16},{"name":"贵州支教","count":12},{"name":"铜厂小学","count":9},{"name":"中南大学","count":12},{"name":"云南赶集","count":1},{"name":"HelloWorld","count":5},{"name":"我做站长","count":35},{"name":"设计模式","count":7},{"name":"Wordpress","count":18},{"name":"系统架构师","count":11},{"name":"软考","count":25},{"name":"论文","count":6},{"name":"软件0804","count":8},{"name":"Java","count":24},{"name":"J2EE","count":3},{"name":"JAVA","count":1},{"name":"考试","count":25},{"name":"SEO","count":3},{"name":"软件体系结构","count":6},{"name":"Android","count":28},{"name":"软件工程","count":2},{"name":"Windows","count":17},{"name":"软件测试","count":1},{"name":"总结","count":13},{"name":"Oracle","count":4},{"name":"存储过程","count":3},{"name":"数据库应用","count":3},{"name":"数据库","count":8},{"name":"先进班集体","count":1},{"name":"Linux","count":15},{"name":"Ubuntu","count":8},{"name":"Defy","count":3},{"name":"传感器","count":1},{"name":"访日交流","count":8},{"name":"旅游","count":22},{"name":"软件学院","count":11},{"name":"大学生科协","count":4},{"name":"玩遍中国","count":11},{"name":"计算机网络","count":5},{"name":"Eclipse","count":4},{"name":"软件度量","count":11},{"name":"软件设计师","count":4},{"name":"编译原理","count":2},{"name":"程序语言","count":2},{"name":"操作系统","count":3},{"name":"多媒体","count":2},{"name":"网络安全","count":9},{"name":"TCP/IP","count":2},{"name":"编程语言","count":1},{"name":"考点","count":1},{"name":"Google","count":5},{"name":"软件结构度量","count":1},{"name":"CMM","count":6},{"name":"项目管理","count":3},{"name":"实习","count":33},{"name":"面试","count":18},{"name":"网络营销","count":1},{"name":"百度","count":4},{"name":"笔试","count":2},{"name":"腾讯","count":31},{"name":"编程比赛","count":4},{"name":"科研","count":4},{"name":"电子商务","count":11},{"name":"虚拟主机","count":2},{"name":"网路安全","count":1},{"name":"Foxmail","count":3},{"name":"微软","count":1},{"name":"软件能力成熟度模型","count":2},{"name":"软件过程改进","count":3},{"name":"SCM复习资料","count":1},{"name":"软件配置管理","count":12},{"name":"SCM","count":6},{"name":"工具","count":19},{"name":"反模式","count":1},{"name":"玩玩手机","count":5},{"name":"程序员","count":4},{"name":"健康","count":1},{"name":"共享上网","count":2},{"name":"Bug","count":4},{"name":"coding小工具","count":1},{"name":"工作日志","count":19},{"name":"Apache","count":2},{"name":"PHP","count":13},{"name":"实习日志","count":1},{"name":"工作实习生","count":1},{"name":"Mysql","count":1},{"name":"Shell","count":3},{"name":"腾讯实习日志","count":1},{"name":"hosts","count":2},{"name":"Vim","count":3},{"name":"正则表达式","count":2},{"name":"搜索引擎","count":1},{"name":"跨域","count":1},{"name":"前端","count":2},{"name":"保研","count":15},{"name":"算法","count":9},{"name":"清华大学","count":12},{"name":"丰田助学金","count":3},{"name":"WiFi","count":1},{"name":"实习生","count":1},{"name":"wifi自动关闭","count":1},{"name":"腾讯实习","count":1},{"name":"经验技巧","count":13},{"name":"DDOS","count":2},{"name":"AOP","count":3},{"name":"租房","count":2},{"name":"Sqlite","count":2},{"name":"Python","count":11},{"name":"OOP","count":5},{"name":"数据挖掘","count":8},{"name":"GitHub","count":2},{"name":"SVM","count":3},{"name":"R语言","count":2},{"name":"足迹","count":2},{"name":"笛子","count":2},{"name":"计算机图形学","count":5},{"name":"OpenGL","count":3},{"name":"回忆录","count":1},{"name":"年终总结","count":1},{"name":"域名","count":1},{"name":"计算几何","count":2},{"name":"敲敲代码","count":9},{"name":"Latex","count":3},{"name":"C++","count":10},{"name":"Mac","count":7},{"name":"飞行模式","count":2},{"name":"性能优化","count":2},{"name":"Javascript","count":1},{"name":"工作","count":1},{"name":"玩遍世界","count":1},{"name":"Scala","count":2},{"name":"MyLife","count":1},{"name":"快捷键","count":1},{"name":"云服务","count":1},{"name":"Blog","count":1},{"name":"微信公众号","count":1}'/>
+        <div style="display: none"><a id="tag-value" class="taglink" rel="bookmark" href="/tag/#" data-target-cate="#"></a></div>
+        <div class="tag-values-container">
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+  </div>
+
+  <footer>
+  <div class="text-center">
+    © 2010-2016 All rights reserved.
+    Made with <a href="http://jekyllrb.com/" rel="nofollow" target="_blank">Jekyll</a>
+    & Modified by <a href="http://www.tanglei.name/about/" >Tanglei</a>
+    and <i class="fa fa-heart"></i> by <a rel="nofollow" href="https://github.com/guovz/jekyll-pithy" target="_blank">Pithy</a>
+  </div>
+  <div class="totop" data-toggle="totop">
+      <i class="fa fa-chevron-up"></i>
+  </div>
+</footer>
+
+
+  <!--the js include-->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="/assets/script/pithy.js"></script>
+
+<!--
+  the site comment script
+-->
+
+
+  <script>
+    
+    var disqus_config = function () {
+        this.page.url = 'https://www.tanglei.name/blog/java-native-demo.html' ; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '/blog/java-native-demo.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+        if($("#disqus_thread").length) {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://hexo-tanglei.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+    powered by Disqus.</a></noscript>
+
+
+
+<!--
+  the site analysis script
+-->
+
+  <!-- baidu analysis -->
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?f0117177475f54027bfcaceb8d668cee";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+</body>
+</html>

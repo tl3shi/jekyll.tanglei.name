@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+  <head>
+    <title>8 Useful WordPress SQL Hacks</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="keywords" content="8 Useful WordPress SQL Hacks, 经验技巧, Wordpress,我做站长,, 唐磊, 中南大学, 清华大学, 软件工程师, 计算机, 全栈工程师" />
+    <meta name="description" content="8 Useful WordPress SQL Hacks, 经验技巧, Wordpress,我做站长, 已下内容转自http://www.smashingmagazine.com/2008/12/18/8-useful-Wordpress-sql-hacks收藏着吧，网上也有翻译版本。训练下英文阅读能力，我就转原版的。1. Creating a Backup of Your DatabaseThe problem...." />
+
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+
+  <!--Font awesome-->
+  <link href="/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- The pithy main css -->
+  <link rel="stylesheet" href="/assets/stylesheet/pithy.css">
+  <link rel="stylesheet" href="/assets/stylesheet/molokai.css">
+
+
+  <!--[if lt IE 9]>
+  <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv-printshiv.js"></script>
+  <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+  <![endif]-->
+  <link rel="alternate" type="application/rss+xml" title="tanglei's blog|唐磊的个人博客" href="https://www.tanglei.name/feed.xml" />
+</head>
+
+<body>
+  <nav class="navbar navbar-pithy" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+                data-target="#pithy-navbar" aria-expanded="false">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" rel="bookmark" href="/">TangLei</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="pithy-navbar">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="bookmark" href="/">首页</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/archives.html">Archives</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/about/">关于</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+  <div class="container page-content">
+    <div>
+    <div class="col-md-9 col-content">
+        <div id="post-content" class="panel panel-pithy post">
+            <div class="panel-heading">
+                <div class="title">
+                  <i class="fa fa-bookmark-o"></i>8 Useful WordPress SQL Hacks
+                </div>
+                <ul class="info">
+                    <li>
+                      作者 <span class="author"> 
+        
+            tanglei
+        
+        </span>
+                    </li>
+                    <li>
+                      最后编辑 2010年12月23日
+                    </li>
+                    <li>
+                      Tags
+                     
+                         <a class="tag" href="/tag/#Wordpress">Wordpress</a>
+                     
+                         <a class="tag" href="/tag/#我做站长">我做站长</a>
+                     
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body content">
+                <p>已下内容转自<a href="http://www.smashingmagazine.com/2008/12/18/8-useful-Wordpress-sql-hacks" target="_blank">http://www.smashingmagazine.com/2008/12/18/8-useful-Wordpress-sql-hacks</a>收藏着吧，网上也有翻译版本。训练下英文阅读能力，我就转原版的。</p>
+
+<p><strong>1. Creating a Backup of Your Database</strong></p>
+
+<p>The problem. While the tips in the rest of this post have been tested, you should definitely not try any of them without first having a proper backup of your MySQL database.</p>
+
+<p><strong>The solution</strong>. To create a manual backup of your WordPress database, follow these simple steps:</p>
+
+<p>Log in to phpMyAdmin and select your WordPress database.</p>
+
+<p>Once done, click the “Export” button located in the horizontal menu.</p>
+
+<p>Choose a compression method (personally, I use gzip), and click the “Execute” button.</p>
+
+<p>Your browser will ask you if you want to download the backup. Of course, select “Yes,” and then store it on your hard drive.</p>
+
+<p><strong>Explanation.</strong> Note that creating a backup of your WordPress database can be more easily executed with the WP-DB-Backup plug-in. WordPress users should install this plug-in if they have not yet done so and create regular backups of their data.</p>
+
+<p><strong>2. Batch Delete Post Revisions</strong></p>
+
+<p><strong>The problem.</strong> Post revisions, a new WordPress 2.6 feature, can be very useful, but they also increase the size of your MySQL database. Sure, you can manually delete posts revisions, but that’s very long and boring work.</p>
+
+<p><strong>The solution.</strong> The solution to this problem is simple: we batch delete post revisions by using a simple SQL query. The result can be almost unbelievable if you have a lot of posts: Your database size will be reduced by half!</p>
+
+<p>Log in to phpMyAdmin and select your WordPress database.</p>
+
+<p>Click the “SQL” button. Paste the following code in the SQL command window:1 DELETE FROM wp_posts WHERE post_type = “revision”;</p>
+
+<p>1 DELETE FROM wp_posts WHERE post_type = “revision”;</p>
+
+<p>You’re done. Depending on how many posts you had in your WordPress database, you may have saved lots of precious space!</p>
+
+<p><strong>Code explanation.</strong> The wp_posts table has a field named post_type. This field can have one of many values, such as “post,” “page” or “revision.” When we want to get rid of post revisions, we simply run a command to delete any entry in the wp_posts table in which the post_type field is equal to “revision.”</p>
+
+<p><strong>3. Erase 5000 Spam Comments in a Second</strong></p>
+
+<p><strong>The problem.</strong> True story: a friend of mine recently created his own blog and started to promote it everywhere on the Internet. After some weeks of intensive work, he spent some days on vacation without Internet access.</p>
+
+<p>When he came back home, he looked at his blog and saw… 5000+ comments awaiting moderation! Of course, most of them were spam, but he was actually about to check them all to make sure he did not delete a valid comment made by one of his regular readers.</p>
+
+<p><strong>The solution.</strong> Happily, my friend told me about his spam problem. He had already spent 45 minute manually deleting spam when I showed him this useful SQL tip.</p>
+
+<p>Log in to phpMyAdmin and select your WordPress database.</p>
+
+<p>Click the “SQL” button. Paste the following code in the SQL command window:</p>
+
+<p>1 DELETE from wp_comments WHERE comment_approved = ‘0’;</p>
+
+<p>1 DELETE from wp_comments WHERE comment_approved = ‘0’;</p>
+
+<p>Goodbye bad comments! Enjoy your spam-free database!</p>
+
+<p><strong>Explanation.</strong> The wp_comments table contains a field named comment_approved, which is a boolean value (1 or 0). Approved comments have a value of 1, and comments awaiting moderation have a value of 0. By running the above command, we simply delete any comments that haven’t been approved yet.</p>
+
+<p>Be careful. While this solution can be pretty useful if you have millions of spam comments to delete, it will also erase valid unapproved comments. If you don’t already use Akismet, install it now to prevent spamming.</p>
+
+<p><strong>4. Change the Post Attribution</strong></p>
+
+<p><strong>The problem.</strong> When you installed WordPress, an “admin” account was created. Some bloggers make the mistake of using that account to write their posts, until they realize that it’s not personal at all.</p>
+
+<p><strong>The solution.</strong> Modifying author attribution on each post takes a lot of time. Happily, SQL can help you get things done:</p>
+
+<p>Log in to your phpMyAdmin and select your WordPress database.</p>
+
+<p>First, we have to get the right user IDs. To do so, open the SQL command window and execute the following command:1 SELECT ID, display_name FROM wp_users;</p>
+
+<p>1 SELECT ID, display_name FROM wp_users;</p>
+
+<p>phpMyAdmin will display a list of user IDs associated with WordPress users. Let’s say that NEW_AUTHOR_ID is the ID of the more recently created author, and OLD_AUTHOR_ID is the original admin account ID.</p>
+
+<p>After you swap the NEW_AUTHOR_ID and OLD_AUTHOR_ID IDs, run the following command:1 UPDATE wp_posts SET post_author=NEW_AUTHOR_ID WHERE post_author=OLD_AUTHOR_ID;</p>
+
+<p>1 UPDATE wp_posts SET post_author=NEW_AUTHOR_ID WHERE post_author=OLD_AUTHOR_ID;</p>
+
+<p>That’s all. All posts previously attributed to admin are now attributed to whichever valid user you have selected.</p>
+
+<p><strong>5. Manually Reset Your Password</strong></p>
+
+<p>The problem. In order to protect their blogs, people often pick strong passwords, such as u7*KoF5i8_. Of course, this is a good thing, but I have heard many stories of forgotten admin passwords.</p>
+
+<p><strong>The solution.</strong> When you lose your password, WordPress can email you a link to reset it. But if you don’t have access to the email address recorded in the WordPress database anymore, or if you prefer just running a simple command instead, here is the hack.</p>
+
+<p>Log in to your phpMyAdmin, select your WordPress database and open the SQL window.</p>
+
+<p>Insert the following command (assuming your username is “admin”):1 UPDATE `wp_users` SET `user_pass` = MD5(‘PASSWORD’) WHERE `wp_users`.`user_login` =`admin` LIMIT 1;</p>
+
+<p>1 UPDATE `wp_users` SET `user_pass` = MD5(‘PASSWORD’) WHERE `wp_users`.`user_login` =`admin` LIMIT 1;</p>
+
+<p>You’re done. Your password has been successfully replaced by whatever you inserted in space above marked “PASSWORD.”</p>
+
+<p><strong>Explanation.</strong> User passwords are stored in the wp_users table. Of course, an MD5 hash is used to secure the password.</p>
+
+<p>We have to set up an “UPDATE” SQL request and use the built-in MD5() MySQL function to convert our password to MD5 and then update it. The “WHERE” clause ensures that we’re updating only the admin’s password. The same request without the “WHERE” clause would result in all passwords being updated!</p>
+
+<p><strong>6. Change Your WordPress Domain Name</strong></p>
+
+<p>The problem. Although it is not recommended, you may want at some point to change your domain name while keeping your blog and its data. Because WordPress records your domain name in the database, you have to change the database in order to connect your new domain name to your WordPress blog.</p>
+
+<p><strong>The solution.</strong></p>
+
+<p>You guessed it: the first thing to do is log in to your phpMyAdmin and select your WordPress database.</p>
+
+<p>Click the “SQL” button to open the SQL command window. In order to change your WordPress URL, execute this first command:1 UPDATE wp_options SET option_value = replace(option_value, ‘http://www.oldsite.com’, ‘http://www.newsite.com’) WHERE option_name = ‘home’ OR option_name = ‘siteurl’;</p>
+
+<p>1 UPDATE wp_options SET option_value = replace(option_value, ‘http://www.oldsite.com’, ‘http://www.newsite.com’) WHERE option_name = ‘home’ OR option_name = ‘siteurl’;</p>
+
+<p>Then, we have to replace the relative URL (guid) of each post. The following command will do that job:1 UPDATE wp_posts SET guid = replace(guid, ‘http://www.oldsite.com’,’http://www.newsite.com’);</p>
+
+<p>1 UPDATE wp_posts SET guid = replace(guid, ‘http://www.oldsite.com’,’http://www.newsite.com’);</p>
+
+<p>We’re almost done. The last thing to do is a search and replace in the wp_posts table to make sure that no absolute URL is still here:1 UPDATE wp_posts SET post_content = replace(post_content, ‘http://www.oldsite.com’, ‘http://www.newsite.com’);</p>
+
+<p>1 UPDATE wp_posts SET post_content = replace(post_content, ‘http://www.oldsite.com’, ‘http://www.newsite.com’);</p>
+
+<p>You’re done. You should be able to log in to your WordPress dashboard using your new URL.</p>
+
+<p><strong>Explanation.</strong> To easily change our WordPress domain name, I took advantage of the super-useful MySQL function “replace,” which allows you to replace one term by another.</p>
+
+<p><strong>7. Display the Number of SQL Queries on Your blog</strong></p>
+
+<p><strong>The problem.</strong> When trying to optimize your blog’s loading time, knowing the number of queries made to the database is important. In order to reduce queries, the first thing to know is how many queries are made on a single page.</p>
+
+<p><strong>The solution.</strong></p>
+
+<p>This time, no need to log in to phpMyAdmin. Simply open the footer.php file in your theme and append the following lines of code:1 <?php if (is\_user\_logged_in()) { ?></p>
+
+<p>2     <?php echo get\_num\_queries(); ?> queries in <?php timer_stop(1); ?> seconds.</p>
+
+<p>3 <?php } ?></p>
+
+<p>1 <?php if (is\_user\_logged_in()) { ?></p>
+
+<p>2     <?php echo get\_num\_queries(); ?> queries in <?php timer_stop(1); ?> seconds.</p>
+
+<p>3 <?php } ?></p>
+
+<p>Save the file and visit your blog. In the footer, you’ll see the number of queries made to the WordPress database as well as the time it took to make them.</p>
+
+<p><strong>Explanation.</strong> Seems that many WordPress users aren’t aware of this useful function. The get_num_queries() function returns the number of executed queries during a page load.</p>
+
+<p>Note that the above code will only display the number of queries to logged-in users, because regular visitors and search engine bots don’t need to know about it. But, if you’d like to make it public, simply remove the if (is_user_logged_in()) conditional instruction.</p>
+
+<p><strong>8. Restore Your WordPress Database</strong></p>
+
+<p>The problem. Let’s say, for some reason, such as a hacking or upgrade problem, you have lost your blog data or it has become corrupted. If you have a backup (and I hope you do!) you will have to import it to your WordPress database.</p>
+
+<p><strong>The solution.</strong></p>
+
+<p>Log in to phpMyAdmin and select your WordPress database.</p>
+
+<p>Click the “Import” button in the horizontal menu.</p>
+
+<p>Click the “Browse” button and select the most recent database backup on your hard disk.</p>
+
+<p>Click the “Execute” button. If everything went well, your WordPress database is fully functional again.</p>
+
+            </div>
+            <div class="post-nav">
+    
+    <a class="prev" href=/blog/wordpress-db-op.html>&laquo; &nbsp;Wordpress数据库优化</a>
+    
+    
+    <a class="next" href=/blog/designpatterninjdk.html>JDK里的设计模式&nbsp;&raquo;</a>
+    
+</div>
+
+            
+        </div>
+        <!--
+            if config set comment enable,include comment
+        -->
+        
+            <!-- comment -->
+<div id="post-comment" class="panel panel-default">
+    <div class="panel-body">
+        
+
+        
+            <div id="disqus_thread"></div>
+        
+    </div>
+</div>
+
+        
+    </div>
+    <div class="col-md-3 col-sidebar">
+        <div class="panel panel-pithy author">
+    <div class="panel-heading avastar">
+        <img src="/tx.jpg" alt="tanglei"/>
+    </div>
+    <div class="panel-body">
+        码农 @ 宜信大数据创新中心, 毕业于CSU && THU,  曾工作于<a href='http://www.tencent.com/zh-cn/index.shtml' target='_blank'>腾讯</a> && <a href='http://www.umeng.com/' target='_blank'>友盟</a>.  &nbsp; <a href='/about/'> MORE </a>
+    </div>
+    <div class="panel-footer social">
+        <ul>
+            
+            <li>
+                <a rel="nofollow" href="http://www.weibo.com/tangleithu/" target="_blank"><i class="fa fa-weibo"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://github.com/tl3shi" target="_blank"><i class="fa fa-github"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://www.facebook.com/tanglei.name" target="_blank"><i class="fa fa-facebook"></i></a>
+            </li>
+            
+            <li>
+                <a href="https://www.tanglei.name/feed.xml" target="_blank"><i class="fa fa-rss"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar:category list -->
+<div class="panel panel-default categories">
+    <div class="panel-heading title">
+        分类列表
+    </div>
+    <div class="panel-body list">
+        <ul>
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/贵州支教行/">
+                  贵州支教行&nbsp;<span class="count">[12]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/课程学习/">
+                  课程学习&nbsp;<span class="count">[88]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/MyLife/">
+                  MyLife&nbsp;<span class="count">[45]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/经验技巧/">
+                  经验技巧&nbsp;<span class="count">[93]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/社会工作/">
+                  社会工作&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/网络文摘/">
+                  网络文摘&nbsp;<span class="count">[28]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件体系结构/">
+                  软件体系结构&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/旅游/">
+                  旅游&nbsp;<span class="count">[23]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软考/">
+                  软考&nbsp;<span class="count">[2]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件度量及其应用/">
+                  软件度量及其应用&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/工作那些事儿/">
+                  工作那些事儿&nbsp;<span class="count">[42]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我做站长/">
+                  我做站长&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/coding小工具/">
+                  coding小工具&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/除臭虫/">
+                  除臭虫&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/学到老/">
+                  学到老&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我不会算法/">
+                  我不会算法&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/数据挖掘/">
+                  数据挖掘&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/计算机图形学/">
+                  计算机图形学&nbsp;<span class="count">[5]</span>
+              </a>
+          </li>
+
+          
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar: tag list -->
+<div class="panel panel-default tags">
+    <div class="panel-heading title">
+        标签云
+    </div>
+    <div class="panel-body list">
+         
+        <input type="hidden" id="tag-values" value='{"name":"丰田助学","count":16},{"name":"贵州支教","count":12},{"name":"铜厂小学","count":9},{"name":"中南大学","count":12},{"name":"云南赶集","count":1},{"name":"HelloWorld","count":5},{"name":"我做站长","count":35},{"name":"设计模式","count":7},{"name":"Wordpress","count":18},{"name":"系统架构师","count":11},{"name":"软考","count":25},{"name":"论文","count":6},{"name":"软件0804","count":8},{"name":"Java","count":24},{"name":"J2EE","count":3},{"name":"JAVA","count":1},{"name":"考试","count":25},{"name":"SEO","count":3},{"name":"软件体系结构","count":6},{"name":"Android","count":28},{"name":"软件工程","count":2},{"name":"Windows","count":17},{"name":"软件测试","count":1},{"name":"总结","count":13},{"name":"Oracle","count":4},{"name":"存储过程","count":3},{"name":"数据库应用","count":3},{"name":"数据库","count":8},{"name":"先进班集体","count":1},{"name":"Linux","count":15},{"name":"Ubuntu","count":8},{"name":"Defy","count":3},{"name":"传感器","count":1},{"name":"访日交流","count":8},{"name":"旅游","count":22},{"name":"软件学院","count":11},{"name":"大学生科协","count":4},{"name":"玩遍中国","count":11},{"name":"计算机网络","count":5},{"name":"Eclipse","count":4},{"name":"软件度量","count":11},{"name":"软件设计师","count":4},{"name":"编译原理","count":2},{"name":"程序语言","count":2},{"name":"操作系统","count":3},{"name":"多媒体","count":2},{"name":"网络安全","count":9},{"name":"TCP/IP","count":2},{"name":"编程语言","count":1},{"name":"考点","count":1},{"name":"Google","count":5},{"name":"软件结构度量","count":1},{"name":"CMM","count":6},{"name":"项目管理","count":3},{"name":"实习","count":33},{"name":"面试","count":18},{"name":"网络营销","count":1},{"name":"百度","count":4},{"name":"笔试","count":2},{"name":"腾讯","count":31},{"name":"编程比赛","count":4},{"name":"科研","count":4},{"name":"电子商务","count":11},{"name":"虚拟主机","count":2},{"name":"网路安全","count":1},{"name":"Foxmail","count":3},{"name":"微软","count":1},{"name":"软件能力成熟度模型","count":2},{"name":"软件过程改进","count":3},{"name":"SCM复习资料","count":1},{"name":"软件配置管理","count":12},{"name":"SCM","count":6},{"name":"工具","count":19},{"name":"反模式","count":1},{"name":"玩玩手机","count":5},{"name":"程序员","count":4},{"name":"健康","count":1},{"name":"共享上网","count":2},{"name":"Bug","count":4},{"name":"coding小工具","count":1},{"name":"工作日志","count":19},{"name":"Apache","count":2},{"name":"PHP","count":13},{"name":"实习日志","count":1},{"name":"工作实习生","count":1},{"name":"Mysql","count":1},{"name":"Shell","count":3},{"name":"腾讯实习日志","count":1},{"name":"hosts","count":2},{"name":"Vim","count":3},{"name":"正则表达式","count":2},{"name":"搜索引擎","count":1},{"name":"跨域","count":1},{"name":"前端","count":2},{"name":"保研","count":15},{"name":"算法","count":9},{"name":"清华大学","count":12},{"name":"丰田助学金","count":3},{"name":"WiFi","count":1},{"name":"实习生","count":1},{"name":"wifi自动关闭","count":1},{"name":"腾讯实习","count":1},{"name":"经验技巧","count":13},{"name":"DDOS","count":2},{"name":"AOP","count":3},{"name":"租房","count":2},{"name":"Sqlite","count":2},{"name":"Python","count":11},{"name":"OOP","count":5},{"name":"数据挖掘","count":8},{"name":"GitHub","count":2},{"name":"SVM","count":3},{"name":"R语言","count":2},{"name":"足迹","count":2},{"name":"笛子","count":2},{"name":"计算机图形学","count":5},{"name":"OpenGL","count":3},{"name":"回忆录","count":1},{"name":"年终总结","count":1},{"name":"域名","count":1},{"name":"计算几何","count":2},{"name":"敲敲代码","count":9},{"name":"Latex","count":3},{"name":"C++","count":10},{"name":"Mac","count":7},{"name":"飞行模式","count":2},{"name":"性能优化","count":2},{"name":"Javascript","count":1},{"name":"工作","count":1},{"name":"玩遍世界","count":1},{"name":"Scala","count":2},{"name":"MyLife","count":1},{"name":"快捷键","count":1},{"name":"云服务","count":1},{"name":"Blog","count":1},{"name":"微信公众号","count":1}'/>
+        <div style="display: none"><a id="tag-value" class="taglink" rel="bookmark" href="/tag/#" data-target-cate="#"></a></div>
+        <div class="tag-values-container">
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+  </div>
+
+  <footer>
+  <div class="text-center">
+    © 2010-2016 All rights reserved.
+    Made with <a href="http://jekyllrb.com/" rel="nofollow" target="_blank">Jekyll</a>
+    & Modified by <a href="http://www.tanglei.name/about/" >Tanglei</a>
+    and <i class="fa fa-heart"></i> by <a rel="nofollow" href="https://github.com/guovz/jekyll-pithy" target="_blank">Pithy</a>
+  </div>
+  <div class="totop" data-toggle="totop">
+      <i class="fa fa-chevron-up"></i>
+  </div>
+</footer>
+
+
+  <!--the js include-->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="/assets/script/pithy.js"></script>
+
+<!--
+  the site comment script
+-->
+
+
+  <script>
+    
+    var disqus_config = function () {
+        this.page.url = 'https://www.tanglei.name/blog/8-useful-wordpress-sql-hacks.html' ; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '/blog/8-useful-wordpress-sql-hacks.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+        if($("#disqus_thread").length) {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://hexo-tanglei.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+    powered by Disqus.</a></noscript>
+
+
+
+<!--
+  the site analysis script
+-->
+
+  <!-- baidu analysis -->
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?f0117177475f54027bfcaceb8d668cee";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+</body>
+</html>

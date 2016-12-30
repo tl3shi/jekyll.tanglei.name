@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+  <head>
+    <title>大型数据库实验(一)</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="keywords" content="大型数据库实验(一), 课程学习, Oracle,存储过程,数据库应用,, 唐磊, 中南大学, 清华大学, 软件工程师, 计算机, 全栈工程师" />
+    <meta name="description" content="大型数据库实验(一), 课程学习, Oracle,存储过程,数据库应用, 这两天做了oracle的实验了。第一题目描述如下：" />
+
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+
+  <!--Font awesome-->
+  <link href="/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- The pithy main css -->
+  <link rel="stylesheet" href="/assets/stylesheet/pithy.css">
+  <link rel="stylesheet" href="/assets/stylesheet/molokai.css">
+
+
+  <!--[if lt IE 9]>
+  <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv-printshiv.js"></script>
+  <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+  <![endif]-->
+  <link rel="alternate" type="application/rss+xml" title="tanglei's blog|唐磊的个人博客" href="https://www.tanglei.name/feed.xml" />
+</head>
+
+<body>
+  <nav class="navbar navbar-pithy" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+                data-target="#pithy-navbar" aria-expanded="false">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" rel="bookmark" href="/">TangLei</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="pithy-navbar">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="bookmark" href="/">首页</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/archives.html">Archives</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/about/">关于</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+  <div class="container page-content">
+    <div>
+    <div class="col-md-9 col-content">
+        <div id="post-content" class="panel panel-pithy post">
+            <div class="panel-heading">
+                <div class="title">
+                  <i class="fa fa-bookmark-o"></i>大型数据库实验(一)
+                </div>
+                <ul class="info">
+                    <li>
+                      作者 <span class="author"> 
+        
+            tanglei
+        
+        </span>
+                    </li>
+                    <li>
+                      最后编辑 2011年01月03日
+                    </li>
+                    <li>
+                      Tags
+                     
+                         <a class="tag" href="/tag/#Oracle">Oracle</a>
+                     
+                         <a class="tag" href="/tag/#存储过程">存储过程</a>
+                     
+                         <a class="tag" href="/tag/#数据库应用">数据库应用</a>
+                     
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body content">
+                <p>这两天做了oracle的实验了。第一题目描述如下：</p>
+
+<p>表PAY_TABLE结构为：</p>
+
+<p>Name                   Null?                           Type</p>
+
+<p>NAME                  NOT NULL                 VARCHAR2(20)</p>
+
+<p>PAY_TYPE           NOT NULL                 VARCHAR2(8)</p>
+
+<p>PAY_RATE          NOT NULL                 NUMBER(8,2)</p>
+
+<p>EFF_DATE          NOT NULL                 DATE</p>
+
+<p>PREV_PAY                                              NUMBER(8,2)</p>
+
+<p>—————————————————————————–</p>
+
+<p>数据：</p>
+
+<p>NAME                         PAY_TYPE           PAY_RATE          EFF_DATE          PREV_PAY</p>
+
+<p>SANDRA SAMUELS       HOURLY                12.50                     01-JAN-04</p>
+
+<p>ROBERT BOBAY            HOURLY                11.50                     15-MAY-03</p>
+
+<p>KEITH  JONES           HOURLY                10.00                     31-OCT-04</p>
+
+<p>SUSAN WILLIAMS       HOURLY                9.75                      01-MAY-04</p>
+
+<p>CHRISSY ZOES            SALARY                 50000.00               01-JAN-04</p>
+
+<p>CLODE EVANS             SALARY                 42150.00                01-MAR-04</p>
+
+<p>JOHN SMITH                     SALARY                 35000.00               15-JUN-03</p>
+
+<p>要求：要给为你工作的时间超过了六个月的员工增加薪金。符合条件的钟点工的薪金增加4%，而符合条件的雇员的薪金需要增加5%。</p>
+
+<p>建表以及数据的sql如下：</p>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">create</span> <span class="k">table</span> <span class="n">pay_table</span>
+<span class="p">(</span>
+<span class="n">NAME</span>	 <span class="n">VARCHAR2</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="p">,</span>
+<span class="n">PAY_TYPE</span>	<span class="n">VARCHAR2</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> 	<span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+<span class="n">PAY_RATE</span>	<span class="n">NUMBER</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> 	<span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+<span class="n">EFF_DATE</span>	<span class="n">DATE</span> 	<span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+<span class="n">PREV_PAY</span>	<span class="n">NUMBER</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="k">insert</span> <span class="k">into</span> <span class="n">pay_table</span> <span class="k">values</span><span class="p">(</span><span class="s1">'SANDRA SAMUELS'</span><span class="p">,</span><span class="s1">'HOURLY'</span><span class="p">,</span><span class="mi">12</span><span class="p">.</span><span class="mi">50</span><span class="p">,</span><span class="n">to_date</span><span class="p">(</span><span class="s1">'01-01-04'</span><span class="p">,</span><span class="s1">'DD-MM-YY'</span><span class="p">),</span><span class="k">null</span><span class="p">);</span>
+<span class="k">insert</span> <span class="k">into</span> <span class="n">pay_table</span> <span class="k">values</span><span class="p">(</span><span class="s1">'ROBERT BOBAY'</span><span class="p">,</span><span class="s1">'HOURLY'</span><span class="p">,</span><span class="mi">11</span><span class="p">.</span><span class="mi">50</span><span class="p">,</span><span class="n">to_date</span><span class="p">(</span><span class="s1">'15-03-03'</span><span class="p">,</span><span class="s1">'DD-MM-YY'</span><span class="p">),</span><span class="k">null</span><span class="p">);</span>
+<span class="k">insert</span> <span class="k">into</span> <span class="n">pay_table</span> <span class="k">values</span><span class="p">(</span><span class="s1">'KEITH  JONES'</span><span class="p">,</span><span class="s1">'HOURLY'</span><span class="p">,</span><span class="mi">10</span><span class="p">.</span><span class="mi">00</span><span class="p">,</span><span class="n">to_date</span><span class="p">(</span><span class="s1">'31-10-04'</span><span class="p">,</span><span class="s1">'DD-MM-YY'</span><span class="p">),</span><span class="k">null</span><span class="p">);</span>
+<span class="k">insert</span> <span class="k">into</span> <span class="n">pay_table</span> <span class="k">values</span><span class="p">(</span><span class="s1">'SUSAN WILLIAMS'</span><span class="p">,</span><span class="s1">'HOURLY'</span><span class="p">,</span><span class="mi">9</span><span class="p">.</span><span class="mi">75</span><span class="p">,</span><span class="n">to_date</span><span class="p">(</span><span class="s1">'01-05-04'</span><span class="p">,</span><span class="s1">'DD-MM-YY'</span><span class="p">),</span><span class="k">null</span><span class="p">);</span>
+<span class="k">insert</span> <span class="k">into</span> <span class="n">pay_table</span> <span class="k">values</span><span class="p">(</span><span class="s1">'CHRISSY ZOES'</span><span class="p">,</span><span class="s1">'SALARY'</span><span class="p">,</span><span class="mi">50000</span><span class="p">.</span><span class="mi">00</span><span class="p">,</span><span class="n">to_date</span><span class="p">(</span><span class="s1">'01-01-04'</span><span class="p">,</span><span class="s1">'DD-MM-YY'</span><span class="p">),</span><span class="k">null</span><span class="p">);</span>
+<span class="k">insert</span> <span class="k">into</span> <span class="n">pay_table</span> <span class="k">values</span><span class="p">(</span><span class="s1">'CLODE EVANS'</span><span class="p">,</span><span class="s1">'SALARY'</span><span class="p">,</span><span class="mi">42150</span><span class="p">.</span><span class="mi">00</span><span class="p">,</span><span class="n">to_date</span><span class="p">(</span><span class="s1">'01-03-04'</span><span class="p">,</span><span class="s1">'DD-MM-YY'</span><span class="p">),</span><span class="k">null</span><span class="p">);</span>
+<span class="k">insert</span> <span class="k">into</span> <span class="n">pay_table</span> <span class="k">values</span><span class="p">(</span><span class="s1">'JOHN SMITH'</span><span class="p">,</span><span class="s1">'SALARY'</span><span class="p">,</span><span class="mi">35000</span><span class="p">.</span><span class="mi">00</span><span class="p">,</span><span class="n">to_date</span><span class="p">(</span><span class="s1">'15-06-03'</span><span class="p">,</span><span class="s1">'DD-MM-YY'</span><span class="p">),</span><span class="k">null</span><span class="p">);</span>
+<span class="k">insert</span> <span class="k">into</span> <span class="n">pay_table</span> <span class="k">values</span><span class="p">(</span><span class="s1">'KEVIN TROLLBERG'</span><span class="p">,</span><span class="s1">'SALARY'</span><span class="p">,</span><span class="mi">27500</span><span class="p">.</span><span class="mi">00</span><span class="p">,</span><span class="n">to_date</span><span class="p">(</span><span class="s1">'15-06-03'</span><span class="p">,</span><span class="s1">'DD-MM-YY'</span><span class="p">),</span><span class="k">null</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>插入日期时还得注意格式。与当前session中的格式一致。</p>
+
+<!--more-->
+<p>唉，赵明老师也不给个备注。。各个字段给解释下才行嘛。PREV_PAY现在才发现估计是记录上一次的工资值。当时做的时候还没有注意呢，不管了。也就是个update的语句。下面用存储过程实现如下：</p>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">create</span> <span class="k">or</span> <span class="k">replace</span> <span class="k">procedure</span> <span class="n">proc_dbtest</span>
+<span class="k">as</span>
+<span class="k">begin</span>
+  <span class="k">declare</span>
+    <span class="k">cursor</span> <span class="n">pay_cursor</span> <span class="k">is</span> <span class="k">select</span> <span class="n">name</span><span class="p">,</span><span class="n">pay_type</span><span class="p">,</span><span class="n">pay_rate</span><span class="p">,</span><span class="n">eff_date</span> <span class="k">from</span> <span class="n">pay_table</span><span class="p">;</span>
+     <span class="n">months</span> <span class="n">number</span><span class="p">;</span><span class="c1">--入职到现在相差月份数量</span>
+     <span class="n">indexRecord</span> <span class="n">pay_cursor</span><span class="o">%</span><span class="n">rowtype</span><span class="p">;</span><span class="c1">--游标的定义，指向单行记录</span>
+     <span class="n">newPayRate</span> <span class="n">number</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span><span class="c1">--新的工资率</span>
+
+   <span class="k">begin</span>
+     <span class="k">open</span> <span class="n">pay_cursor</span><span class="p">;</span><span class="c1">--打开游标</span>
+     <span class="n">loop</span>
+          <span class="k">fetch</span> <span class="n">pay_cursor</span> <span class="k">into</span> <span class="n">indexRecord</span><span class="p">;</span><span class="c1">--取出一行放入定义的indexRecord中</span>
+          <span class="n">exit</span> <span class="k">when</span> <span class="n">pay_cursor</span><span class="o">%</span><span class="n">notfound</span><span class="p">;</span>
+          <span class="c1">--注意学会用oracle中的日期函数。</span>
+          <span class="n">months</span><span class="p">:</span><span class="o">=</span> <span class="n">MONTHS_BETWEEN</span><span class="p">(</span><span class="n">sysdate</span><span class="p">,</span> <span class="n">indexRecord</span><span class="p">.</span><span class="n">eff_date</span><span class="p">);</span><span class="c1">--返回当前日期和记录中的日期相差的月份数量</span>
+          <span class="n">if</span><span class="p">(</span><span class="n">months</span><span class="o">&gt;</span><span class="mi">6</span><span class="p">)</span> <span class="k">then</span>
+                       <span class="n">if</span><span class="p">(</span><span class="n">indexRecord</span><span class="p">.</span><span class="n">pay_type</span><span class="o">=</span><span class="s1">'HOURLY'</span><span class="p">)</span> <span class="k">then</span>
+                            <span class="n">newPayRate</span><span class="p">:</span><span class="o">=</span><span class="n">indexRecord</span><span class="p">.</span><span class="n">pay_rate</span><span class="o">*</span><span class="mi">1</span><span class="p">.</span><span class="mi">04</span><span class="p">;</span>
+                       <span class="k">else</span> <span class="c1">--薪金 增加5%</span>
+                            <span class="n">newPayRate</span><span class="p">:</span><span class="o">=</span><span class="n">indexRecord</span><span class="p">.</span><span class="n">pay_rate</span><span class="o">*</span><span class="mi">1</span><span class="p">.</span><span class="mi">05</span><span class="p">;</span>
+                       <span class="k">end</span> <span class="n">if</span><span class="p">;</span>
+          <span class="c1">--更新新的工资率 </span>
+          <span class="k">update</span> <span class="n">pay_table</span> <span class="k">set</span> <span class="n">pay_rate</span><span class="o">=</span><span class="n">newPayRate</span> <span class="k">where</span> <span class="k">current</span> <span class="k">of</span> <span class="n">pay_cursor</span><span class="p">;</span>
+          <span class="k">commit</span><span class="p">;</span>
+          <span class="k">end</span> <span class="n">if</span><span class="p">;</span>
+     <span class="k">end</span> <span class="n">loop</span><span class="p">;</span>
+     <span class="k">close</span> <span class="n">pay_cursor</span><span class="p">;</span><span class="c1">--关闭</span>
+    <span class="k">end</span><span class="p">;</span>
+<span class="k">end</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>————————————————————————————-</p>
+
+<p>这个实验主要考查了oracle中存储过程的基本语法，以及游标的使用。注意会用oracle中的日期函数。用好了日期函数，可以节约很大的逻辑。</p>
+
+            </div>
+            <div class="post-nav">
+    
+    <a class="prev" href=/blog/2010-2011work-summary-monitor.html>&laquo; &nbsp;2010-2011学年第一学期工作总结</a>
+    
+    
+    <a class="next" href=/blog/oracle-experiment-2.html>大型数据库实验(二)&nbsp;&raquo;</a>
+    
+</div>
+
+            
+        </div>
+        <!--
+            if config set comment enable,include comment
+        -->
+        
+            <!-- comment -->
+<div id="post-comment" class="panel panel-default">
+    <div class="panel-body">
+        
+
+        
+            <div id="disqus_thread"></div>
+        
+    </div>
+</div>
+
+        
+    </div>
+    <div class="col-md-3 col-sidebar">
+        <div class="panel panel-pithy author">
+    <div class="panel-heading avastar">
+        <img src="/tx.jpg" alt="tanglei"/>
+    </div>
+    <div class="panel-body">
+        码农 @ 宜信大数据创新中心, 毕业于CSU && THU,  曾工作于<a href='http://www.tencent.com/zh-cn/index.shtml' target='_blank'>腾讯</a> && <a href='http://www.umeng.com/' target='_blank'>友盟</a>.  &nbsp; <a href='/about/'> MORE </a>
+    </div>
+    <div class="panel-footer social">
+        <ul>
+            
+            <li>
+                <a rel="nofollow" href="http://www.weibo.com/tangleithu/" target="_blank"><i class="fa fa-weibo"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://github.com/tl3shi" target="_blank"><i class="fa fa-github"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://www.facebook.com/tanglei.name" target="_blank"><i class="fa fa-facebook"></i></a>
+            </li>
+            
+            <li>
+                <a href="https://www.tanglei.name/feed.xml" target="_blank"><i class="fa fa-rss"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar:category list -->
+<div class="panel panel-default categories">
+    <div class="panel-heading title">
+        分类列表
+    </div>
+    <div class="panel-body list">
+        <ul>
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/贵州支教行/">
+                  贵州支教行&nbsp;<span class="count">[12]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/课程学习/">
+                  课程学习&nbsp;<span class="count">[88]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/MyLife/">
+                  MyLife&nbsp;<span class="count">[45]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/经验技巧/">
+                  经验技巧&nbsp;<span class="count">[93]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/社会工作/">
+                  社会工作&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/网络文摘/">
+                  网络文摘&nbsp;<span class="count">[28]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件体系结构/">
+                  软件体系结构&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/旅游/">
+                  旅游&nbsp;<span class="count">[23]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软考/">
+                  软考&nbsp;<span class="count">[2]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件度量及其应用/">
+                  软件度量及其应用&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/工作那些事儿/">
+                  工作那些事儿&nbsp;<span class="count">[42]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我做站长/">
+                  我做站长&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/coding小工具/">
+                  coding小工具&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/除臭虫/">
+                  除臭虫&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/学到老/">
+                  学到老&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我不会算法/">
+                  我不会算法&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/数据挖掘/">
+                  数据挖掘&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/计算机图形学/">
+                  计算机图形学&nbsp;<span class="count">[5]</span>
+              </a>
+          </li>
+
+          
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar: tag list -->
+<div class="panel panel-default tags">
+    <div class="panel-heading title">
+        标签云
+    </div>
+    <div class="panel-body list">
+         
+        <input type="hidden" id="tag-values" value='{"name":"丰田助学","count":16},{"name":"贵州支教","count":12},{"name":"铜厂小学","count":9},{"name":"中南大学","count":12},{"name":"云南赶集","count":1},{"name":"HelloWorld","count":5},{"name":"我做站长","count":35},{"name":"设计模式","count":7},{"name":"Wordpress","count":18},{"name":"系统架构师","count":11},{"name":"软考","count":25},{"name":"论文","count":6},{"name":"软件0804","count":8},{"name":"Java","count":24},{"name":"J2EE","count":3},{"name":"JAVA","count":1},{"name":"考试","count":25},{"name":"SEO","count":3},{"name":"软件体系结构","count":6},{"name":"Android","count":28},{"name":"软件工程","count":2},{"name":"Windows","count":17},{"name":"软件测试","count":1},{"name":"总结","count":13},{"name":"Oracle","count":4},{"name":"存储过程","count":3},{"name":"数据库应用","count":3},{"name":"数据库","count":8},{"name":"先进班集体","count":1},{"name":"Linux","count":15},{"name":"Ubuntu","count":8},{"name":"Defy","count":3},{"name":"传感器","count":1},{"name":"访日交流","count":8},{"name":"旅游","count":22},{"name":"软件学院","count":11},{"name":"大学生科协","count":4},{"name":"玩遍中国","count":11},{"name":"计算机网络","count":5},{"name":"Eclipse","count":4},{"name":"软件度量","count":11},{"name":"软件设计师","count":4},{"name":"编译原理","count":2},{"name":"程序语言","count":2},{"name":"操作系统","count":3},{"name":"多媒体","count":2},{"name":"网络安全","count":9},{"name":"TCP/IP","count":2},{"name":"编程语言","count":1},{"name":"考点","count":1},{"name":"Google","count":5},{"name":"软件结构度量","count":1},{"name":"CMM","count":6},{"name":"项目管理","count":3},{"name":"实习","count":33},{"name":"面试","count":18},{"name":"网络营销","count":1},{"name":"百度","count":4},{"name":"笔试","count":2},{"name":"腾讯","count":31},{"name":"编程比赛","count":4},{"name":"科研","count":4},{"name":"电子商务","count":11},{"name":"虚拟主机","count":2},{"name":"网路安全","count":1},{"name":"Foxmail","count":3},{"name":"微软","count":1},{"name":"软件能力成熟度模型","count":2},{"name":"软件过程改进","count":3},{"name":"SCM复习资料","count":1},{"name":"软件配置管理","count":12},{"name":"SCM","count":6},{"name":"工具","count":19},{"name":"反模式","count":1},{"name":"玩玩手机","count":5},{"name":"程序员","count":4},{"name":"健康","count":1},{"name":"共享上网","count":2},{"name":"Bug","count":4},{"name":"coding小工具","count":1},{"name":"工作日志","count":19},{"name":"Apache","count":2},{"name":"PHP","count":13},{"name":"实习日志","count":1},{"name":"工作实习生","count":1},{"name":"Mysql","count":1},{"name":"Shell","count":3},{"name":"腾讯实习日志","count":1},{"name":"hosts","count":2},{"name":"Vim","count":3},{"name":"正则表达式","count":2},{"name":"搜索引擎","count":1},{"name":"跨域","count":1},{"name":"前端","count":2},{"name":"保研","count":15},{"name":"算法","count":9},{"name":"清华大学","count":12},{"name":"丰田助学金","count":3},{"name":"WiFi","count":1},{"name":"实习生","count":1},{"name":"wifi自动关闭","count":1},{"name":"腾讯实习","count":1},{"name":"经验技巧","count":13},{"name":"DDOS","count":2},{"name":"AOP","count":3},{"name":"租房","count":2},{"name":"Sqlite","count":2},{"name":"Python","count":11},{"name":"OOP","count":5},{"name":"数据挖掘","count":8},{"name":"GitHub","count":2},{"name":"SVM","count":3},{"name":"R语言","count":2},{"name":"足迹","count":2},{"name":"笛子","count":2},{"name":"计算机图形学","count":5},{"name":"OpenGL","count":3},{"name":"回忆录","count":1},{"name":"年终总结","count":1},{"name":"域名","count":1},{"name":"计算几何","count":2},{"name":"敲敲代码","count":9},{"name":"Latex","count":3},{"name":"C++","count":10},{"name":"Mac","count":7},{"name":"飞行模式","count":2},{"name":"性能优化","count":2},{"name":"Javascript","count":1},{"name":"工作","count":1},{"name":"玩遍世界","count":1},{"name":"Scala","count":2},{"name":"MyLife","count":1},{"name":"快捷键","count":1},{"name":"云服务","count":1},{"name":"Blog","count":1},{"name":"微信公众号","count":1}'/>
+        <div style="display: none"><a id="tag-value" class="taglink" rel="bookmark" href="/tag/#" data-target-cate="#"></a></div>
+        <div class="tag-values-container">
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+  </div>
+
+  <footer>
+  <div class="text-center">
+    © 2010-2016 All rights reserved.
+    Made with <a href="http://jekyllrb.com/" rel="nofollow" target="_blank">Jekyll</a>
+    & Modified by <a href="http://www.tanglei.name/about/" >Tanglei</a>
+    and <i class="fa fa-heart"></i> by <a rel="nofollow" href="https://github.com/guovz/jekyll-pithy" target="_blank">Pithy</a>
+  </div>
+  <div class="totop" data-toggle="totop">
+      <i class="fa fa-chevron-up"></i>
+  </div>
+</footer>
+
+
+  <!--the js include-->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="/assets/script/pithy.js"></script>
+
+<!--
+  the site comment script
+-->
+
+
+  <script>
+    
+    var disqus_config = function () {
+        this.page.url = 'https://www.tanglei.name/blog/oracle-experiment-1.html' ; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '/blog/oracle-experiment-1.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+        if($("#disqus_thread").length) {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://hexo-tanglei.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+    powered by Disqus.</a></noscript>
+
+
+
+<!--
+  the site analysis script
+-->
+
+  <!-- baidu analysis -->
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?f0117177475f54027bfcaceb8d668cee";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+</body>
+</html>

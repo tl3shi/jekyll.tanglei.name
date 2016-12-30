@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+  <head>
+    <title>软件度量复习整理-Software Metrics[五]</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="keywords" content="软件度量复习整理-Software Metrics[五], 课程学习, CMM,软件度量,, 唐磊, 中南大学, 清华大学, 软件工程师, 计算机, 全栈工程师" />
+    <meta name="description" content="软件度量复习整理-Software Metrics[五], 课程学习, CMM,软件度量, Measuring External Product Attributes" />
+
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+
+  <!--Font awesome-->
+  <link href="/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- The pithy main css -->
+  <link rel="stylesheet" href="/assets/stylesheet/pithy.css">
+  <link rel="stylesheet" href="/assets/stylesheet/molokai.css">
+
+
+  <!--[if lt IE 9]>
+  <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv-printshiv.js"></script>
+  <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+  <![endif]-->
+  <link rel="alternate" type="application/rss+xml" title="tanglei's blog|唐磊的个人博客" href="https://www.tanglei.name/feed.xml" />
+</head>
+
+<body>
+  <nav class="navbar navbar-pithy" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+                data-target="#pithy-navbar" aria-expanded="false">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" rel="bookmark" href="/">TangLei</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="pithy-navbar">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="bookmark" href="/">首页</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/archives.html">Archives</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/about/">关于</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+  <div class="container page-content">
+    <div>
+    <div class="col-md-9 col-content">
+        <div id="post-content" class="panel panel-pithy post">
+            <div class="panel-heading">
+                <div class="title">
+                  <i class="fa fa-bookmark-o"></i>软件度量复习整理-Software Metrics[五]
+                </div>
+                <ul class="info">
+                    <li>
+                      作者 <span class="author"> 
+        
+            tanglei
+        
+        </span>
+                    </li>
+                    <li>
+                      最后编辑 2011年04月25日
+                    </li>
+                    <li>
+                      Tags
+                     
+                         <a class="tag" href="/tag/#CMM">CMM</a>
+                     
+                         <a class="tag" href="/tag/#软件度量">软件度量</a>
+                     
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body content">
+                <h2 id="measuring-external-product-attributes">Measuring External Product Attributes</h2>
+
+<p>测试产品外部属性</p>
+
+<p>Predicting external attributes via measuring and analyzing internal attributes, because:</p>
+
+<p>The internal attributes are often available for measurement early in the life cycle, whereas external attributes are measurable only when the product is complete.</p>
+
+<p>Internal attributes are often easier to measure than external ones.</p>
+
+<p>预测外部属性通过测试和分析内部属性，因为：内部属性通常在生命周期的早期，然后外部属性只能是在产品完成后才可以测试。</p>
+
+<p>External attributes  – Software quality. 外部属性就是说软件的质量。</p>
+
+<p><strong>What is “Quality”?</strong></p>
+
+<p>IEEE: The totality of features and characteristics of a product or service that bears on its ability to satisfy given needs.</p>
+
+<p>R. Glass: The degree of excellence of something. We measure the excellence of software via a set of attributes.</p>
+
+<p>质量的定义：</p>
+
+<p>IEEE：产品的总体特征或者服务能够满足需求。</p>
+
+<p>R. Glass：优秀度，通过软件的一系列属性描述的一个产品优秀程度。</p>
+
+<h3 id="quality-model-iso-9126-quality-model">Quality Model: ISO 9126 Quality Model</h3>
+
+<hr />
+
+<p><img class="alignnone" title="ISO9126" src="/wp-content/uploads/2011/04/Software%20Metrics.files//image016.gif" alt="" /></p>
+
+<p>6个特性，27个子特性</p>
+
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="80">
+      功能性
+    </td>
+    
+    <td width="405">
+      准确性、适合性、互操作性、保密安全性+依从性
+    </td>
+  </tr>
+  
+  <tr>
+    <td width="80">
+      效率
+    </td>
+    
+    <td width="405">
+      时间、资源+依从性
+    </td>
+  </tr>
+  
+  <tr>
+    <td width="80">
+      易用性
+    </td>
+    
+    <td width="405">
+      易操作性、易理解性、易学性、吸引性 +依从性
+    </td>
+  </tr>
+  
+  <tr>
+    <td width="80">
+      可靠性
+    </td>
+    
+    <td width="405">
+    </td>
+  </tr>
+  
+  <tr>
+    <td width="80">
+      维护性
+    </td>
+    
+    <td width="405">
+    </td>
+  </tr>
+  
+  <tr>
+    <td width="80">
+      可移植性
+    </td>
+    
+    <td width="405">
+    </td>
+  </tr>
+</table>
+
+<hr />
+
+<h3 id="boehm-software-quality-model">Boehm software Quality Model</h3>
+
+<p><img class="alignnone" title="Boehm" src="/wp-content/uploads/2011/04/Software%20Metrics.files//image018.gif" alt="" /></p>
+
+<hr />
+
+<p><strong>模型的三层次式框架如图所示。总体适用性：可移植性</strong> <strong>可维护性</strong></p>
+
+<h3 id="mccalls-quality-model-1978">McCall’s Quality Model (1978)</h3>
+
+<p><img class="alignnone" title="McCall" src="/wp-content/uploads/2011/04/Software%20Metrics.files//image020.gif" alt="" /></p>
+
+<hr />
+
+<p><strong>正确性、可靠性、效率、完整性、可用性</strong></p>
+
+<h3 id="capability-maturity-model-cmm">Capability Maturity Model (CMM)</h3>
+
+<p>A framework to determine process maturity。过程成熟度</p>
+
+<p>Initial: Few defined processes; success depends on individual effort.</p>
+
+<p>Repeatable: Cost, schedule, and product tracking processes in place.</p>
+
+<p>Defined: Standard processes are defined and used.</p>
+
+<p>Managed: Defined processes and product qualities are meaningfully measured.</p>
+
+<p>Optimizing: Measures used to improve process/product.</p>
+
+<p>初始级：很少的定义过程，通过个人努力能够成功。</p>
+
+<p>可重复级：成本，进度和产品过程。</p>
+
+<p>已定义级：定义和遵循了标准过程。</p>
+
+<p>可管理级：良好定义的过程，产品质量可以良好测试。</p>
+
+<p>优化级：持续改进过程/产品。</p>
+
+<p style="text-align: center;">
+  <a href="/wp-content/uploads/2011/04/cmm.png"><img class="size-medium wp-image-528 aligncenter" title="cmm" src="/wp-content/uploads/2011/04/cmm.png" alt="" /></a>
+</p>
+
+<h3 id="portability">Portability</h3>
+
+<p>“A set of attributes that bear on the capability of software to be transferred from one environment to another.”</p>
+
+<p><img class="alignnone" title="可移植" src="/wp-content/uploads/2011/04/Software%20Metrics.files//image022.gif" alt="" /></p>
+
+<h3 id="reliability">Reliability</h3>
+
+<p>“A set of attributes that bear on the capability of software to maintain its evel of performance under stated conditions and a stated period of time.”</p>
+
+<p>defect density 缺陷密度= no. of known defctes / product size. 一直的缺陷数量处于产品大小</p>
+
+<p>where product size is measured in terms of LOC, and the known defects are discovered through testing, inspection or other techniques.</p>
+
+<h3 id="usability">Usability</h3>
+
+<p>Usability of a software product is the extent to which the product is convenient and practical to use. (Boehm 1978)</p>
+
+<p>Good usability includes:</p>
+
+<p>– Well-structured manuals</p>
+
+<p>– Good use of menus and graphics</p>
+
+<p>– Information error messages</p>
+
+<p>– Help function</p>
+
+<p>– Consistent interfaces</p>
+
+<h3 id="the-music-project">The MUSiC project</h3>
+
+<p><img class="alignnone" title="Music" src="/wp-content/uploads/2011/04/Software%20Metrics.files//image026.jpg" alt="" /></p>
+
+<hr />
+
+<h3 id="maintainability">Maintainability</h3>
+
+<p><img class="alignnone" title="可维护性" src="/wp-content/uploads/2011/04/Software%20Metrics.files//image028.jpg" alt="" /></p>
+
+<hr />
+
+<h3 id="quality-by-domain">Quality by Domain</h3>
+
+<p>Product quality can also vary across application domains.</p>
+
+<p>Within a domain, requirements may also call for qualities that are at odds with each other.</p>
+
+<h3 id="real-time-system-qualities">Real-Time System Qualities</h3>
+
+<p>Systems that monitor/control/analyze real world events in real-time</p>
+
+<p>Response time constraints</p>
+
+<p>Reliability</p>
+
+<p>Safety (absence of undesirable behaviors that can cause hazards)</p>
+
+<p>Usability</p>
+
+<h3 id="embedded-systems">Embedded Systems</h3>
+
+<p>Systems that interface only with hardware</p>
+
+<p>Reliability</p>
+
+<p>Efficiency of performance</p>
+
+<p>Safety</p>
+
+<p>Robustness</p>
+
+<h3 id="information-systems">Information Systems</h3>
+
+<p>Systems that process and deliver information to facilitate business processes</p>
+
+<p>Data Integrity</p>
+
+<p>Usability</p>
+
+<p>Robustness</p>
+
+<p>Maintainability</p>
+
+<h3 id="distributed-systems">Distributed Systems</h3>
+
+<p>Systems in which computing elements and data storage are physically distributed</p>
+
+<p>Fault tolerance</p>
+
+<p>Reliability</p>
+
+<p>Availability</p>
+
+<p>Data integrity</p>
+
+<p>Transparency</p>
+
+<p>本节完……</p>
+
+            </div>
+            <div class="post-nav">
+    
+    <a class="prev" href=/blog/metrics_softwaremetrics4.html>&laquo; &nbsp;软件度量复习整理-Software Metrics[四]</a>
+    
+    
+    <a class="next" href=/blog/metrics_oometrics.html>软件度量-面向对象软件度量&nbsp;&raquo;</a>
+    
+</div>
+
+            
+        </div>
+        <!--
+            if config set comment enable,include comment
+        -->
+        
+            <!-- comment -->
+<div id="post-comment" class="panel panel-default">
+    <div class="panel-body">
+        
+
+        
+            <div id="disqus_thread"></div>
+        
+    </div>
+</div>
+
+        
+    </div>
+    <div class="col-md-3 col-sidebar">
+        <div class="panel panel-pithy author">
+    <div class="panel-heading avastar">
+        <img src="/tx.jpg" alt="tanglei"/>
+    </div>
+    <div class="panel-body">
+        码农 @ 宜信大数据创新中心, 毕业于CSU && THU,  曾工作于<a href='http://www.tencent.com/zh-cn/index.shtml' target='_blank'>腾讯</a> && <a href='http://www.umeng.com/' target='_blank'>友盟</a>.  &nbsp; <a href='/about/'> MORE </a>
+    </div>
+    <div class="panel-footer social">
+        <ul>
+            
+            <li>
+                <a rel="nofollow" href="http://www.weibo.com/tangleithu/" target="_blank"><i class="fa fa-weibo"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://github.com/tl3shi" target="_blank"><i class="fa fa-github"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://www.facebook.com/tanglei.name" target="_blank"><i class="fa fa-facebook"></i></a>
+            </li>
+            
+            <li>
+                <a href="https://www.tanglei.name/feed.xml" target="_blank"><i class="fa fa-rss"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar:category list -->
+<div class="panel panel-default categories">
+    <div class="panel-heading title">
+        分类列表
+    </div>
+    <div class="panel-body list">
+        <ul>
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/贵州支教行/">
+                  贵州支教行&nbsp;<span class="count">[12]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/课程学习/">
+                  课程学习&nbsp;<span class="count">[88]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/MyLife/">
+                  MyLife&nbsp;<span class="count">[45]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/经验技巧/">
+                  经验技巧&nbsp;<span class="count">[93]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/社会工作/">
+                  社会工作&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/网络文摘/">
+                  网络文摘&nbsp;<span class="count">[28]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件体系结构/">
+                  软件体系结构&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/旅游/">
+                  旅游&nbsp;<span class="count">[23]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软考/">
+                  软考&nbsp;<span class="count">[2]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件度量及其应用/">
+                  软件度量及其应用&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/工作那些事儿/">
+                  工作那些事儿&nbsp;<span class="count">[42]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我做站长/">
+                  我做站长&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/coding小工具/">
+                  coding小工具&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/除臭虫/">
+                  除臭虫&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/学到老/">
+                  学到老&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我不会算法/">
+                  我不会算法&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/数据挖掘/">
+                  数据挖掘&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/计算机图形学/">
+                  计算机图形学&nbsp;<span class="count">[5]</span>
+              </a>
+          </li>
+
+          
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar: tag list -->
+<div class="panel panel-default tags">
+    <div class="panel-heading title">
+        标签云
+    </div>
+    <div class="panel-body list">
+         
+        <input type="hidden" id="tag-values" value='{"name":"丰田助学","count":16},{"name":"贵州支教","count":12},{"name":"铜厂小学","count":9},{"name":"中南大学","count":12},{"name":"云南赶集","count":1},{"name":"HelloWorld","count":5},{"name":"我做站长","count":35},{"name":"设计模式","count":7},{"name":"Wordpress","count":18},{"name":"系统架构师","count":11},{"name":"软考","count":25},{"name":"论文","count":6},{"name":"软件0804","count":8},{"name":"Java","count":24},{"name":"J2EE","count":3},{"name":"JAVA","count":1},{"name":"考试","count":25},{"name":"SEO","count":3},{"name":"软件体系结构","count":6},{"name":"Android","count":28},{"name":"软件工程","count":2},{"name":"Windows","count":17},{"name":"软件测试","count":1},{"name":"总结","count":13},{"name":"Oracle","count":4},{"name":"存储过程","count":3},{"name":"数据库应用","count":3},{"name":"数据库","count":8},{"name":"先进班集体","count":1},{"name":"Linux","count":15},{"name":"Ubuntu","count":8},{"name":"Defy","count":3},{"name":"传感器","count":1},{"name":"访日交流","count":8},{"name":"旅游","count":22},{"name":"软件学院","count":11},{"name":"大学生科协","count":4},{"name":"玩遍中国","count":11},{"name":"计算机网络","count":5},{"name":"Eclipse","count":4},{"name":"软件度量","count":11},{"name":"软件设计师","count":4},{"name":"编译原理","count":2},{"name":"程序语言","count":2},{"name":"操作系统","count":3},{"name":"多媒体","count":2},{"name":"网络安全","count":9},{"name":"TCP/IP","count":2},{"name":"编程语言","count":1},{"name":"考点","count":1},{"name":"Google","count":5},{"name":"软件结构度量","count":1},{"name":"CMM","count":6},{"name":"项目管理","count":3},{"name":"实习","count":33},{"name":"面试","count":18},{"name":"网络营销","count":1},{"name":"百度","count":4},{"name":"笔试","count":2},{"name":"腾讯","count":31},{"name":"编程比赛","count":4},{"name":"科研","count":4},{"name":"电子商务","count":11},{"name":"虚拟主机","count":2},{"name":"网路安全","count":1},{"name":"Foxmail","count":3},{"name":"微软","count":1},{"name":"软件能力成熟度模型","count":2},{"name":"软件过程改进","count":3},{"name":"SCM复习资料","count":1},{"name":"软件配置管理","count":12},{"name":"SCM","count":6},{"name":"工具","count":19},{"name":"反模式","count":1},{"name":"玩玩手机","count":5},{"name":"程序员","count":4},{"name":"健康","count":1},{"name":"共享上网","count":2},{"name":"Bug","count":4},{"name":"coding小工具","count":1},{"name":"工作日志","count":19},{"name":"Apache","count":2},{"name":"PHP","count":13},{"name":"实习日志","count":1},{"name":"工作实习生","count":1},{"name":"Mysql","count":1},{"name":"Shell","count":3},{"name":"腾讯实习日志","count":1},{"name":"hosts","count":2},{"name":"Vim","count":3},{"name":"正则表达式","count":2},{"name":"搜索引擎","count":1},{"name":"跨域","count":1},{"name":"前端","count":2},{"name":"保研","count":15},{"name":"算法","count":9},{"name":"清华大学","count":12},{"name":"丰田助学金","count":3},{"name":"WiFi","count":1},{"name":"实习生","count":1},{"name":"wifi自动关闭","count":1},{"name":"腾讯实习","count":1},{"name":"经验技巧","count":13},{"name":"DDOS","count":2},{"name":"AOP","count":3},{"name":"租房","count":2},{"name":"Sqlite","count":2},{"name":"Python","count":11},{"name":"OOP","count":5},{"name":"数据挖掘","count":8},{"name":"GitHub","count":2},{"name":"SVM","count":3},{"name":"R语言","count":2},{"name":"足迹","count":2},{"name":"笛子","count":2},{"name":"计算机图形学","count":5},{"name":"OpenGL","count":3},{"name":"回忆录","count":1},{"name":"年终总结","count":1},{"name":"域名","count":1},{"name":"计算几何","count":2},{"name":"敲敲代码","count":9},{"name":"Latex","count":3},{"name":"C++","count":10},{"name":"Mac","count":7},{"name":"飞行模式","count":2},{"name":"性能优化","count":2},{"name":"Javascript","count":1},{"name":"工作","count":1},{"name":"玩遍世界","count":1},{"name":"Scala","count":2},{"name":"MyLife","count":1},{"name":"快捷键","count":1},{"name":"云服务","count":1},{"name":"Blog","count":1},{"name":"微信公众号","count":1}'/>
+        <div style="display: none"><a id="tag-value" class="taglink" rel="bookmark" href="/tag/#" data-target-cate="#"></a></div>
+        <div class="tag-values-container">
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+  </div>
+
+  <footer>
+  <div class="text-center">
+    © 2010-2016 All rights reserved.
+    Made with <a href="http://jekyllrb.com/" rel="nofollow" target="_blank">Jekyll</a>
+    & Modified by <a href="http://www.tanglei.name/about/" >Tanglei</a>
+    and <i class="fa fa-heart"></i> by <a rel="nofollow" href="https://github.com/guovz/jekyll-pithy" target="_blank">Pithy</a>
+  </div>
+  <div class="totop" data-toggle="totop">
+      <i class="fa fa-chevron-up"></i>
+  </div>
+</footer>
+
+
+  <!--the js include-->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="/assets/script/pithy.js"></script>
+
+<!--
+  the site comment script
+-->
+
+
+  <script>
+    
+    var disqus_config = function () {
+        this.page.url = 'https://www.tanglei.name/blog/metrics_softwaremetrics5.html' ; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '/blog/metrics_softwaremetrics5.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+        if($("#disqus_thread").length) {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://hexo-tanglei.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+    powered by Disqus.</a></noscript>
+
+
+
+<!--
+  the site analysis script
+-->
+
+  <!-- baidu analysis -->
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?f0117177475f54027bfcaceb8d668cee";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+</body>
+</html>

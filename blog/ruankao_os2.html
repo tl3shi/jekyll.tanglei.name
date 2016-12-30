@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+  <head>
+    <title>软考：操作系统知识(二)</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="keywords" content="软考：操作系统知识(二), 课程学习, 操作系统,软考,, 唐磊, 中南大学, 清华大学, 软件工程师, 计算机, 全栈工程师" />
+    <meta name="description" content="软考：操作系统知识(二), 课程学习, 操作系统,软考, 上接：&lt;/blog/ruankao_os1.html&gt;" />
+
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+
+  <!--Font awesome-->
+  <link href="/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- The pithy main css -->
+  <link rel="stylesheet" href="/assets/stylesheet/pithy.css">
+  <link rel="stylesheet" href="/assets/stylesheet/molokai.css">
+
+
+  <!--[if lt IE 9]>
+  <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv-printshiv.js"></script>
+  <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+  <![endif]-->
+  <link rel="alternate" type="application/rss+xml" title="tanglei's blog|唐磊的个人博客" href="https://www.tanglei.name/feed.xml" />
+</head>
+
+<body>
+  <nav class="navbar navbar-pithy" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+                data-target="#pithy-navbar" aria-expanded="false">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" rel="bookmark" href="/">TangLei</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="pithy-navbar">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="bookmark" href="/">首页</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/archives.html">Archives</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/about/">关于</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+  <div class="container page-content">
+    <div>
+    <div class="col-md-9 col-content">
+        <div id="post-content" class="panel panel-pithy post">
+            <div class="panel-heading">
+                <div class="title">
+                  <i class="fa fa-bookmark-o"></i>软考：操作系统知识(二)
+                </div>
+                <ul class="info">
+                    <li>
+                      作者 <span class="author"> 
+        
+            tanglei
+        
+        </span>
+                    </li>
+                    <li>
+                      最后编辑 2011年04月17日
+                    </li>
+                    <li>
+                      Tags
+                     
+                         <a class="tag" href="/tag/#操作系统">操作系统</a>
+                     
+                         <a class="tag" href="/tag/#软考">软考</a>
+                     
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body content">
+                <p>上接：&lt;/blog/ruankao_os1.html&gt;</p>
+
+<p><strong>1.5</strong><strong>设备管理：</strong></p>
+
+<p>其主要任务是：</p>
+
+<p>Ø         实现对外部设备的分配和回收；</p>
+
+<p>Ø         启动外部设备；</p>
+
+<p>Ø         控制输入/输出设备与处理器或主存之间交换数据；</p>
+
+<p>Ø         实现对磁盘的调度；</p>
+
+<p>Ø         处理设备的中断；</p>
+
+<p>Ø         实现虚拟设备等。</p>
+
+<p>根据不同的方面，可以对设备进行分类。</p>
+
+<p>Ø         按数据组织方式：字符设备（常对应于慢速设备）和块设备（常对应于快速设备）。</p>
+
+<p>Ø         按资源性质：独占设备（如终端、打印机）、共享设备（如磁盘）和虚拟设备。</p>
+
+<p>外部设备和主存之间常用的传输方式有4种。</p>
+
+<p>Ø         程序控制方式</p>
+
+<p>Ø         中断方式</p>
+
+<p>Ø         直接存储访问（DMA）方式</p>
+
+<p>Ø         通道方式</p>
+
+<p>虚拟设备：采用假脱机技术，可以将低速的独占设备改造成一种共享设备。简称为spooling技术，利用多道程序技术，采用一组程序模拟一台I/O处理机</p>
+
+<p>设备分配有两种方法，即静态分配方法和动态分配方法。其中设备的动态分配算法与进程调度相似，也具有一定的分配策略，如先请求先分配、优先级高者先分配等。</p>
+
+<p>例如，关于磁盘调度的算法就有以下几种。</p>
+
+<p>Ø         先来先服务（FCFS）调度</p>
+
+<p>Ø         最短查找时间优先（SSTF）调度： 离磁头最近的服务被响应</p>
+
+<p>Ø         SCAN调度（电梯算法）：在前进方向寻找最短的查找时间的</p>
+
+<p>Ø         N步SCAN调度</p>
+
+<p>Ø         C-SCAN调度</p>
+
+<p><strong>1.6</strong><strong>文件和文件系统</strong><em>**</em></p>
+
+<p>文件是信息的一种组织形式，是存储在辅助存储器上的具有标识名的一组信息集合，它可以是有格式的，也可以是无格式的。与文件相关的概念有：数据项、记录、文件和数据库。</p>
+
+<p>操作系统的文件系统包括两个方面：</p>
+
+<p>Ø         负责管理文件的一组系统软件；</p>
+
+<p>Ø         管理的对象文件。</p>
+
+<p>文件系统的主要目标是提高存储器的利用率，接受用户的委托实施对文件的操作。其主要问题是管理辅助存储器，实现文件从名字空间到辅存地址空间的转换，决定文件信息的存放位置、存放形式和存放权限，实现文件和目录的操作，提供文件共享能力和安全设施，提供友好的用户接口。</p>
+
+<p>根据不同方面，可以对文件进行多种分类。</p>
+
+<p>Ø         按文件的用途分：系统文件、库文件和用户文件等。</p>
+
+<p>Ø         按文件的信息流分：输入文件、输出文件和输入输出文件等。</p>
+
+<p>Ø         按文件的组织形式分：普通文件、目录文件和特殊文件等。</p>
+
+<p>Ø         按文件的安全属性分：只读文件、读写文件、可执行文件和不保护文件等。</p>
+
+<p>文件的结构和组织</p>
+
+<p>文件的结构是指文件的组织形式。文件的结构分为逻辑结构和物理结构。从用户的观点所看到的文件组织形式称为文件的逻辑结构，从实现观点考察文件在辅助存储器上的存放方式称为文件的物理结构。</p>
+
+<p>文件的逻辑结构可以分为两种：无结构的字符流文件和有结构的记录文件（也称为有格式文件）。其中，记录文件由记录组成，即文件内的信息划分成多个记录，以记录为单位组织和使用信息。其有几种不同的类型，特别需要注意它们之间的区别。</p>
+
+<p>◆堆文件：数据按先来后到的顺序组织，是最简单的记录文件；</p>
+
+<p>◆顺序文件</p>
+
+<p>顺序文件的记录定长，记录中的数据项的类型长度与次序固定，记录按键值的约定次序组织。</p>
+
+<p>◆索引顺序文件</p>
+
+<p>基于键的约定次序组织，而且维护键的索引和溢出区域。键的索引可以是多级索引。</p>
+
+<p>◆索引文件</p>
+
+<p>基于记录的一个键-数据项关系对来组织，依据记录键值可以找到记录存放位置。</p>
+
+<p>◆直接文件（又称哈希文件）</p>
+
+<p>记录以它们在直接访问存储设备上的物理地址直接（随机）访问。对于一个给定的记录可以直接得出其存储位置。</p>
+
+<p>文件的物理结构侧重于提高存储器的利用效率和降低存取时间。文件的存储设备通常划分为大小相同的物理块，物理块是分配和传输信息的基本单位。文件的物理结构是指文件在存储设备上的存储方法，具有不同的文件分配策略，需要特别注意它们的特点和之间的差别。</p>
+
+<p>◆顺序分配（连续分配）</p>
+
+<p>最简单的分配方式。在文件建立预先分配一个连续的物理块集，然后，按照逻辑文件中的信息（或记录）顺序，依次把信息（或记录）顺序存储到物理块中。不适宜于需要经常修改的文件。</p>
+
+<p>◆ 链接分配（串联分配）</p>
+
+<p>这是按单个物理块逐个进行的。在建立链接文件时，不须指定文件的长度，在文件的说明信息中，只需指出该文件的第一个物理块块号，链接文件的文件长度可以动态的增长，只需调整物理块间的指针就可以插入或删除一个信息块。一般只适用于顺序访问，不适用于随机存取。</p>
+
+<p>◆索引分配</p>
+
+<p>另一种对文件存储不连续分配的方法。系统为每个文件建立一张索引表，索引表中的每一表项指出文件信息所在的逻辑块号和与之对应的物理块号。既适用于顺序存取，也适用于随机存取。</p>
+
+<p>文件控制块：FCB，和进程相似，文件目录有一级目录、二级目录和多级目录结构；</p>
+
+<p>一级目录：只有一个目录表，每个表项对应一个文件；</p>
+
+<p>二级目录：主目录和用户目录；</p>
+
+<p>多级目录：也称为树型目录结构，从根目录出发的层次结构；</p>
+
+<p><strong>1.7</strong> <strong>作业管理与用户界面</strong><em>**</em></p>
+
+<p>作业是系统为了完成一个用户的计算任务（或一次事务处理）所做的工作总和。操作系统中用来控制作业的进入、执行和撤消的一组程序成为作业管理程序。</p>
+
+<p>一般操作系统提供两种作业控制方式。</p>
+
+<p>联机作业方式（on-line）</p>
+
+<p>通过直接输入作业控制命令，提交用户作业，运行用户作业。</p>
+
+<p>脱机作业方式(off-line)</p>
+
+<p>通过作业控制语言（JCL，也称为作业控制命令）编写用户作业说明书。这种方式中，用户不直接干预作业的运行，而是把作业与作业说明书一起提交系统。</p>
+
+<p>作业调度主要是从后备状态的作业中挑选一个（或一些）作业投入运行。与进程调度相似，也具有若干的调度算法。</p>
+
+<p>Ø         先来先服务（FCFS）</p>
+
+<p>Ø         短作业优先（SJF）</p>
+
+<p>Ø         响应比高者优先（HRN）</p>
+
+<p>Ø         优先级调度</p>
+
+<p><strong>**</strong>用户界面：**也称为用户接口，是用户与操作系统交互的途径和通道，也是交互环境的控制方式；</p>
+
+<p><strong>**</strong>操作系统的接口：**可分为命令接口和程序接口。</p>
+
+<p><strong>**</strong>命令接口：**包含键盘命令和作业控制命令；</p>
+
+<p><strong>**</strong>程序接口：**程序接口又称为编程接口、系统调用。程序经编程接口请求系统服务，即通过系统调用，程序与操作系统进行通信。</p>
+
+<p><strong>**</strong>操作环境：**操作环境支持命令接口和程序接口，提供友好、易用的操作平台。操作系统的交换界面从早期的命令驱动方式发展道菜单驱动方式、图形符号驱动方式和视窗操作环境。</p>
+
+            </div>
+            <div class="post-nav">
+    
+    <a class="prev" href=/blog/ruankao_os1.html>&laquo; &nbsp;软考：操作系统知识(一)</a>
+    
+    
+    <a class="next" href=/blog/ruankao_os3.html>软考：操作系统知识(三)&nbsp;&raquo;</a>
+    
+</div>
+
+            
+        </div>
+        <!--
+            if config set comment enable,include comment
+        -->
+        
+            <!-- comment -->
+<div id="post-comment" class="panel panel-default">
+    <div class="panel-body">
+        
+
+        
+            <div id="disqus_thread"></div>
+        
+    </div>
+</div>
+
+        
+    </div>
+    <div class="col-md-3 col-sidebar">
+        <div class="panel panel-pithy author">
+    <div class="panel-heading avastar">
+        <img src="/tx.jpg" alt="tanglei"/>
+    </div>
+    <div class="panel-body">
+        码农 @ 宜信大数据创新中心, 毕业于CSU && THU,  曾工作于<a href='http://www.tencent.com/zh-cn/index.shtml' target='_blank'>腾讯</a> && <a href='http://www.umeng.com/' target='_blank'>友盟</a>.  &nbsp; <a href='/about/'> MORE </a>
+    </div>
+    <div class="panel-footer social">
+        <ul>
+            
+            <li>
+                <a rel="nofollow" href="http://www.weibo.com/tangleithu/" target="_blank"><i class="fa fa-weibo"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://github.com/tl3shi" target="_blank"><i class="fa fa-github"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://www.facebook.com/tanglei.name" target="_blank"><i class="fa fa-facebook"></i></a>
+            </li>
+            
+            <li>
+                <a href="https://www.tanglei.name/feed.xml" target="_blank"><i class="fa fa-rss"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar:category list -->
+<div class="panel panel-default categories">
+    <div class="panel-heading title">
+        分类列表
+    </div>
+    <div class="panel-body list">
+        <ul>
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/贵州支教行/">
+                  贵州支教行&nbsp;<span class="count">[12]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/课程学习/">
+                  课程学习&nbsp;<span class="count">[88]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/MyLife/">
+                  MyLife&nbsp;<span class="count">[45]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/经验技巧/">
+                  经验技巧&nbsp;<span class="count">[93]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/社会工作/">
+                  社会工作&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/网络文摘/">
+                  网络文摘&nbsp;<span class="count">[28]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件体系结构/">
+                  软件体系结构&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/旅游/">
+                  旅游&nbsp;<span class="count">[23]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软考/">
+                  软考&nbsp;<span class="count">[2]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件度量及其应用/">
+                  软件度量及其应用&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/工作那些事儿/">
+                  工作那些事儿&nbsp;<span class="count">[42]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我做站长/">
+                  我做站长&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/coding小工具/">
+                  coding小工具&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/除臭虫/">
+                  除臭虫&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/学到老/">
+                  学到老&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我不会算法/">
+                  我不会算法&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/数据挖掘/">
+                  数据挖掘&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/计算机图形学/">
+                  计算机图形学&nbsp;<span class="count">[5]</span>
+              </a>
+          </li>
+
+          
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar: tag list -->
+<div class="panel panel-default tags">
+    <div class="panel-heading title">
+        标签云
+    </div>
+    <div class="panel-body list">
+         
+        <input type="hidden" id="tag-values" value='{"name":"丰田助学","count":16},{"name":"贵州支教","count":12},{"name":"铜厂小学","count":9},{"name":"中南大学","count":12},{"name":"云南赶集","count":1},{"name":"HelloWorld","count":5},{"name":"我做站长","count":35},{"name":"设计模式","count":7},{"name":"Wordpress","count":18},{"name":"系统架构师","count":11},{"name":"软考","count":25},{"name":"论文","count":6},{"name":"软件0804","count":8},{"name":"Java","count":24},{"name":"J2EE","count":3},{"name":"JAVA","count":1},{"name":"考试","count":25},{"name":"SEO","count":3},{"name":"软件体系结构","count":6},{"name":"Android","count":28},{"name":"软件工程","count":2},{"name":"Windows","count":17},{"name":"软件测试","count":1},{"name":"总结","count":13},{"name":"Oracle","count":4},{"name":"存储过程","count":3},{"name":"数据库应用","count":3},{"name":"数据库","count":8},{"name":"先进班集体","count":1},{"name":"Linux","count":15},{"name":"Ubuntu","count":8},{"name":"Defy","count":3},{"name":"传感器","count":1},{"name":"访日交流","count":8},{"name":"旅游","count":22},{"name":"软件学院","count":11},{"name":"大学生科协","count":4},{"name":"玩遍中国","count":11},{"name":"计算机网络","count":5},{"name":"Eclipse","count":4},{"name":"软件度量","count":11},{"name":"软件设计师","count":4},{"name":"编译原理","count":2},{"name":"程序语言","count":2},{"name":"操作系统","count":3},{"name":"多媒体","count":2},{"name":"网络安全","count":9},{"name":"TCP/IP","count":2},{"name":"编程语言","count":1},{"name":"考点","count":1},{"name":"Google","count":5},{"name":"软件结构度量","count":1},{"name":"CMM","count":6},{"name":"项目管理","count":3},{"name":"实习","count":33},{"name":"面试","count":18},{"name":"网络营销","count":1},{"name":"百度","count":4},{"name":"笔试","count":2},{"name":"腾讯","count":31},{"name":"编程比赛","count":4},{"name":"科研","count":4},{"name":"电子商务","count":11},{"name":"虚拟主机","count":2},{"name":"网路安全","count":1},{"name":"Foxmail","count":3},{"name":"微软","count":1},{"name":"软件能力成熟度模型","count":2},{"name":"软件过程改进","count":3},{"name":"SCM复习资料","count":1},{"name":"软件配置管理","count":12},{"name":"SCM","count":6},{"name":"工具","count":19},{"name":"反模式","count":1},{"name":"玩玩手机","count":5},{"name":"程序员","count":4},{"name":"健康","count":1},{"name":"共享上网","count":2},{"name":"Bug","count":4},{"name":"coding小工具","count":1},{"name":"工作日志","count":19},{"name":"Apache","count":2},{"name":"PHP","count":13},{"name":"实习日志","count":1},{"name":"工作实习生","count":1},{"name":"Mysql","count":1},{"name":"Shell","count":3},{"name":"腾讯实习日志","count":1},{"name":"hosts","count":2},{"name":"Vim","count":3},{"name":"正则表达式","count":2},{"name":"搜索引擎","count":1},{"name":"跨域","count":1},{"name":"前端","count":2},{"name":"保研","count":15},{"name":"算法","count":9},{"name":"清华大学","count":12},{"name":"丰田助学金","count":3},{"name":"WiFi","count":1},{"name":"实习生","count":1},{"name":"wifi自动关闭","count":1},{"name":"腾讯实习","count":1},{"name":"经验技巧","count":13},{"name":"DDOS","count":2},{"name":"AOP","count":3},{"name":"租房","count":2},{"name":"Sqlite","count":2},{"name":"Python","count":11},{"name":"OOP","count":5},{"name":"数据挖掘","count":8},{"name":"GitHub","count":2},{"name":"SVM","count":3},{"name":"R语言","count":2},{"name":"足迹","count":2},{"name":"笛子","count":2},{"name":"计算机图形学","count":5},{"name":"OpenGL","count":3},{"name":"回忆录","count":1},{"name":"年终总结","count":1},{"name":"域名","count":1},{"name":"计算几何","count":2},{"name":"敲敲代码","count":9},{"name":"Latex","count":3},{"name":"C++","count":10},{"name":"Mac","count":7},{"name":"飞行模式","count":2},{"name":"性能优化","count":2},{"name":"Javascript","count":1},{"name":"工作","count":1},{"name":"玩遍世界","count":1},{"name":"Scala","count":2},{"name":"MyLife","count":1},{"name":"快捷键","count":1},{"name":"云服务","count":1},{"name":"Blog","count":1},{"name":"微信公众号","count":1}'/>
+        <div style="display: none"><a id="tag-value" class="taglink" rel="bookmark" href="/tag/#" data-target-cate="#"></a></div>
+        <div class="tag-values-container">
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+  </div>
+
+  <footer>
+  <div class="text-center">
+    © 2010-2016 All rights reserved.
+    Made with <a href="http://jekyllrb.com/" rel="nofollow" target="_blank">Jekyll</a>
+    & Modified by <a href="http://www.tanglei.name/about/" >Tanglei</a>
+    and <i class="fa fa-heart"></i> by <a rel="nofollow" href="https://github.com/guovz/jekyll-pithy" target="_blank">Pithy</a>
+  </div>
+  <div class="totop" data-toggle="totop">
+      <i class="fa fa-chevron-up"></i>
+  </div>
+</footer>
+
+
+  <!--the js include-->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="/assets/script/pithy.js"></script>
+
+<!--
+  the site comment script
+-->
+
+
+  <script>
+    
+    var disqus_config = function () {
+        this.page.url = 'https://www.tanglei.name/blog/ruankao_os2.html' ; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '/blog/ruankao_os2.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+        if($("#disqus_thread").length) {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://hexo-tanglei.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+    powered by Disqus.</a></noscript>
+
+
+
+<!--
+  the site analysis script
+-->
+
+  <!-- baidu analysis -->
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?f0117177475f54027bfcaceb8d668cee";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+</body>
+</html>

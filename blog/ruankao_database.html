@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+  <head>
+    <title>软考：数据库知识(三)</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="keywords" content="软考：数据库知识(三), 课程学习, 软考,数据库,, 唐磊, 中南大学, 清华大学, 软件工程师, 计算机, 全栈工程师" />
+    <meta name="description" content="软考：数据库知识(三), 课程学习, 软考,数据库, 1.5关系数据库SQL语言 **" />
+
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+
+  <!--Font awesome-->
+  <link href="/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- The pithy main css -->
+  <link rel="stylesheet" href="/assets/stylesheet/pithy.css">
+  <link rel="stylesheet" href="/assets/stylesheet/molokai.css">
+
+
+  <!--[if lt IE 9]>
+  <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv-printshiv.js"></script>
+  <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+  <![endif]-->
+  <link rel="alternate" type="application/rss+xml" title="tanglei's blog|唐磊的个人博客" href="https://www.tanglei.name/feed.xml" />
+</head>
+
+<body>
+  <nav class="navbar navbar-pithy" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+                data-target="#pithy-navbar" aria-expanded="false">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" rel="bookmark" href="/">TangLei</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="pithy-navbar">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="bookmark" href="/">首页</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/archives.html">Archives</a>
+                </li>
+                <li class="active">
+                    <a rel="bookmark" href="/about/">关于</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+  <div class="container page-content">
+    <div>
+    <div class="col-md-9 col-content">
+        <div id="post-content" class="panel panel-pithy post">
+            <div class="panel-heading">
+                <div class="title">
+                  <i class="fa fa-bookmark-o"></i>软考：数据库知识(三)
+                </div>
+                <ul class="info">
+                    <li>
+                      作者 <span class="author"> 
+        
+            tanglei
+        
+        </span>
+                    </li>
+                    <li>
+                      最后编辑 2011年04月20日
+                    </li>
+                    <li>
+                      Tags
+                     
+                         <a class="tag" href="/tag/#软考">软考</a>
+                     
+                         <a class="tag" href="/tag/#数据库">数据库</a>
+                     
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body content">
+                <p><strong>1.5</strong><strong>关系数据库SQL语言</strong> <em>**</em></p>
+
+<p>SQL数据库的数据体系结构</p>
+
+<p>SQL数据库的数据体系结构基本上也是3级结构，但术语与传统关系模型术语不同。SQL中，关系模型称为“基本表”，存储模式称为“存储文件”，子模式称为“视图”，元组称为“行”，属性称为“列”。</p>
+
+<p>SQL语言的组成</p>
+
+<p>一个SQL数据库是表的汇集，它用一个或多个SQL模式定义。</p>
+
+<p>一个SQL表由行集构成，一行是列的序列，每列对应一个数据项。</p>
+
+<p>一个表或者是一个基本表，或者是一个视图。基本表是实际存储在数据库的表，视图是由若干基本表或其他视图构成的表的定义。</p>
+
+<p>SQL包括了所有对数据库的操作，主要有4个部分：数据定义（SQL  DDL）、数据操纵(SQL  DML)、访问数据控制、嵌入式SQL语言的规定。</p>
+
+<p>SQL  DDL主要是定义基本表、视图、索引3个部分:</p>
+
+<p>◆ 基本表的定义、修改、撤销</p>
+
+<p>基本表的定义可用“CREATE TABLE”语句实现，增加属性可以用“ALTER…ADD…”语句，删除属性可以用“ALTER…DROP…”语句；删除已存在的表可用“DROP TABLE…”语句。</p>
+
+<p>◆视图的定义和撤销</p>
+
+<p>视图的定义可以用CREATE  VIEW语句实现。视图的撤消可以用DROP  VIEW语句实现。</p>
+
+<p>◆索引的定义和撤销</p>
+
+<p>索引的定义可以用CREATE ，用DROP撤销。</p>
+
+<p>◆SQL DML 数据查询语句</p>
+
+<p>SQL的查询语句只有SELECT语句。</p>
+
+<p>◆SELECT查询语句</p>
+
+<p>在关系代数中最常用的式子是“投影选择联接表达式”：πA1,A2,,…An(δF(R1×R2×…×Rm))，这里R1，R2，…Rm为基本表，F是公式，A1，A2，…An为属性。针对这个表达式，SQL 设计了SELECT句型：</p>
+
+<p>SELCET         A1,A2,…An</p>
+
+<p>FROM           R1,R2,…Rm</p>
+
+<p>WHERE      F</p>
+
+<p>在WHERE子句的条件表达式F中可出现下列操作符和运算特点：算术比较符、逻辑运算符、集合运算符、集合成员资格运算符、谓词和聚合函数。</p>
+
+<p>◆库函数</p>
+
+<p>COUNT(*)            计算元组的个数</p>
+
+<p>COUNT(列名)       对某一列中的值计算个数。</p>
+
+<p>SUM(列名)           求某一列值的总和</p>
+
+<p>AVG(列名)            求某一列值的平均值</p>
+
+<p>MAX(列名)           求某一列值中的最大值</p>
+
+<p>MIN(列名)            求某一列值中的最小值</p>
+
+<p>◆SELECT语句完整的句法</p>
+
+<p>SELECT            目标表的列名或列表达式序列</p>
+
+<p>FROM                  基本表或(和)视图序列</p>
+
+<p>[WHERE             行条件表达式</p>
+
+<p>[GROUT BY          列名序列</p>
+
+<p>[HAVING            组条件表达式</p>
+
+<p>[DRDER BY          列名[序]…</p>
+
+<p>前两个句子是必不可少的，后面的4个句子可以缺省。整个语句的语义如下：从FROM子句中列出的表，选取满足WHERE子句中给出的行条件表达式的元组，然后按GROUP子句（分组子句）中指定列的值分组，再提取满足HAVING子句中组条件表达式的那些组，按SELECT子句给出的列名或列表达式求值输出。ORDER子句（排序子句）是对输出的目标表进行排序，可附加说明ASC（升序）或DESC（降序）</p>
+
+<p>◆SQL DML的数据更新语句</p>
+
+<p>INSERT         插入语句</p>
+
+<p>DELETE         删除语句</p>
+
+<p>UPDATE         修改语句</p>
+
+<p>◆SQL的访问控制</p>
+
+<p>SQL的访问控制功能主要是指对用户访问数据的控制。有授权语句和回收语句。</p>
+
+<p>授权语句的格式如下：</p>
+
+<p>GRANT 权限表</p>
+
+<p>ON 表名</p>
+
+<p>TO 用户名表</p>
+
+<p>[WITH GRANT OPTION]</p>
+
+<p>该语句把表的使用权授予指定的若干用户。在有WITH GRANT OPTION短语时，被授权的用户还可将获得的权限再转授给其他用户。权限表中的权限可以有：SELECT, INSERT, DELETE, UPDATE, EXPAND, INDEX, ALL PRIVILEGES。</p>
+
+<p>回收语句格式：</p>
+
+<p>REVOKE  权限表</p>
+
+<p>ON 表名</p>
+
+<p>FROM 用户名表</p>
+
+<p>该语句把已授给指定用户的在指定表上的使用权限收回。</p>
+
+<p>◆嵌入式SQL</p>
+
+<p>由于SQL是基于关系模型的语言，而高级语言是基于整数、实数、字符、记录、数组等的数据类型，因此两者之间有很大的区别，称为有缝隙。为了能在宿主语言的程序中嵌入SQL语句，有一些规定：</p>
+
+<p>I.在程序中要区分SQL语句和宿主语言的语句；</p>
+
+<p>II.在嵌入的SQL语句中可以引用宿主语言的程序变量，但主语言的语句不能引用数据库中的各种变量（属性名、关系名），SQL的集合处理方式与宿主语言的单记录处理方式之间的协调用游标技术实现。</p>
+
+<p><strong>1.6</strong> <strong>数据库设计</strong> <em>**</em></p>
+
+<p>数据库应用系统的开发是一项软件工程，但又有自身的特点，所以称为“数据库工程”。数据库系统从开始规划、设计、实现、维护到最后被新的系统取代而停止使用的整个期间，称为数据库系统生存期。此生存期可分为7个阶段：规划、需求分析、概念设计、逻辑设计、物理设计、实现、运行和维护。</p>
+
+<p>按照规范设计的方法，考虑数据库及其应用系统开发全过程，将数据库设计分为以下六个阶段：</p>
+
+<p>◆需求分析阶段</p>
+
+<p>需求收集和分析，结果得到数据字典描述的数据需求（和数据流图描述的处理需求）。</p>
+
+<p>◆概念结构设计阶段</p>
+
+<p>通过对用户需求进行综合、归纳与抽象，形成一个独立于具体DBMS的概念模型，可以用E-R图表示。</p>
+
+<p>◆逻辑结构设计阶段</p>
+
+<p>将概念结构转换为某个DBMS所支持的数据模型（例如关系模型），并对其进行优化。</p>
+
+<p>◆数据库物理设计阶段</p>
+
+<p>为逻辑数据模型选取一个最适合应用环境的物理结构（包括存储结构和存取方法）。</p>
+
+<p>◆数据库实施阶段</p>
+
+<p>运用DBMS提供的数据语言（例如SQL）及其宿主语言（例如C），根据逻辑设计和物理设计的结果建立数据库，编制与调试应用程序，组织数据入库，并进行试运行。</p>
+
+<p>◆数据库运行和维护阶段</p>
+
+<p>数据库应用系统经过试运行后即可投入正式运行。在数据库系统运行过程中必须不断地对其进行评价、调整与修改。</p>
+
+<p>设计一个完善的数据库应用系统不可能一蹴而就，它往往是上述六个阶段的不断反复。</p>
+
+            </div>
+            <div class="post-nav">
+    
+    <a class="prev" href=/blog/ruankao_database2.html>&laquo; &nbsp;软考：数据库知识(二)</a>
+    
+    
+    <a class="next" href=/blog/ruankao_database4.html>软考：数据库知识(四)&nbsp;&raquo;</a>
+    
+</div>
+
+            
+        </div>
+        <!--
+            if config set comment enable,include comment
+        -->
+        
+            <!-- comment -->
+<div id="post-comment" class="panel panel-default">
+    <div class="panel-body">
+        
+
+        
+            <div id="disqus_thread"></div>
+        
+    </div>
+</div>
+
+        
+    </div>
+    <div class="col-md-3 col-sidebar">
+        <div class="panel panel-pithy author">
+    <div class="panel-heading avastar">
+        <img src="/tx.jpg" alt="tanglei"/>
+    </div>
+    <div class="panel-body">
+        码农 @ 宜信大数据创新中心, 毕业于CSU && THU,  曾工作于<a href='http://www.tencent.com/zh-cn/index.shtml' target='_blank'>腾讯</a> && <a href='http://www.umeng.com/' target='_blank'>友盟</a>.  &nbsp; <a href='/about/'> MORE </a>
+    </div>
+    <div class="panel-footer social">
+        <ul>
+            
+            <li>
+                <a rel="nofollow" href="http://www.weibo.com/tangleithu/" target="_blank"><i class="fa fa-weibo"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://github.com/tl3shi" target="_blank"><i class="fa fa-github"></i></a>
+            </li>
+            
+            <li>
+                <a rel="nofollow" href="https://www.facebook.com/tanglei.name" target="_blank"><i class="fa fa-facebook"></i></a>
+            </li>
+            
+            <li>
+                <a href="https://www.tanglei.name/feed.xml" target="_blank"><i class="fa fa-rss"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar:category list -->
+<div class="panel panel-default categories">
+    <div class="panel-heading title">
+        分类列表
+    </div>
+    <div class="panel-body list">
+        <ul>
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/贵州支教行/">
+                  贵州支教行&nbsp;<span class="count">[12]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/课程学习/">
+                  课程学习&nbsp;<span class="count">[88]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/MyLife/">
+                  MyLife&nbsp;<span class="count">[45]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/经验技巧/">
+                  经验技巧&nbsp;<span class="count">[93]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/社会工作/">
+                  社会工作&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/网络文摘/">
+                  网络文摘&nbsp;<span class="count">[28]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件体系结构/">
+                  软件体系结构&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/旅游/">
+                  旅游&nbsp;<span class="count">[23]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软考/">
+                  软考&nbsp;<span class="count">[2]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/软件度量及其应用/">
+                  软件度量及其应用&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/工作那些事儿/">
+                  工作那些事儿&nbsp;<span class="count">[42]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我做站长/">
+                  我做站长&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/coding小工具/">
+                  coding小工具&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/除臭虫/">
+                  除臭虫&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/学到老/">
+                  学到老&nbsp;<span class="count">[13]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/我不会算法/">
+                  我不会算法&nbsp;<span class="count">[11]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/数据挖掘/">
+                  数据挖掘&nbsp;<span class="count">[1]</span>
+              </a>
+          </li>
+
+          
+          <li>
+              <a class="catelink" rel="bookmark" href="/categories/计算机图形学/">
+                  计算机图形学&nbsp;<span class="count">[5]</span>
+              </a>
+          </li>
+
+          
+        </ul>
+    </div>
+</div>
+
+        <!-- sidebar: tag list -->
+<div class="panel panel-default tags">
+    <div class="panel-heading title">
+        标签云
+    </div>
+    <div class="panel-body list">
+         
+        <input type="hidden" id="tag-values" value='{"name":"丰田助学","count":16},{"name":"贵州支教","count":12},{"name":"铜厂小学","count":9},{"name":"中南大学","count":12},{"name":"云南赶集","count":1},{"name":"HelloWorld","count":5},{"name":"我做站长","count":35},{"name":"设计模式","count":7},{"name":"Wordpress","count":18},{"name":"系统架构师","count":11},{"name":"软考","count":25},{"name":"论文","count":6},{"name":"软件0804","count":8},{"name":"Java","count":24},{"name":"J2EE","count":3},{"name":"JAVA","count":1},{"name":"考试","count":25},{"name":"SEO","count":3},{"name":"软件体系结构","count":6},{"name":"Android","count":28},{"name":"软件工程","count":2},{"name":"Windows","count":17},{"name":"软件测试","count":1},{"name":"总结","count":13},{"name":"Oracle","count":4},{"name":"存储过程","count":3},{"name":"数据库应用","count":3},{"name":"数据库","count":8},{"name":"先进班集体","count":1},{"name":"Linux","count":15},{"name":"Ubuntu","count":8},{"name":"Defy","count":3},{"name":"传感器","count":1},{"name":"访日交流","count":8},{"name":"旅游","count":22},{"name":"软件学院","count":11},{"name":"大学生科协","count":4},{"name":"玩遍中国","count":11},{"name":"计算机网络","count":5},{"name":"Eclipse","count":4},{"name":"软件度量","count":11},{"name":"软件设计师","count":4},{"name":"编译原理","count":2},{"name":"程序语言","count":2},{"name":"操作系统","count":3},{"name":"多媒体","count":2},{"name":"网络安全","count":9},{"name":"TCP/IP","count":2},{"name":"编程语言","count":1},{"name":"考点","count":1},{"name":"Google","count":5},{"name":"软件结构度量","count":1},{"name":"CMM","count":6},{"name":"项目管理","count":3},{"name":"实习","count":33},{"name":"面试","count":18},{"name":"网络营销","count":1},{"name":"百度","count":4},{"name":"笔试","count":2},{"name":"腾讯","count":31},{"name":"编程比赛","count":4},{"name":"科研","count":4},{"name":"电子商务","count":11},{"name":"虚拟主机","count":2},{"name":"网路安全","count":1},{"name":"Foxmail","count":3},{"name":"微软","count":1},{"name":"软件能力成熟度模型","count":2},{"name":"软件过程改进","count":3},{"name":"SCM复习资料","count":1},{"name":"软件配置管理","count":12},{"name":"SCM","count":6},{"name":"工具","count":19},{"name":"反模式","count":1},{"name":"玩玩手机","count":5},{"name":"程序员","count":4},{"name":"健康","count":1},{"name":"共享上网","count":2},{"name":"Bug","count":4},{"name":"coding小工具","count":1},{"name":"工作日志","count":19},{"name":"Apache","count":2},{"name":"PHP","count":13},{"name":"实习日志","count":1},{"name":"工作实习生","count":1},{"name":"Mysql","count":1},{"name":"Shell","count":3},{"name":"腾讯实习日志","count":1},{"name":"hosts","count":2},{"name":"Vim","count":3},{"name":"正则表达式","count":2},{"name":"搜索引擎","count":1},{"name":"跨域","count":1},{"name":"前端","count":2},{"name":"保研","count":15},{"name":"算法","count":9},{"name":"清华大学","count":12},{"name":"丰田助学金","count":3},{"name":"WiFi","count":1},{"name":"实习生","count":1},{"name":"wifi自动关闭","count":1},{"name":"腾讯实习","count":1},{"name":"经验技巧","count":13},{"name":"DDOS","count":2},{"name":"AOP","count":3},{"name":"租房","count":2},{"name":"Sqlite","count":2},{"name":"Python","count":11},{"name":"OOP","count":5},{"name":"数据挖掘","count":8},{"name":"GitHub","count":2},{"name":"SVM","count":3},{"name":"R语言","count":2},{"name":"足迹","count":2},{"name":"笛子","count":2},{"name":"计算机图形学","count":5},{"name":"OpenGL","count":3},{"name":"回忆录","count":1},{"name":"年终总结","count":1},{"name":"域名","count":1},{"name":"计算几何","count":2},{"name":"敲敲代码","count":9},{"name":"Latex","count":3},{"name":"C++","count":10},{"name":"Mac","count":7},{"name":"飞行模式","count":2},{"name":"性能优化","count":2},{"name":"Javascript","count":1},{"name":"工作","count":1},{"name":"玩遍世界","count":1},{"name":"Scala","count":2},{"name":"MyLife","count":1},{"name":"快捷键","count":1},{"name":"云服务","count":1},{"name":"Blog","count":1},{"name":"微信公众号","count":1}'/>
+        <div style="display: none"><a id="tag-value" class="taglink" rel="bookmark" href="/tag/#" data-target-cate="#"></a></div>
+        <div class="tag-values-container">
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+  </div>
+
+  <footer>
+  <div class="text-center">
+    © 2010-2016 All rights reserved.
+    Made with <a href="http://jekyllrb.com/" rel="nofollow" target="_blank">Jekyll</a>
+    & Modified by <a href="http://www.tanglei.name/about/" >Tanglei</a>
+    and <i class="fa fa-heart"></i> by <a rel="nofollow" href="https://github.com/guovz/jekyll-pithy" target="_blank">Pithy</a>
+  </div>
+  <div class="totop" data-toggle="totop">
+      <i class="fa fa-chevron-up"></i>
+  </div>
+</footer>
+
+
+  <!--the js include-->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="/assets/script/pithy.js"></script>
+
+<!--
+  the site comment script
+-->
+
+
+  <script>
+    
+    var disqus_config = function () {
+        this.page.url = 'https://www.tanglei.name/blog/ruankao_database.html' ; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '/blog/ruankao_database.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+        if($("#disqus_thread").length) {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://hexo-tanglei.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+    powered by Disqus.</a></noscript>
+
+
+
+<!--
+  the site analysis script
+-->
+
+  <!-- baidu analysis -->
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?f0117177475f54027bfcaceb8d668cee";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+</body>
+</html>
