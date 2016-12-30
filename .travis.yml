@@ -30,4 +30,4 @@ after_success:
 - git init && git add -A . && git commit -m "commit from travis" 
 - git push --force --quiet "https://tl3shi:$GITHUB_TOKEN@github.com/tl3shi/jekyll.tanglei.name.git" master:gh-pages
 - git log | head -n 6
-- curl -iv "http://qcloud.tanglei.name:1024/go/deploy-jekyll/"
+  # - curl -iv "http://qcloud.tanglei.name:1024/go/deploy-jekyll/"
