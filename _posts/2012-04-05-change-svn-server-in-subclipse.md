@@ -10,8 +10,9 @@ duoshuo_thread_id:
 categories:
   - 经验技巧
 tags:
-  - eclipse
+  - Eclipse
   - hosts
+  - 工具
 ---
 在实验室写代码，有些脚本得放在服务器跑，有时候直接在服务器上改，有时候有是在本机改，代码同步就不怎么方便。于是在本机配好了SVN server，服务器直接从本机check out代码，本机和服务器做了相应的改动后commit。这样也方便代码同步。
 

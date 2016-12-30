@@ -8,10 +8,8 @@ guid: http://www.tanglei.name/?p=483
 duoshuo_thread_id:
   - 1351844048792453411
 categories:
-  - SoftwareEngineering
-  - 软件度量及其应用
+  - 课程学习
 tags:
-  - Metrics
   - 考点
   - 软件度量
 ---

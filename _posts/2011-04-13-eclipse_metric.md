@@ -8,10 +8,9 @@ guid: http://www.tanglei.name/?p=431
 duoshuo_thread_id:
   - 1351844048792453281
 categories:
-  - SoftwareEngineering
+  - 课程学习
 tags:
-  - eclipse插件
-  - Metrics
+  - Eclipse
   - 软件度量
 ---
 软件度量的课就要这么完了，都还没有感觉呀。要检查项目，用了eclipse的插件，metrics感觉还不错。不过有的结果不知道啥意思，网上查了下，结合自己的理解，在这里记下来了，分享了。刚开始准备就在图片里面写写了事，不过有的太长了。还是另外再加些内容吧。
